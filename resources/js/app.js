@@ -7,6 +7,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import Vuetify from 'vuetify';
+Vue.use(Vuetify);
 
 /**
  * The following block of code may be used to automatically register your
@@ -29,5 +31,6 @@ Vue.component('login-component', require('./components/LoginComponent.vue').defa
  */
 
 const app = new Vue({
-    el: '#app',
+  el: '#app',
+  vuetify: new Vuetify(),
 });
