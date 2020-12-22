@@ -2064,6 +2064,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -2092,6 +2093,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
   },
   data: function data() {
     return {
+      entorno: "sjglkjsljglskjgslkj",
       email: null,
       password: null,
       show1: false
@@ -2107,11 +2109,10 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                evt.preventDefault();
-                _context.next = 3;
-                return _this.$refs.observer.validate();
+                console.log("sjglkjsljglskjgslkj");
+                return _context.abrupt("return", true);
 
-              case 3:
+              case 5:
                 result = _context.sent;
 
                 if (result) {
@@ -2120,7 +2121,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
                 // console.log(this.$refs.observer.validate())
 
 
-              case 5:
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -42037,7 +42038,13 @@ var render = function() {
       _c(
         "v-app-bar",
         { staticClass: "d-flex justify-center", attrs: { app: "" } },
-        [_vm._v("\n    Sistema de planificación de recursos empresariales\n  ")]
+        [
+          _vm._v(
+            "\n    Sistema de planificación de recursos empresariales\n    " +
+              _vm._s(_vm.entorno) +
+              "\n  "
+          )
+        ]
       ),
       _vm._v(" "),
       _c(

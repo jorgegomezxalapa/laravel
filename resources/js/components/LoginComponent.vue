@@ -4,6 +4,7 @@
 
   <v-app-bar app class="d-flex justify-center">
     Sistema de planificación de recursos empresariales
+    {{entorno}}
   </v-app-bar>
 
   
@@ -124,12 +125,15 @@
       ValidationObserver,
     },
     data: () => ({
+        entorno:process.env.MIX_CLIENT_SECRET,
       email: null,
       password: null,
       show1: false,
     }),
     methods: {
       async submit (evt) {
+        console.log(process.env.MIX_CLIENT_SECRET)
+        return true;
         evt.preventDefault();
       
         const result = await this.$refs.observer.validate()
