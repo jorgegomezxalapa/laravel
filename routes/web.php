@@ -22,3 +22,6 @@ Route::get('/ingreso', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+//INICIO DE SESIÓN
+Route::post('authenticate', 'HomeController@authenticate')->name('authenticate');
+Route::get('usuario/dashboard', 'HomeController@dashboard')->name('dashboard');

@@ -16,7 +16,7 @@
         max-width="374"
       >
    
-   <img :src="'img/profile.png'" width="100%" >
+   <img :src="'img/profile.png'" width="100%" class="my-2" >
 
     <v-card-title><h5><strong>Ingresa con tus datos personales</strong></h5></v-card-title>
     <validation-observer
@@ -86,7 +86,7 @@
   </v-main>
 
   <v-footer app class="d-flex justify-center">
-    <strong>Sistema de planificación de recursos empresariales © {{ new Date().getFullYear() }}</strong>
+    <strong>G SURESTE © {{ new Date().getFullYear() }}</strong>
   </v-footer>
 </v-app>
 </template>
@@ -156,7 +156,7 @@
       })
       .then(function (response) {
         console.log("redirigir")
-        window.location.href = 'http://localhost/erpgsureste/public/inicio';
+        window.location.href = 'http://localhost/laravel/public/usuario/dashboard';
       })
       .catch(function (error) {
 
