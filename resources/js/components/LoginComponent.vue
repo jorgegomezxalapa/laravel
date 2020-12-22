@@ -156,7 +156,7 @@
       })
       .then(function (response) {
         console.log("redirigir")
-        window.location.href = 'http://localhost/laravel/public/usuario/dashboard';
+        window.location.href = route('dashboard');
       })
       .catch(function (error) {
 

@@ -2143,7 +2143,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
         }
       }).then(function (response) {
         console.log("redirigir");
-        window.location.href = 'http://localhost/laravel/public/usuario/dashboard';
+        window.location.href = route('dashboard');
       })["catch"](function (error) {
         sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Acceso incorrecto!", "Ingresa los datos de usuario correctos!", "warning");
       });
