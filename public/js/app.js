@@ -2093,7 +2093,6 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
   },
   data: function data() {
     return {
-      entorno: "sjglkjsljglskjgslkj",
       email: null,
       password: null,
       show1: false
@@ -2109,19 +2108,18 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                console.log("sjglkjsljglskjgslkj");
-                return _context.abrupt("return", true);
+                evt.preventDefault();
+                _context.next = 3;
+                return _this.$refs.observer.validate();
 
-              case 5:
+              case 3:
                 result = _context.sent;
 
                 if (result) {
                   _this.login();
-                } // this.$refs.observer.validate()
-                // console.log(this.$refs.observer.validate())
+                }
 
-
-              case 7:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -42040,9 +42038,7 @@ var render = function() {
         { staticClass: "d-flex justify-center", attrs: { app: "" } },
         [
           _vm._v(
-            "\n    Sistema de planificación de recursos empresariales\n    " +
-              _vm._s(_vm.entorno) +
-              "\n  "
+            "\n    Sistema de planificación de recursos empresariales\n    \n  "
           )
         ]
       ),
