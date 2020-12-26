@@ -2245,6 +2245,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -2273,6 +2278,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
   },
   data: function data() {
     return {
+      disabled: false,
       email: null,
       password: null,
       show1: false
@@ -2288,18 +2294,19 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                _this.disabled = true;
                 evt.preventDefault();
-                _context.next = 3;
+                _context.next = 4;
                 return _this.$refs.observer.validate();
 
-              case 3:
+              case 4:
                 result = _context.sent;
 
                 if (result) {
                   _this.login();
                 }
 
-              case 5:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -2337,7 +2344,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
                 // Success 🎉
                 console.log("Acceso correcto", response);
                 window.location.href = route('dashboard');
-                _context2.next = 13;
+                _context2.next = 14;
                 break;
 
               case 8:
@@ -2372,7 +2379,9 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
 
                 _this2.clear();
 
-              case 13:
+                _this2.disabled = false;
+
+              case 14:
               case "end":
                 return _context2.stop();
             }
@@ -42507,25 +42516,22 @@ var render = function() {
     "v-app",
     [
       _c(
-        "v-app-bar",
-        { staticClass: "d-flex justify-center", attrs: { app: "" } },
-        [
-          _vm._v(
-            "\n    Sistema de planificación de recursos empresariales\n    \n  "
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
         "v-main",
         [
           _c(
             "v-container",
-            { attrs: { fluid: "" } },
+            { attrs: { "fill-height": "", fluid: "" } },
             [
               _c(
                 "v-card",
-                { staticClass: "mx-auto", attrs: { "max-width": "374" } },
+                {
+                  staticClass: "mx-auto rounded-xl py-5 px-2",
+                  attrs: {
+                    "max-width": "380",
+                    align: "center",
+                    justify: "space-around"
+                  }
+                },
                 [
                   _c("img", {
                     attrs: { src: "img/profile.png", width: "100%" }
@@ -42690,7 +42696,8 @@ var render = function() {
                                         attrs: {
                                           color: "primary",
                                           type: "submit",
-                                          block: ""
+                                          block: "",
+                                          disabled: _vm.desactivar
                                         }
                                       },
                                       [_c("strong", [_vm._v("Ingresar")])]

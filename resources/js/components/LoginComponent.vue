@@ -2,19 +2,23 @@
   <v-app>
   
 
-  <v-app-bar app class="d-flex justify-center">
+  <!-- <v-app-bar app class="d-flex justify-center">
     Sistema de planificación de recursos empresariales
     
-  </v-app-bar>
+  </v-app-bar> -->
 
   
   <v-main>
 
    
-    <v-container fluid>
+    <v-container fill-height fluid>
       <v-card
-        class="mx-auto"
-        max-width="374"
+        class="mx-auto rounded-xl py-5 px-2"
+        max-width="380"
+        align="center"
+        justify="space-around"
+
+
       >
    
    <img :src="'img/profile.png'" width="100%">
@@ -71,9 +75,10 @@
     </v-card-text>
 
     <v-card-actions>
-     <v-btn color="primary" type="submit" block>
+     <v-btn color="primary" type="submit" block :disabled="desactivar">
     <strong>Ingresar</strong>
   </v-btn>
+
       
     </v-card-actions>
   </form>
@@ -125,13 +130,14 @@
       ValidationObserver,
     },
     data: () => ({
-        
+      disabled: false,
       email: null,
       password: null,
       show1: false,
     }),
     methods: {
       async submit (evt) {
+        this.disabled = true
         evt.preventDefault();
         const result = await this.$refs.observer.validate()
         if (result) {
@@ -184,6 +190,7 @@
             }
             console.log(error);
             this.clear()
+            this.disabled = false
         }
 
       
