@@ -2313,19 +2313,72 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
       this.$refs.observer.reset();
     },
     login: function login() {
-      axios({
-        method: 'post',
-        url: 'authenticate',
-        data: {
-          email: this.email,
-          password: this.password
-        }
-      }).then(function (response) {
-        console.log("redirigir");
-        window.location.href = route('dashboard');
-      })["catch"](function (error) {
-        sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Acceso incorrecto!", "Ingresa los datos de usuario correctos!", "warning");
-      });
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                _context2.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'authenticate',
+                  data: {
+                    email: _this2.email,
+                    password: _this2.password
+                  }
+                });
+
+              case 3:
+                response = _context2.sent;
+                // Success 🎉
+                console.log("Acceso correcto", response);
+                window.location.href = route('dashboard');
+                _context2.next = 13;
+                break;
+
+              case 8:
+                _context2.prev = 8;
+                _context2.t0 = _context2["catch"](0);
+
+                // Error 😨
+                if (_context2.t0.response) {
+                  /*
+                   * The request was made and the server responded with a
+                   * status code that falls out of the range of 2xx
+                   */
+                  console.log(_context2.t0.response.data);
+                  console.log(_context2.t0.response.status);
+                  console.log(_context2.t0.response.headers);
+                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Acceso incorrecto!", "Verifica que los datos sean correctos!", "warning");
+                } else if (_context2.t0.request) {
+                  /*
+                   * The request was made but no response was received, `error.request`
+                   * is an instance of XMLHttpRequest in the browser and an instance
+                   * of http.ClientRequest in Node.js
+                   */
+                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Eror!", "Ha ocurrido un error de conexión!", "warning");
+                  console.log("console.log 5", _context2.t0.request);
+                } else {
+                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Eror!", "Ha ocurrido un error de conexión!", "warning"); // Something happened in setting up the request and triggered an Error
+
+                  console.log("console.log 6", _context2.t0.message);
+                }
+
+                console.log(_context2.t0);
+
+                _this2.clear();
+
+              case 13:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 8]]);
+      }))();
     }
   }
 });
@@ -42475,7 +42528,6 @@ var render = function() {
                 { staticClass: "mx-auto", attrs: { "max-width": "374" } },
                 [
                   _c("img", {
-                    staticClass: "my-2",
                     attrs: { src: "img/profile.png", width: "100%" }
                   }),
                   _vm._v(" "),
@@ -42666,16 +42718,6 @@ var render = function() {
           )
         ],
         1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-footer",
-        { staticClass: "d-flex justify-center", attrs: { app: "" } },
-        [
-          _c("strong", [
-            _vm._v("G SURESTE © " + _vm._s(new Date().getFullYear()))
-          ])
-        ]
       )
     ],
     1

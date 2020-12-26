@@ -17,7 +17,7 @@
         max-width="374"
       >
    
-   <img :src="'img/profile.png'" width="100%" class="my-2" >
+   <img :src="'img/profile.png'" width="100%">
 
     <v-card-title><h5><strong>Ingresa con tus datos personales</strong></h5></v-card-title>
     <validation-observer
@@ -86,9 +86,9 @@
     </v-container>
   </v-main>
 
-  <v-footer app class="d-flex justify-center">
+  <!-- <v-footer app class="d-flex justify-center">
     <strong>G SURESTE © {{ new Date().getFullYear() }}</strong>
-  </v-footer>
+  </v-footer> -->
 </v-app>
 </template>
 
@@ -143,8 +143,10 @@
         this.password = null
         this.$refs.observer.reset()
       },
-      login(){
-       axios({
+      async login(){
+
+        try {
+            const response = await axios({
         method: 'post',
         url: 'authenticate',
         data: {
@@ -152,16 +154,39 @@
           password: this.password
         }
       })
-      .then(function (response) {
-        console.log("redirigir")
-        window.location.href = route('dashboard');
-      })
-      .catch(function (error) {
+            // Success 🎉
+            console.log("Acceso correcto",response);
+            window.location.href = route('dashboard');
+        } catch (error) {
+            // Error 😨
+            if (error.response) {
+                /*
+                 * The request was made and the server responded with a
+                 * status code that falls out of the range of 2xx
+                 */
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+                swal("Acceso incorrecto!", "Verifica que los datos sean correctos!", "warning");
+            } else if (error.request) {
 
-       swal("Acceso incorrecto!", "Ingresa los datos de usuario correctos!", "warning");
+                /*
+                 * The request was made but no response was received, `error.request`
+                 * is an instance of XMLHttpRequest in the browser and an instance
+                 * of http.ClientRequest in Node.js
+                 */
+                 swal("Eror!", "Ha ocurrido un error de conexión!", "warning");
+                console.log("console.log 5",error.request);
+            } else {
+                swal("Eror!", "Ha ocurrido un error de conexión!", "warning");
+                // Something happened in setting up the request and triggered an Error
+                console.log("console.log 6", error.message);
+            }
+            console.log(error);
+            this.clear()
+        }
 
-      })
-
+      
 
       },
     },
