@@ -2054,38 +2054,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       drawer: null,
-      items: [{
-        text: 'Registrar solicitud',
-        icon: 'mdi-folder-plus'
-      }, {
-        text: 'Concentrado de cotizaciones',
-        icon: 'mdi-folder-multiple'
-      }, {
-        text: 'Información de clientes',
-        icon: 'mdi-account-switch'
-      }, {
-        text: 'Configuración de utilidad',
-        icon: 'mdi-cash-multiple'
-      }, {
-        text: 'Configuración de formatos',
-        icon: 'mdi-file-pdf-box'
-      }, {
-        text: 'Control de usuarios',
-        icon: 'mdi-account-key'
-      }, {
-        text: 'Más acciones',
-        icon: 'mdi-laptop-windows'
-      }],
+      folio: null,
+      messages: 0,
+      show: false,
       user: {
-        initials: 'ADMIN',
-        fullName: 'Administrador',
-        email: 'administracion@email.com'
+        initials: 'JVX',
+        fullName: 'Nombre Usuario',
+        email: 'Rol de usuario'
       }
     };
+  },
+  watch: {},
+  methods: {
+    buscarFolio: function buscarFolio() {
+      console.log("buscando folio");
+    }
   }
 });
 
@@ -42191,39 +42189,164 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-app",
+    { attrs: { id: "inspire" } },
     [
+      _c("v-navigation-drawer", {
+        attrs: { app: "" },
+        model: {
+          value: _vm.drawer,
+          callback: function($$v) {
+            _vm.drawer = $$v
+          },
+          expression: "drawer"
+        }
+      }),
+      _vm._v(" "),
       _c(
-        "v-navigation-drawer",
-        {
-          attrs: { color: "", app: "" },
-          model: {
-            value: _vm.drawer,
-            callback: function($$v) {
-              _vm.drawer = $$v
-            },
-            expression: "drawer"
-          }
-        },
+        "v-app-bar",
+        { attrs: { app: "" } },
         [
+          _c("v-app-bar-nav-icon", {
+            attrs: { large: "" },
+            on: {
+              click: function($event) {
+                _vm.drawer = !_vm.drawer
+              }
+            }
+          }),
+          _vm._v(" "),
           _c(
-            "v-list",
+            "v-toolbar-title",
+            { staticClass: "font-weight-black mr-3 hidden-sm-and-down" },
+            [_vm._v("JVX SERP PRO")]
+          ),
+          _vm._v(" "),
+          _c(
+            "v-responsive",
+            { attrs: { "max-width": "65%" } },
             [
+              _c("v-text-field", {
+                attrs: {
+                  label: "Buscar Folio",
+                  "append-icon": "mdi-magnify",
+                  dense: "",
+                  flat: "",
+                  "hide-details": "",
+                  rounded: "",
+                  solo: ""
+                },
+                on: { "click:append": _vm.buscarFolio },
+                model: {
+                  value: _vm.folio,
+                  callback: function($$v) {
+                    _vm.folio = $$v
+                  },
+                  expression: "folio"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-spacer"),
+          _vm._v(" "),
+          _c(
+            "v-menu",
+            {
+              attrs: {
+                bottom: "",
+                "min-width": "200px",
+                rounded: "",
+                "offset-y": ""
+              },
+              scopedSlots: _vm._u([
+                {
+                  key: "activator",
+                  fn: function(ref) {
+                    var on = ref.on
+                    return [
+                      _c(
+                        "v-btn",
+                        _vm._g({ attrs: { icon: "", "x-large": "" } }, on),
+                        [
+                          _c(
+                            "v-badge",
+                            {
+                              attrs: {
+                                content: _vm.messages,
+                                value: _vm.messages,
+                                color: "green",
+                                overlap: ""
+                              }
+                            },
+                            [
+                              _c("v-icon", [
+                                _vm._v("\n       mdi-bell-outline\n      ")
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  }
+                }
+              ])
+            },
+            [
+              _vm._v(" "),
               _c(
-                "v-list-item",
+                "v-card",
                 [
-                  _c(
-                    "v-list-item-content",
-                    [
-                      _c("v-list-item-title", { staticClass: "title" }, [
-                        _vm._v("\n              ADMINISTRADOR\n            ")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-list-item-subtitle", [
-                        _vm._v("administracion@email.com")
-                      ])
-                    ],
-                    1
-                  )
+                  _c("v-list-item-content", { staticClass: "justify-center" }, [
+                    _c(
+                      "div",
+                      { staticClass: "mx-12 text-center" },
+                      [
+                        _c("v-avatar", { attrs: { color: "brown" } }, [
+                          _c("span", { staticClass: "white--text headline" }, [
+                            _vm._v(_vm._s(_vm.user.initials))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("h3", [_vm._v("Soy notificaciones")]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "caption mt-1" }, [
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(_vm.user.email) +
+                              "\n            "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("v-divider", { staticClass: "my-3" }),
+                        _vm._v(" "),
+                        _c(
+                          "v-btn",
+                          { attrs: { depressed: "", rounded: "", text: "" } },
+                          [
+                            _vm._v(
+                              "\n              Editar Cuenta\n            "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("v-divider", { staticClass: "my-3" }),
+                        _vm._v(" "),
+                        _c(
+                          "v-btn",
+                          { attrs: { depressed: "", rounded: "", text: "" } },
+                          [
+                            _vm._v(
+                              "\n              Cerrar Sesión\n            "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ])
                 ],
                 1
               )
@@ -42231,197 +42354,89 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("v-divider"),
-          _vm._v(" "),
           _c(
-            "v-list",
-            { attrs: { nav: "", dense: "" } },
-            [
-              _c(
-                "v-list-item-group",
+            "v-menu",
+            {
+              attrs: {
+                bottom: "",
+                "min-width": "200px",
+                rounded: "",
+                "offset-y": ""
+              },
+              scopedSlots: _vm._u([
                 {
-                  attrs: { color: "primary" },
-                  model: {
-                    value: _vm.selectedItem,
-                    callback: function($$v) {
-                      _vm.selectedItem = $$v
-                    },
-                    expression: "selectedItem"
-                  }
-                },
-                _vm._l(_vm.items, function(item, i) {
-                  return _c(
-                    "v-list-item",
-                    { key: i },
-                    [
+                  key: "activator",
+                  fn: function(ref) {
+                    var on = ref.on
+                    return [
                       _c(
-                        "v-list-item-icon",
+                        "v-btn",
+                        _vm._g({ attrs: { icon: "", "x-large": "" } }, on),
                         [
-                          _c("v-icon", {
-                            domProps: { textContent: _vm._s(item.icon) }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-list-item-content",
-                        [
-                          _c("v-list-item-title", {
-                            domProps: { textContent: _vm._s(item.text) }
-                          })
+                          _c("v-icon", { attrs: { dark: "" } }, [
+                            _vm._v("\n       mdi-account-circle\n    ")
+                          ])
                         ],
                         1
                       )
-                    ],
-                    1
-                  )
-                }),
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-app-bar",
-        { attrs: { color: "", app: "" } },
-        [
-          _c(
-            "v-row",
-            [
-              _c("v-app-bar-nav-icon", {
-                on: {
-                  click: function($event) {
-                    $event.stopPropagation()
-                    _vm.drawer = !_vm.drawer
+                    ]
                   }
                 }
-              }),
-              _vm._v(" "),
-              _c("v-spacer"),
+              ])
+            },
+            [
               _vm._v(" "),
               _c(
-                "v-menu",
-                {
-                  attrs: {
-                    bottom: "",
-                    "min-width": "200px",
-                    rounded: "",
-                    "offset-y": ""
-                  },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "activator",
-                      fn: function(ref) {
-                        var on = ref.on
-                        return [
-                          _c(
-                            "v-btn",
-                            _vm._g({ attrs: { icon: "", "x-large": "" } }, on),
-                            [
-                              _c(
-                                "v-avatar",
-                                { attrs: { color: "", size: "48" } },
-                                [
-                                  _c("img", {
-                                    staticClass: "my-2",
-                                    attrs: {
-                                      src:
-                                        "https://cdn.pixabay.com/photo/2016/08/31/11/54/user-1633249_1280.png",
-                                      width: "100%"
-                                    }
-                                  })
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        ]
-                      }
-                    }
-                  ])
-                },
+                "v-card",
                 [
-                  _vm._v(" "),
-                  _c(
-                    "v-card",
-                    [
-                      _c(
-                        "v-list-item-content",
-                        { staticClass: "justify-center" },
-                        [
-                          _c(
-                            "div",
-                            { staticClass: "mx-auto text-center" },
-                            [
-                              _c("v-avatar", { attrs: { color: "" } }, [
-                                _c("img", {
-                                  staticClass: "my-2",
-                                  attrs: {
-                                    src:
-                                      "https://cdn.pixabay.com/photo/2016/08/31/11/54/user-1633249_1280.png",
-                                    width: "100%"
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("h3", [_vm._v(_vm._s(_vm.user.fullName))]),
-                              _vm._v(" "),
-                              _c("p", { staticClass: "caption mt-1" }, [
-                                _vm._v(
-                                  "\n                " +
-                                    _vm._s(_vm.user.email) +
-                                    "\n              "
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("v-divider", { staticClass: "my-3" }),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: {
-                                    depressed: "",
-                                    rounded: "",
-                                    text: ""
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                Mi perfil\n              "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("v-divider", { staticClass: "my-3" }),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: {
-                                    depressed: "",
-                                    rounded: "",
-                                    text: ""
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                Cerrar Sesión\n              "
-                                  )
-                                ]
-                              )
-                            ],
-                            1
+                  _c("v-list-item-content", { staticClass: "justify-center" }, [
+                    _c(
+                      "div",
+                      { staticClass: "mx-12 text-center" },
+                      [
+                        _c("v-avatar", { attrs: { color: "brown" } }, [
+                          _c("span", { staticClass: "white--text headline" }, [
+                            _vm._v(_vm._s(_vm.user.initials))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("h3", [_vm._v(_vm._s(_vm.user.fullName))]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "caption mt-1" }, [
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(_vm.user.email) +
+                              "\n            "
                           )
-                        ]
-                      )
-                    ],
-                    1
-                  )
+                        ]),
+                        _vm._v(" "),
+                        _c("v-divider", { staticClass: "my-3" }),
+                        _vm._v(" "),
+                        _c(
+                          "v-btn",
+                          { attrs: { depressed: "", rounded: "", text: "" } },
+                          [
+                            _vm._v(
+                              "\n              Editar cuenta\n            "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("v-divider", { staticClass: "my-3" }),
+                        _vm._v(" "),
+                        _c(
+                          "v-btn",
+                          { attrs: { depressed: "", rounded: "", text: "" } },
+                          [
+                            _vm._v(
+                              "\n              Cerrar Sesión\n            "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ])
                 ],
                 1
               )
@@ -42432,13 +42447,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("v-main", [_c("v-container", { attrs: { fluid: "" } })], 1),
-      _vm._v(" "),
-      _c("v-footer", { staticClass: "d-flex justify-center" }, [
-        _c("strong", [
-          _vm._v("G SURESTE © " + _vm._s(new Date().getFullYear()))
-        ])
-      ])
+      _c("v-main")
     ],
     1
   )
