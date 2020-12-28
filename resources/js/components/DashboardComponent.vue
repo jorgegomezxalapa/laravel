@@ -25,6 +25,7 @@
           <v-list-item
             v-for="(item, i) in items"
             :key="i"
+            @click="enrutar(item.url)"
           >
             <v-list-item-icon>
               <v-icon v-text="item.icon"></v-icon>
@@ -170,14 +171,9 @@
     
 
     <v-main>
-      
-     
-    <v-container fluid>
-      
+   <transition name="slide-fade" mode="out-in">
       <router-view :key="$route.fullPath"></router-view>
-    </v-container>
-    
-
+    </transition>
     </v-main>
     <v-footer padless>
     <v-col
@@ -205,15 +201,15 @@
       },
       selectedItem: 0,
       items: [
-      { text: 'Dashboard', icon: 'mdi-devices' },
-        { text: 'Solicitudes', icon: 'mdi-import' },
-         { text: 'Cotizaciones', icon: 'mdi-file-send-outline' },
-         { text: 'Ventas', icon: 'mdi-account-cash-outline' },
-        { text: 'Clientes', icon: 'mdi-account-badge-horizontal-outline' },
-        { text: 'Utilidades', icon: 'mdi-file-percent-outline' },
-        { text: 'Formatos', icon: 'mdi-file-pdf-box-outline' },
-        { text: 'Empleados', icon: 'mdi-account-box-multiple-outline' },
-        { text: 'Historial', icon: 'mdi-history' },
+      { text: 'Dashboard', icon: 'mdi-devices' , url:'dashboard'},
+        { text: 'Solicitudes', icon: 'mdi-import' , url:'solicitudes'},
+         { text: 'Cotizaciones', icon: 'mdi-file-send-outline' , url:'cotizaciones'},
+         { text: 'Ventas', icon: 'mdi-account-cash-outline' , url:'ventas'},
+        { text: 'Clientes', icon: 'mdi-account-badge-horizontal-outline' , url:'clientes'},
+        { text: 'Utilidades', icon: 'mdi-file-percent-outline' , url:'utilidades'},
+        { text: 'Formatos', icon: 'mdi-file-pdf-box-outline' , url:'formatos'},
+        { text: 'Empleados', icon: 'mdi-account-box-multiple-outline' , url:'empleados'},
+        { text: 'Historial', icon: 'mdi-history' , url:'historial'},
       ],
        
        }),
@@ -225,7 +221,11 @@
         console.log("buscando folio")
       },
       cargarMain(){
-        this.$router.push('/dashboard');
+        this.$router.push({ path: 'dashboard' }).catch(()=>{});
+      },
+      enrutar(url){
+        this.$router.push({ path: url }).catch(()=>{});
+        
       }
       
     },
