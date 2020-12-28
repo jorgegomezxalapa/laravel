@@ -43,7 +43,7 @@
           >
             <v-text-field
               v-model="email"
-              filled
+              outlined
               :error-messages="errors"
               label="Correo electrónico"
               autocomplete="new-password"
@@ -61,7 +61,7 @@
       >
             <v-text-field
               v-model="password"
-              filled
+              outlined
               :error-messages="errors"
               label="Contraseña"
               :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
@@ -85,7 +85,11 @@
   </validation-observer>
 
   <v-card-text class="d-flex justify-center">
-      <div>¿Olvidaste tu contraseña?</div>
+      <div>
+         <v-btn text>
+          ¿Olvidaste tu contraseña?
+        </v-btn>
+      </div>
     </v-card-text>
   </v-card>
     </v-container>

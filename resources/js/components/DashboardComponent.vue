@@ -3,7 +3,39 @@
     <v-navigation-drawer
       v-model="drawer"
       app
+      class="px-3"
     >
+    <v-btn
+      block
+      class="mt-3"
+      outlined
+      
+    >
+      Administrador
+    </v-btn>
+    <v-divider></v-divider>
+    <v-list
+        nav
+      >
+
+        <v-list-item-group
+          v-model="selectedItem"
+          color="primary"
+        >
+          <v-list-item
+            v-for="(item, i) in items"
+            :key="i"
+          >
+            <v-list-item-icon>
+              <v-icon v-text="item.icon"></v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title v-text="item.text"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
     </v-navigation-drawer>
 
     <v-app-bar app>
@@ -139,7 +171,16 @@
 
     <v-main>
       <!--  -->
+
     </v-main>
+    <v-footer padless>
+    <v-col
+      class="text-center"
+      cols="12"
+    >
+      SISTEMA DE PLANIFICACIÓN DE RECURSOS <strong>© {{ new Date().getFullYear() }}</strong>
+    </v-col>
+  </v-footer>
   </v-app>
 </template>
 
@@ -156,6 +197,18 @@
         email: 'Rol de usuario',
 
       },
+      selectedItem: 0,
+      items: [
+      { text: 'Dashboard', icon: 'mdi-devices' },
+        { text: 'Solicitudes', icon: 'mdi-import' },
+         { text: 'Cotizaciones', icon: 'mdi-file-send-outline' },
+         { text: 'Ventas', icon: 'mdi-account-cash-outline' },
+        { text: 'Clientes', icon: 'mdi-account-badge-horizontal-outline' },
+        { text: 'Utilidades', icon: 'mdi-file-percent-outline' },
+        { text: 'Formatos', icon: 'mdi-file-pdf-box-outline' },
+        { text: 'Empleados', icon: 'mdi-account-box-multiple-outline' },
+        { text: 'Historial', icon: 'mdi-history' },
+      ],
        
        }),
     watch: {

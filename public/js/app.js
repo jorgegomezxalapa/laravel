@@ -2065,6 +2065,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2076,7 +2117,36 @@ __webpack_require__.r(__webpack_exports__);
         initials: 'JVX',
         fullName: 'Nombre Usuario',
         email: 'Rol de usuario'
-      }
+      },
+      selectedItem: 0,
+      items: [{
+        text: 'Dashboard',
+        icon: 'mdi-devices'
+      }, {
+        text: 'Solicitudes',
+        icon: 'mdi-import'
+      }, {
+        text: 'Cotizaciones',
+        icon: 'mdi-file-send-outline'
+      }, {
+        text: 'Ventas',
+        icon: 'mdi-account-cash-outline'
+      }, {
+        text: 'Clientes',
+        icon: 'mdi-account-badge-horizontal-outline'
+      }, {
+        text: 'Utilidades',
+        icon: 'mdi-file-percent-outline'
+      }, {
+        text: 'Formatos',
+        icon: 'mdi-file-pdf-box-outline'
+      }, {
+        text: 'Empleados',
+        icon: 'mdi-account-box-multiple-outline'
+      }, {
+        text: 'Historial',
+        icon: 'mdi-history'
+      }]
     };
   },
   watch: {},
@@ -2149,6 +2219,10 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -42191,16 +42265,80 @@ var render = function() {
     "v-app",
     { attrs: { id: "inspire" } },
     [
-      _c("v-navigation-drawer", {
-        attrs: { app: "" },
-        model: {
-          value: _vm.drawer,
-          callback: function($$v) {
-            _vm.drawer = $$v
-          },
-          expression: "drawer"
-        }
-      }),
+      _c(
+        "v-navigation-drawer",
+        {
+          staticClass: "px-3",
+          attrs: { app: "" },
+          model: {
+            value: _vm.drawer,
+            callback: function($$v) {
+              _vm.drawer = $$v
+            },
+            expression: "drawer"
+          }
+        },
+        [
+          _c(
+            "v-btn",
+            { staticClass: "mt-3", attrs: { block: "", outlined: "" } },
+            [_vm._v("\n    Administrador\n  ")]
+          ),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c(
+            "v-list",
+            { attrs: { nav: "" } },
+            [
+              _c(
+                "v-list-item-group",
+                {
+                  attrs: { color: "primary" },
+                  model: {
+                    value: _vm.selectedItem,
+                    callback: function($$v) {
+                      _vm.selectedItem = $$v
+                    },
+                    expression: "selectedItem"
+                  }
+                },
+                _vm._l(_vm.items, function(item, i) {
+                  return _c(
+                    "v-list-item",
+                    { key: i },
+                    [
+                      _c(
+                        "v-list-item-icon",
+                        [
+                          _c("v-icon", {
+                            domProps: { textContent: _vm._s(item.icon) }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c("v-list-item-title", {
+                            domProps: { textContent: _vm._s(item.text) }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                }),
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
       _vm._v(" "),
       _c(
         "v-app-bar",
@@ -42447,7 +42585,19 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("v-main")
+      _c("v-main"),
+      _vm._v(" "),
+      _c(
+        "v-footer",
+        { attrs: { padless: "" } },
+        [
+          _c("v-col", { staticClass: "text-center", attrs: { cols: "12" } }, [
+            _vm._v("\n    SISTEMA DE PLANIFICACIÓN DE RECURSOS "),
+            _c("strong", [_vm._v("© " + _vm._s(new Date().getFullYear()))])
+          ])
+        ],
+        1
+      )
     ],
     1
   )
@@ -42598,7 +42748,7 @@ var render = function() {
                                                       return [
                                                         _c("v-text-field", {
                                                           attrs: {
-                                                            filled: "",
+                                                            outlined: "",
                                                             "error-messages": errors,
                                                             label:
                                                               "Correo electrónico",
@@ -42648,7 +42798,7 @@ var render = function() {
                                                       return [
                                                         _c("v-text-field", {
                                                           attrs: {
-                                                            filled: "",
+                                                            outlined: "",
                                                             "error-messages": errors,
                                                             label: "Contraseña",
                                                             "append-icon": _vm.show1
@@ -42724,7 +42874,17 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("v-card-text", { staticClass: "d-flex justify-center" }, [
-                    _c("div", [_vm._v("¿Olvidaste tu contraseña?")])
+                    _c(
+                      "div",
+                      [
+                        _c("v-btn", { attrs: { text: "" } }, [
+                          _vm._v(
+                            "\n          ¿Olvidaste tu contraseña?\n        "
+                          )
+                        ])
+                      ],
+                      1
+                    )
                   ])
                 ],
                 1
