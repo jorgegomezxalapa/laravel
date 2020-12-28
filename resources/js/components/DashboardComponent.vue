@@ -170,7 +170,13 @@
     
 
     <v-main>
-      <!--  -->
+      
+     
+    <v-container fluid>
+      
+      <router-view :key="$route.fullPath"></router-view>
+    </v-container>
+    
 
     </v-main>
     <v-footer padless>
@@ -217,8 +223,14 @@
     methods: {
       buscarFolio(){
         console.log("buscando folio")
+      },
+      cargarMain(){
+        this.$router.push('/dashboard');
       }
       
     },
+    beforeMount: function () {
+    this.cargarMain()
+  }
   }
 </script>

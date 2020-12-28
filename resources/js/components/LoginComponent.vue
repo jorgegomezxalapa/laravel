@@ -134,14 +134,14 @@
       ValidationObserver,
     },
     data: () => ({
-      disabled: false,
+      desactivar: false,
       email: null,
       password: null,
       show1: false,
     }),
     methods: {
       async submit (evt) {
-        this.disabled = true
+        this.desactivar = true
         evt.preventDefault();
         const result = await this.$refs.observer.validate()
         if (result) {
@@ -194,7 +194,7 @@
             }
             console.log(error);
             this.clear()
-            this.disabled = false
+            this.desactivar = false
         }
 
       
