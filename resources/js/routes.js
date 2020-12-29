@@ -45,6 +45,11 @@ export default new Router ({
 		component: require('./views/EmpleadosComponent.vue').default
 	},
 	{
+		path:'/nuevo-empleado',
+		name:'nuevoEmpleado',
+		component: require('./views/RegistroEmpleado.vue').default
+	},
+	{
 		path:'/historial',
 		name:'historial',
 		component: require('./views/HistorialComponent.vue').default

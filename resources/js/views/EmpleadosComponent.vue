@@ -8,144 +8,127 @@
 
 
       >
-    <v-card-title class="font-weight-black">Registro de Empleado</v-card-title>
+    <v-card-title class="font-weight-black">Registro de Empleados</v-card-title>
+
 <v-divider></v-divider>
-  <v-card-text class="d-flex justify-center">
+  <v-card-text>
+    <v-row>
+        <v-col cols="12" md="4">
+            <v-btn
+              color="primary"
+              dark
+             @click="nuevoEmpleado"
+            >
+              Registrar Nuevo Empleado
+            </v-btn>
+        </v-col>
+        <v-col cols="12" md="8">
+            <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Buscar por parámetro"
+        single-line
+        hide-details
+      ></v-text-field>
+        </v-col>
+    </v-row>
     
     <v-row>
-      <v-col
-        cols="12"
-      
-        md="6"
-      >
-        <p class="font-weight-black">Atributos del Usuario</p>
-        <v-form
-   
-  >
-    <v-text-field
-      v-model="nombreUsuario"
-      label="Nombre de Usuario"
-      required
-    ></v-text-field>
-
-    <v-text-field
-      v-model="email"
-      
-      label="Correo de Usuario"
-      required
-    ></v-text-field>
-
-    
-
-    <v-select
-      v-model="rol"
-      :items="catroles"
-      label="Rol de Usuario"
-      required
-    ></v-select>
-
-     <v-select
-      v-model="areatrabajo"
-      :items="catareas"
-      label="Área de Trabajo"
-      required
-    ></v-select>
-
-  
-  </v-form>
-      </v-col>
-      <v-col
-        cols="12"
-        md="6"
-      >
-       <p class="font-weight-black">Información Personal</p>
-       <v-form
-  
-  >
-    <v-text-field
-      v-model="nombreCompleto"
-     
-     
-      label="Nombre Completo"
-      required
-    ></v-text-field>
-
-    <v-text-field
-      v-model="telefono"
-     
-      label="Teléfono"
-      required
-    ></v-text-field>
-
-<label>Seleccionar Sexo</label>
-<v-card
-      class="d-flex justify-center mb-6"
-     
-      flat
-      tile
+       <v-col cols="12">
+          <v-data-table
+      :headers="headers"
+      :items="desserts"
+      :search="search"
     >
-      <v-radio-group
-      v-model="sexo"
-      row
-    >
-      <v-radio
-        label="Masculino"
-        value="masc"
-      ></v-radio>
-      <v-radio
-        label="Femenino"
-        value="fem"
-      ></v-radio>
-    </v-radio-group>
-    </v-card>
-  
+      
+    <template v-slot:item.cotizaciones="{ item }">
+     <v-tooltip top>
+      <template v-slot:activator="{ on, attrs }">
+      <v-chip
+       v-bind="attrs"
+          v-on="on"
+        :color="'grey'"
+        dark
+      >
+        {{ item.cotizaciones }}
+      </v-chip>
+      </template>
+       <span>Pendientes</span>
+  </v-tooltip>
+      <v-tooltip top>
+        <template v-slot:activator="{ on, attrs }">
+        <v-chip
+         v-bind="attrs"
+          v-on="on"
+        :color="'orange'"
+        dark
+      >
+        {{ item.cotizaciones2 }}
+      </v-chip>
+      </template>
+       <span>En Proceso</span>
+  </v-tooltip>
+       <v-tooltip top>
+        <template v-slot:activator="{ on, attrs }">
+        <v-chip
+         v-bind="attrs"
+          v-on="on"
+        :color="'green'"
+        dark
+      >
+        {{ item.cotizaciones3 }}
+      </v-chip>
+      </template>
+       <span>Cotizadas</span>
+  </v-tooltip>
 
-    
-  </v-form>
-      </v-col>
+      
+    </template>
+    <template v-slot:item.acciones="{ item }">
+        <v-tooltip top>
+        <template v-slot:activator="{ on, attrs }">
+        <v-btn
+         v-bind="attrs"
+          v-on="on"
+               small
+                color="primary"
+                dark
+                
+                fab
+              >
+                <v-icon>mdi-folder-multiple-outline</v-icon>
+              </v-btn>
+          </template>
+          <span>Ver Detalle</span>
+      </v-tooltip>
+     
+      <v-tooltip top>
+      <template v-slot:activator="{ on, attrs }">
+      <v-btn
+       v-bind="attrs"
+          v-on="on"
+               small
+                color="primary"
+                dark
+                
+                fab
+              >
+                <v-icon>mdi-pencil-box-outline</v-icon>
+              </v-btn>
+          </template>
+          <span>Editar Usuario</span>
+      </v-tooltip>
+      
+    </template>
+    </v-data-table>
+       </v-col> 
     </v-row>
 
  
     </v-card-text>
     <v-divider></v-divider>
     <v-card-actions>
-        <v-row>
-            <v-col>
-                <v-btn
-      
-      color="warning"
-      cols="6"
-      block
-      
-    >
-      Editar
-    </v-btn>
-            </v-col>
-            <v-col>
-                <v-btn
-      color="error"
-      cols="6"
-      block
-      
-    >
-     Eliminar
-    </v-btn>
-            </v-col>
-            <v-col>
-               <v-btn
-               cols="6"
-               block
-      color="success"
-     
-    >
-      Guardar
-    </v-btn> 
-            </v-col>
-        </v-row>
         
-
-    
-
     
     </v-card-actions>
   </v-card>
@@ -154,20 +137,41 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
-        },
-        data: () => ({ 
-            nombreUsuario:null,
-            email:null,
-            rol:null,
-            areatrabajo:null,
-            nombreCompleto:null,
-            telefono:null,
-            sexo:null,
-            catareas:['ADMINISTRACIÓN', 'COTIZACIONES', 'VENTAS'],
-            catroles:['ADMINISTRADOR', 'COTIZADOR'],
-         }),
-    
-    }
+    data () {
+      return {
+        search: '',
+        headers: [
+          {
+            text: 'Nombre Completo',
+            align: 'center',
+           
+            value: 'nombre',
+          },
+          { text: 'Usuario', align: 'center', value: 'usuario' },
+          { text: 'Rol', align: 'center', value: 'rol' },
+          { text: 'Área de Trabajo', align: 'center', value: 'areaTrabajo' },
+          { text: 'Cotizaciones', align: 'center', value: 'cotizaciones' },
+          { text: 'Acciones', align: 'center', value: 'acciones' },
+        ],
+        desserts: [
+          {
+            nombre: 'Jonh Doe',
+            usuario: "Cotizador1",
+            rol: "Cotizador",
+            areaTrabajo: "Cotizaciones",
+            cotizaciones: 3,
+            cotizaciones2: 10,
+            cotizaciones3: 5,
+            acciones: "Acciones",
+          },
+          
+        ],
+      }
+    },
+     methods: {
+        nuevoEmpleado(){
+            this.$router.push({ name: 'nuevoEmpleado' }).catch(()=>{});
+        }
+     },
+  }
 </script>
