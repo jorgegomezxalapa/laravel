@@ -2165,11 +2165,14 @@ __webpack_require__.r(__webpack_exports__);
     buscarFolio: function buscarFolio() {
       console.log("buscando folio");
     },
-    cargarMain: function cargarMain() {// this.$router.push({ path: 'dashboard' }).catch(()=>{});
+    cargarMain: function cargarMain() {
+      this.$router.push({
+        path: 'dashboard'
+      })["catch"](function () {});
     },
     enrutar: function enrutar(url) {
       this.$router.push({
-        name: url
+        path: url
       })["catch"](function () {});
     }
   },
@@ -103098,8 +103101,8 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: [{
-    path: '/',
-    name: 'dashboard',
+    path: '/dashboard',
+    name: 'home',
     component: __webpack_require__(/*! ./views/DashboardComponent.vue */ "./resources/js/views/DashboardComponent.vue")["default"]
   }, {
     path: '/solicitudes',
