@@ -78,6 +78,13 @@
       required
     ></v-text-field>
 
+    <v-text-field
+      v-model="password"
+     
+      label="Contraseña"
+      required
+    ></v-text-field>
+
 <label>Seleccionar Sexo</label>
 <v-card
       class="d-flex justify-center mb-6"
@@ -136,10 +143,10 @@
                <v-btn
                cols="6"
                block
-      color="success"
+      color="primary"
      
     >
-      Guardar
+      Registrar
     </v-btn> 
             </v-col>
         </v-row>
@@ -166,6 +173,7 @@
             areatrabajo:null,
             nombreCompleto:null,
             telefono:null,
+            password:null,
             sexo:null,
             catareas:['ADMINISTRACIÓN', 'COTIZACIONES', 'VENTAS'],
             catroles:['ADMINISTRADOR', 'COTIZADOR'],
