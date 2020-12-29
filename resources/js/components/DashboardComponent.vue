@@ -221,10 +221,10 @@
         console.log("buscando folio")
       },
       cargarMain(){
-        this.$router.push({ path: 'dashboard' }).catch(()=>{});
+        // this.$router.push({ path: 'dashboard' }).catch(()=>{});
       },
       enrutar(url){
-        this.$router.push({ path: url }).catch(()=>{});
+        this.$router.push({ name: url }).catch(()=>{});
         
       }
       

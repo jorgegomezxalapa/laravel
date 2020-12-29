@@ -2165,14 +2165,11 @@ __webpack_require__.r(__webpack_exports__);
     buscarFolio: function buscarFolio() {
       console.log("buscando folio");
     },
-    cargarMain: function cargarMain() {
-      this.$router.push({
-        path: 'dashboard'
-      })["catch"](function () {});
+    cargarMain: function cargarMain() {// this.$router.push({ path: 'dashboard' }).catch(()=>{});
     },
     enrutar: function enrutar(url) {
       this.$router.push({
-        path: url
+        name: url
       })["catch"](function () {});
     }
   },
@@ -2369,7 +2366,9 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
                   _this.login();
                 }
 
-              case 6:
+                _this.desactivar = false;
+
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -2581,9 +2580,160 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
+  },
+  data: function data() {
+    return {
+      nombreUsuario: null,
+      email: null,
+      rol: null,
+      areatrabajo: null,
+      nombreCompleto: null,
+      telefono: null,
+      sexo: null,
+      catareas: ['ADMINISTRACIÓN', 'COTIZACIONES', 'VENTAS'],
+      catroles: ['ADMINISTRADOR', 'COTIZADOR']
+    };
   }
 });
 
@@ -43321,32 +43471,237 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Soy el componente Empleados")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    Soy el componente Empleados\n                "
+  return _c(
+    "v-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "v-card",
+        {
+          staticClass: "mx-auto rounded-lg py-5 px-2 mt-5 mb-5",
+          attrs: { width: "100%", align: "center", justify: "space-around" }
+        },
+        [
+          _c("v-card-title", { staticClass: "font-weight-black" }, [
+            _vm._v("Registro de Empleado")
+          ]),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c(
+            "v-card-text",
+            { staticClass: "d-flex justify-center" },
+            [
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12", md: "6" } },
+                    [
+                      _c("p", { staticClass: "font-weight-black" }, [
+                        _vm._v("Atributos del Usuario")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-form",
+                        [
+                          _c("v-text-field", {
+                            attrs: { label: "Nombre de Usuario", required: "" },
+                            model: {
+                              value: _vm.nombreUsuario,
+                              callback: function($$v) {
+                                _vm.nombreUsuario = $$v
+                              },
+                              expression: "nombreUsuario"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("v-text-field", {
+                            attrs: { label: "Correo de Usuario", required: "" },
+                            model: {
+                              value: _vm.email,
+                              callback: function($$v) {
+                                _vm.email = $$v
+                              },
+                              expression: "email"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("v-select", {
+                            attrs: {
+                              items: _vm.catroles,
+                              label: "Rol de Usuario",
+                              required: ""
+                            },
+                            model: {
+                              value: _vm.rol,
+                              callback: function($$v) {
+                                _vm.rol = $$v
+                              },
+                              expression: "rol"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("v-select", {
+                            attrs: {
+                              items: _vm.catareas,
+                              label: "Área de Trabajo",
+                              required: ""
+                            },
+                            model: {
+                              value: _vm.areatrabajo,
+                              callback: function($$v) {
+                                _vm.areatrabajo = $$v
+                              },
+                              expression: "areatrabajo"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12", md: "6" } },
+                    [
+                      _c("p", { staticClass: "font-weight-black" }, [
+                        _vm._v("Información Personal")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-form",
+                        [
+                          _c("v-text-field", {
+                            attrs: { label: "Nombre Completo", required: "" },
+                            model: {
+                              value: _vm.nombreCompleto,
+                              callback: function($$v) {
+                                _vm.nombreCompleto = $$v
+                              },
+                              expression: "nombreCompleto"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("v-text-field", {
+                            attrs: { label: "Teléfono", required: "" },
+                            model: {
+                              value: _vm.telefono,
+                              callback: function($$v) {
+                                _vm.telefono = $$v
+                              },
+                              expression: "telefono"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("label", [_vm._v("Seleccionar Sexo")]),
+                          _vm._v(" "),
+                          _c(
+                            "v-card",
+                            {
+                              staticClass: "d-flex justify-center mb-6",
+                              attrs: { flat: "", tile: "" }
+                            },
+                            [
+                              _c(
+                                "v-radio-group",
+                                {
+                                  attrs: { row: "" },
+                                  model: {
+                                    value: _vm.sexo,
+                                    callback: function($$v) {
+                                      _vm.sexo = $$v
+                                    },
+                                    expression: "sexo"
+                                  }
+                                },
+                                [
+                                  _c("v-radio", {
+                                    attrs: { label: "Masculino", value: "masc" }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("v-radio", {
+                                    attrs: { label: "Femenino", value: "fem" }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
               )
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c(
+            "v-card-actions",
+            [
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    [
+                      _c(
+                        "v-btn",
+                        { attrs: { color: "warning", cols: "6", block: "" } },
+                        [_vm._v("\n      Editar\n    ")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c(
+                        "v-btn",
+                        { attrs: { color: "error", cols: "6", block: "" } },
+                        [_vm._v("\n     Eliminar\n    ")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c(
+                        "v-btn",
+                        { attrs: { cols: "6", block: "", color: "success" } },
+                        [_vm._v("\n      Guardar\n    ")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -103101,8 +103456,8 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: [{
-    path: '/dashboard',
-    name: 'home',
+    path: '/',
+    name: 'dashboard',
     component: __webpack_require__(/*! ./views/DashboardComponent.vue */ "./resources/js/views/DashboardComponent.vue")["default"]
   }, {
     path: '/solicitudes',

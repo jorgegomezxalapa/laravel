@@ -1,17 +1,25 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
+    <v-container fluid>
+      <v-card
+        class="mx-auto rounded-lg py-5 px-2 mt-5 mb-5"
+        width="100%"
+        align="center"
+        justify="space-around"
 
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+      >
+    <v-card-title class="font-weight-black"></v-card-title>
+<v-divider></v-divider>
+  <v-card-text class="d-flex justify-center">
+    
+  
+ 
+    </v-card-text>
+    <v-divider></v-divider>
+    <v-card-actions>
+       
+    </v-card-actions>
+  </v-card>
+    </v-container>
 </template>
 
 <script>
@@ -21,3 +29,4 @@
         }
     }
 </script>
+

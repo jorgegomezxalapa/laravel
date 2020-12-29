@@ -147,6 +147,7 @@
         if (result) {
          this.login()
         }
+        this.desactivar = false
       },
       clear () {
         this.email = null
