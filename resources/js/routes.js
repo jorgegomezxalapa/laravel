@@ -30,6 +30,11 @@ export default new Router ({
 		component: require('./views/ClientesComponent.vue').default
 	},
 	{
+		path:'/nuevo-cliente',
+		name:'nuevoCliente',
+		component: require('./views/RegistroClientesComponent.vue').default
+	},
+	{
 		path:'/utilidades',
 		name:'utilidades',
 		component: require('./views/UtilidadesComponent.vue').default
