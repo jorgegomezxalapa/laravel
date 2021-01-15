@@ -211,7 +211,7 @@
     },
     methods: {
       buscarFolio(){
-        console.log("buscando folio")
+        
       },
       cargarMain(){
         // this.$router.push({ path: 'dashboard' }).catch(()=>{});
@@ -228,12 +228,12 @@
         url: 'getperfil',
       })
             // Success 🎉
-            console.log("correcto",response.data.data.name);
+           
             this.perfil = response.data
             this.perfil = response.data.data
             this.name = this.perfil.name
             this.email = this.perfil.email
-            console.log("console", this.name)
+           
            
         } catch (error) {
             // Error 😨
@@ -269,6 +269,7 @@
 
       },
       async logout(){
+
         
 
         try {
@@ -277,11 +278,7 @@
         url: 'logout',
       })
             // Success 🎉
-            let api_url = process.env.MIX_APP_URL;
-            console.log("my env variable:");
-            console.log(api_url);
-
-            window.location.href = api_url+'/ingreso';
+           this.$router.push({ name: "ingreso" }).catch(()=>{});
             
            
            

@@ -2245,8 +2245,10 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       }))();
     },
     logout: function logout() {
+      var _this2 = this;
+
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var response, api_url;
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -2260,16 +2262,17 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
               case 3:
                 response = _context2.sent;
+
                 // Success 🎉
-                api_url = "http://localhost/laravel/public";
-                console.log("my env variable:");
-                console.log(api_url);
-                window.location.href = api_url + '/ingreso';
-                _context2.next = 14;
+                _this2.$router.push({
+                  name: "ingreso"
+                })["catch"](function () {});
+
+                _context2.next = 11;
                 break;
 
-              case 10:
-                _context2.prev = 10;
+              case 7:
+                _context2.prev = 7;
                 _context2.t0 = _context2["catch"](0);
 
                 // Error 😨
@@ -2298,12 +2301,12 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
                 console.log(_context2.t0);
 
-              case 14:
+              case 11:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 10]]);
+        }, _callee2, null, [[0, 7]]);
       }))();
     }
   },
@@ -105982,7 +105985,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     name: 'dashboard',
     component: __webpack_require__(/*! ./views/DashboardComponent.vue */ "./resources/js/views/DashboardComponent.vue")["default"]
   }, {
-    path: '/',
+    path: '/ingreso',
     name: 'ingreso',
     component: __webpack_require__(/*! ./components/LoginComponent.vue */ "./resources/js/components/LoginComponent.vue")["default"]
   }, {
