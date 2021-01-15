@@ -10,6 +10,11 @@ export default new Router ({
 		component: require('./views/DashboardComponent.vue').default
 	},
 	{
+		path:'/',
+		name:'ingreso',
+		component: require('./components/LoginComponent.vue').default
+	},
+	{
 		path:'/solicitudes',
 		name:'solicitudes',
 		component: require('./views/SolicitudesComponent.vue').default

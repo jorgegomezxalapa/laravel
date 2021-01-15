@@ -4,6 +4,8 @@
       v-model="drawer"
       app
       class="px-3"
+      color="grey lighten-4"
+      
     >
     <v-btn
       block
@@ -20,7 +22,8 @@
 
         <v-list-item-group
           v-model="selectedItem"
-          color="primary"
+          mandatory
+        color="black"
         >
           <v-list-item
             v-for="(item, i) in items"
@@ -88,31 +91,8 @@
         <v-card>
           <v-list-item-content class="justify-center">
             <div class="mx-12 text-center">
-              <v-avatar
-                color="brown"
-              >
-                <span class="white--text headline">{{ user.initials }}</span>
-              </v-avatar>
-              <h3>Soy notificaciones</h3>
-              <p class="caption mt-1">
-                {{ user.email }}
-              </p>
-              <v-divider class="my-3"></v-divider>
-              <v-btn
-                depressed
-                rounded
-                text
-              >
-                Editar Cuenta
-              </v-btn>
-              <v-divider class="my-3"></v-divider>
-              <v-btn
-                depressed
-                rounded
-                text
-              >
-                Cerrar Sesión
-              </v-btn>
+             
+            <p>panel de notificaciones</p>
             </div>
           </v-list-item-content>
         </v-card>
@@ -138,31 +118,47 @@
         <v-card>
           <v-list-item-content class="justify-center">
             <div class="mx-12 text-center">
-              <v-avatar
-                color="brown"
-              >
-                <span class="white--text headline">{{ user.initials }}</span>
-              </v-avatar>
-              <h3>{{ user.fullName }}</h3>
-              <p class="caption mt-1">
-                {{ user.email }}
+             <v-avatar
+                  size="65px"
+                  class="mb-3"
+                >
+                  <img
+                  
+                    alt="Avatar"
+                    src="https://cdn.pixabay.com/photo/2018/11/13/21/43/instagram-3814049_960_720.png"
+                  >
+                 
+                </v-avatar>
+              <h3>MI PERFIL</h3>
+                            <p class="body-1 mt-1 mb-3">
+                {{ perfil.name }}
+              </p>
+              <p class="body-1 mt-1">
+                {{ perfil.email }}
               </p>
               <v-divider class="my-3"></v-divider>
-              <v-btn
-                depressed
-                rounded
-                text
-              >
-                Editar cuenta
-              </v-btn>
-              <v-divider class="my-3"></v-divider>
-              <v-btn
-                depressed
-                rounded
-                text
-              >
-                Cerrar Sesión
-              </v-btn>
+           
+    <v-row class="justify-center mt-3 mb-5">
+       <v-btn
+      rounded
+      
+     outlined
+      color="black"
+    >
+      Administrar perfil
+    </v-btn>
+    </v-row>
+     <v-row class="justify-center mt-3 mb-5">
+       <v-btn
+      rounded
+      
+      outlined
+      color="black"
+      @click="logout()"
+    >
+      Salir de la cuenta
+    </v-btn>
+    </v-row>
             </div>
           </v-list-item-content>
         </v-card>
@@ -187,18 +183,15 @@
 </template>
 
 <script>
+  const axios = require('axios');
   export default {
     data: () => ({ 
       drawer: null,
       folio: null,
          messages: 0,
         show: false,
-     user: {
-        initials: 'JVX',
-        fullName: 'Nombre Usuario',
-        email: 'Rol de usuario',
-
-      },
+        perfil:{},
+     
       selectedItem: 0,
       items: [
       { text: 'Dashboard', icon: 'mdi-devices' , url:'dashboard'},
@@ -226,11 +219,112 @@
       enrutar(url){
         this.$router.push({ name: url }).catch(()=>{});
         
-      }
+      },
+      async getperfil(){
+
+        try {
+            const response = await axios({
+        method: 'get',
+        url: 'getperfil',
+      })
+            // Success 🎉
+            console.log("correcto",response.data.data.name);
+            this.perfil = response.data
+            this.perfil = response.data.data
+            this.name = this.perfil.name
+            this.email = this.perfil.email
+            console.log("console", this.name)
+           
+        } catch (error) {
+            // Error 😨
+            if (error.response) {
+                /*
+                 * The request was made and the server responded with a
+                 * status code that falls out of the range of 2xx
+                 */
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+                swal("Acceso incorrecto!", "Verifica que los datos sean correctos!", "warning");
+            } else if (error.request) {
+
+                /*
+                 * The request was made but no response was received, `error.request`
+                 * is an instance of XMLHttpRequest in the browser and an instance
+                 * of http.ClientRequest in Node.js
+                 */
+                 swal("Eror!", "Ha ocurrido un error de conexión!", "warning");
+                console.log("console.log 5",error.request);
+            } else {
+                swal("Eror!", "Ha ocurrido un error de conexión!", "warning");
+                // Something happened in setting up the request and triggered an Error
+                console.log("console.log 6", error.message);
+            }
+            console.log(error);
+            this.clear()
+            this.desactivar = false
+        }
+
+      
+
+      },
+      async logout(){
+        
+
+        try {
+            const response = await axios({
+        method: 'get',
+        url: 'logout',
+      })
+            // Success 🎉
+            let api_url = process.env.MIX_APP_URL;
+            console.log("my env variable:");
+            console.log(api_url);
+
+            window.location.href = api_url+'/ingreso';
+            
+           
+           
+        } catch (error) {
+            // Error 😨
+            if (error.response) {
+                /*
+                 * The request was made and the server responded with a
+                 * status code that falls out of the range of 2xx
+                 */
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+                swal("Acceso incorrecto!", "Verifica que los datos sean correctos!", "warning");
+            } else if (error.request) {
+
+                /*
+                 * The request was made but no response was received, `error.request`
+                 * is an instance of XMLHttpRequest in the browser and an instance
+                 * of http.ClientRequest in Node.js
+                 */
+                 swal("Eror!", "Ha ocurrido un error de conexión!", "warning");
+                console.log("console.log 5",error.request);
+            } else {
+                swal("Eror!", "Ha ocurrido un error de conexión!", "warning");
+                // Something happened in setting up the request and triggered an Error
+                console.log("console.log 6", error.message);
+            }
+            console.log(error);
+            
+        }
+
+      
+
+      },
       
     },
     beforeMount: function () {
     this.cargarMain()
-  }
+    
+  },
+  mounted: function () {
+  this.getperfil()
+}
   }
 </script>

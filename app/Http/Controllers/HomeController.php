@@ -41,7 +41,24 @@ class HomeController extends Controller
        
     }
 
+    public function getperfil(){
+        $user = Auth::user();
+        return response(['message' =>'success', 'data' => $user], 200);
+
+    }
+
     public function dashboard (){
         return view('dashboard');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+         return response(['message' =>'success'], 200);
     }
 }

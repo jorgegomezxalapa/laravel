@@ -24,4 +24,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 //INICIO DE SESIÓN
 Route::post('authenticate', 'HomeController@authenticate')->name('authenticate');
+Route::get('getperfil', 'HomeController@getperfil')->name('getperfil');
+Route::get('logout', 'HomeController@logout')->name('logout');
 Route::get('usuario', 'HomeController@dashboard')->name('dashboard');

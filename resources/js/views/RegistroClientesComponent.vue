@@ -102,6 +102,15 @@
       required
     ></v-text-field>
         </v-col>
+        <v-col
+          cols="12"
+          md="6"
+        >
+            <v-file-input
+    accept="image/*"
+    label="Firma Escaneada"
+  ></v-file-input>
+        </v-col>
       </v-row>
       <p class="font-weight-black mt-5">Configuración para cotizaciones</p>
       <v-row>

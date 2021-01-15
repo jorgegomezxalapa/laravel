@@ -1920,6 +1920,14 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -2104,10 +2112,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2115,11 +2121,7 @@ __webpack_require__.r(__webpack_exports__);
       folio: null,
       messages: 0,
       show: false,
-      user: {
-        initials: 'JVX',
-        fullName: 'Nombre Usuario',
-        email: 'Rol de usuario'
-      },
+      perfil: {},
       selectedItem: 0,
       items: [{
         text: 'Dashboard',
@@ -2171,10 +2173,145 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push({
         name: url
       })["catch"](function () {});
+    },
+    getperfil: function getperfil() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios({
+                  method: 'get',
+                  url: 'getperfil'
+                });
+
+              case 3:
+                response = _context.sent;
+                // Success 🎉
+                console.log("correcto", response.data.data.name);
+                _this.perfil = response.data;
+                _this.perfil = response.data.data;
+                _this.name = _this.perfil.name;
+                _this.email = _this.perfil.email;
+                console.log("console", _this.name);
+                _context.next = 18;
+                break;
+
+              case 12:
+                _context.prev = 12;
+                _context.t0 = _context["catch"](0);
+
+                // Error 😨
+                if (_context.t0.response) {
+                  /*
+                   * The request was made and the server responded with a
+                   * status code that falls out of the range of 2xx
+                   */
+                  console.log(_context.t0.response.data);
+                  console.log(_context.t0.response.status);
+                  console.log(_context.t0.response.headers);
+                  swal("Acceso incorrecto!", "Verifica que los datos sean correctos!", "warning");
+                } else if (_context.t0.request) {
+                  /*
+                   * The request was made but no response was received, `error.request`
+                   * is an instance of XMLHttpRequest in the browser and an instance
+                   * of http.ClientRequest in Node.js
+                   */
+                  swal("Eror!", "Ha ocurrido un error de conexión!", "warning");
+                  console.log("console.log 5", _context.t0.request);
+                } else {
+                  swal("Eror!", "Ha ocurrido un error de conexión!", "warning"); // Something happened in setting up the request and triggered an Error
+
+                  console.log("console.log 6", _context.t0.message);
+                }
+
+                console.log(_context.t0);
+
+                _this.clear();
+
+                _this.desactivar = false;
+
+              case 18:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 12]]);
+      }))();
+    },
+    logout: function logout() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response, api_url;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                _context2.next = 3;
+                return axios({
+                  method: 'get',
+                  url: 'logout'
+                });
+
+              case 3:
+                response = _context2.sent;
+                // Success 🎉
+                api_url = "http://localhost/laravel/public";
+                console.log("my env variable:");
+                console.log(api_url);
+                window.location.href = api_url + '/ingreso';
+                _context2.next = 14;
+                break;
+
+              case 10:
+                _context2.prev = 10;
+                _context2.t0 = _context2["catch"](0);
+
+                // Error 😨
+                if (_context2.t0.response) {
+                  /*
+                   * The request was made and the server responded with a
+                   * status code that falls out of the range of 2xx
+                   */
+                  console.log(_context2.t0.response.data);
+                  console.log(_context2.t0.response.status);
+                  console.log(_context2.t0.response.headers);
+                  swal("Acceso incorrecto!", "Verifica que los datos sean correctos!", "warning");
+                } else if (_context2.t0.request) {
+                  /*
+                   * The request was made but no response was received, `error.request`
+                   * is an instance of XMLHttpRequest in the browser and an instance
+                   * of http.ClientRequest in Node.js
+                   */
+                  swal("Eror!", "Ha ocurrido un error de conexión!", "warning");
+                  console.log("console.log 5", _context2.t0.request);
+                } else {
+                  swal("Eror!", "Ha ocurrido un error de conexión!", "warning"); // Something happened in setting up the request and triggered an Error
+
+                  console.log("console.log 6", _context2.t0.message);
+                }
+
+                console.log(_context2.t0);
+
+              case 14:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 10]]);
+      }))();
     }
   },
   beforeMount: function beforeMount() {
     this.cargarMain();
+  },
+  mounted: function mounted() {
+    this.getperfil();
   }
 });
 
@@ -3034,6 +3171,15 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -43529,7 +43675,7 @@ var render = function() {
         "v-navigation-drawer",
         {
           staticClass: "px-3",
-          attrs: { app: "" },
+          attrs: { app: "", color: "grey lighten-4" },
           model: {
             value: _vm.drawer,
             callback: function($$v) {
@@ -43554,7 +43700,7 @@ var render = function() {
               _c(
                 "v-list-item-group",
                 {
-                  attrs: { color: "primary" },
+                  attrs: { mandatory: "", color: "black" },
                   model: {
                     value: _vm.selectedItem,
                     callback: function($$v) {
@@ -43705,52 +43851,9 @@ var render = function() {
                 "v-card",
                 [
                   _c("v-list-item-content", { staticClass: "justify-center" }, [
-                    _c(
-                      "div",
-                      { staticClass: "mx-12 text-center" },
-                      [
-                        _c("v-avatar", { attrs: { color: "brown" } }, [
-                          _c("span", { staticClass: "white--text headline" }, [
-                            _vm._v(_vm._s(_vm.user.initials))
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("h3", [_vm._v("Soy notificaciones")]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "caption mt-1" }, [
-                          _vm._v(
-                            "\n              " +
-                              _vm._s(_vm.user.email) +
-                              "\n            "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("v-divider", { staticClass: "my-3" }),
-                        _vm._v(" "),
-                        _c(
-                          "v-btn",
-                          { attrs: { depressed: "", rounded: "", text: "" } },
-                          [
-                            _vm._v(
-                              "\n              Editar Cuenta\n            "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("v-divider", { staticClass: "my-3" }),
-                        _vm._v(" "),
-                        _c(
-                          "v-btn",
-                          { attrs: { depressed: "", rounded: "", text: "" } },
-                          [
-                            _vm._v(
-                              "\n              Cerrar Sesión\n            "
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    )
+                    _c("div", { staticClass: "mx-12 text-center" }, [
+                      _c("p", [_vm._v("panel de notificaciones")])
+                    ])
                   ])
                 ],
                 1
@@ -43799,18 +43902,34 @@ var render = function() {
                       "div",
                       { staticClass: "mx-12 text-center" },
                       [
-                        _c("v-avatar", { attrs: { color: "brown" } }, [
-                          _c("span", { staticClass: "white--text headline" }, [
-                            _vm._v(_vm._s(_vm.user.initials))
-                          ])
-                        ]),
+                        _c(
+                          "v-avatar",
+                          { staticClass: "mb-3", attrs: { size: "65px" } },
+                          [
+                            _c("img", {
+                              attrs: {
+                                alt: "Avatar",
+                                src:
+                                  "https://cdn.pixabay.com/photo/2018/11/13/21/43/instagram-3814049_960_720.png"
+                              }
+                            })
+                          ]
+                        ),
                         _vm._v(" "),
-                        _c("h3", [_vm._v(_vm._s(_vm.user.fullName))]),
+                        _c("h3", [_vm._v("MI PERFIL")]),
                         _vm._v(" "),
-                        _c("p", { staticClass: "caption mt-1" }, [
+                        _c("p", { staticClass: "body-1 mt-1 mb-3" }, [
                           _vm._v(
                             "\n              " +
-                              _vm._s(_vm.user.email) +
+                              _vm._s(_vm.perfil.name) +
+                              "\n            "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "body-1 mt-1" }, [
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(_vm.perfil.email) +
                               "\n            "
                           )
                         ]),
@@ -43818,25 +43937,46 @@ var render = function() {
                         _c("v-divider", { staticClass: "my-3" }),
                         _vm._v(" "),
                         _c(
-                          "v-btn",
-                          { attrs: { depressed: "", rounded: "", text: "" } },
+                          "v-row",
+                          { staticClass: "justify-center mt-3 mb-5" },
                           [
-                            _vm._v(
-                              "\n              Editar cuenta\n            "
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: {
+                                  rounded: "",
+                                  outlined: "",
+                                  color: "black"
+                                }
+                              },
+                              [_vm._v("\n    Administrar perfil\n  ")]
                             )
-                          ]
+                          ],
+                          1
                         ),
                         _vm._v(" "),
-                        _c("v-divider", { staticClass: "my-3" }),
-                        _vm._v(" "),
                         _c(
-                          "v-btn",
-                          { attrs: { depressed: "", rounded: "", text: "" } },
+                          "v-row",
+                          { staticClass: "justify-center mt-3 mb-5" },
                           [
-                            _vm._v(
-                              "\n              Cerrar Sesión\n            "
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: {
+                                  rounded: "",
+                                  outlined: "",
+                                  color: "black"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.logout()
+                                  }
+                                }
+                              },
+                              [_vm._v("\n    Salir de la cuenta\n  ")]
                             )
-                          ]
+                          ],
+                          1
                         )
                       ],
                       1
@@ -45412,6 +45552,20 @@ var render = function() {
                                 _vm.giro = $$v
                               },
                               expression: "giro"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6" } },
+                        [
+                          _c("v-file-input", {
+                            attrs: {
+                              accept: "image/*",
+                              label: "Firma Escaneada"
                             }
                           })
                         ],
@@ -105827,6 +105981,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     path: '/',
     name: 'dashboard',
     component: __webpack_require__(/*! ./views/DashboardComponent.vue */ "./resources/js/views/DashboardComponent.vue")["default"]
+  }, {
+    path: '/',
+    name: 'ingreso',
+    component: __webpack_require__(/*! ./components/LoginComponent.vue */ "./resources/js/components/LoginComponent.vue")["default"]
   }, {
     path: '/solicitudes',
     name: 'solicitudes',
