@@ -192,9 +192,9 @@
         ],
         desserts: [
           {
-            nombre: 'CFE',
-            usuario: "JUAN VALDEZ",
-            rol: "FADJFASDEQ1VS",
+            nombre: 'ANTONIO AGUILAR V.',
+            usuario: "ELECTRÓNICOS",
+            rol: "RAGJ1233441XS",
             areaTrabajo: 30,
             cotizaciones: 3,
             cotizaciones2: 10,

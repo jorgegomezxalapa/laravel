@@ -1,6 +1,8 @@
 <template>
     <v-container fluid>
-        <v-bottom-navigation>
+        <v-bottom-navigation :value="value"
+    color="primary"
+    horizontal>
     <v-btn  @click="mostrarTabla('ocliente')">
       <span>Cliente</span>
 
@@ -72,8 +74,8 @@
     <v-row>
        <v-col cols="12">
           <v-data-table
-      :headers="headers"
-      :items="desserts"
+      :headers="headers2"
+      :items="desserts2"
       :search="search"
     >
       
@@ -157,39 +159,7 @@
           </template>
           <span>Ver Información</span>
       </v-tooltip>
-        <v-tooltip top>
-        <template v-slot:activator="{ on, attrs }">
-        <v-btn
-         v-bind="attrs"
-          v-on="on"
-               small
-                color="primary"
-                dark
-                
-                fab
-              >
-                <v-icon>mdi-microphone-outline</v-icon>
-              </v-btn>
-          </template>
-          <span>Llamar por teléfono</span>
-      </v-tooltip>
-     
-      <v-tooltip top>
-      <template v-slot:activator="{ on, attrs }">
-      <v-btn
-       v-bind="attrs"
-          v-on="on"
-               small
-                color="primary"
-                dark
-                
-                fab
-              >
-                <v-icon>mdi-email-edit-outline</v-icon>
-              </v-btn>
-          </template>
-          <span>Enviar Correo</span>
-      </v-tooltip>
+        
       
     </template>
     </v-data-table>
@@ -241,8 +211,8 @@
     <v-row>
        <v-col cols="12">
           <v-data-table
-      :headers="headers"
-      :items="desserts"
+      :headers="headers3"
+      :items="desserts3"
       :search="search"
     >
       
@@ -326,39 +296,7 @@
           </template>
           <span>Ver Información</span>
       </v-tooltip>
-        <v-tooltip top>
-        <template v-slot:activator="{ on, attrs }">
-        <v-btn
-         v-bind="attrs"
-          v-on="on"
-               small
-                color="primary"
-                dark
-                
-                fab
-              >
-                <v-icon>mdi-microphone-outline</v-icon>
-              </v-btn>
-          </template>
-          <span>Llamar por teléfono</span>
-      </v-tooltip>
-     
-      <v-tooltip top>
-      <template v-slot:activator="{ on, attrs }">
-      <v-btn
-       v-bind="attrs"
-          v-on="on"
-               small
-                color="primary"
-                dark
-                
-                fab
-              >
-                <v-icon>mdi-email-edit-outline</v-icon>
-              </v-btn>
-          </template>
-          <span>Enviar Correo</span>
-      </v-tooltip>
+       
       
     </template>
     </v-data-table>
@@ -382,6 +320,7 @@
     export default {
     data () {
       return {
+        value:0,
         mostrarsolicitudes:false,
         mostrarsolicitantes:false,
         mostrarclientes:true,
@@ -403,6 +342,55 @@
           { text: 'Ventas', align: 'center', value: 'ventas' },
           { text: 'Acciones', align: 'center', value: 'acciones' },
         ],
+
+        headers2: [
+          {
+            text: 'Nombre de la Campaña',
+            align: 'center',
+           
+            value: 'item1',
+          },
+          { text: 'Fecha', align: 'center', value: 'item2' },
+          { text: '% Utilidad', align: 'center', value: 'item3' },
+          { text: 'Acciones', align: 'center', value: 'acciones' },
+         
+        ],
+
+        desserts2: [{
+          item1: 'Descuento Verano 10%',
+          item2: '12-06-2021',
+          item3: '10%',
+          item4: 'item',
+
+        }],
+         headers3: [
+          {
+            text: 'Nombre',
+            align: 'center',
+           
+            value: 'item1',
+          },
+          { text: 'Fecha', align: 'center', value: 'item2' },
+          { text: 'Cantidad a superar', align: 'center', value: 'item3' },
+          { text: '% Utilidad', align: 'center', value: 'item4' },
+          { text: 'Acciones', align: 'center', value: 'acciones' },
+         
+        ],
+        desserts3: [{
+          item1: 'Utilidad menor o igual a 1999',
+          item2: '12-06-2021',
+          item3: '$2000',
+          item4: '10',
+
+        },
+        {
+          item1: 'Utilidad menor o igual a 4999',
+          item2: '12-06-2021',
+          item3: '$5000',
+          item4: '25',
+
+        }],
+        
         desserts: [
           {
             nombre: 'CFE',

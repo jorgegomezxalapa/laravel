@@ -2813,9 +2813,9 @@ __webpack_require__.r(__webpack_exports__);
         value: 'acciones'
       }],
       desserts: [{
-        nombre: 'CFE',
-        usuario: "JUAN VALDEZ",
-        rol: "FADJFASDEQ1VS",
+        nombre: 'CFE Xalapa',
+        usuario: "JUAN VALDEZ CALDERÓN",
+        rol: "RAGJ9406251X7",
         areaTrabajo: 30,
         cotizaciones: 3,
         cotizaciones2: 10,
@@ -4110,52 +4110,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -4189,38 +4143,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -4583,9 +4505,9 @@ __webpack_require__.r(__webpack_exports__);
         value: 'acciones'
       }],
       desserts: [{
-        nombre: 'CFE',
-        usuario: "JUAN VALDEZ",
-        rol: "FADJFASDEQ1VS",
+        nombre: 'ANTONIO AGUILAR V.',
+        usuario: "ELECTRÓNICOS",
+        rol: "RAGJ1233441XS",
         areaTrabajo: 30,
         cotizaciones: 3,
         cotizaciones2: 10,
@@ -4732,11 +4654,11 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         text: 'Solicitante',
         align: 'center',
-        value: 'usuario'
+        value: 'solicitante'
       }, {
         text: 'Responsable',
         align: 'center',
-        value: 'usuario'
+        value: 'responsable'
       }, {
         text: '% Utilidad',
         align: 'center',
@@ -4744,17 +4666,20 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         text: '# Réplicas',
         align: 'center',
-        value: 'areaTrabajo'
+        value: 'replicas'
       }, {
         text: 'Acciones',
         align: 'center',
         value: 'acciones'
       }],
       desserts: [{
-        nombre: 'CFE',
-        usuario: "JUAN VALDEZ",
-        rol: "FADJFASDEQ1VS",
-        areaTrabajo: 30,
+        nombre: '01-01-2021',
+        usuario: "XAV/V/F1/2020",
+        rol: "CFE XALAPA",
+        solicitante: "JUAN VALDEZ ORTEGA",
+        responsable: "Cotizador 2(Jorge Iván)",
+        areaTrabajo: '10%',
+        replicas: 2,
         cotizaciones: 3,
         cotizaciones2: 10,
         cotizaciones3: 5,
@@ -5101,71 +5026,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      value: 0,
       mostrarsolicitudes: false,
       mostrarsolicitantes: false,
       mostrarclientes: true,
@@ -5201,6 +5065,61 @@ __webpack_require__.r(__webpack_exports__);
         text: 'Acciones',
         align: 'center',
         value: 'acciones'
+      }],
+      headers2: [{
+        text: 'Nombre de la Campaña',
+        align: 'center',
+        value: 'item1'
+      }, {
+        text: 'Fecha',
+        align: 'center',
+        value: 'item2'
+      }, {
+        text: '% Utilidad',
+        align: 'center',
+        value: 'item3'
+      }, {
+        text: 'Acciones',
+        align: 'center',
+        value: 'acciones'
+      }],
+      desserts2: [{
+        item1: 'Descuento Verano 10%',
+        item2: '12-06-2021',
+        item3: '10%',
+        item4: 'item'
+      }],
+      headers3: [{
+        text: 'Nombre',
+        align: 'center',
+        value: 'item1'
+      }, {
+        text: 'Fecha',
+        align: 'center',
+        value: 'item2'
+      }, {
+        text: 'Cantidad a superar',
+        align: 'center',
+        value: 'item3'
+      }, {
+        text: '% Utilidad',
+        align: 'center',
+        value: 'item4'
+      }, {
+        text: 'Acciones',
+        align: 'center',
+        value: 'acciones'
+      }],
+      desserts3: [{
+        item1: 'Utilidad menor o igual a 1999',
+        item2: '12-06-2021',
+        item3: '$2000',
+        item4: '10'
+      }, {
+        item1: 'Utilidad menor o igual a 4999',
+        item2: '12-06-2021',
+        item3: '$5000',
+        item4: '25'
       }],
       desserts: [{
         nombre: 'CFE',
@@ -48110,7 +48029,7 @@ var render = function() {
                         [
                           _c("v-text-field", {
                             attrs: {
-                              label: "Nombre del regla de utilidad",
+                              label: "Nombre de la regla de utilidad",
                               required: ""
                             },
                             model: {
@@ -48129,49 +48048,9 @@ var render = function() {
                         "v-col",
                         { attrs: { cols: "12", md: "6" } },
                         [
-                          _c("v-select", {
-                            attrs: {
-                              items: _vm.catclientes,
-                              label: "Seleccione una opción",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.cliente,
-                              callback: function($$v) {
-                                _vm.cliente = $$v
-                              },
-                              expression: "cliente"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "RFC", required: "" },
-                            model: {
-                              value: _vm.giro,
-                              callback: function($$v) {
-                                _vm.giro = $$v
-                              },
-                              expression: "giro"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "6" } },
-                        [
                           _c("v-text-field", {
                             attrs: {
-                              label: "Correo Electrónico",
+                              label: "Porcentaje de Utilidad",
                               required: ""
                             },
                             model: {
@@ -48180,55 +48059,6 @@ var render = function() {
                                 _vm.giro = $$v
                               },
                               expression: "giro"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "Teléfono", required: "" },
-                            model: {
-                              value: _vm.giro,
-                              callback: function($$v) {
-                                _vm.giro = $$v
-                              },
-                              expression: "giro"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-weight-black mt-5" }, [
-                    _vm._v("Configuración para cotizaciones")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "v-row",
-                    [
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "Porcentaje de utilidad",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.razonSocial,
-                              callback: function($$v) {
-                                _vm.razonSocial = $$v
-                              },
-                              expression: "razonSocial"
                             }
                           })
                         ],
@@ -48377,49 +48207,9 @@ var render = function() {
                         "v-col",
                         { attrs: { cols: "12", md: "6" } },
                         [
-                          _c("v-select", {
-                            attrs: {
-                              items: _vm.catclientes,
-                              label: "Seleccione una opción",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.cliente,
-                              callback: function($$v) {
-                                _vm.cliente = $$v
-                              },
-                              expression: "cliente"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "RFC", required: "" },
-                            model: {
-                              value: _vm.giro,
-                              callback: function($$v) {
-                                _vm.giro = $$v
-                              },
-                              expression: "giro"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "6" } },
-                        [
                           _c("v-text-field", {
                             attrs: {
-                              label: "Correo Electrónico",
+                              label: "Cantidad a superar",
                               required: ""
                             },
                             model: {
@@ -48439,44 +48229,16 @@ var render = function() {
                         { attrs: { cols: "12", md: "6" } },
                         [
                           _c("v-text-field", {
-                            attrs: { label: "Teléfono", required: "" },
+                            attrs: {
+                              label: "Porcentaje de Utilidad",
+                              required: ""
+                            },
                             model: {
                               value: _vm.giro,
                               callback: function($$v) {
                                 _vm.giro = $$v
                               },
                               expression: "giro"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-weight-black mt-5" }, [
-                    _vm._v("Configuración para cotizaciones")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "v-row",
-                    [
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "Porcentaje de utilidad",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.razonSocial,
-                              callback: function($$v) {
-                                _vm.razonSocial = $$v
-                              },
-                              expression: "razonSocial"
                             }
                           })
                         ],
@@ -49327,6 +49089,7 @@ var render = function() {
     [
       _c(
         "v-bottom-navigation",
+        { attrs: { value: _vm.value, color: "primary", horizontal: "" } },
         [
           _c(
             "v-btn",
@@ -49497,8 +49260,8 @@ var render = function() {
                         [
                           _c("v-data-table", {
                             attrs: {
-                              headers: _vm.headers,
-                              items: _vm.desserts,
+                              headers: _vm.headers2,
+                              items: _vm.desserts2,
                               search: _vm.search
                             },
                             scopedSlots: _vm._u(
@@ -49783,114 +49546,6 @@ var render = function() {
                                             _vm._v("Ver Información")
                                           ])
                                         ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-tooltip",
-                                        {
-                                          attrs: { top: "" },
-                                          scopedSlots: _vm._u(
-                                            [
-                                              {
-                                                key: "activator",
-                                                fn: function(ref) {
-                                                  var on = ref.on
-                                                  var attrs = ref.attrs
-                                                  return [
-                                                    _c(
-                                                      "v-btn",
-                                                      _vm._g(
-                                                        _vm._b(
-                                                          {
-                                                            attrs: {
-                                                              small: "",
-                                                              color: "primary",
-                                                              dark: "",
-                                                              fab: ""
-                                                            }
-                                                          },
-                                                          "v-btn",
-                                                          attrs,
-                                                          false
-                                                        ),
-                                                        on
-                                                      ),
-                                                      [
-                                                        _c("v-icon", [
-                                                          _vm._v(
-                                                            "mdi-microphone-outline"
-                                                          )
-                                                        ])
-                                                      ],
-                                                      1
-                                                    )
-                                                  ]
-                                                }
-                                              }
-                                            ],
-                                            null,
-                                            true
-                                          )
-                                        },
-                                        [
-                                          _vm._v(" "),
-                                          _c("span", [
-                                            _vm._v("Llamar por teléfono")
-                                          ])
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-tooltip",
-                                        {
-                                          attrs: { top: "" },
-                                          scopedSlots: _vm._u(
-                                            [
-                                              {
-                                                key: "activator",
-                                                fn: function(ref) {
-                                                  var on = ref.on
-                                                  var attrs = ref.attrs
-                                                  return [
-                                                    _c(
-                                                      "v-btn",
-                                                      _vm._g(
-                                                        _vm._b(
-                                                          {
-                                                            attrs: {
-                                                              small: "",
-                                                              color: "primary",
-                                                              dark: "",
-                                                              fab: ""
-                                                            }
-                                                          },
-                                                          "v-btn",
-                                                          attrs,
-                                                          false
-                                                        ),
-                                                        on
-                                                      ),
-                                                      [
-                                                        _c("v-icon", [
-                                                          _vm._v(
-                                                            "mdi-email-edit-outline"
-                                                          )
-                                                        ])
-                                                      ],
-                                                      1
-                                                    )
-                                                  ]
-                                                }
-                                              }
-                                            ],
-                                            null,
-                                            true
-                                          )
-                                        },
-                                        [
-                                          _vm._v(" "),
-                                          _c("span", [_vm._v("Enviar Correo")])
-                                        ]
                                       )
                                     ]
                                   }
@@ -49898,7 +49553,7 @@ var render = function() {
                               ],
                               null,
                               false,
-                              866231272
+                              1702654524
                             )
                           })
                         ],
@@ -49994,8 +49649,8 @@ var render = function() {
                         [
                           _c("v-data-table", {
                             attrs: {
-                              headers: _vm.headers,
-                              items: _vm.desserts,
+                              headers: _vm.headers3,
+                              items: _vm.desserts3,
                               search: _vm.search
                             },
                             scopedSlots: _vm._u(
@@ -50280,114 +49935,6 @@ var render = function() {
                                             _vm._v("Ver Información")
                                           ])
                                         ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-tooltip",
-                                        {
-                                          attrs: { top: "" },
-                                          scopedSlots: _vm._u(
-                                            [
-                                              {
-                                                key: "activator",
-                                                fn: function(ref) {
-                                                  var on = ref.on
-                                                  var attrs = ref.attrs
-                                                  return [
-                                                    _c(
-                                                      "v-btn",
-                                                      _vm._g(
-                                                        _vm._b(
-                                                          {
-                                                            attrs: {
-                                                              small: "",
-                                                              color: "primary",
-                                                              dark: "",
-                                                              fab: ""
-                                                            }
-                                                          },
-                                                          "v-btn",
-                                                          attrs,
-                                                          false
-                                                        ),
-                                                        on
-                                                      ),
-                                                      [
-                                                        _c("v-icon", [
-                                                          _vm._v(
-                                                            "mdi-microphone-outline"
-                                                          )
-                                                        ])
-                                                      ],
-                                                      1
-                                                    )
-                                                  ]
-                                                }
-                                              }
-                                            ],
-                                            null,
-                                            true
-                                          )
-                                        },
-                                        [
-                                          _vm._v(" "),
-                                          _c("span", [
-                                            _vm._v("Llamar por teléfono")
-                                          ])
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-tooltip",
-                                        {
-                                          attrs: { top: "" },
-                                          scopedSlots: _vm._u(
-                                            [
-                                              {
-                                                key: "activator",
-                                                fn: function(ref) {
-                                                  var on = ref.on
-                                                  var attrs = ref.attrs
-                                                  return [
-                                                    _c(
-                                                      "v-btn",
-                                                      _vm._g(
-                                                        _vm._b(
-                                                          {
-                                                            attrs: {
-                                                              small: "",
-                                                              color: "primary",
-                                                              dark: "",
-                                                              fab: ""
-                                                            }
-                                                          },
-                                                          "v-btn",
-                                                          attrs,
-                                                          false
-                                                        ),
-                                                        on
-                                                      ),
-                                                      [
-                                                        _c("v-icon", [
-                                                          _vm._v(
-                                                            "mdi-email-edit-outline"
-                                                          )
-                                                        ])
-                                                      ],
-                                                      1
-                                                    )
-                                                  ]
-                                                }
-                                              }
-                                            ],
-                                            null,
-                                            true
-                                          )
-                                        },
-                                        [
-                                          _vm._v(" "),
-                                          _c("span", [_vm._v("Enviar Correo")])
-                                        ]
                                       )
                                     ]
                                   }
@@ -50395,7 +49942,7 @@ var render = function() {
                               ],
                               null,
                               false,
-                              866231272
+                              1702654524
                             )
                           })
                         ],

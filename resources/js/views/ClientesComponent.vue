@@ -192,9 +192,9 @@
         ],
         desserts: [
           {
-            nombre: 'CFE',
-            usuario: "JUAN VALDEZ",
-            rol: "FADJFASDEQ1VS",
+            nombre: 'CFE Xalapa',
+            usuario: "JUAN VALDEZ CALDERÓN",
+            rol: "RAGJ9406251X7",
             areaTrabajo: 30,
             cotizaciones: 3,
             cotizaciones2: 10,

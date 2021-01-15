@@ -39,12 +39,12 @@
           cols="12"
           md="6"
         >
-         <v-select
-      v-model="cliente"
-      :items="catclientes"
-      label="Seleccione una opción"
+        <v-text-field
+      v-model="giro"
+      
+      label="Cantidad a superar"
       required
-    ></v-select>
+    ></v-text-field>
 
         </v-col>
 
@@ -55,49 +55,17 @@
           <v-text-field
       v-model="giro"
       
-      label="RFC"
+      label="Porcentaje de Utilidad"
       required
     ></v-text-field>
         </v-col>
 
-         <v-col
-          cols="12"
-          md="6"
-        >
-          <v-text-field
-      v-model="giro"
-      
-      label="Correo Electrónico"
-      required
-    ></v-text-field>
-        </v-col>
+       
 
-         <v-col
-          cols="12"
-          md="6"
-        >
-          <v-text-field
-      v-model="giro"
-      
-      label="Teléfono"
-      required
-    ></v-text-field>
-        </v-col>
+        
        
       </v-row>
-      <p class="font-weight-black mt-5">Configuración para cotizaciones</p>
-      <v-row>
-        <v-col
-          cols="12"
-          md="6"
-        >
-          <v-text-field
-      v-model="razonSocial"
-      label="Porcentaje de utilidad"
-      required
-    ></v-text-field>
-        </v-col>
-      </v-row>
+     
     </v-container>
 
 
