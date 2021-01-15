@@ -30,6 +30,11 @@ export default new Router ({
 		component: require('./views/CotizacionesComponent.vue').default
 	},
 	{
+		path:'/capturar-cotizacion',
+		name:'capturarCotizacion',
+		component: require('./views/RegistroCotizacionComponent.vue').default
+	},
+	{
 		path:'/ventas',
 		name:'ventas',
 		component: require('./views/VentasComponent.vue').default
