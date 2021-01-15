@@ -2112,6 +2112,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2144,6 +2145,10 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         icon: 'mdi-account-badge-horizontal-outline',
         url: 'clientes'
       }, {
+        text: 'Solicitantes',
+        icon: 'mdi-account-badge-horizontal-outline',
+        url: 'solicitantes'
+      }, {
         text: 'Utilidades',
         icon: 'mdi-file-percent-outline',
         url: 'utilidades'
@@ -2164,9 +2169,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   },
   watch: {},
   methods: {
-    buscarFolio: function buscarFolio() {
-      console.log("buscando folio");
-    },
+    buscarFolio: function buscarFolio() {},
     cargarMain: function cargarMain() {// this.$router.push({ path: 'dashboard' }).catch(()=>{});
     },
     enrutar: function enrutar(url) {
@@ -2193,17 +2196,15 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
               case 3:
                 response = _context.sent;
                 // Success 🎉
-                console.log("correcto", response.data.data.name);
                 _this.perfil = response.data;
                 _this.perfil = response.data.data;
                 _this.name = _this.perfil.name;
                 _this.email = _this.perfil.email;
-                console.log("console", _this.name);
-                _context.next = 18;
+                _context.next = 16;
                 break;
 
-              case 12:
-                _context.prev = 12;
+              case 10:
+                _context.prev = 10;
                 _context.t0 = _context["catch"](0);
 
                 // Error 😨
@@ -2236,12 +2237,12 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
                 _this.desactivar = false;
 
-              case 18:
+              case 16:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 12]]);
+        }, _callee, null, [[0, 10]]);
       }))();
     },
     logout: function logout() {
@@ -3570,10 +3571,193 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/SolicitudesComponent.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/SolicitudesComponent.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroSolicitantesComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/RegistroSolicitantesComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  },
+  data: function data() {
+    return {
+      selectedItem: 7,
+      nombreUsuario: null,
+      email: null,
+      rol: null,
+      areatrabajo: null,
+      nombreCompleto: null,
+      telefono: null,
+      password: null,
+      sexo: null,
+      catareas: ['ADMINISTRACIÓN', 'COTIZACIONES', 'VENTAS'],
+      catroles: ['ADMINISTRADOR', 'COTIZADOR']
+    };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroSolicitudesComponent.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/RegistroSolicitudesComponent.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3798,12 +3982,793 @@ __webpack_require__.r(__webpack_exports__);
       notificar: null,
       replicas: null,
       empleados: ['Cotizador 1(Ana)', 'Cotizador 2(José Luis)', 'Cotizador 4(Juan G)', 'Administrador 1(Diego H)', 'Administrador 2(Fabiola)'],
-      catutilidades: ['Utilidad por cliente', 'Utilidad por Precio Total', 'Personalizada'],
+      catutilidades: ['Utilidad por cliente', 'Utilidad por solicitante', 'Utilidad por campaña', 'Utilidad por Monto Total', 'Personalizada'],
       catclientes: ['CMAS', 'CFE XALAPA', 'CFE COATEPEC', 'FGE', 'Dulcería Xalapa'],
       catsolicitantes: ['El Propio Cliente', 'Juan Pablo ', 'Isabela Castillo'],
-      catemails: ['Sin Notificar', 'Cliente', 'Solicitante', 'Administración'],
+      catemails: ['Sin Notificar', 'Cliente', 'Solicitante', 'Administración', 'Responsable'],
       catreplicas: [0, 1, 2, 3, 4, 5]
     };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  },
+  data: function data() {
+    return {
+      selectedItem: 7,
+      nombreUsuario: null,
+      email: null,
+      rol: null,
+      areatrabajo: null,
+      nombreCompleto: null,
+      telefono: null,
+      password: null,
+      sexo: null,
+      catareas: ['ADMINISTRACIÓN', 'COTIZACIONES', 'VENTAS'],
+      catroles: ['ADMINISTRADOR', 'COTIZADOR'],
+      catclientes: ['Utilidad por Campaña', 'Utilidad por Monto Total']
+    };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroUtilidadMontoComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/RegistroUtilidadMontoComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  },
+  data: function data() {
+    return {
+      selectedItem: 7,
+      nombreUsuario: null,
+      email: null,
+      rol: null,
+      areatrabajo: null,
+      nombreCompleto: null,
+      telefono: null,
+      password: null,
+      sexo: null,
+      catareas: ['ADMINISTRACIÓN', 'COTIZACIONES', 'VENTAS'],
+      catroles: ['ADMINISTRADOR', 'COTIZADOR'],
+      catclientes: ['Utilidad por Campaña', 'Utilidad por Monto Total']
+    };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/SolicitantesComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/SolicitantesComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      search: '',
+      headers: [{
+        text: 'Nombre',
+        align: 'center',
+        value: 'nombre'
+      }, {
+        text: 'Giro Comercial',
+        align: 'center',
+        value: 'usuario'
+      }, {
+        text: 'RFC',
+        align: 'center',
+        value: 'rol'
+      }, {
+        text: '% Utilidad',
+        align: 'center',
+        value: 'areaTrabajo'
+      }, {
+        text: 'Cotizaciones',
+        align: 'center',
+        value: 'cotizaciones'
+      }, {
+        text: 'Ventas',
+        align: 'center',
+        value: 'ventas'
+      }, {
+        text: 'Acciones',
+        align: 'center',
+        value: 'acciones'
+      }],
+      desserts: [{
+        nombre: 'CFE',
+        usuario: "JUAN VALDEZ",
+        rol: "FADJFASDEQ1VS",
+        areaTrabajo: 30,
+        cotizaciones: 3,
+        cotizaciones2: 10,
+        cotizaciones3: 5,
+        ventas: 10,
+        acciones: "Acciones"
+      }]
+    };
+  },
+  methods: {
+    nuevoSolicitante: function nuevoSolicitante() {
+      this.$router.push({
+        name: 'nuevoSolicitante'
+      })["catch"](function () {});
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/SolicitudesComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/SolicitudesComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      search: '',
+      headers: [{
+        text: 'Fecha de solicitud',
+        align: 'center',
+        value: 'nombre'
+      }, {
+        text: 'Folio',
+        align: 'center',
+        value: 'usuario'
+      }, {
+        text: 'Cliente',
+        align: 'center',
+        value: 'rol'
+      }, {
+        text: 'Solicitante',
+        align: 'center',
+        value: 'usuario'
+      }, {
+        text: 'Responsable',
+        align: 'center',
+        value: 'usuario'
+      }, {
+        text: '% Utilidad',
+        align: 'center',
+        value: 'areaTrabajo'
+      }, {
+        text: '# Réplicas',
+        align: 'center',
+        value: 'areaTrabajo'
+      }, {
+        text: 'Acciones',
+        align: 'center',
+        value: 'acciones'
+      }],
+      desserts: [{
+        nombre: 'CFE',
+        usuario: "JUAN VALDEZ",
+        rol: "FADJFASDEQ1VS",
+        areaTrabajo: 30,
+        cotizaciones: 3,
+        cotizaciones2: 10,
+        cotizaciones3: 5,
+        ventas: 10,
+        acciones: "Acciones"
+      }]
+    };
+  },
+  methods: {
+    nuevaSolicitud: function nuevaSolicitud() {
+      this.$router.push({
+        name: 'nuevaSolicitud'
+      })["catch"](function () {});
+    }
   }
 });
 
@@ -3834,9 +4799,484 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  data: function data() {
+    return {
+      mostrarsolicitudes: false,
+      mostrarsolicitantes: false,
+      mostrarclientes: true,
+      mostrarMontos: false,
+      mostrarPersonalizados: false,
+      mostrarcampanias: false,
+      search: '',
+      headers: [{
+        text: 'Empresa',
+        align: 'center',
+        value: 'nombre'
+      }, {
+        text: 'Representante',
+        align: 'center',
+        value: 'usuario'
+      }, {
+        text: 'RFC',
+        align: 'center',
+        value: 'rol'
+      }, {
+        text: '% Utilidad',
+        align: 'center',
+        value: 'areaTrabajo'
+      }, {
+        text: 'Cotizaciones',
+        align: 'center',
+        value: 'cotizaciones'
+      }, {
+        text: 'Ventas',
+        align: 'center',
+        value: 'ventas'
+      }, {
+        text: 'Acciones',
+        align: 'center',
+        value: 'acciones'
+      }],
+      desserts: [{
+        nombre: 'CFE',
+        usuario: "JUAN VALDEZ",
+        rol: "FADJFASDEQ1VS",
+        areaTrabajo: 30,
+        cotizaciones: 3,
+        cotizaciones2: 10,
+        cotizaciones3: 5,
+        ventas: 10,
+        acciones: "Acciones"
+      }],
+      ocliente: false,
+      osolicitante: false,
+      omonto: false,
+      ocampania: false,
+      opersonalizada: false
+    };
+  },
+  methods: {
+    nuevoMonto: function nuevoMonto() {
+      this.$router.push({
+        name: 'nuevoMonto'
+      })["catch"](function () {});
+    },
+    nuevaCampania: function nuevaCampania() {
+      this.$router.push({
+        name: 'nuevaCampania'
+      })["catch"](function () {});
+    },
+    mostrarTabla: function mostrarTabla(mostrar) {
+      if (mostrar == 'ocliente') {
+        this.mostrarclientes = true;
+        this.mostrarsolicitantes = false;
+        this.mostrarMontos = false;
+        this.mostrarcampanias = false;
+        this.mostrarPersonalizados = false;
+        console.log(this.mostrarclientes, this.mostrarsolicitantes, this.mostrarMontos, this.mostrarcampanias, this.mostrarPersonalizados);
+      }
+
+      if (mostrar == 'osolicitante') {
+        this.mostrarclientes = false;
+        this.mostrarsolicitantes = true;
+        this.mostrarPersonalizados = false;
+        this.mostrarcampanias = false;
+        this.mostrarPersonalizados = false;
+        console.log(this.mostrarclientes, this.mostrarsolicitantes, this.mostrarMontos, this.mostrarcampanias, this.mostrarPersonalizados);
+      }
+
+      if (mostrar == 'omonto') {
+        this.mostrarclientes = false;
+        this.mostrarsolicitantes = false;
+        this.mostrarMontos = true;
+        this.mostrarcampanias = false;
+        this.mostrarPersonalizados = false;
+        console.log(this.mostrarclientes, this.mostrarsolicitantes, this.mostrarMontos, this.mostrarcampanias, this.mostrarPersonalizados);
+      }
+
+      if (mostrar == 'ocampania') {
+        this.mostrarclientes = false;
+        this.mostrarsolicitantes = false;
+        this.mostrarMontos = false;
+        this.mostrarcampanias = true;
+        this.mostrarPersonalizados = false;
+        console.log(this.mostrarclientes, this.mostrarsolicitantes, this.mostrarMontos, this.mostrarcampanias, this.mostrarPersonalizados);
+      }
+
+      if (mostrar == 'opersonalizada') {
+        this.mostrarclientes = false;
+        this.mostrarsolicitantes = false;
+        this.mostrarMontos = false;
+        this.mostrarcampanias = false;
+        this.mostrarPersonalizados = true;
+        console.log(this.mostrarclientes, this.mostrarsolicitantes, this.mostrarMontos, this.mostrarcampanias, this.mostrarPersonalizados);
+      }
+    }
   }
 });
 
@@ -45947,10 +47387,254 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/SolicitudesComponent.vue?vue&type=template&id=505aca2c&":
-/*!******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/SolicitudesComponent.vue?vue&type=template&id=505aca2c& ***!
-  \******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroSolicitantesComponent.vue?vue&type=template&id=958c9f8a&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/RegistroSolicitantesComponent.vue?vue&type=template&id=958c9f8a& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "v-card",
+        {
+          staticClass: "mx-auto rounded-lg py-5 px-2 mt-5 mb-5",
+          attrs: { width: "100%", align: "center", justify: "space-around" }
+        },
+        [
+          _c("v-card-title", { staticClass: "font-weight-black" }, [
+            _vm._v("Nuevo Solicitante")
+          ]),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c(
+            "v-card-text",
+            [
+              _c(
+                "v-container",
+                [
+                  _c("p", { staticClass: "font-weight-black" }, [
+                    _vm._v("Información del Solicitante")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "12" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              label: "Nombre del solicitante",
+                              required: ""
+                            },
+                            model: {
+                              value: _vm.razonSocial,
+                              callback: function($$v) {
+                                _vm.razonSocial = $$v
+                              },
+                              expression: "razonSocial"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: { label: "Giro Comercial", required: "" },
+                            model: {
+                              value: _vm.giro,
+                              callback: function($$v) {
+                                _vm.giro = $$v
+                              },
+                              expression: "giro"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: { label: "RFC", required: "" },
+                            model: {
+                              value: _vm.giro,
+                              callback: function($$v) {
+                                _vm.giro = $$v
+                              },
+                              expression: "giro"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              label: "Correo Electrónico",
+                              required: ""
+                            },
+                            model: {
+                              value: _vm.giro,
+                              callback: function($$v) {
+                                _vm.giro = $$v
+                              },
+                              expression: "giro"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: { label: "Teléfono", required: "" },
+                            model: {
+                              value: _vm.giro,
+                              callback: function($$v) {
+                                _vm.giro = $$v
+                              },
+                              expression: "giro"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "font-weight-black mt-5" }, [
+                    _vm._v("Configuración para cotizaciones")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              label: "Porcentaje de utilidad",
+                              required: ""
+                            },
+                            model: {
+                              value: _vm.razonSocial,
+                              callback: function($$v) {
+                                _vm.razonSocial = $$v
+                              },
+                              expression: "razonSocial"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c(
+            "v-card-actions",
+            [
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    [
+                      _c(
+                        "v-btn",
+                        { attrs: { color: "warning", cols: "6", block: "" } },
+                        [_vm._v("\n      Editar\n    ")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c(
+                        "v-btn",
+                        { attrs: { color: "error", cols: "6", block: "" } },
+                        [_vm._v("\n     Eliminar\n    ")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c(
+                        "v-btn",
+                        { attrs: { cols: "6", block: "", color: "primary" } },
+                        [_vm._v("\n      Registrar\n    ")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroSolicitudesComponent.vue?vue&type=template&id=58876186&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/RegistroSolicitudesComponent.vue?vue&type=template&id=58876186& ***!
+  \**************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -46219,7 +47903,7 @@ var render = function() {
                               _c("v-select", {
                                 attrs: {
                                   items: _vm.catutilidades,
-                                  label: "Margen de utilidad",
+                                  label: "Margen de Utilidad",
                                   required: ""
                                 },
                                 model: {
@@ -46240,7 +47924,8 @@ var render = function() {
                             [
                               _c("v-text-field", {
                                 attrs: {
-                                  label: "Ingrese la utilidad personalizada",
+                                  label:
+                                    "Ingrese el Porcentaje de Utilidad Personalizada",
                                   required: ""
                                 },
                                 model: {
@@ -46374,6 +48059,1253 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=template&id=be725416&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=template&id=be725416& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "v-card",
+        {
+          staticClass: "mx-auto rounded-lg py-5 px-2 mt-5 mb-5",
+          attrs: { width: "100%", align: "center", justify: "space-around" }
+        },
+        [
+          _c("v-card-title", { staticClass: "font-weight-black" }, [
+            _vm._v("Nueva Regla de Utilidad(Campaña)")
+          ]),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c(
+            "v-card-text",
+            [
+              _c(
+                "v-container",
+                [
+                  _c("p", { staticClass: "font-weight-black" }, [
+                    _vm._v("Información de la regla")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "12" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              label: "Nombre del regla de utilidad",
+                              required: ""
+                            },
+                            model: {
+                              value: _vm.razonSocial,
+                              callback: function($$v) {
+                                _vm.razonSocial = $$v
+                              },
+                              expression: "razonSocial"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6" } },
+                        [
+                          _c("v-select", {
+                            attrs: {
+                              items: _vm.catclientes,
+                              label: "Seleccione una opción",
+                              required: ""
+                            },
+                            model: {
+                              value: _vm.cliente,
+                              callback: function($$v) {
+                                _vm.cliente = $$v
+                              },
+                              expression: "cliente"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: { label: "RFC", required: "" },
+                            model: {
+                              value: _vm.giro,
+                              callback: function($$v) {
+                                _vm.giro = $$v
+                              },
+                              expression: "giro"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              label: "Correo Electrónico",
+                              required: ""
+                            },
+                            model: {
+                              value: _vm.giro,
+                              callback: function($$v) {
+                                _vm.giro = $$v
+                              },
+                              expression: "giro"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: { label: "Teléfono", required: "" },
+                            model: {
+                              value: _vm.giro,
+                              callback: function($$v) {
+                                _vm.giro = $$v
+                              },
+                              expression: "giro"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "font-weight-black mt-5" }, [
+                    _vm._v("Configuración para cotizaciones")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              label: "Porcentaje de utilidad",
+                              required: ""
+                            },
+                            model: {
+                              value: _vm.razonSocial,
+                              callback: function($$v) {
+                                _vm.razonSocial = $$v
+                              },
+                              expression: "razonSocial"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c(
+            "v-card-actions",
+            [
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    [
+                      _c(
+                        "v-btn",
+                        { attrs: { color: "warning", cols: "6", block: "" } },
+                        [_vm._v("\n      Editar\n    ")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c(
+                        "v-btn",
+                        { attrs: { color: "error", cols: "6", block: "" } },
+                        [_vm._v("\n     Eliminar\n    ")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c(
+                        "v-btn",
+                        { attrs: { cols: "6", block: "", color: "primary" } },
+                        [_vm._v("\n      Registrar\n    ")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroUtilidadMontoComponent.vue?vue&type=template&id=645ae848&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/RegistroUtilidadMontoComponent.vue?vue&type=template&id=645ae848& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "v-card",
+        {
+          staticClass: "mx-auto rounded-lg py-5 px-2 mt-5 mb-5",
+          attrs: { width: "100%", align: "center", justify: "space-around" }
+        },
+        [
+          _c("v-card-title", { staticClass: "font-weight-black" }, [
+            _vm._v("Nueva Regla de Utilidad(Monto)")
+          ]),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c(
+            "v-card-text",
+            [
+              _c(
+                "v-container",
+                [
+                  _c("p", { staticClass: "font-weight-black" }, [
+                    _vm._v("Información de la regla")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "12" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              label: "Nombre del regla de utilidad",
+                              required: ""
+                            },
+                            model: {
+                              value: _vm.razonSocial,
+                              callback: function($$v) {
+                                _vm.razonSocial = $$v
+                              },
+                              expression: "razonSocial"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6" } },
+                        [
+                          _c("v-select", {
+                            attrs: {
+                              items: _vm.catclientes,
+                              label: "Seleccione una opción",
+                              required: ""
+                            },
+                            model: {
+                              value: _vm.cliente,
+                              callback: function($$v) {
+                                _vm.cliente = $$v
+                              },
+                              expression: "cliente"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: { label: "RFC", required: "" },
+                            model: {
+                              value: _vm.giro,
+                              callback: function($$v) {
+                                _vm.giro = $$v
+                              },
+                              expression: "giro"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              label: "Correo Electrónico",
+                              required: ""
+                            },
+                            model: {
+                              value: _vm.giro,
+                              callback: function($$v) {
+                                _vm.giro = $$v
+                              },
+                              expression: "giro"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: { label: "Teléfono", required: "" },
+                            model: {
+                              value: _vm.giro,
+                              callback: function($$v) {
+                                _vm.giro = $$v
+                              },
+                              expression: "giro"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "font-weight-black mt-5" }, [
+                    _vm._v("Configuración para cotizaciones")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              label: "Porcentaje de utilidad",
+                              required: ""
+                            },
+                            model: {
+                              value: _vm.razonSocial,
+                              callback: function($$v) {
+                                _vm.razonSocial = $$v
+                              },
+                              expression: "razonSocial"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c(
+            "v-card-actions",
+            [
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    [
+                      _c(
+                        "v-btn",
+                        { attrs: { color: "warning", cols: "6", block: "" } },
+                        [_vm._v("\n      Editar\n    ")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c(
+                        "v-btn",
+                        { attrs: { color: "error", cols: "6", block: "" } },
+                        [_vm._v("\n     Eliminar\n    ")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c(
+                        "v-btn",
+                        { attrs: { cols: "6", block: "", color: "primary" } },
+                        [_vm._v("\n      Registrar\n    ")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/SolicitantesComponent.vue?vue&type=template&id=33ecda2e&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/SolicitantesComponent.vue?vue&type=template&id=33ecda2e& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "v-card",
+        {
+          staticClass: "mx-auto rounded-lg py-5 px-2 mt-5 mb-5",
+          attrs: { width: "100%", align: "center", justify: "space-around" }
+        },
+        [
+          _c("v-card-title", { staticClass: "font-weight-black" }, [
+            _vm._v("Registro de Solicitantes")
+          ]),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c(
+            "v-card-text",
+            [
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12", md: "4" } },
+                    [
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "primary", dark: "" },
+                          on: { click: _vm.nuevoSolicitante }
+                        },
+                        [
+                          _vm._v(
+                            "\n              Registrar Nuevo Solicitante\n            "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12", md: "8" } },
+                    [
+                      _c("v-text-field", {
+                        attrs: {
+                          "append-icon": "mdi-magnify",
+                          label: "Buscar por parámetro",
+                          "single-line": "",
+                          "hide-details": ""
+                        },
+                        model: {
+                          value: _vm.search,
+                          callback: function($$v) {
+                            _vm.search = $$v
+                          },
+                          expression: "search"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12" } },
+                    [
+                      _c("v-data-table", {
+                        attrs: {
+                          headers: _vm.headers,
+                          items: _vm.desserts,
+                          search: _vm.search
+                        },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "item.cotizaciones",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c(
+                                  "v-tooltip",
+                                  {
+                                    attrs: { top: "" },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "activator",
+                                          fn: function(ref) {
+                                            var on = ref.on
+                                            var attrs = ref.attrs
+                                            return [
+                                              _c(
+                                                "v-chip",
+                                                _vm._g(
+                                                  _vm._b(
+                                                    {
+                                                      attrs: {
+                                                        color: "grey",
+                                                        dark: ""
+                                                      }
+                                                    },
+                                                    "v-chip",
+                                                    attrs,
+                                                    false
+                                                  ),
+                                                  on
+                                                ),
+                                                [
+                                                  _vm._v(
+                                                    "\n        " +
+                                                      _vm._s(
+                                                        item.cotizaciones
+                                                      ) +
+                                                      "\n      "
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      null,
+                                      true
+                                    )
+                                  },
+                                  [
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v("Pendientes")])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-tooltip",
+                                  {
+                                    attrs: { top: "" },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "activator",
+                                          fn: function(ref) {
+                                            var on = ref.on
+                                            var attrs = ref.attrs
+                                            return [
+                                              _c(
+                                                "v-chip",
+                                                _vm._g(
+                                                  _vm._b(
+                                                    {
+                                                      attrs: {
+                                                        color: "orange",
+                                                        dark: ""
+                                                      }
+                                                    },
+                                                    "v-chip",
+                                                    attrs,
+                                                    false
+                                                  ),
+                                                  on
+                                                ),
+                                                [
+                                                  _vm._v(
+                                                    "\n        " +
+                                                      _vm._s(
+                                                        item.cotizaciones2
+                                                      ) +
+                                                      "\n      "
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      null,
+                                      true
+                                    )
+                                  },
+                                  [
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v("En Proceso")])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-tooltip",
+                                  {
+                                    attrs: { top: "" },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "activator",
+                                          fn: function(ref) {
+                                            var on = ref.on
+                                            var attrs = ref.attrs
+                                            return [
+                                              _c(
+                                                "v-chip",
+                                                _vm._g(
+                                                  _vm._b(
+                                                    {
+                                                      attrs: {
+                                                        color: "green",
+                                                        dark: ""
+                                                      }
+                                                    },
+                                                    "v-chip",
+                                                    attrs,
+                                                    false
+                                                  ),
+                                                  on
+                                                ),
+                                                [
+                                                  _vm._v(
+                                                    "\n        " +
+                                                      _vm._s(
+                                                        item.cotizaciones3
+                                                      ) +
+                                                      "\n      "
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      null,
+                                      true
+                                    )
+                                  },
+                                  [
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v("Cotizadas")])
+                                  ]
+                                )
+                              ]
+                            }
+                          },
+                          {
+                            key: "item.ventas",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c(
+                                  "v-tooltip",
+                                  {
+                                    attrs: { top: "" },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "activator",
+                                          fn: function(ref) {
+                                            var on = ref.on
+                                            var attrs = ref.attrs
+                                            return [
+                                              _c(
+                                                "v-chip",
+                                                _vm._g(
+                                                  _vm._b(
+                                                    {
+                                                      attrs: {
+                                                        color: "green",
+                                                        dark: ""
+                                                      }
+                                                    },
+                                                    "v-chip",
+                                                    attrs,
+                                                    false
+                                                  ),
+                                                  on
+                                                ),
+                                                [
+                                                  _vm._v(
+                                                    "\n        " +
+                                                      _vm._s(item.ventas) +
+                                                      "\n      "
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      null,
+                                      true
+                                    )
+                                  },
+                                  [
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v("Realizadas")])
+                                  ]
+                                )
+                              ]
+                            }
+                          },
+                          {
+                            key: "item.acciones",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c(
+                                  "v-tooltip",
+                                  {
+                                    attrs: { top: "" },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "activator",
+                                          fn: function(ref) {
+                                            var on = ref.on
+                                            var attrs = ref.attrs
+                                            return [
+                                              _c(
+                                                "v-btn",
+                                                _vm._g(
+                                                  _vm._b(
+                                                    {
+                                                      attrs: {
+                                                        small: "",
+                                                        color: "primary",
+                                                        dark: "",
+                                                        fab: ""
+                                                      }
+                                                    },
+                                                    "v-btn",
+                                                    attrs,
+                                                    false
+                                                  ),
+                                                  on
+                                                ),
+                                                [
+                                                  _c("v-icon", [
+                                                    _vm._v(
+                                                      "mdi-information-outline"
+                                                    )
+                                                  ])
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      null,
+                                      true
+                                    )
+                                  },
+                                  [
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v("Ver Información")])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-tooltip",
+                                  {
+                                    attrs: { top: "" },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "activator",
+                                          fn: function(ref) {
+                                            var on = ref.on
+                                            var attrs = ref.attrs
+                                            return [
+                                              _c(
+                                                "v-btn",
+                                                _vm._g(
+                                                  _vm._b(
+                                                    {
+                                                      attrs: {
+                                                        small: "",
+                                                        color: "primary",
+                                                        dark: "",
+                                                        fab: ""
+                                                      }
+                                                    },
+                                                    "v-btn",
+                                                    attrs,
+                                                    false
+                                                  ),
+                                                  on
+                                                ),
+                                                [
+                                                  _c("v-icon", [
+                                                    _vm._v(
+                                                      "mdi-microphone-outline"
+                                                    )
+                                                  ])
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      null,
+                                      true
+                                    )
+                                  },
+                                  [
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v("Llamar por teléfono")])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-tooltip",
+                                  {
+                                    attrs: { top: "" },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "activator",
+                                          fn: function(ref) {
+                                            var on = ref.on
+                                            var attrs = ref.attrs
+                                            return [
+                                              _c(
+                                                "v-btn",
+                                                _vm._g(
+                                                  _vm._b(
+                                                    {
+                                                      attrs: {
+                                                        small: "",
+                                                        color: "primary",
+                                                        dark: "",
+                                                        fab: ""
+                                                      }
+                                                    },
+                                                    "v-btn",
+                                                    attrs,
+                                                    false
+                                                  ),
+                                                  on
+                                                ),
+                                                [
+                                                  _c("v-icon", [
+                                                    _vm._v(
+                                                      "mdi-email-edit-outline"
+                                                    )
+                                                  ])
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      null,
+                                      true
+                                    )
+                                  },
+                                  [
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v("Enviar Correo")])
+                                  ]
+                                )
+                              ]
+                            }
+                          }
+                        ])
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c("v-card-actions")
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/SolicitudesComponent.vue?vue&type=template&id=505aca2c&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/SolicitudesComponent.vue?vue&type=template&id=505aca2c& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "v-card",
+        {
+          staticClass: "mx-auto rounded-lg py-5 px-2 mt-5 mb-5",
+          attrs: { width: "100%", align: "center", justify: "space-around" }
+        },
+        [
+          _c("v-card-title", { staticClass: "font-weight-black" }, [
+            _vm._v("Registro de Solicitudes")
+          ]),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c(
+            "v-card-text",
+            [
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12", md: "4" } },
+                    [
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "primary", dark: "" },
+                          on: { click: _vm.nuevaSolicitud }
+                        },
+                        [
+                          _vm._v(
+                            "\n              Registrar Nueva Solicitud\n            "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12", md: "8" } },
+                    [
+                      _c("v-text-field", {
+                        attrs: {
+                          "append-icon": "mdi-magnify",
+                          label: "Buscar por parámetro",
+                          "single-line": "",
+                          "hide-details": ""
+                        },
+                        model: {
+                          value: _vm.search,
+                          callback: function($$v) {
+                            _vm.search = $$v
+                          },
+                          expression: "search"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12" } },
+                    [
+                      _c("v-data-table", {
+                        attrs: {
+                          headers: _vm.headers,
+                          items: _vm.desserts,
+                          search: _vm.search
+                        },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "item.acciones",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c(
+                                  "v-tooltip",
+                                  {
+                                    attrs: { top: "" },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "activator",
+                                          fn: function(ref) {
+                                            var on = ref.on
+                                            var attrs = ref.attrs
+                                            return [
+                                              _c(
+                                                "v-btn",
+                                                _vm._g(
+                                                  _vm._b(
+                                                    {
+                                                      attrs: {
+                                                        small: "",
+                                                        color: "primary",
+                                                        dark: "",
+                                                        fab: ""
+                                                      }
+                                                    },
+                                                    "v-btn",
+                                                    attrs,
+                                                    false
+                                                  ),
+                                                  on
+                                                ),
+                                                [
+                                                  _c("v-icon", [
+                                                    _vm._v("mdi-import")
+                                                  ])
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      null,
+                                      true
+                                    )
+                                  },
+                                  [
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v("Ver Solicitud")])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-tooltip",
+                                  {
+                                    attrs: { top: "" },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "activator",
+                                          fn: function(ref) {
+                                            var on = ref.on
+                                            var attrs = ref.attrs
+                                            return [
+                                              _c(
+                                                "v-btn",
+                                                _vm._g(
+                                                  _vm._b(
+                                                    {
+                                                      attrs: {
+                                                        small: "",
+                                                        color: "primary",
+                                                        dark: "",
+                                                        fab: ""
+                                                      }
+                                                    },
+                                                    "v-btn",
+                                                    attrs,
+                                                    false
+                                                  ),
+                                                  on
+                                                ),
+                                                [
+                                                  _c("v-icon", [
+                                                    _vm._v(
+                                                      "mdi-file-send-outline"
+                                                    )
+                                                  ])
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      null,
+                                      true
+                                    )
+                                  },
+                                  [
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v("Ver Cotización")])
+                                  ]
+                                )
+                              ]
+                            }
+                          }
+                        ])
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c("v-card-actions")
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/UtilidadesComponent.vue?vue&type=template&id=b3a824c0&":
 /*!*****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/UtilidadesComponent.vue?vue&type=template&id=b3a824c0& ***!
@@ -46389,32 +49321,1105 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "v-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "v-bottom-navigation",
+        [
+          _c(
+            "v-btn",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.mostrarTabla("ocliente")
+                }
+              }
+            },
+            [
+              _c("span", [_vm._v("Cliente")]),
+              _vm._v(" "),
+              _c("v-icon", [_vm._v("mdi-history")])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.mostrarTabla("osolicitante")
+                }
+              }
+            },
+            [
+              _c("span", [_vm._v("Solicitante")]),
+              _vm._v(" "),
+              _c("v-icon", [_vm._v("mdi-history")])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.mostrarTabla("omonto")
+                }
+              }
+            },
+            [
+              _c("span", [_vm._v("Monto")]),
+              _vm._v(" "),
+              _c("v-icon", [_vm._v("mdi-history")])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.mostrarTabla("ocampania")
+                }
+              }
+            },
+            [
+              _c("span", [_vm._v("Campaña")]),
+              _vm._v(" "),
+              _c("v-icon", [_vm._v("mdi-history")])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.mostrarTabla("opersonalizada")
+                }
+              }
+            },
+            [
+              _c("span", [_vm._v("Personalizada")]),
+              _vm._v(" "),
+              _c("v-icon", [_vm._v("mdi-history")])
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _vm.mostrarclientes ? _c("componente-clientes") : _vm._e(),
+      _vm._v(" "),
+      _vm.mostrarsolicitantes ? _c("componente-solicitantes") : _vm._e(),
+      _vm._v(" "),
+      _vm.mostrarPersonalizados ? _c("componente-solicitudes") : _vm._e(),
+      _vm._v(" "),
+      _vm.mostrarcampanias
+        ? _c(
+            "v-card",
+            {
+              staticClass: "mx-auto rounded-lg py-5 px-2 mt-5 mb-5",
+              attrs: { width: "100%", align: "center", justify: "space-around" }
+            },
+            [
+              _c("v-card-title", { staticClass: "font-weight-black" }, [
+                _vm._v("Registro de Utilidades(Campaña)")
+              ]),
+              _vm._v(" "),
+              _c("v-divider"),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "4" } },
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { color: "primary", dark: "" },
+                              on: { click: _vm.nuevaCampania }
+                            },
+                            [
+                              _vm._v(
+                                "\n              Registrar Nueva Utilidad\n            "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "8" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              "append-icon": "mdi-magnify",
+                              label: "Buscar por parámetro",
+                              "single-line": "",
+                              "hide-details": ""
+                            },
+                            model: {
+                              value: _vm.search,
+                              callback: function($$v) {
+                                _vm.search = $$v
+                              },
+                              expression: "search"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12" } },
+                        [
+                          _c("v-data-table", {
+                            attrs: {
+                              headers: _vm.headers,
+                              items: _vm.desserts,
+                              search: _vm.search
+                            },
+                            scopedSlots: _vm._u(
+                              [
+                                {
+                                  key: "item.cotizaciones",
+                                  fn: function(ref) {
+                                    var item = ref.item
+                                    return [
+                                      _c(
+                                        "v-tooltip",
+                                        {
+                                          attrs: { top: "" },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "activator",
+                                                fn: function(ref) {
+                                                  var on = ref.on
+                                                  var attrs = ref.attrs
+                                                  return [
+                                                    _c(
+                                                      "v-chip",
+                                                      _vm._g(
+                                                        _vm._b(
+                                                          {
+                                                            attrs: {
+                                                              color: "grey",
+                                                              dark: ""
+                                                            }
+                                                          },
+                                                          "v-chip",
+                                                          attrs,
+                                                          false
+                                                        ),
+                                                        on
+                                                      ),
+                                                      [
+                                                        _vm._v(
+                                                          "\n        " +
+                                                            _vm._s(
+                                                              item.cotizaciones
+                                                            ) +
+                                                            "\n      "
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        },
+                                        [
+                                          _vm._v(" "),
+                                          _c("span", [_vm._v("Pendientes")])
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-tooltip",
+                                        {
+                                          attrs: { top: "" },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "activator",
+                                                fn: function(ref) {
+                                                  var on = ref.on
+                                                  var attrs = ref.attrs
+                                                  return [
+                                                    _c(
+                                                      "v-chip",
+                                                      _vm._g(
+                                                        _vm._b(
+                                                          {
+                                                            attrs: {
+                                                              color: "orange",
+                                                              dark: ""
+                                                            }
+                                                          },
+                                                          "v-chip",
+                                                          attrs,
+                                                          false
+                                                        ),
+                                                        on
+                                                      ),
+                                                      [
+                                                        _vm._v(
+                                                          "\n        " +
+                                                            _vm._s(
+                                                              item.cotizaciones2
+                                                            ) +
+                                                            "\n      "
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        },
+                                        [
+                                          _vm._v(" "),
+                                          _c("span", [_vm._v("En Proceso")])
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-tooltip",
+                                        {
+                                          attrs: { top: "" },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "activator",
+                                                fn: function(ref) {
+                                                  var on = ref.on
+                                                  var attrs = ref.attrs
+                                                  return [
+                                                    _c(
+                                                      "v-chip",
+                                                      _vm._g(
+                                                        _vm._b(
+                                                          {
+                                                            attrs: {
+                                                              color: "green",
+                                                              dark: ""
+                                                            }
+                                                          },
+                                                          "v-chip",
+                                                          attrs,
+                                                          false
+                                                        ),
+                                                        on
+                                                      ),
+                                                      [
+                                                        _vm._v(
+                                                          "\n        " +
+                                                            _vm._s(
+                                                              item.cotizaciones3
+                                                            ) +
+                                                            "\n      "
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        },
+                                        [
+                                          _vm._v(" "),
+                                          _c("span", [_vm._v("Cotizadas")])
+                                        ]
+                                      )
+                                    ]
+                                  }
+                                },
+                                {
+                                  key: "item.ventas",
+                                  fn: function(ref) {
+                                    var item = ref.item
+                                    return [
+                                      _c(
+                                        "v-tooltip",
+                                        {
+                                          attrs: { top: "" },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "activator",
+                                                fn: function(ref) {
+                                                  var on = ref.on
+                                                  var attrs = ref.attrs
+                                                  return [
+                                                    _c(
+                                                      "v-chip",
+                                                      _vm._g(
+                                                        _vm._b(
+                                                          {
+                                                            attrs: {
+                                                              color: "green",
+                                                              dark: ""
+                                                            }
+                                                          },
+                                                          "v-chip",
+                                                          attrs,
+                                                          false
+                                                        ),
+                                                        on
+                                                      ),
+                                                      [
+                                                        _vm._v(
+                                                          "\n        " +
+                                                            _vm._s(
+                                                              item.ventas
+                                                            ) +
+                                                            "\n      "
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        },
+                                        [
+                                          _vm._v(" "),
+                                          _c("span", [_vm._v("Realizadas")])
+                                        ]
+                                      )
+                                    ]
+                                  }
+                                },
+                                {
+                                  key: "item.acciones",
+                                  fn: function(ref) {
+                                    var item = ref.item
+                                    return [
+                                      _c(
+                                        "v-tooltip",
+                                        {
+                                          attrs: { top: "" },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "activator",
+                                                fn: function(ref) {
+                                                  var on = ref.on
+                                                  var attrs = ref.attrs
+                                                  return [
+                                                    _c(
+                                                      "v-btn",
+                                                      _vm._g(
+                                                        _vm._b(
+                                                          {
+                                                            attrs: {
+                                                              small: "",
+                                                              color: "primary",
+                                                              dark: "",
+                                                              fab: ""
+                                                            }
+                                                          },
+                                                          "v-btn",
+                                                          attrs,
+                                                          false
+                                                        ),
+                                                        on
+                                                      ),
+                                                      [
+                                                        _c("v-icon", [
+                                                          _vm._v(
+                                                            "mdi-information-outline"
+                                                          )
+                                                        ])
+                                                      ],
+                                                      1
+                                                    )
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        },
+                                        [
+                                          _vm._v(" "),
+                                          _c("span", [
+                                            _vm._v("Ver Información")
+                                          ])
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-tooltip",
+                                        {
+                                          attrs: { top: "" },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "activator",
+                                                fn: function(ref) {
+                                                  var on = ref.on
+                                                  var attrs = ref.attrs
+                                                  return [
+                                                    _c(
+                                                      "v-btn",
+                                                      _vm._g(
+                                                        _vm._b(
+                                                          {
+                                                            attrs: {
+                                                              small: "",
+                                                              color: "primary",
+                                                              dark: "",
+                                                              fab: ""
+                                                            }
+                                                          },
+                                                          "v-btn",
+                                                          attrs,
+                                                          false
+                                                        ),
+                                                        on
+                                                      ),
+                                                      [
+                                                        _c("v-icon", [
+                                                          _vm._v(
+                                                            "mdi-microphone-outline"
+                                                          )
+                                                        ])
+                                                      ],
+                                                      1
+                                                    )
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        },
+                                        [
+                                          _vm._v(" "),
+                                          _c("span", [
+                                            _vm._v("Llamar por teléfono")
+                                          ])
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-tooltip",
+                                        {
+                                          attrs: { top: "" },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "activator",
+                                                fn: function(ref) {
+                                                  var on = ref.on
+                                                  var attrs = ref.attrs
+                                                  return [
+                                                    _c(
+                                                      "v-btn",
+                                                      _vm._g(
+                                                        _vm._b(
+                                                          {
+                                                            attrs: {
+                                                              small: "",
+                                                              color: "primary",
+                                                              dark: "",
+                                                              fab: ""
+                                                            }
+                                                          },
+                                                          "v-btn",
+                                                          attrs,
+                                                          false
+                                                        ),
+                                                        on
+                                                      ),
+                                                      [
+                                                        _c("v-icon", [
+                                                          _vm._v(
+                                                            "mdi-email-edit-outline"
+                                                          )
+                                                        ])
+                                                      ],
+                                                      1
+                                                    )
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        },
+                                        [
+                                          _vm._v(" "),
+                                          _c("span", [_vm._v("Enviar Correo")])
+                                        ]
+                                      )
+                                    ]
+                                  }
+                                }
+                              ],
+                              null,
+                              false,
+                              866231272
+                            )
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-divider"),
+              _vm._v(" "),
+              _c("v-card-actions")
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.mostrarMontos
+        ? _c(
+            "v-card",
+            {
+              staticClass: "mx-auto rounded-lg py-5 px-2 mt-5 mb-5",
+              attrs: { width: "100%", align: "center", justify: "space-around" }
+            },
+            [
+              _c("v-card-title", { staticClass: "font-weight-black" }, [
+                _vm._v("Registro de Utilidades(Monto)")
+              ]),
+              _vm._v(" "),
+              _c("v-divider"),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "4" } },
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { color: "primary", dark: "" },
+                              on: { click: _vm.nuevoMonto }
+                            },
+                            [
+                              _vm._v(
+                                "\n              Registrar Nueva Utilidad\n            "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "8" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              "append-icon": "mdi-magnify",
+                              label: "Buscar por parámetro",
+                              "single-line": "",
+                              "hide-details": ""
+                            },
+                            model: {
+                              value: _vm.search,
+                              callback: function($$v) {
+                                _vm.search = $$v
+                              },
+                              expression: "search"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12" } },
+                        [
+                          _c("v-data-table", {
+                            attrs: {
+                              headers: _vm.headers,
+                              items: _vm.desserts,
+                              search: _vm.search
+                            },
+                            scopedSlots: _vm._u(
+                              [
+                                {
+                                  key: "item.cotizaciones",
+                                  fn: function(ref) {
+                                    var item = ref.item
+                                    return [
+                                      _c(
+                                        "v-tooltip",
+                                        {
+                                          attrs: { top: "" },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "activator",
+                                                fn: function(ref) {
+                                                  var on = ref.on
+                                                  var attrs = ref.attrs
+                                                  return [
+                                                    _c(
+                                                      "v-chip",
+                                                      _vm._g(
+                                                        _vm._b(
+                                                          {
+                                                            attrs: {
+                                                              color: "grey",
+                                                              dark: ""
+                                                            }
+                                                          },
+                                                          "v-chip",
+                                                          attrs,
+                                                          false
+                                                        ),
+                                                        on
+                                                      ),
+                                                      [
+                                                        _vm._v(
+                                                          "\n        " +
+                                                            _vm._s(
+                                                              item.cotizaciones
+                                                            ) +
+                                                            "\n      "
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        },
+                                        [
+                                          _vm._v(" "),
+                                          _c("span", [_vm._v("Pendientes")])
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-tooltip",
+                                        {
+                                          attrs: { top: "" },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "activator",
+                                                fn: function(ref) {
+                                                  var on = ref.on
+                                                  var attrs = ref.attrs
+                                                  return [
+                                                    _c(
+                                                      "v-chip",
+                                                      _vm._g(
+                                                        _vm._b(
+                                                          {
+                                                            attrs: {
+                                                              color: "orange",
+                                                              dark: ""
+                                                            }
+                                                          },
+                                                          "v-chip",
+                                                          attrs,
+                                                          false
+                                                        ),
+                                                        on
+                                                      ),
+                                                      [
+                                                        _vm._v(
+                                                          "\n        " +
+                                                            _vm._s(
+                                                              item.cotizaciones2
+                                                            ) +
+                                                            "\n      "
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        },
+                                        [
+                                          _vm._v(" "),
+                                          _c("span", [_vm._v("En Proceso")])
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-tooltip",
+                                        {
+                                          attrs: { top: "" },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "activator",
+                                                fn: function(ref) {
+                                                  var on = ref.on
+                                                  var attrs = ref.attrs
+                                                  return [
+                                                    _c(
+                                                      "v-chip",
+                                                      _vm._g(
+                                                        _vm._b(
+                                                          {
+                                                            attrs: {
+                                                              color: "green",
+                                                              dark: ""
+                                                            }
+                                                          },
+                                                          "v-chip",
+                                                          attrs,
+                                                          false
+                                                        ),
+                                                        on
+                                                      ),
+                                                      [
+                                                        _vm._v(
+                                                          "\n        " +
+                                                            _vm._s(
+                                                              item.cotizaciones3
+                                                            ) +
+                                                            "\n      "
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        },
+                                        [
+                                          _vm._v(" "),
+                                          _c("span", [_vm._v("Cotizadas")])
+                                        ]
+                                      )
+                                    ]
+                                  }
+                                },
+                                {
+                                  key: "item.ventas",
+                                  fn: function(ref) {
+                                    var item = ref.item
+                                    return [
+                                      _c(
+                                        "v-tooltip",
+                                        {
+                                          attrs: { top: "" },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "activator",
+                                                fn: function(ref) {
+                                                  var on = ref.on
+                                                  var attrs = ref.attrs
+                                                  return [
+                                                    _c(
+                                                      "v-chip",
+                                                      _vm._g(
+                                                        _vm._b(
+                                                          {
+                                                            attrs: {
+                                                              color: "green",
+                                                              dark: ""
+                                                            }
+                                                          },
+                                                          "v-chip",
+                                                          attrs,
+                                                          false
+                                                        ),
+                                                        on
+                                                      ),
+                                                      [
+                                                        _vm._v(
+                                                          "\n        " +
+                                                            _vm._s(
+                                                              item.ventas
+                                                            ) +
+                                                            "\n      "
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        },
+                                        [
+                                          _vm._v(" "),
+                                          _c("span", [_vm._v("Realizadas")])
+                                        ]
+                                      )
+                                    ]
+                                  }
+                                },
+                                {
+                                  key: "item.acciones",
+                                  fn: function(ref) {
+                                    var item = ref.item
+                                    return [
+                                      _c(
+                                        "v-tooltip",
+                                        {
+                                          attrs: { top: "" },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "activator",
+                                                fn: function(ref) {
+                                                  var on = ref.on
+                                                  var attrs = ref.attrs
+                                                  return [
+                                                    _c(
+                                                      "v-btn",
+                                                      _vm._g(
+                                                        _vm._b(
+                                                          {
+                                                            attrs: {
+                                                              small: "",
+                                                              color: "primary",
+                                                              dark: "",
+                                                              fab: ""
+                                                            }
+                                                          },
+                                                          "v-btn",
+                                                          attrs,
+                                                          false
+                                                        ),
+                                                        on
+                                                      ),
+                                                      [
+                                                        _c("v-icon", [
+                                                          _vm._v(
+                                                            "mdi-information-outline"
+                                                          )
+                                                        ])
+                                                      ],
+                                                      1
+                                                    )
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        },
+                                        [
+                                          _vm._v(" "),
+                                          _c("span", [
+                                            _vm._v("Ver Información")
+                                          ])
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-tooltip",
+                                        {
+                                          attrs: { top: "" },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "activator",
+                                                fn: function(ref) {
+                                                  var on = ref.on
+                                                  var attrs = ref.attrs
+                                                  return [
+                                                    _c(
+                                                      "v-btn",
+                                                      _vm._g(
+                                                        _vm._b(
+                                                          {
+                                                            attrs: {
+                                                              small: "",
+                                                              color: "primary",
+                                                              dark: "",
+                                                              fab: ""
+                                                            }
+                                                          },
+                                                          "v-btn",
+                                                          attrs,
+                                                          false
+                                                        ),
+                                                        on
+                                                      ),
+                                                      [
+                                                        _c("v-icon", [
+                                                          _vm._v(
+                                                            "mdi-microphone-outline"
+                                                          )
+                                                        ])
+                                                      ],
+                                                      1
+                                                    )
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        },
+                                        [
+                                          _vm._v(" "),
+                                          _c("span", [
+                                            _vm._v("Llamar por teléfono")
+                                          ])
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-tooltip",
+                                        {
+                                          attrs: { top: "" },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "activator",
+                                                fn: function(ref) {
+                                                  var on = ref.on
+                                                  var attrs = ref.attrs
+                                                  return [
+                                                    _c(
+                                                      "v-btn",
+                                                      _vm._g(
+                                                        _vm._b(
+                                                          {
+                                                            attrs: {
+                                                              small: "",
+                                                              color: "primary",
+                                                              dark: "",
+                                                              fab: ""
+                                                            }
+                                                          },
+                                                          "v-btn",
+                                                          attrs,
+                                                          false
+                                                        ),
+                                                        on
+                                                      ),
+                                                      [
+                                                        _c("v-icon", [
+                                                          _vm._v(
+                                                            "mdi-email-edit-outline"
+                                                          )
+                                                        ])
+                                                      ],
+                                                      1
+                                                    )
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        },
+                                        [
+                                          _vm._v(" "),
+                                          _c("span", [_vm._v("Enviar Correo")])
+                                        ]
+                                      )
+                                    ]
+                                  }
+                                }
+                              ],
+                              null,
+                              false,
+                              866231272
+                            )
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-divider"),
+              _vm._v(" "),
+              _c("v-card-actions")
+            ],
+            1
+          )
+        : _vm._e()
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Hola soy el componente Utilidades")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    Hola soy el componente Utilidades\n                "
-              )
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -105737,6 +109742,9 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.use(vuetify__WEBPACK_IMPORTED_MODULE_0___default.a);
 Vue.component('login-component', __webpack_require__(/*! ./components/LoginComponent.vue */ "./resources/js/components/LoginComponent.vue")["default"]);
 Vue.component('dashboard-component', __webpack_require__(/*! ./components/DashboardComponent.vue */ "./resources/js/components/DashboardComponent.vue")["default"]);
+Vue.component('componente-clientes', __webpack_require__(/*! ./views/ClientesComponent.vue */ "./resources/js/views/ClientesComponent.vue")["default"]);
+Vue.component('componente-solicitantes', __webpack_require__(/*! ./views/SolicitantesComponent.vue */ "./resources/js/views/SolicitantesComponent.vue")["default"]);
+Vue.component('componente-solicitudes', __webpack_require__(/*! ./views/SolicitudesComponent.vue */ "./resources/js/views/SolicitudesComponent.vue")["default"]);
 
 var app = new Vue({
   el: '#app',
@@ -105993,6 +110001,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     name: 'solicitudes',
     component: __webpack_require__(/*! ./views/SolicitudesComponent.vue */ "./resources/js/views/SolicitudesComponent.vue")["default"]
   }, {
+    path: '/nueva-solicitud',
+    name: 'nuevaSolicitud',
+    component: __webpack_require__(/*! ./views/RegistroSolicitudesComponent.vue */ "./resources/js/views/RegistroSolicitudesComponent.vue")["default"]
+  }, {
     path: '/cotizaciones',
     name: 'cotizaciones',
     component: __webpack_require__(/*! ./views/CotizacionesComponent.vue */ "./resources/js/views/CotizacionesComponent.vue")["default"]
@@ -106009,9 +110021,25 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     name: 'nuevoCliente',
     component: __webpack_require__(/*! ./views/RegistroClientesComponent.vue */ "./resources/js/views/RegistroClientesComponent.vue")["default"]
   }, {
+    path: '/solicitantes',
+    name: 'solicitantes',
+    component: __webpack_require__(/*! ./views/SolicitantesComponent.vue */ "./resources/js/views/SolicitantesComponent.vue")["default"]
+  }, {
+    path: '/nuevo-solicitante',
+    name: 'nuevoSolicitante',
+    component: __webpack_require__(/*! ./views/RegistroSolicitantesComponent.vue */ "./resources/js/views/RegistroSolicitantesComponent.vue")["default"]
+  }, {
     path: '/utilidades',
     name: 'utilidades',
     component: __webpack_require__(/*! ./views/UtilidadesComponent.vue */ "./resources/js/views/UtilidadesComponent.vue")["default"]
+  }, {
+    path: '/nuevo-monto-utilidad',
+    name: 'nuevoMonto',
+    component: __webpack_require__(/*! ./views/RegistroUtilidadMontoComponent.vue */ "./resources/js/views/RegistroUtilidadMontoComponent.vue")["default"]
+  }, {
+    path: '/nueva-campania-utilidad',
+    name: 'nuevaCampania',
+    component: __webpack_require__(/*! ./views/RegistroUtilidadCampaniaComponent.vue */ "./resources/js/views/RegistroUtilidadCampaniaComponent.vue")["default"]
   }, {
     path: '/formatos',
     name: 'formatos',
@@ -106581,6 +110609,351 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroEmpleado_vue_vue_type_template_id_08ba003d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroEmpleado_vue_vue_type_template_id_08ba003d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/views/RegistroSolicitantesComponent.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/views/RegistroSolicitantesComponent.vue ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _RegistroSolicitantesComponent_vue_vue_type_template_id_958c9f8a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RegistroSolicitantesComponent.vue?vue&type=template&id=958c9f8a& */ "./resources/js/views/RegistroSolicitantesComponent.vue?vue&type=template&id=958c9f8a&");
+/* harmony import */ var _RegistroSolicitantesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RegistroSolicitantesComponent.vue?vue&type=script&lang=js& */ "./resources/js/views/RegistroSolicitantesComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _RegistroSolicitantesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _RegistroSolicitantesComponent_vue_vue_type_template_id_958c9f8a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _RegistroSolicitantesComponent_vue_vue_type_template_id_958c9f8a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/RegistroSolicitantesComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/RegistroSolicitantesComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/views/RegistroSolicitantesComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroSolicitantesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./RegistroSolicitantesComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroSolicitantesComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroSolicitantesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/RegistroSolicitantesComponent.vue?vue&type=template&id=958c9f8a&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/views/RegistroSolicitantesComponent.vue?vue&type=template&id=958c9f8a& ***!
+  \*********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroSolicitantesComponent_vue_vue_type_template_id_958c9f8a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./RegistroSolicitantesComponent.vue?vue&type=template&id=958c9f8a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroSolicitantesComponent.vue?vue&type=template&id=958c9f8a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroSolicitantesComponent_vue_vue_type_template_id_958c9f8a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroSolicitantesComponent_vue_vue_type_template_id_958c9f8a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/views/RegistroSolicitudesComponent.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/views/RegistroSolicitudesComponent.vue ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _RegistroSolicitudesComponent_vue_vue_type_template_id_58876186___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RegistroSolicitudesComponent.vue?vue&type=template&id=58876186& */ "./resources/js/views/RegistroSolicitudesComponent.vue?vue&type=template&id=58876186&");
+/* harmony import */ var _RegistroSolicitudesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RegistroSolicitudesComponent.vue?vue&type=script&lang=js& */ "./resources/js/views/RegistroSolicitudesComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _RegistroSolicitudesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _RegistroSolicitudesComponent_vue_vue_type_template_id_58876186___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _RegistroSolicitudesComponent_vue_vue_type_template_id_58876186___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/RegistroSolicitudesComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/RegistroSolicitudesComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/views/RegistroSolicitudesComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroSolicitudesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./RegistroSolicitudesComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroSolicitudesComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroSolicitudesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/RegistroSolicitudesComponent.vue?vue&type=template&id=58876186&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/views/RegistroSolicitudesComponent.vue?vue&type=template&id=58876186& ***!
+  \********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroSolicitudesComponent_vue_vue_type_template_id_58876186___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./RegistroSolicitudesComponent.vue?vue&type=template&id=58876186& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroSolicitudesComponent.vue?vue&type=template&id=58876186&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroSolicitudesComponent_vue_vue_type_template_id_58876186___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroSolicitudesComponent_vue_vue_type_template_id_58876186___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/views/RegistroUtilidadCampaniaComponent.vue":
+/*!******************************************************************!*\
+  !*** ./resources/js/views/RegistroUtilidadCampaniaComponent.vue ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _RegistroUtilidadCampaniaComponent_vue_vue_type_template_id_be725416___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RegistroUtilidadCampaniaComponent.vue?vue&type=template&id=be725416& */ "./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=template&id=be725416&");
+/* harmony import */ var _RegistroUtilidadCampaniaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RegistroUtilidadCampaniaComponent.vue?vue&type=script&lang=js& */ "./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _RegistroUtilidadCampaniaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _RegistroUtilidadCampaniaComponent_vue_vue_type_template_id_be725416___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _RegistroUtilidadCampaniaComponent_vue_vue_type_template_id_be725416___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/RegistroUtilidadCampaniaComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroUtilidadCampaniaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./RegistroUtilidadCampaniaComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroUtilidadCampaniaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=template&id=be725416&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=template&id=be725416& ***!
+  \*************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroUtilidadCampaniaComponent_vue_vue_type_template_id_be725416___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./RegistroUtilidadCampaniaComponent.vue?vue&type=template&id=be725416& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=template&id=be725416&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroUtilidadCampaniaComponent_vue_vue_type_template_id_be725416___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroUtilidadCampaniaComponent_vue_vue_type_template_id_be725416___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/views/RegistroUtilidadMontoComponent.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/views/RegistroUtilidadMontoComponent.vue ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _RegistroUtilidadMontoComponent_vue_vue_type_template_id_645ae848___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RegistroUtilidadMontoComponent.vue?vue&type=template&id=645ae848& */ "./resources/js/views/RegistroUtilidadMontoComponent.vue?vue&type=template&id=645ae848&");
+/* harmony import */ var _RegistroUtilidadMontoComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RegistroUtilidadMontoComponent.vue?vue&type=script&lang=js& */ "./resources/js/views/RegistroUtilidadMontoComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _RegistroUtilidadMontoComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _RegistroUtilidadMontoComponent_vue_vue_type_template_id_645ae848___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _RegistroUtilidadMontoComponent_vue_vue_type_template_id_645ae848___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/RegistroUtilidadMontoComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/RegistroUtilidadMontoComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/views/RegistroUtilidadMontoComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroUtilidadMontoComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./RegistroUtilidadMontoComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroUtilidadMontoComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroUtilidadMontoComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/RegistroUtilidadMontoComponent.vue?vue&type=template&id=645ae848&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/views/RegistroUtilidadMontoComponent.vue?vue&type=template&id=645ae848& ***!
+  \**********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroUtilidadMontoComponent_vue_vue_type_template_id_645ae848___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./RegistroUtilidadMontoComponent.vue?vue&type=template&id=645ae848& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroUtilidadMontoComponent.vue?vue&type=template&id=645ae848&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroUtilidadMontoComponent_vue_vue_type_template_id_645ae848___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroUtilidadMontoComponent_vue_vue_type_template_id_645ae848___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/views/SolicitantesComponent.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/views/SolicitantesComponent.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SolicitantesComponent_vue_vue_type_template_id_33ecda2e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SolicitantesComponent.vue?vue&type=template&id=33ecda2e& */ "./resources/js/views/SolicitantesComponent.vue?vue&type=template&id=33ecda2e&");
+/* harmony import */ var _SolicitantesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SolicitantesComponent.vue?vue&type=script&lang=js& */ "./resources/js/views/SolicitantesComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _SolicitantesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SolicitantesComponent_vue_vue_type_template_id_33ecda2e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _SolicitantesComponent_vue_vue_type_template_id_33ecda2e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/SolicitantesComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/SolicitantesComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/views/SolicitantesComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SolicitantesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./SolicitantesComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/SolicitantesComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SolicitantesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/SolicitantesComponent.vue?vue&type=template&id=33ecda2e&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/views/SolicitantesComponent.vue?vue&type=template&id=33ecda2e& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SolicitantesComponent_vue_vue_type_template_id_33ecda2e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./SolicitantesComponent.vue?vue&type=template&id=33ecda2e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/SolicitantesComponent.vue?vue&type=template&id=33ecda2e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SolicitantesComponent_vue_vue_type_template_id_33ecda2e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SolicitantesComponent_vue_vue_type_template_id_33ecda2e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

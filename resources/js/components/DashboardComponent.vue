@@ -16,6 +16,7 @@
       Administrador
     </v-btn>
     <v-divider></v-divider>
+
     <v-list
         nav
       >
@@ -199,6 +200,7 @@
          { text: 'Cotizaciones', icon: 'mdi-file-send-outline' , url:'cotizaciones'},
          { text: 'Ventas', icon: 'mdi-account-cash-outline' , url:'ventas'},
         { text: 'Clientes', icon: 'mdi-account-badge-horizontal-outline' , url:'clientes'},
+         { text: 'Solicitantes', icon: 'mdi-account-badge-horizontal-outline' , url:'solicitantes'},
         { text: 'Utilidades', icon: 'mdi-file-percent-outline' , url:'utilidades'},
         { text: 'Formatos', icon: 'mdi-file-pdf-box-outline' , url:'formatos'},
         { text: 'Empleados', icon: 'mdi-account-box-multiple-outline' , url:'empleados'},

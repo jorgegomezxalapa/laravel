@@ -20,6 +20,11 @@ export default new Router ({
 		component: require('./views/SolicitudesComponent.vue').default
 	},
 	{
+		path:'/nueva-solicitud',
+		name:'nuevaSolicitud',
+		component: require('./views/RegistroSolicitudesComponent.vue').default
+	},
+	{
 		path:'/cotizaciones',
 		name:'cotizaciones',
 		component: require('./views/CotizacionesComponent.vue').default
@@ -40,9 +45,31 @@ export default new Router ({
 		component: require('./views/RegistroClientesComponent.vue').default
 	},
 	{
+
+		path:'/solicitantes',
+		name:'solicitantes',
+		component: require('./views/SolicitantesComponent.vue').default
+	},
+	{
+		path:'/nuevo-solicitante',
+		name:'nuevoSolicitante',
+		component: require('./views/RegistroSolicitantesComponent.vue').default
+	},
+	{
 		path:'/utilidades',
 		name:'utilidades',
 		component: require('./views/UtilidadesComponent.vue').default
+	},
+	
+	{
+		path:'/nuevo-monto-utilidad',
+		name:'nuevoMonto',
+		component: require('./views/RegistroUtilidadMontoComponent.vue').default
+	},
+	{
+		path:'/nueva-campania-utilidad',
+		name:'nuevaCampania',
+		component: require('./views/RegistroUtilidadCampaniaComponent.vue').default
 	},
 	{
 		path:'/formatos',
