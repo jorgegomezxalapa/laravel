@@ -3051,6 +3051,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -3188,6 +3198,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3195,11 +3226,11 @@ __webpack_require__.r(__webpack_exports__);
       headers: [{
         text: 'Nombre Completo',
         align: 'center',
-        value: 'nombre'
+        value: 'name'
       }, {
         text: 'Usuario',
         align: 'center',
-        value: 'usuario'
+        value: 'userName'
       }, {
         text: 'Rol',
         align: 'center',
@@ -3213,22 +3244,54 @@ __webpack_require__.r(__webpack_exports__);
         align: 'center',
         value: 'acciones'
       }],
-      desserts: [{
-        nombre: 'Jonh Doe',
-        usuario: "Cotizador1",
-        rol: "Cotizador",
-        cotizaciones: 3,
-        cotizaciones2: 10,
-        cotizaciones3: 5,
-        acciones: "Acciones"
-      }]
+      usuarios: []
     };
+  },
+  mounted: function mounted() {
+    this.getUsuarios();
   },
   methods: {
     nuevoEmpleado: function nuevoEmpleado() {
       this.$router.push({
         name: 'nuevoEmpleado'
       })["catch"](function () {});
+    },
+    getUsuarios: function getUsuarios() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios({
+                  method: 'get',
+                  url: 'getUsuarios'
+                });
+
+              case 3:
+                response = _context.sent;
+                _this.usuarios = response.data.response;
+                console.log(_this.usuarios);
+                _context.next = 12;
+                break;
+
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+                console.log(_context.t0);
+
+              case 12:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 8]]);
+      }))();
     }
   }
 });
@@ -3997,6 +4060,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -4024,11 +4107,22 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
     ValidationObserver: vee_validate__WEBPACK_IMPORTED_MODULE_2__["ValidationObserver"]
   },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    this.verificar();
+  },
+  watch: {
+    checkbox: function checkbox(val) {
+      if (val == false) {
+        this.password = null;
+      }
+    }
   },
   data: function data() {
     return {
-      selectedItem: 7,
+      idusuario: 0,
+      editar: false,
+      checkbox: false,
+      show1: false,
+      usuario: [],
       userName: null,
       email: null,
       rol: null,
@@ -4040,27 +4134,21 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
     };
   },
   methods: {
-    submit: function submit(evt) {
+    verificar: function verificar() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var result;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                evt.preventDefault();
-                _context.next = 3;
-                return _this.$refs.observer.validate();
+                if (_this.$route.params.id != undefined) {
+                  _this.editar = true;
 
-              case 3:
-                result = _context.sent;
+                  _this.getEditar();
+                } else {}
 
-                if (result) {
-                  _this.registrar();
-                }
-
-              case 5:
+              case 1:
               case "end":
                 return _context.stop();
             }
@@ -4068,7 +4156,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
         }, _callee);
       }))();
     },
-    registrar: function registrar() {
+    getEditar: function getEditar() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -4081,106 +4169,73 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
                 _context2.next = 3;
                 return axios({
                   method: 'post',
-                  url: 'createUser',
+                  url: 'getUsuario',
                   data: {
-                    userName: _this2.userName,
-                    email: _this2.email,
-                    rol: _this2.rol,
-                    name: _this2.name,
-                    telefono: _this2.telefono,
-                    password: _this2.password,
-                    sexo: _this2.sexo
+                    id: _this2.$route.params.id
                   }
                 });
 
               case 3:
                 response = _context2.sent;
-                //correcto
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "El empleado se ha registrado de manera correcta", "success");
-
-                _this2.$router.push({
-                  name: 'empleados'
-                });
-
-                _context2.next = 12;
+                _this2.usuario = response.data;
+                _this2.usuario = _this2.usuario.response;
+                _this2.userName = _this2.usuario.userName;
+                _this2.email = _this2.usuario.email;
+                _this2.rol = _this2.usuario.rol;
+                _this2.name = _this2.usuario.name;
+                _this2.telefono = _this2.usuario.telefono;
+                _this2.password = _this2.usuario.password;
+                _this2.sexo = _this2.usuario.sexo;
+                _context2.next = 19;
                 break;
 
-              case 8:
-                _context2.prev = 8;
+              case 15:
+                _context2.prev = 15;
                 _context2.t0 = _context2["catch"](0);
-
-                // Error 😨
-                if (_context2.t0.response) {
-                  if (_context2.t0.response.status == 500) {
-                    sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "El email o nombre de usuario ya existe en la base de datos", "warning");
-                  }
-
-                  console.log(_context2.t0.response.data);
-                  console.log(_context2.t0.response.status);
-                  console.log(_context2.t0.response.headers);
-                } else if (_context2.t0.request) {
-                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error de conexión!", "warning");
-                  console.log("console.log 5", _context2.t0.request);
-                } else {
-                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Eror!", "Ha ocurrido un error interno!", "warning");
-                  console.log("console.log 6", _context2.t0.message);
-                }
-
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
                 console.log(_context2.t0);
 
-              case 12:
+              case 19:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 8]]);
+        }, _callee2, null, [[0, 15]]);
       }))();
     },
-    compararEmail: function compararEmail() {
+    submit: function submit(evt) {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var response;
+        var result;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.prev = 0;
+                evt.preventDefault();
                 _context3.next = 3;
-                return axios({
-                  method: 'post',
-                  url: 'compararEmail',
-                  data: {
-                    email: _this3.email
-                  }
-                });
+                return _this3.$refs.observer.validate();
 
               case 3:
-                response = _context3.sent;
+                result = _context3.sent;
 
-                if (response.data == 1) {
-                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", _this3.email + " ya existe registrado en la base de datos", "warning");
-                  _this3.email = null;
+                if (result) {
+                  if (_this3.editar == true) {
+                    _this3.editarUsuario();
+                  } else {
+                    _this3.registrar();
+                  }
                 }
 
-                _context3.next = 11;
-                break;
-
-              case 7:
-                _context3.prev = 7;
-                _context3.t0 = _context3["catch"](0);
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
-                console.log(_context3.t0);
-
-              case 11:
+              case 5:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[0, 7]]);
+        }, _callee3);
       }))();
     },
-    compararUsuario: function compararUsuario() {
+    registrar: function registrar() {
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
@@ -4193,35 +4248,218 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
                 _context4.next = 3;
                 return axios({
                   method: 'post',
-                  url: 'compararUsuario',
+                  url: 'createUser',
                   data: {
-                    userName: _this4.userName
+                    userName: _this4.userName,
+                    email: _this4.email,
+                    rol: _this4.rol,
+                    name: _this4.name,
+                    telefono: _this4.telefono,
+                    password: _this4.password,
+                    sexo: _this4.sexo
                   }
                 });
 
               case 3:
                 response = _context4.sent;
+                //correcto
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "El empleado se ha registrado de manera correcta", "success");
 
-                if (response.data == 1) {
-                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", _this4.userName + " ya existe registrado en la base de datos", "warning");
-                  _this4.userName = null;
-                }
+                _this4.$router.push({
+                  name: 'empleados'
+                });
 
-                _context4.next = 11;
+                _context4.next = 12;
                 break;
 
-              case 7:
-                _context4.prev = 7;
+              case 8:
+                _context4.prev = 8;
                 _context4.t0 = _context4["catch"](0);
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+
+                // Error 😨
+                if (_context4.t0.response) {
+                  if (_context4.t0.response.status == 500) {
+                    sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "El email o nombre de usuario ya existe en la base de datos", "warning");
+                  }
+
+                  console.log(_context4.t0.response.data);
+                  console.log(_context4.t0.response.status);
+                  console.log(_context4.t0.response.headers);
+                } else if (_context4.t0.request) {
+                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error de conexión!", "warning");
+                  console.log("console.log 5", _context4.t0.request);
+                } else {
+                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Eror!", "Ha ocurrido un error interno!", "warning");
+                  console.log("console.log 6", _context4.t0.message);
+                }
+
                 console.log(_context4.t0);
 
-              case 11:
+              case 12:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4, null, [[0, 7]]);
+        }, _callee4, null, [[0, 8]]);
+      }))();
+    },
+    editarUsuario: function editarUsuario() {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.prev = 0;
+                _context5.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'editUser',
+                  data: {
+                    id: _this5.usuario.id,
+                    userName: _this5.userName,
+                    email: _this5.email,
+                    rol: _this5.rol,
+                    name: _this5.name,
+                    telefono: _this5.telefono,
+                    password: _this5.password,
+                    sexo: _this5.sexo
+                  }
+                });
+
+              case 3:
+                response = _context5.sent;
+                //correcto
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "El empleado se ha registrado de manera correcta", "success");
+
+                _this5.$router.push({
+                  name: 'empleados'
+                });
+
+                _context5.next = 12;
+                break;
+
+              case 8:
+                _context5.prev = 8;
+                _context5.t0 = _context5["catch"](0);
+
+                // Error 😨
+                if (_context5.t0.response) {
+                  if (_context5.t0.response.status == 500) {
+                    sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "El email o nombre de usuario ya existe en la base de datos", "warning");
+                  }
+
+                  console.log(_context5.t0.response.data);
+                  console.log(_context5.t0.response.status);
+                  console.log(_context5.t0.response.headers);
+                } else if (_context5.t0.request) {
+                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error de conexión!", "warning");
+                  console.log("console.log 5", _context5.t0.request);
+                } else {
+                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Eror!", "Ha ocurrido un error interno!", "warning");
+                  console.log("console.log 6", _context5.t0.message);
+                }
+
+                console.log(_context5.t0);
+
+              case 12:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, null, [[0, 8]]);
+      }))();
+    },
+    compararEmail: function compararEmail() {
+      var _this6 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.prev = 0;
+                _context6.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'compararEmail',
+                  data: {
+                    email: _this6.email,
+                    idusuario: _this6.usuario.id
+                  }
+                });
+
+              case 3:
+                response = _context6.sent;
+
+                if (response.data == 1) {
+                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", _this6.email + " ya existe registrado en la base de datos", "warning");
+                  _this6.email = null;
+                }
+
+                _context6.next = 11;
+                break;
+
+              case 7:
+                _context6.prev = 7;
+                _context6.t0 = _context6["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+                console.log(_context6.t0);
+
+              case 11:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, null, [[0, 7]]);
+      }))();
+    },
+    compararUsuario: function compararUsuario() {
+      var _this7 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                _context7.prev = 0;
+                _context7.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'compararUsuario',
+                  data: {
+                    userName: _this7.userName,
+                    idusuario: _this7.usuario.id
+                  }
+                });
+
+              case 3:
+                response = _context7.sent;
+
+                if (response.data == 1) {
+                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", _this7.userName + " ya existe registrado en la base de datos", "warning");
+                  _this7.userName = null;
+                }
+
+                _context7.next = 11;
+                break;
+
+              case 7:
+                _context7.prev = 7;
+                _context7.t0 = _context7["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+                console.log(_context7.t0);
+
+              case 11:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7, null, [[0, 7]]);
       }))();
     }
   }
@@ -47196,7 +47434,7 @@ var render = function() {
                       _c("v-data-table", {
                         attrs: {
                           headers: _vm.headers,
-                          items: _vm.desserts,
+                          items: _vm.usuarios,
                           search: _vm.search
                         },
                         scopedSlots: _vm._u([
@@ -47434,13 +47672,80 @@ var render = function() {
                                             var attrs = ref.attrs
                                             return [
                                               _c(
+                                                "router-link",
+                                                {
+                                                  attrs: {
+                                                    to: {
+                                                      name: "editarEmpleado",
+                                                      params: { id: item.id }
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "v-btn",
+                                                    _vm._g(
+                                                      _vm._b(
+                                                        {
+                                                          attrs: {
+                                                            small: "",
+                                                            color: "warning",
+                                                            dark: "",
+                                                            fab: ""
+                                                          }
+                                                        },
+                                                        "v-btn",
+                                                        attrs,
+                                                        false
+                                                      ),
+                                                      on
+                                                    ),
+                                                    [
+                                                      _c("v-icon", [
+                                                        _vm._v(
+                                                          "mdi-pencil-box-outline"
+                                                        )
+                                                      ])
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      null,
+                                      true
+                                    )
+                                  },
+                                  [
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v("Editar Empleado")])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-tooltip",
+                                  {
+                                    attrs: { top: "" },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "activator",
+                                          fn: function(ref) {
+                                            var on = ref.on
+                                            var attrs = ref.attrs
+                                            return [
+                                              _c(
                                                 "v-btn",
                                                 _vm._g(
                                                   _vm._b(
                                                     {
                                                       attrs: {
                                                         small: "",
-                                                        color: "primary",
+                                                        color: "danger",
                                                         dark: "",
                                                         fab: ""
                                                       }
@@ -47453,9 +47758,7 @@ var render = function() {
                                                 ),
                                                 [
                                                   _c("v-icon", [
-                                                    _vm._v(
-                                                      "mdi-pencil-box-outline"
-                                                    )
+                                                    _vm._v("mdi-delete")
                                                   ])
                                                 ],
                                                 1
@@ -47470,7 +47773,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(" "),
-                                    _c("span", [_vm._v("Editar Usuario")])
+                                    _c("span", [_vm._v("Eliminar Empleado")])
                                   ]
                                 )
                               ]
@@ -48379,7 +48682,7 @@ var render = function() {
                                     _c(
                                       "p",
                                       { staticClass: "font-weight-black" },
-                                      [_vm._v("Atributos del Usuario")]
+                                      [_vm._v("Datos del Empleado")]
                                     ),
                                     _vm._v(" "),
                                     _c("validation-provider", {
@@ -48550,39 +48853,128 @@ var render = function() {
                                       }
                                     }),
                                     _vm._v(" "),
-                                    _c("validation-provider", {
-                                      attrs: {
-                                        name: "Contraseña",
-                                        rules: "required"
-                                      },
-                                      scopedSlots: _vm._u(
-                                        [
-                                          {
-                                            key: "default",
-                                            fn: function(ref) {
-                                              var errors = ref.errors
-                                              return [
-                                                _c("v-text-field", {
-                                                  attrs: {
-                                                    "error-messages": errors,
-                                                    label: "Contraseña *"
-                                                  },
-                                                  model: {
-                                                    value: _vm.password,
-                                                    callback: function($$v) {
-                                                      _vm.password = $$v
-                                                    },
-                                                    expression: "password"
-                                                  }
-                                                })
+                                    !_vm.editar
+                                      ? _c("validation-provider", {
+                                          attrs: {
+                                            name: "Contraseña",
+                                            rules: "required"
+                                          },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "default",
+                                                fn: function(ref) {
+                                                  var errors = ref.errors
+                                                  return [
+                                                    !_vm.editar
+                                                      ? _c("v-text-field", {
+                                                          attrs: {
+                                                            "error-messages": errors,
+                                                            label:
+                                                              "Contraseña *"
+                                                          },
+                                                          model: {
+                                                            value: _vm.password,
+                                                            callback: function(
+                                                              $$v
+                                                            ) {
+                                                              _vm.password = $$v
+                                                            },
+                                                            expression:
+                                                              "password"
+                                                          }
+                                                        })
+                                                      : _vm._e()
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        })
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.editar
+                                      ? _c(
+                                          "v-row",
+                                          { attrs: { align: "center" } },
+                                          [
+                                            _c(
+                                              "label",
+                                              { staticClass: "mr-3" },
+                                              [
+                                                _vm._v(
+                                                  "¿Actualizar contraseña?"
+                                                )
                                               ]
-                                            }
-                                          }
-                                        ],
-                                        null,
-                                        true
-                                      )
-                                    }),
+                                            ),
+                                            _vm._v(" "),
+                                            _c("v-checkbox", {
+                                              model: {
+                                                value: _vm.checkbox,
+                                                callback: function($$v) {
+                                                  _vm.checkbox = $$v
+                                                },
+                                                expression: "checkbox"
+                                              }
+                                            })
+                                          ],
+                                          1
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.checkbox
+                                      ? _c("validation-provider", {
+                                          attrs: {
+                                            name: "Contraseña",
+                                            rules: "required"
+                                          },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "default",
+                                                fn: function(ref) {
+                                                  var errors = ref.errors
+                                                  return [
+                                                    _vm.checkbox
+                                                      ? _c("v-text-field", {
+                                                          attrs: {
+                                                            "error-messages": errors,
+                                                            "append-icon": _vm.show1
+                                                              ? "mdi-eye"
+                                                              : "mdi-eye-off",
+                                                            label:
+                                                              "Contraseña *"
+                                                          },
+                                                          on: {
+                                                            "click:append": function(
+                                                              $event
+                                                            ) {
+                                                              _vm.show1 = !_vm.show1
+                                                            }
+                                                          },
+                                                          model: {
+                                                            value: _vm.password,
+                                                            callback: function(
+                                                              $$v
+                                                            ) {
+                                                              _vm.password = $$v
+                                                            },
+                                                            expression:
+                                                              "password"
+                                                          }
+                                                        })
+                                                      : _vm._e()
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        })
+                                      : _vm._e(),
                                     _vm._v(" "),
                                     _c("label", [_vm._v("Seleccionar Sexo")]),
                                     _vm._v(" "),
@@ -48647,54 +49039,35 @@ var render = function() {
                                 _c(
                                   "v-col",
                                   [
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        attrs: {
-                                          color: "warning",
-                                          cols: "6",
-                                          block: ""
-                                        }
-                                      },
-                                      [_vm._v("\n      Editar\n    ")]
-                                    )
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-col",
-                                  [
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        attrs: {
-                                          color: "error",
-                                          cols: "6",
-                                          block: ""
-                                        }
-                                      },
-                                      [_vm._v("\n     Eliminar\n    ")]
-                                    )
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-col",
-                                  [
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        attrs: {
-                                          cols: "6",
-                                          block: "",
-                                          color: "primary",
-                                          type: "submit"
-                                        }
-                                      },
-                                      [_vm._v("\n      Registrar\n    ")]
-                                    )
+                                    _vm.editar
+                                      ? _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              color: "warning",
+                                              cols: "12",
+                                              block: "",
+                                              type: "submit"
+                                            }
+                                          },
+                                          [_vm._v("\n      Editar\n    ")]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.editar
+                                      ? _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              cols: "12",
+                                              block: "",
+                                              color: "primary",
+                                              type: "submit"
+                                            }
+                                          },
+                                          [_vm._v("\n      Registrar\n    ")]
+                                        )
+                                      : _vm._e()
                                   ],
                                   1
                                 )
@@ -111022,6 +111395,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
   }, {
     path: '/nuevo-empleado',
     name: 'nuevoEmpleado',
+    component: __webpack_require__(/*! ./views/RegistroEmpleado.vue */ "./resources/js/views/RegistroEmpleado.vue")["default"]
+  }, {
+    path: '/editar-empleado/:id',
+    name: 'editarEmpleado',
     component: __webpack_require__(/*! ./views/RegistroEmpleado.vue */ "./resources/js/views/RegistroEmpleado.vue")["default"]
   }, {
     path: '/historial',

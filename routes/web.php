@@ -11,9 +11,9 @@
 |
 */
 
-// Route::get('/crud', function () {
-//     return view('welcome');
-// });
+Route::get('/crud', function () {
+    return view('welcome');
+});
 
 //inicio de sesión
 Route::get('/', function () {
@@ -30,8 +30,11 @@ Auth::routes();
 
 //usuarios
 Route::post('createUser', 'UserController@create')->name('createUser');
+Route::post('editUser', 'UserController@editUser')->name('editUser');
 Route::post('compararEmail', 'UserController@compararEmail')->name('compararEmail');
 Route::post('compararUsuario', 'UserController@compararUsuario')->name('compararUsuario');
+Route::get('getUsuarios', 'UserController@getUsers')->name('getUsuarios');
+Route::post('getUsuario', 'UserController@getUser')->name('getUsuario');
 
 
 

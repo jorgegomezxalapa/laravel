@@ -37,7 +37,7 @@
        <v-col cols="12">
           <v-data-table
       :headers="headers"
-      :items="desserts"
+      :items="usuarios"
       :search="search"
     >
       
@@ -104,19 +104,37 @@
      
       <v-tooltip top>
       <template v-slot:activator="{ on, attrs }">
+         <router-link :to="{name: 'editarEmpleado', params:{id:item.id}}">
       <v-btn
        v-bind="attrs"
           v-on="on"
                small
-                color="primary"
+                color="warning"
                 dark
                 
                 fab
               >
                 <v-icon>mdi-pencil-box-outline</v-icon>
               </v-btn>
+            </router-link>
           </template>
-          <span>Editar Usuario</span>
+          <span>Editar Empleado</span>
+      </v-tooltip>
+      <v-tooltip top>
+        <template v-slot:activator="{ on, attrs }">
+        <v-btn
+         v-bind="attrs"
+          v-on="on"
+               small
+                color="danger"
+                dark
+                
+                fab
+              >
+                <v-icon>mdi-delete</v-icon>
+              </v-btn>
+          </template>
+          <span>Eliminar Empleado</span>
       </v-tooltip>
       
     </template>
@@ -136,6 +154,8 @@
 </template>
 
 <script>
+  const axios = require('axios');
+  import swal from 'sweetalert';
     export default {
     data () {
       return {
@@ -145,32 +165,43 @@
             text: 'Nombre Completo',
             align: 'center',
            
-            value: 'nombre',
+            value: 'name',
           },
-          { text: 'Usuario', align: 'center', value: 'usuario' },
+          { text: 'Usuario', align: 'center', value: 'userName' },
           { text: 'Rol', align: 'center', value: 'rol' },
          
           { text: 'Cotizaciones', align: 'center', value: 'cotizaciones' },
           { text: 'Acciones', align: 'center', value: 'acciones' },
         ],
-        desserts: [
-          {
-            nombre: 'Jonh Doe',
-            usuario: "Cotizador1",
-            rol: "Cotizador",
-            
-            cotizaciones: 3,
-            cotizaciones2: 10,
-            cotizaciones3: 5,
-            acciones: "Acciones",
-          },
-          
-        ],
+        usuarios: [],
       }
     },
+     mounted(){
+  this.getUsuarios()
+
+  },
      methods: {
         nuevoEmpleado(){
             this.$router.push({ name: 'nuevoEmpleado' }).catch(()=>{});
+        },
+        async getUsuarios(){
+          try {
+                const response = await axios({
+                  method: 'get',
+                  url: 'getUsuarios',
+                })
+                
+                this.usuarios = response.data.response
+                console.log(this.usuarios)
+
+               
+            } catch (error) {
+             
+               swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+                console.log(error);
+                
+            }
+
         }
      },
   }

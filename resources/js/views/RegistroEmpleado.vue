@@ -33,7 +33,7 @@
       
         md="6"
       >
-        <p class="font-weight-black">Atributos del Usuario</p>
+        <p class="font-weight-black">Datos del Empleado</p>
        <validation-provider
         v-slot="{ errors }"
         name="Nombre de Usuario"
@@ -103,18 +103,45 @@
       
     ></v-text-field>
      <validation-provider
+     v-if="!editar"
         v-slot="{ errors }"
         name="Contraseña"
         rules="required"
       >
 
     <v-text-field
+    v-if="!editar"
       v-model="password"
      :error-messages="errors"
+     
       label="Contraseña *"
       
     ></v-text-field>
+
+       
   </validation-provider>
+  <v-row v-if="editar" align="center">
+       <label class="mr-3">¿Actualizar contraseña?</label>
+        <v-checkbox
+          v-model="checkbox"
+        ></v-checkbox>
+      </v-row>
+      <validation-provider
+        v-if="checkbox"
+        v-slot="{ errors }"
+        name="Contraseña"
+        rules="required"
+      >
+      <v-text-field
+      v-if="checkbox"
+        v-model="password"
+       :error-messages="errors"
+       :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+      @click:append="show1 = !show1"
+        label="Contraseña *"
+      ></v-text-field>
+    </validation-provider>
+
 
 <label>Seleccionar Sexo</label>
 <v-card
@@ -153,30 +180,23 @@
                 <v-btn
       
       color="warning"
-      cols="6"
+      cols="12"
       block
+     v-if="editar"
+       type="submit"
       
     >
       Editar
     </v-btn>
-            </v-col>
-            <v-col>
-                <v-btn
-      color="error"
-      cols="6"
-      block
-      
-    >
-     Eliminar
-    </v-btn>
-            </v-col>
-            <v-col>
+           
+           
+          
                <v-btn
-               cols="6"
+               cols="12"
                block
       color="primary"
      type="submit"
-     
+     v-if="!editar"
     >
       Registrar
     </v-btn> 
@@ -228,10 +248,23 @@
       ValidationObserver,
     },
         mounted() {
-            console.log('Component mounted.')
+           
+            this.verificar()
         },
+        watch: {
+    checkbox: function (val) {
+      if (val == false) {
+        this.password = null
+      }
+    },
+    
+  },
         data: () => ({ 
-            selectedItem: 7,
+          idusuario:0,
+           editar:false,
+           checkbox:false,
+           show1:false,
+           usuario:[],
             userName:null,
             email:null,
             rol:null,
@@ -242,13 +275,55 @@
             catroles:['ADMINISTRADOR', 'COTIZADOR'],
          }),
          methods: {
+          async verificar(){
+             if (this.$route.params.id != undefined) {
+                this.editar = true
+                this.getEditar()
+            }else{
+             
+            }
+          },
+          async getEditar(){
+            try {
+                const response = await axios({
+                  method: 'post',
+                  url: 'getUsuario',
+                  data: {
+                    id: this.$route.params.id,
+                  }
+                })
+               
+              this.usuario = response.data
+              this.usuario = this.usuario.response
+              this.userName = this.usuario.userName
+              this.email = this.usuario.email
+              this.rol = this.usuario.rol
+              this.name = this.usuario.name
+              this.telefono = this.usuario.telefono
+              this.password = this.usuario.password
+              this.sexo = this.usuario.sexo
+             
+               
+            } catch (error) {
+               swal("Error", "Ha ocurrido un error en el servidor", "warning");
+                
+                console.log(error);
+                
+            }
+             
+          },
           async submit (evt) {
 
-      
         evt.preventDefault();
         const result = await this.$refs.observer.validate()
+        
         if (result) {
-         this.registrar()
+          if (this.editar == true ) {
+            this.editarUsuario()
+          }else{
+            this.registrar()
+          }
+         
         }
       },
           async registrar(){
@@ -297,6 +372,53 @@
             }
 
           },
+          async editarUsuario(){
+
+            try {
+                const response = await axios({
+                  method: 'post',
+                  url: 'editUser',
+                  data: {
+                    id:this.usuario.id,
+                    userName: this.userName,
+                    email: this.email,
+                    rol: this.rol,
+                    name: this.name,
+                    telefono: this.telefono,
+                    password: this.password,
+                    sexo: this.sexo,
+
+                  }
+                })
+               //correcto
+               swal("Éxito", "El empleado se ha registrado de manera correcta", "success");
+               this.$router.push({ name: 'empleados' });
+               
+            } catch (error) {
+                // Error 😨
+                if (error.response) {
+                  if (error.response.status == 500) {
+                    swal("Error", "El email o nombre de usuario ya existe en la base de datos", "warning");
+                  }
+                  
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    console.log(error.response.headers);
+                    
+                } else if (error.request) {
+
+                    swal("Error", "Ha ocurrido un error de conexión!", "warning");
+                    console.log("console.log 5",error.request);
+                } else {
+                    swal("Eror!", "Ha ocurrido un error interno!", "warning");
+                   
+                    console.log("console.log 6", error.message);
+                }
+                console.log(error);
+                
+            }
+
+          },
           async compararEmail(){
 
             try {
@@ -305,6 +427,7 @@
                   url: 'compararEmail',
                   data: {
                     email: this.email,
+                    idusuario:this.usuario.id
                   }
                 })
                
@@ -329,6 +452,7 @@
                   url: 'compararUsuario',
                   data: {
                     userName: this.userName,
+                    idusuario:this.usuario.id
                   }
                 })
                

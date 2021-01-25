@@ -92,6 +92,11 @@ export default new Router ({
 		component: require('./views/RegistroEmpleado.vue').default
 	},
 	{
+		path:'/editar-empleado/:id',
+		name:'editarEmpleado',
+		component: require('./views/RegistroEmpleado.vue').default
+	},
+	{
 		path:'/historial',
 		name:'historial',
 		component: require('./views/HistorialComponent.vue').default
