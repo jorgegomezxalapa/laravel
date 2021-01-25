@@ -2246,8 +2246,6 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       }))();
     },
     logout: function logout() {
-      var _this2 = this;
-
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
@@ -2263,12 +2261,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
               case 3:
                 response = _context2.sent;
-
                 // Success 🎉
-                _this2.$router.push({
-                  name: "ingreso"
-                })["catch"](function () {});
-
+                window.location.href = route('logout');
                 _context2.next = 11;
                 break;
 
@@ -3789,6 +3783,24 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate/dist/rules */ "./node_modules/vee-validate/dist/rules.js");
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_3__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -3945,24 +3957,273 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+
+
+
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["setInteractionMode"])('eager');
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('digits', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["digits"]), {}, {
+  message: '{_field_} needs to be {length} digits. ({_value_})'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('required', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["required"]), {}, {
+  message: '{_field_} no puede quedarse vacío'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('max', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["max"]), {}, {
+  message: '{_field_} may not be greater than {length} characters'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('regex', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["regex"]), {}, {
+  message: '{_field_} {_value_} does not match {regex}'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["email"]), {}, {
+  message: 'El formato de email debe ser válido'
+}));
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    ValidationProvider: vee_validate__WEBPACK_IMPORTED_MODULE_2__["ValidationProvider"],
+    ValidationObserver: vee_validate__WEBPACK_IMPORTED_MODULE_2__["ValidationObserver"]
+  },
   mounted: function mounted() {
     console.log('Component mounted.');
   },
   data: function data() {
     return {
       selectedItem: 7,
-      nombreUsuario: null,
+      userName: null,
       email: null,
       rol: null,
-      areatrabajo: null,
-      nombreCompleto: null,
+      name: null,
       telefono: null,
       password: null,
       sexo: null,
-      catareas: ['ADMINISTRACIÓN', 'COTIZACIONES', 'VENTAS'],
       catroles: ['ADMINISTRADOR', 'COTIZADOR']
     };
+  },
+  methods: {
+    submit: function submit(evt) {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var result;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                evt.preventDefault();
+                _context.next = 3;
+                return _this.$refs.observer.validate();
+
+              case 3:
+                result = _context.sent;
+
+                if (result) {
+                  _this.registrar();
+                }
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    registrar: function registrar() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                _context2.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'createUser',
+                  data: {
+                    userName: _this2.userName,
+                    email: _this2.email,
+                    rol: _this2.rol,
+                    name: _this2.name,
+                    telefono: _this2.telefono,
+                    password: _this2.password,
+                    sexo: _this2.sexo
+                  }
+                });
+
+              case 3:
+                response = _context2.sent;
+                //correcto
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "El empleado se ha registrado de manera correcta", "success");
+
+                _this2.$router.push({
+                  name: 'empleados'
+                });
+
+                _context2.next = 12;
+                break;
+
+              case 8:
+                _context2.prev = 8;
+                _context2.t0 = _context2["catch"](0);
+
+                // Error 😨
+                if (_context2.t0.response) {
+                  if (_context2.t0.response.status == 500) {
+                    sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "El email o nombre de usuario ya existe en la base de datos", "warning");
+                  }
+
+                  console.log(_context2.t0.response.data);
+                  console.log(_context2.t0.response.status);
+                  console.log(_context2.t0.response.headers);
+                } else if (_context2.t0.request) {
+                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error de conexión!", "warning");
+                  console.log("console.log 5", _context2.t0.request);
+                } else {
+                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Eror!", "Ha ocurrido un error interno!", "warning");
+                  console.log("console.log 6", _context2.t0.message);
+                }
+
+                console.log(_context2.t0);
+
+              case 12:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 8]]);
+      }))();
+    },
+    compararEmail: function compararEmail() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+                _context3.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'compararEmail',
+                  data: {
+                    email: _this3.email
+                  }
+                });
+
+              case 3:
+                response = _context3.sent;
+
+                if (response.data == 1) {
+                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", _this3.email + " ya existe registrado en la base de datos", "warning");
+                  _this3.email = null;
+                }
+
+                _context3.next = 11;
+                break;
+
+              case 7:
+                _context3.prev = 7;
+                _context3.t0 = _context3["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+                console.log(_context3.t0);
+
+              case 11:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, null, [[0, 7]]);
+      }))();
+    },
+    compararUsuario: function compararUsuario() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.prev = 0;
+                _context4.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'compararUsuario',
+                  data: {
+                    userName: _this4.userName
+                  }
+                });
+
+              case 3:
+                response = _context4.sent;
+
+                if (response.data == 1) {
+                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", _this4.userName + " ya existe registrado en la base de datos", "warning");
+                  _this4.userName = null;
+                }
+
+                _context4.next = 11;
+                break;
+
+              case 7:
+                _context4.prev = 7;
+                _context4.t0 = _context4["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+                console.log(_context4.t0);
+
+              case 11:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, null, [[0, 7]]);
+      }))();
+    }
   }
 });
 
@@ -45447,7 +45708,7 @@ var render = function() {
           _c(
             "v-btn",
             { staticClass: "mt-3", attrs: { block: "", outlined: "" } },
-            [_vm._v("\n    Administrador\n  ")]
+            [_vm._v("\n    MENÚ PRINCIPAL\n  ")]
           ),
           _vm._v(" "),
           _c("v-divider"),
@@ -48052,220 +48313,405 @@ var render = function() {
           attrs: { width: "100%", align: "center", justify: "space-around" }
         },
         [
-          _c("v-card-title", { staticClass: "font-weight-black" }, [
-            _vm._v("Nuevo Empleado")
-          ]),
-          _vm._v(" "),
-          _c(
-            "v-card-title",
-            { staticClass: "font-weight-black", attrs: { hidden: "true" } },
-            [_vm._v("Información de Empleado")]
-          ),
-          _vm._v(" "),
-          _c("v-divider"),
-          _vm._v(" "),
-          _c(
-            "v-card-text",
-            { staticClass: "d-flex justify-center" },
-            [
-              _c(
-                "v-row",
-                [
-                  _c(
-                    "v-col",
-                    { attrs: { cols: "12", md: "6" } },
-                    [
-                      _c("p", { staticClass: "font-weight-black" }, [
-                        _vm._v("Atributos del Usuario")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "v-form",
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "Nombre de Usuario", required: "" },
-                            model: {
-                              value: _vm.nombreUsuario,
-                              callback: function($$v) {
-                                _vm.nombreUsuario = $$v
-                              },
-                              expression: "nombreUsuario"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("v-text-field", {
-                            attrs: { label: "Correo de Usuario", required: "" },
-                            model: {
-                              value: _vm.email,
-                              callback: function($$v) {
-                                _vm.email = $$v
-                              },
-                              expression: "email"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("v-select", {
-                            attrs: {
-                              items: _vm.catroles,
-                              label: "Rol de Usuario",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.rol,
-                              callback: function($$v) {
-                                _vm.rol = $$v
-                              },
-                              expression: "rol"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-col",
-                    { attrs: { cols: "12", md: "6" } },
-                    [
-                      _c("p", { staticClass: "font-weight-black" }, [
-                        _vm._v("Información Personal")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "v-form",
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "Nombre Completo", required: "" },
-                            model: {
-                              value: _vm.nombreCompleto,
-                              callback: function($$v) {
-                                _vm.nombreCompleto = $$v
-                              },
-                              expression: "nombreCompleto"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("v-text-field", {
-                            attrs: { label: "Teléfono", required: "" },
-                            model: {
-                              value: _vm.telefono,
-                              callback: function($$v) {
-                                _vm.telefono = $$v
-                              },
-                              expression: "telefono"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("v-text-field", {
-                            attrs: { label: "Contraseña", required: "" },
-                            model: {
-                              value: _vm.password,
-                              callback: function($$v) {
-                                _vm.password = $$v
-                              },
-                              expression: "password"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("label", [_vm._v("Seleccionar Sexo")]),
-                          _vm._v(" "),
-                          _c(
-                            "v-card",
-                            {
-                              staticClass: "d-flex justify-center mb-6",
-                              attrs: { flat: "", tile: "" }
-                            },
-                            [
-                              _c(
-                                "v-radio-group",
-                                {
-                                  attrs: { row: "" },
-                                  model: {
-                                    value: _vm.sexo,
-                                    callback: function($$v) {
-                                      _vm.sexo = $$v
-                                    },
-                                    expression: "sexo"
-                                  }
-                                },
-                                [
-                                  _c("v-radio", {
-                                    attrs: { label: "Masculino", value: "masc" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("v-radio", {
-                                    attrs: { label: "Femenino", value: "fem" }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("v-divider"),
-          _vm._v(" "),
-          _c(
-            "v-card-actions",
-            [
-              _c(
-                "v-row",
-                [
-                  _c(
-                    "v-col",
-                    [
-                      _c(
-                        "v-btn",
-                        { attrs: { color: "warning", cols: "6", block: "" } },
-                        [_vm._v("\n      Editar\n    ")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-col",
-                    [
-                      _c(
-                        "v-btn",
-                        { attrs: { color: "error", cols: "6", block: "" } },
-                        [_vm._v("\n     Eliminar\n    ")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-col",
-                    [
-                      _c(
-                        "v-btn",
-                        { attrs: { cols: "6", block: "", color: "primary" } },
-                        [_vm._v("\n      Registrar\n    ")]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
+          _c("validation-observer", {
+            ref: "observer",
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(ref) {
+                  var invalid = ref.invalid
+                  return [
+                    _c(
+                      "form",
+                      {
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.submit($event)
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "v-card-title",
+                          { staticClass: "font-weight-black" },
+                          [_vm._v("Nuevo Empleado")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-card-title",
+                          {
+                            staticClass: "font-weight-black",
+                            attrs: { hidden: "true" }
+                          },
+                          [_vm._v("Información de Empleado")]
+                        ),
+                        _vm._v(" "),
+                        _c("v-divider"),
+                        _vm._v(" "),
+                        _c(
+                          "v-row",
+                          [
+                            _c("v-col", { attrs: { cols: "12" } }, [
+                              _c("p", [
+                                _c("strong", [
+                                  _vm._v(
+                                    "Por favor complete el formulario, los campos marcados con un asterisco (*) son obligatorios "
+                                  )
+                                ])
+                              ])
+                            ])
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-card-text",
+                          { staticClass: "d-flex justify-center" },
+                          [
+                            _c(
+                              "v-row",
+                              [
+                                _c(
+                                  "v-col",
+                                  { attrs: { cols: "12", md: "6" } },
+                                  [
+                                    _c(
+                                      "p",
+                                      { staticClass: "font-weight-black" },
+                                      [_vm._v("Atributos del Usuario")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("validation-provider", {
+                                      attrs: {
+                                        name: "Nombre de Usuario",
+                                        rules: "required"
+                                      },
+                                      scopedSlots: _vm._u(
+                                        [
+                                          {
+                                            key: "default",
+                                            fn: function(ref) {
+                                              var errors = ref.errors
+                                              return [
+                                                _c("v-text-field", {
+                                                  attrs: {
+                                                    label:
+                                                      "Nombre de Usuario *",
+                                                    "error-messages": errors
+                                                  },
+                                                  on: {
+                                                    blur: _vm.compararUsuario
+                                                  },
+                                                  model: {
+                                                    value: _vm.userName,
+                                                    callback: function($$v) {
+                                                      _vm.userName = $$v
+                                                    },
+                                                    expression: "userName"
+                                                  }
+                                                })
+                                              ]
+                                            }
+                                          }
+                                        ],
+                                        null,
+                                        true
+                                      )
+                                    }),
+                                    _vm._v(" "),
+                                    _c("validation-provider", {
+                                      attrs: {
+                                        name: "Email de Usuario",
+                                        rules: "required"
+                                      },
+                                      scopedSlots: _vm._u(
+                                        [
+                                          {
+                                            key: "default",
+                                            fn: function(ref) {
+                                              var errors = ref.errors
+                                              return [
+                                                _c("v-text-field", {
+                                                  attrs: {
+                                                    "error-messages": errors,
+                                                    label: "Email de Usuario*"
+                                                  },
+                                                  on: {
+                                                    blur: _vm.compararEmail
+                                                  },
+                                                  model: {
+                                                    value: _vm.email,
+                                                    callback: function($$v) {
+                                                      _vm.email = $$v
+                                                    },
+                                                    expression: "email"
+                                                  }
+                                                })
+                                              ]
+                                            }
+                                          }
+                                        ],
+                                        null,
+                                        true
+                                      )
+                                    }),
+                                    _vm._v(" "),
+                                    _c("validation-provider", {
+                                      attrs: {
+                                        name: "Rol de Usuario",
+                                        rules: "required"
+                                      },
+                                      scopedSlots: _vm._u(
+                                        [
+                                          {
+                                            key: "default",
+                                            fn: function(ref) {
+                                              var errors = ref.errors
+                                              return [
+                                                _c("v-select", {
+                                                  attrs: {
+                                                    items: _vm.catroles,
+                                                    label: "Rol de Usuario *",
+                                                    "error-messages": errors
+                                                  },
+                                                  model: {
+                                                    value: _vm.rol,
+                                                    callback: function($$v) {
+                                                      _vm.rol = $$v
+                                                    },
+                                                    expression: "rol"
+                                                  }
+                                                })
+                                              ]
+                                            }
+                                          }
+                                        ],
+                                        null,
+                                        true
+                                      )
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-col",
+                                  { attrs: { cols: "12", md: "6" } },
+                                  [
+                                    _c(
+                                      "p",
+                                      { staticClass: "font-weight-black" },
+                                      [_vm._v("Información Personal")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("validation-provider", {
+                                      attrs: {
+                                        name: "Nombre Completo",
+                                        rules: "required"
+                                      },
+                                      scopedSlots: _vm._u(
+                                        [
+                                          {
+                                            key: "default",
+                                            fn: function(ref) {
+                                              var errors = ref.errors
+                                              return [
+                                                _c("v-text-field", {
+                                                  attrs: {
+                                                    "error-messages": errors,
+                                                    label: "Nombre Completo *"
+                                                  },
+                                                  model: {
+                                                    value: _vm.name,
+                                                    callback: function($$v) {
+                                                      _vm.name = $$v
+                                                    },
+                                                    expression: "name"
+                                                  }
+                                                })
+                                              ]
+                                            }
+                                          }
+                                        ],
+                                        null,
+                                        true
+                                      )
+                                    }),
+                                    _vm._v(" "),
+                                    _c("v-text-field", {
+                                      attrs: { label: "Teléfono" },
+                                      model: {
+                                        value: _vm.telefono,
+                                        callback: function($$v) {
+                                          _vm.telefono = $$v
+                                        },
+                                        expression: "telefono"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("validation-provider", {
+                                      attrs: {
+                                        name: "Contraseña",
+                                        rules: "required"
+                                      },
+                                      scopedSlots: _vm._u(
+                                        [
+                                          {
+                                            key: "default",
+                                            fn: function(ref) {
+                                              var errors = ref.errors
+                                              return [
+                                                _c("v-text-field", {
+                                                  attrs: {
+                                                    "error-messages": errors,
+                                                    label: "Contraseña *"
+                                                  },
+                                                  model: {
+                                                    value: _vm.password,
+                                                    callback: function($$v) {
+                                                      _vm.password = $$v
+                                                    },
+                                                    expression: "password"
+                                                  }
+                                                })
+                                              ]
+                                            }
+                                          }
+                                        ],
+                                        null,
+                                        true
+                                      )
+                                    }),
+                                    _vm._v(" "),
+                                    _c("label", [_vm._v("Seleccionar Sexo")]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-card",
+                                      {
+                                        staticClass:
+                                          "d-flex justify-center mb-6",
+                                        attrs: { flat: "", tile: "" }
+                                      },
+                                      [
+                                        _c(
+                                          "v-radio-group",
+                                          {
+                                            attrs: { row: "" },
+                                            model: {
+                                              value: _vm.sexo,
+                                              callback: function($$v) {
+                                                _vm.sexo = $$v
+                                              },
+                                              expression: "sexo"
+                                            }
+                                          },
+                                          [
+                                            _c("v-radio", {
+                                              attrs: {
+                                                label: "Masculino",
+                                                value: "masc"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("v-radio", {
+                                              attrs: {
+                                                label: "Femenino",
+                                                value: "fem"
+                                              }
+                                            })
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("v-divider"),
+                        _vm._v(" "),
+                        _c(
+                          "v-card-actions",
+                          [
+                            _c(
+                              "v-row",
+                              [
+                                _c(
+                                  "v-col",
+                                  [
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: {
+                                          color: "warning",
+                                          cols: "6",
+                                          block: ""
+                                        }
+                                      },
+                                      [_vm._v("\n      Editar\n    ")]
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-col",
+                                  [
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: {
+                                          color: "error",
+                                          cols: "6",
+                                          block: ""
+                                        }
+                                      },
+                                      [_vm._v("\n     Eliminar\n    ")]
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-col",
+                                  [
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: {
+                                          cols: "6",
+                                          block: "",
+                                          color: "primary",
+                                          type: "submit"
+                                        }
+                                      },
+                                      [_vm._v("\n      Registrar\n    ")]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                }
+              }
+            ])
+          })
         ],
         1
       )

@@ -13,7 +13,7 @@
       outlined
       
     >
-      Administrador
+      MENÚ PRINCIPAL
     </v-btn>
     <v-divider></v-divider>
 
@@ -280,7 +280,7 @@
         url: 'logout',
       })
             // Success 🎉
-           this.$router.push({ name: "ingreso" }).catch(()=>{});
+            window.location.href = route('logout');
             
            
            

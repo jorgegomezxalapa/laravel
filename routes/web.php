@@ -11,19 +11,27 @@
 |
 */
 
+// Route::get('/crud', function () {
+//     return view('welcome');
+// });
+
+//inicio de sesión
 Route::get('/', function () {
     return view('ingreso');
 });
+Route::post('authenticate', 'HomeController@authenticate')->name('authenticate');
 
-Route::get('/crud', function () {
-    return view('welcome');
-});
+//dashboard
+Route::get('dashboard', 'HomeController@dashboard')->name('dashboard');
+Route::get('getperfil', 'HomeController@getperfil')->name('getperfil');
+Route::get('logout', 'HomeController@logout')->name('logout');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-//INICIO DE SESIÓN
-Route::post('authenticate', 'HomeController@authenticate')->name('authenticate');
-Route::get('getperfil', 'HomeController@getperfil')->name('getperfil');
-Route::get('logout', 'HomeController@logout')->name('logout');
-Route::get('usuario', 'HomeController@dashboard')->name('dashboard');
+//usuarios
+Route::post('createUser', 'UserController@create')->name('createUser');
+Route::post('compararEmail', 'UserController@compararEmail')->name('compararEmail');
+Route::post('compararUsuario', 'UserController@compararUsuario')->name('compararUsuario');
+
+
+

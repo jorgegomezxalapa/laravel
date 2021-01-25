@@ -21,10 +21,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return view('home');
-    }
+   
 
     public function authenticate(Request $request)
     {
@@ -51,14 +48,11 @@ class HomeController extends Controller
         return view('dashboard');
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
         Auth::logout();
 
-        $request->session()->invalidate();
 
-        $request->session()->regenerateToken();
-
-         return response(['message' =>'success'], 200);
+        return view('ingreso');
     }
 }
