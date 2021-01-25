@@ -3211,10 +3211,6 @@ __webpack_require__.r(__webpack_exports__);
         align: 'center',
         value: 'rol'
       }, {
-        text: 'Área de Trabajo',
-        align: 'center',
-        value: 'areaTrabajo'
-      }, {
         text: 'Cotizaciones',
         align: 'center',
         value: 'cotizaciones'
@@ -3227,7 +3223,6 @@ __webpack_require__.r(__webpack_exports__);
         nombre: 'Jonh Doe',
         usuario: "Cotizador1",
         rol: "Cotizador",
-        areaTrabajo: "Cotizaciones",
         cotizaciones: 3,
         cotizaciones2: 10,
         cotizaciones3: 5,
@@ -3794,12 +3789,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -48127,21 +48116,6 @@ var render = function() {
                                 _vm.rol = $$v
                               },
                               expression: "rol"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("v-select", {
-                            attrs: {
-                              items: _vm.catareas,
-                              label: "Área de Trabajo",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.areatrabajo,
-                              callback: function($$v) {
-                                _vm.areatrabajo = $$v
-                              },
-                              expression: "areatrabajo"
                             }
                           })
                         ],

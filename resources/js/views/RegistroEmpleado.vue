@@ -45,13 +45,7 @@
       required
     ></v-select>
 
-     <v-select
-      v-model="areatrabajo"
-      :items="catareas"
-      label="Área de Trabajo"
-      required
-    ></v-select>
-
+   
   
   </v-form>
       </v-col>

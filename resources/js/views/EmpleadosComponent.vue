@@ -149,7 +149,7 @@
           },
           { text: 'Usuario', align: 'center', value: 'usuario' },
           { text: 'Rol', align: 'center', value: 'rol' },
-          { text: 'Área de Trabajo', align: 'center', value: 'areaTrabajo' },
+         
           { text: 'Cotizaciones', align: 'center', value: 'cotizaciones' },
           { text: 'Acciones', align: 'center', value: 'acciones' },
         ],
@@ -158,7 +158,7 @@
             nombre: 'Jonh Doe',
             usuario: "Cotizador1",
             rol: "Cotizador",
-            areaTrabajo: "Cotizaciones",
+            
             cotizaciones: 3,
             cotizaciones2: 10,
             cotizaciones3: 5,

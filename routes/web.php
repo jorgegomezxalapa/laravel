@@ -12,11 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('ingreso');
 });
 
-Route::get('/ingreso', function () {
-    return view('ingreso');
+Route::get('/crud', function () {
+    return view('welcome');
 });
 
 Auth::routes();
