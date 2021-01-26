@@ -6,7 +6,7 @@
                     <div class="card-header">Hola soy el componente Dashboard</div>
 
                     <div class="card-body">
-                        Hola soy el componente Dashboard
+                        Hola soy el componente Dashboard Ejemplo
                     </div>
                 </div>
             </div>
