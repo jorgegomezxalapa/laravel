@@ -65,7 +65,7 @@ export default new Router ({
 		name:'utilidades',
 		component: require('./views/UtilidadesComponent.vue').default
 	},
-	
+
 	{
 		path:'/nuevo-monto-utilidad',
 		name:'nuevoMonto',
@@ -97,11 +97,16 @@ export default new Router ({
 		component: require('./views/RegistroEmpleado.vue').default
 	},
 	{
+		path:'/detalle-empleado/:id',
+		name:'detalleEmpleado',
+		component: require('./views/DetalleEmpleado.vue').default
+	},
+	{
 		path:'/historial',
 		name:'historial',
 		component: require('./views/HistorialComponent.vue').default
 	},
-	
+
 	],
 	// mode:'history'
 })

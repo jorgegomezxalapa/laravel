@@ -87,6 +87,7 @@
     <template v-slot:item.acciones="{ item }">
         <v-tooltip top>
         <template v-slot:activator="{ on, attrs }">
+           <router-link :to="{name: 'detalleEmpleado', params:{id:item.id}}">
         <v-btn
          v-bind="attrs"
           v-on="on"
@@ -98,6 +99,7 @@
               >
                 <v-icon>mdi-folder-multiple-outline</v-icon>
               </v-btn>
+            </router-link>
           </template>
           <span>Ver Detalle</span>
       </v-tooltip>
