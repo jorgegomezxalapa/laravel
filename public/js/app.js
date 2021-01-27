@@ -3484,6 +3484,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vee-validate/dist/rules */ "./node_modules/vee-validate/dist/rules.js");
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_2__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -3602,84 +3612,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+
+
+
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["setInteractionMode"])('eager');
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('digits', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_0__["digits"]), {}, {
+  message: '{_field_} needs to be {length} digits. ({_value_})'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('required', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_0__["required"]), {}, {
+  message: '{_field_} no puede quedarse vacío'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('max', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_0__["max"]), {}, {
+  message: '{_field_} may not be greater than {length} characters'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('regex', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_0__["regex"]), {}, {
+  message: '{_field_} {_value_} does not match {regex}'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('email', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_0__["email"]), {}, {
+  message: 'El formato de email debe ser válido'
+}));
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
   },
   data: function data() {
     return {
-      selectedItem: 7,
-      nombreUsuario: null,
+      esEditar: false,
+      razonSocial: null,
+      representante: null,
+      rfc: null,
       email: null,
-      rol: null,
-      areatrabajo: null,
-      nombreCompleto: null,
-      telefono: null,
-      password: null,
-      sexo: null,
-      catareas: ['ADMINISTRACIÓN', 'COTIZACIONES', 'VENTAS'],
-      catroles: ['ADMINISTRADOR', 'COTIZADOR']
+      telefono: null
     };
   }
 });
@@ -48120,6 +48085,22 @@ var render = function() {
           _c("v-divider"),
           _vm._v(" "),
           _c(
+            "v-row",
+            [
+              _c("v-col", { attrs: { cols: "12" } }, [
+                _c("p", [
+                  _c("strong", [
+                    _vm._v(
+                      "Por favor complete el formulario, los campos marcados con un asterisco (*) son obligatorios."
+                    )
+                  ])
+                ])
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
             "v-card-text",
             [
               _c(
@@ -48138,7 +48119,7 @@ var render = function() {
                         [
                           _c("v-text-field", {
                             attrs: {
-                              label: "Nombre de la Empresa",
+                              label: "Razón Social(Nombre de la empresa)*",
                               required: ""
                             },
                             model: {
@@ -48158,49 +48139,16 @@ var render = function() {
                         { attrs: { cols: "12", md: "12" } },
                         [
                           _c("v-text-field", {
-                            attrs: { label: "Domicilio Fiscal", required: "" },
+                            attrs: {
+                              label: "Dirigido a(Representante)*",
+                              required: ""
+                            },
                             model: {
-                              value: _vm.giro,
+                              value: _vm.representante,
                               callback: function($$v) {
-                                _vm.giro = $$v
+                                _vm.representante = $$v
                               },
-                              expression: "giro"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "12" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "Representante", required: "" },
-                            model: {
-                              value: _vm.giro,
-                              callback: function($$v) {
-                                _vm.giro = $$v
-                              },
-                              expression: "giro"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "Giro Comercial", required: "" },
-                            model: {
-                              value: _vm.giro,
-                              callback: function($$v) {
-                                _vm.giro = $$v
-                              },
-                              expression: "giro"
+                              expression: "representante"
                             }
                           })
                         ],
@@ -48214,11 +48162,11 @@ var render = function() {
                           _c("v-text-field", {
                             attrs: { label: "RFC", required: "" },
                             model: {
-                              value: _vm.giro,
+                              value: _vm.rfc,
                               callback: function($$v) {
-                                _vm.giro = $$v
+                                _vm.rfc = $$v
                               },
-                              expression: "giro"
+                              expression: "rfc"
                             }
                           })
                         ],
@@ -48235,11 +48183,11 @@ var render = function() {
                               required: ""
                             },
                             model: {
-                              value: _vm.giro,
+                              value: _vm.email,
                               callback: function($$v) {
-                                _vm.giro = $$v
+                                _vm.email = $$v
                               },
-                              expression: "giro"
+                              expression: "email"
                             }
                           })
                         ],
@@ -48253,56 +48201,11 @@ var render = function() {
                           _c("v-text-field", {
                             attrs: { label: "Teléfono", required: "" },
                             model: {
-                              value: _vm.giro,
+                              value: _vm.telefono,
                               callback: function($$v) {
-                                _vm.giro = $$v
+                                _vm.telefono = $$v
                               },
-                              expression: "giro"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "6" } },
-                        [
-                          _c("v-file-input", {
-                            attrs: {
-                              accept: "image/*",
-                              label: "Firma Escaneada"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-weight-black mt-5" }, [
-                    _vm._v("Configuración para cotizaciones")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "v-row",
-                    [
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "Porcentaje de utilidad",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.razonSocial,
-                              callback: function($$v) {
-                                _vm.razonSocial = $$v
-                              },
-                              expression: "razonSocial"
+                              expression: "telefono"
                             }
                           })
                         ],
@@ -48328,36 +48231,34 @@ var render = function() {
                 [
                   _c(
                     "v-col",
+                    { attrs: { cols: "12" } },
                     [
-                      _c(
-                        "v-btn",
-                        { attrs: { color: "warning", cols: "6", block: "" } },
-                        [_vm._v("\n      Editar\n    ")]
-                      )
+                      _vm.esEditar
+                        ? _c(
+                            "v-btn",
+                            {
+                              attrs: { color: "warning", cols: "12", block: "" }
+                            },
+                            [_vm._v("\n      Editar\n    ")]
+                          )
+                        : _vm._e()
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "v-col",
+                    { attrs: { cols: "12" } },
                     [
-                      _c(
-                        "v-btn",
-                        { attrs: { color: "error", cols: "6", block: "" } },
-                        [_vm._v("\n     Eliminar\n    ")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-col",
-                    [
-                      _c(
-                        "v-btn",
-                        { attrs: { cols: "6", block: "", color: "primary" } },
-                        [_vm._v("\n      Registrar\n    ")]
-                      )
+                      !_vm.esEditar
+                        ? _c(
+                            "v-btn",
+                            {
+                              attrs: { cols: "12", block: "", color: "primary" }
+                            },
+                            [_vm._v("\n      Registrar\n    ")]
+                          )
+                        : _vm._e()
                     ],
                     1
                   )
@@ -48844,7 +48745,7 @@ var render = function() {
                               _c("p", [
                                 _c("strong", [
                                   _vm._v(
-                                    "Por favor complete el formulario, los campos marcados con un asterisco (*) son obligatorios "
+                                    "Por favor complete el formulario, los campos marcados con un asterisco (*) son obligatorios."
                                   )
                                 ])
                               ])

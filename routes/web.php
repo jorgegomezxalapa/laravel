@@ -36,3 +36,6 @@ Route::post('compararEmail', 'UserController@compararEmail')->name('compararEmai
 Route::post('compararUsuario', 'UserController@compararUsuario')->name('compararUsuario');
 Route::get('getUsuarios', 'UserController@getUsers')->name('getUsuarios');
 Route::post('getUsuario', 'UserController@getUser')->name('getUsuario');
+
+//clientes
+Route::post('createCliente', 'UserController@create')->name('createCliente');

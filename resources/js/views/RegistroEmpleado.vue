@@ -21,7 +21,7 @@
        <v-col
         cols="12"
       >
-      <p><strong>Por favor complete el formulario, los campos marcados con un asterisco (*) son obligatorios </strong></p>
+      <p><strong>Por favor complete el formulario, los campos marcados con un asterisco (*) son obligatorios.</strong></p>
     </v-col>
     </v-row>
   <v-card-text class="d-flex justify-center">
@@ -30,7 +30,7 @@
     <v-row>
       <v-col
         cols="12"
-      
+
         md="6"
       >
         <p class="font-weight-black">Datos del Empleado</p>
@@ -60,7 +60,7 @@
     ></v-text-field>
   </validation-provider>
 
-    
+
 <validation-provider
         v-slot="{ errors }"
         name="Rol de Usuario"
@@ -74,8 +74,8 @@
     ></v-select>
   </validation-provider>
 
-   
-  
+
+
 
       </v-col>
       <v-col
@@ -92,15 +92,15 @@
       v-model="name"
      :error-messages="errors"
       label="Nombre Completo *"
-      
+
     ></v-text-field>
   </validation-provider>
 
     <v-text-field
       v-model="telefono"
-     
+
       label="Teléfono"
-      
+
     ></v-text-field>
      <validation-provider
      v-if="!editar"
@@ -113,12 +113,12 @@
     v-if="!editar"
       v-model="password"
      :error-messages="errors"
-     
+
       label="Contraseña *"
-      
+
     ></v-text-field>
 
-       
+
   </validation-provider>
   <v-row v-if="editar" align="center">
        <label class="mr-3">¿Actualizar contraseña?</label>
@@ -146,7 +146,7 @@
 <label>Seleccionar Sexo</label>
 <v-card
       class="d-flex justify-center mb-6"
-     
+
       flat
       tile
     >
@@ -164,33 +164,33 @@
       ></v-radio>
     </v-radio-group>
     </v-card>
-  
 
-    
- 
+
+
+
       </v-col>
     </v-row>
 
- 
+
     </v-card-text>
     <v-divider></v-divider>
     <v-card-actions>
         <v-row>
             <v-col>
                 <v-btn
-      
+
       color="warning"
       cols="12"
       block
      v-if="editar"
        type="submit"
-      
+
     >
       Editar
     </v-btn>
-           
-           
-          
+
+
+
                <v-btn
                cols="12"
                block
@@ -199,14 +199,14 @@
      v-if="!editar"
     >
       Registrar
-    </v-btn> 
+    </v-btn>
             </v-col>
         </v-row>
-        
 
-    
 
-    
+
+
+
     </v-card-actions>
   </form>
 </validation-observer>
@@ -248,7 +248,7 @@
       ValidationObserver,
     },
         mounted() {
-           
+
             this.verificar()
         },
         watch: {
@@ -257,9 +257,9 @@
         this.password = null
       }
     },
-    
+
   },
-        data: () => ({ 
+        data: () => ({
           idusuario:0,
            editar:false,
            checkbox:false,
@@ -280,7 +280,7 @@
                 this.editar = true
                 this.getEditar()
             }else{
-             
+
             }
           },
           async getEditar(){
@@ -292,7 +292,7 @@
                     id: this.$route.params.id,
                   }
                 })
-               
+
               this.usuario = response.data
               this.usuario = this.usuario.response
               this.userName = this.usuario.userName
@@ -302,28 +302,28 @@
               this.telefono = this.usuario.telefono
               this.password = this.usuario.password
               this.sexo = this.usuario.sexo
-             
-               
+
+
             } catch (error) {
                swal("Error", "Ha ocurrido un error en el servidor", "warning");
-                
+
                 console.log(error);
-                
+
             }
-             
+
           },
           async submit (evt) {
 
         evt.preventDefault();
         const result = await this.$refs.observer.validate()
-        
+
         if (result) {
           if (this.editar == true ) {
             this.editarUsuario()
           }else{
             this.registrar()
           }
-         
+
         }
       },
           async registrar(){
@@ -346,29 +346,29 @@
                //correcto
                swal("Éxito", "El empleado se ha registrado de manera correcta", "success");
                this.$router.push({ name: 'empleados' });
-               
+
             } catch (error) {
                 // Error 😨
                 if (error.response) {
                   if (error.response.status == 500) {
                     swal("Error", "El email o nombre de usuario ya existe en la base de datos", "warning");
                   }
-                  
+
                     console.log(error.response.data);
                     console.log(error.response.status);
                     console.log(error.response.headers);
-                    
+
                 } else if (error.request) {
 
                     swal("Error", "Ha ocurrido un error de conexión!", "warning");
                     console.log("console.log 5",error.request);
                 } else {
                     swal("Eror!", "Ha ocurrido un error interno!", "warning");
-                   
+
                     console.log("console.log 6", error.message);
                 }
                 console.log(error);
-                
+
             }
 
           },
@@ -393,29 +393,29 @@
                //correcto
                swal("Éxito", "El empleado se ha registrado de manera correcta", "success");
                this.$router.push({ name: 'empleados' });
-               
+
             } catch (error) {
                 // Error 😨
                 if (error.response) {
                   if (error.response.status == 500) {
                     swal("Error", "El email o nombre de usuario ya existe en la base de datos", "warning");
                   }
-                  
+
                     console.log(error.response.data);
                     console.log(error.response.status);
                     console.log(error.response.headers);
-                    
+
                 } else if (error.request) {
 
                     swal("Error", "Ha ocurrido un error de conexión!", "warning");
                     console.log("console.log 5",error.request);
                 } else {
                     swal("Eror!", "Ha ocurrido un error interno!", "warning");
-                   
+
                     console.log("console.log 6", error.message);
                 }
                 console.log(error);
-                
+
             }
 
           },
@@ -430,19 +430,19 @@
                     idusuario:this.usuario.id
                   }
                 })
-               
+
                if (response.data == 1) {
                 swal("Error", this.email+" ya existe registrado en la base de datos", "warning")
                 this.email = null
                }
-               
+
             } catch (error) {
                swal("Error", "Ha ocurrido un error en el servidor", "warning");
-                
+
                 console.log(error);
-                
+
             }
-           
+
 
           },
           async compararUsuario(){
@@ -455,22 +455,22 @@
                     idusuario:this.usuario.id
                   }
                 })
-               
+
                if (response.data == 1) {
                 swal("Error", this.userName+" ya existe registrado en la base de datos", "warning")
                 this.userName = null
                }
-               
+
             } catch (error) {
                swal("Error", "Ha ocurrido un error en el servidor", "warning");
-                
+
                 console.log(error);
-                
+
             }
-           
+
           },
 
          },
-    
+
     }
 </script>
