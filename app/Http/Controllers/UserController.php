@@ -24,16 +24,16 @@ class UserController extends Controller
 		    	$user->save();
 		    	DB::commit();
     		}
-    		
+
     	} catch (Exception $e) {
 			DB::rollBack();
     		return response()->json(['response' => $e],500);
 
     	}
-    	
+
     	return response()->json(['response' => 'éxito'],200);
 
-       
+
     }
     public function compararEmail(Request $request)
     {
@@ -47,7 +47,7 @@ class UserController extends Controller
     	} catch (Exception $e) {
     		return $e;
     	}
-       
+
     }
     public function compararUsuario(Request $request)
     {
@@ -57,12 +57,12 @@ class UserController extends Controller
     		}else{
     			$usuario = User::where('userName', '=', $request->userName)->where('id', '!=', $request->idusuario)->count();
     		}
-    		
+
     	    return $usuario;
     	} catch (Exception $e) {
     		return $e;
     	}
-       
+
     }
 
     public function editUser(Request $request)
@@ -70,7 +70,7 @@ class UserController extends Controller
     	try {
     		DB::beginTransaction();
     		$usuario = User::where('id', '=', $request->id )->first();
-    		
+
 		   $usuario->name = $request->name;
 		   $usuario->userName = $request->userName;
 		   $usuario->email = $request->email;
@@ -83,17 +83,26 @@ class UserController extends Controller
 		   $usuario->save();
 		    DB::commit();
 
-    		
+
     	} catch (Exception $e) {
-    		
+
     	}
-       
+
     }
 
-    public function delete(Request $request)
+    public function deleteUser(Request $request)
     {
+      try {
+              DB::beginTransaction();
+              $empleado= User::where('id', $request->id)->first();
+              $empleado->delete();
+              DB::commit();
+          } catch (Exception $e) {
+              return response()->json(['response' => 'error'],200);
+              DB::rollBack();
+          }
+          return response()->json(['response' => 'ok', 'status' => 1],200);
 
-       
     }
 
     public function getUsers()
@@ -103,12 +112,12 @@ class UserController extends Controller
     		$usuarios = User::orderBy('rol')->get();
 
     		return response()->json(['response' => $usuarios],200);
-    		
+
     	} catch (Exception $e) {
     		return response()->json(['response' => $e],500);
-    		
+
     	}
-      
+
     }
 
     public function getUser(Request $request)
@@ -118,12 +127,12 @@ class UserController extends Controller
     		$usuario = User::where( 'id','=', $request->id )->first();
 
     		return response()->json(['response' => $usuario],200);
-    		
+
     	} catch (Exception $e) {
 
     		return response()->json(['response' => $e],500);
-    		
+
     	}
-      
+
     }
 }

@@ -3222,6 +3222,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      ideliminar: null,
       search: '',
       headers: [{
         text: 'Nombre Completo',
@@ -3256,8 +3257,33 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         name: 'nuevoEmpleado'
       })["catch"](function () {});
     },
-    getUsuarios: function getUsuarios() {
+    eliminarEmpleado: function eliminarEmpleado(empleado) {
       var _this = this;
+
+      this.ideliminar = empleado.id;
+      console.log(empleado);
+      sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El empleado será eliminado, desea continuar?", {
+        buttons: {
+          cancel: "Cancelar",
+          "catch": {
+            text: "Eliminar",
+            value: "eliminar"
+          }
+        },
+        icon: "warning"
+      }).then(function (value) {
+        switch (value) {
+          case "eliminar":
+            _this.hacereliminar();
+
+            break;
+
+          default:
+        }
+      });
+    },
+    getUsuarios: function getUsuarios() {
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var response;
@@ -3274,8 +3300,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
               case 3:
                 response = _context.sent;
-                _this.usuarios = response.data.response;
-                console.log(_this.usuarios);
+                _this2.usuarios = response.data.response;
+                console.log(_this2.usuarios);
                 _context.next = 12;
                 break;
 
@@ -3291,6 +3317,48 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
             }
           }
         }, _callee, null, [[0, 8]]);
+      }))();
+    },
+    hacereliminar: function hacereliminar() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                _context2.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'deleteUser',
+                  data: {
+                    id: _this3.ideliminar
+                  }
+                });
+
+              case 3:
+                response = _context2.sent;
+
+                _this3.getUsuarios();
+
+                sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Éxito", "El empleado se ha eliminado", "success");
+                _context2.next = 12;
+                break;
+
+              case 8:
+                _context2.prev = 8;
+                _context2.t0 = _context2["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+                console.log(_context2.t0);
+
+              case 12:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 8]]);
       }))();
     }
   }
@@ -47325,7 +47393,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _vm._v(
-                "\n                    Hola soy el componente Dashboard\n                "
+                "\n                    Hola soy el componente Dashboard Ejemplo\n                "
               )
             ])
           ])
@@ -47748,6 +47816,15 @@ var render = function() {
                                                         color: "danger",
                                                         dark: "",
                                                         fab: ""
+                                                      },
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          return _vm.eliminarEmpleado(
+                                                            item
+                                                          )
+                                                        }
                                                       }
                                                     },
                                                     "v-btn",

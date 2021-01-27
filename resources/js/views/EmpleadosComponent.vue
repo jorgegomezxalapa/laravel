@@ -32,7 +32,7 @@
       ></v-text-field>
         </v-col>
     </v-row>
-    
+
     <v-row>
        <v-col cols="12">
           <v-data-table
@@ -40,7 +40,7 @@
       :items="usuarios"
       :search="search"
     >
-      
+
     <template v-slot:item.cotizaciones="{ item }">
      <v-tooltip top>
       <template v-slot:activator="{ on, attrs }">
@@ -82,7 +82,7 @@
        <span>Cotizadas</span>
   </v-tooltip>
 
-      
+
     </template>
     <template v-slot:item.acciones="{ item }">
         <v-tooltip top>
@@ -93,7 +93,7 @@
                small
                 color="primary"
                 dark
-                
+
                 fab
               >
                 <v-icon>mdi-folder-multiple-outline</v-icon>
@@ -101,7 +101,7 @@
           </template>
           <span>Ver Detalle</span>
       </v-tooltip>
-     
+
       <v-tooltip top>
       <template v-slot:activator="{ on, attrs }">
          <router-link :to="{name: 'editarEmpleado', params:{id:item.id}}">
@@ -111,7 +111,7 @@
                small
                 color="warning"
                 dark
-                
+
                 fab
               >
                 <v-icon>mdi-pencil-box-outline</v-icon>
@@ -128,26 +128,26 @@
                small
                 color="danger"
                 dark
-                
                 fab
+                @click="eliminarEmpleado(item)"
               >
                 <v-icon>mdi-delete</v-icon>
               </v-btn>
           </template>
           <span>Eliminar Empleado</span>
       </v-tooltip>
-      
+
     </template>
     </v-data-table>
-       </v-col> 
+       </v-col>
     </v-row>
 
- 
+
     </v-card-text>
     <v-divider></v-divider>
     <v-card-actions>
-        
-    
+
+
     </v-card-actions>
   </v-card>
     </v-container>
@@ -159,17 +159,18 @@
     export default {
     data () {
       return {
+        ideliminar:null,
         search: '',
         headers: [
           {
             text: 'Nombre Completo',
             align: 'center',
-           
+
             value: 'name',
           },
           { text: 'Usuario', align: 'center', value: 'userName' },
           { text: 'Rol', align: 'center', value: 'rol' },
-         
+
           { text: 'Cotizaciones', align: 'center', value: 'cotizaciones' },
           { text: 'Acciones', align: 'center', value: 'acciones' },
         ],
@@ -184,25 +185,71 @@
         nuevoEmpleado(){
             this.$router.push({ name: 'nuevoEmpleado' }).catch(()=>{});
         },
+        eliminarEmpleado(empleado){
+          this.ideliminar = empleado.id
+          console.log(empleado)
+          swal("El empleado será eliminado, desea continuar?", {
+buttons: {
+  cancel: "Cancelar",
+  catch: {
+    text: "Eliminar",
+    value: "eliminar",
+  },
+
+},
+ icon: "warning",
+})
+.then((value) => {
+switch (value) {
+
+  case "eliminar":
+  this.hacereliminar()
+    break;
+
+  default:
+
+}
+});
+        },
         async getUsuarios(){
           try {
                 const response = await axios({
                   method: 'get',
                   url: 'getUsuarios',
                 })
-                
+
                 this.usuarios = response.data.response
                 console.log(this.usuarios)
 
-               
+
             } catch (error) {
-             
+
                swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
                 console.log(error);
-                
+
             }
 
-        }
+        },
+        async hacereliminar(){
+          try {
+                const response = await axios({
+                  method: 'post',
+                  url: 'deleteUser',
+                  data: {
+                    id: this.ideliminar,
+                  }
+                })
+
+                this.getUsuarios()
+                swal("Éxito", "El empleado se ha eliminado", "success");
+
+            } catch (error) {
+
+               swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+                console.log(error);
+
+            }
+        },
      },
   }
 </script>

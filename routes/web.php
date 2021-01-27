@@ -30,11 +30,9 @@ Auth::routes();
 
 //usuarios
 Route::post('createUser', 'UserController@create')->name('createUser');
+Route::post('deleteUser', 'UserController@deleteUser')->name('deleteUser');
 Route::post('editUser', 'UserController@editUser')->name('editUser');
 Route::post('compararEmail', 'UserController@compararEmail')->name('compararEmail');
 Route::post('compararUsuario', 'UserController@compararUsuario')->name('compararUsuario');
 Route::get('getUsuarios', 'UserController@getUsers')->name('getUsuarios');
 Route::post('getUsuario', 'UserController@getUser')->name('getUsuario');
-
-
-
