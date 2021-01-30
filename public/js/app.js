@@ -4735,6 +4735,24 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate/dist/rules */ "./node_modules/vee-validate/dist/rules.js");
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_3__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -4937,29 +4955,149 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+
+
+
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["setInteractionMode"])('eager');
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('digits', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["digits"]), {}, {
+  message: '{_field_} needs to be {length} digits. ({_value_})'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('required', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["required"]), {}, {
+  message: '{_field_} no puede quedarse vacío'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('max', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["max"]), {}, {
+  message: '{_field_} may not be greater than {length} characters'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('regex', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["regex"]), {}, {
+  message: '{_field_} {_value_} does not match {regex}'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["email"]), {}, {
+  message: 'El formato de email debe ser válido'
+}));
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
+  },
+  components: {
+    ValidationProvider: vee_validate__WEBPACK_IMPORTED_MODULE_2__["ValidationProvider"],
+    ValidationObserver: vee_validate__WEBPACK_IMPORTED_MODULE_2__["ValidationObserver"]
   },
   data: function data() {
     return {
       date: new Date().toISOString().substr(0, 10),
       menu: false,
+      editar: false,
       folio: null,
       cliente: null,
       solicitante: null,
-      responsable: null,
-      utilidad: null,
-      utilidadpersonalizada: null,
-      notificar: null,
-      replicas: null,
+      comentarios: null,
+      agente: null,
+      empleado: null,
       empleados: ['Cotizador 1(Ana)', 'Cotizador 2(José Luis)', 'Cotizador 4(Juan G)', 'Administrador 1(Diego H)', 'Administrador 2(Fabiola)'],
-      catutilidades: ['Utilidad por cliente', 'Utilidad por solicitante', 'Utilidad por campaña', 'Utilidad por Monto Total', 'Personalizada'],
-      catclientes: ['CMAS', 'CFE XALAPA', 'CFE COATEPEC', 'FGE', 'Dulcería Xalapa'],
-      catsolicitantes: ['El Propio Cliente', 'Juan Pablo ', 'Isabela Castillo'],
-      catemails: ['Sin Notificar', 'Cliente', 'Solicitante', 'Administración', 'Responsable'],
-      catreplicas: [0, 1, 2, 3, 4, 5]
+      agentes: ['EMAIL', 'WHATSAPP', 'OFICIO', 'DIEGO HDZ', 'FABIOLA', 'BETZAIDA'],
+      clientes: ['CMAS', 'CFE XALAPA', 'CFE COATEPEC', 'FGE', 'Dulcería Xalapa'],
+      solicitantes: ['El Propio Cliente', 'Juan Pablo ', 'Isabela Castillo']
     };
+  },
+  methods: {
+    submit: function submit(evt) {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var result;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                evt.preventDefault();
+                _context.next = 3;
+                return _this.$refs.observer.validate();
+
+              case 3:
+                result = _context.sent;
+
+                if (result) {
+                  if (_this.editar == true) {
+                    _this.editarSolicitud();
+                  } else {
+                    _this.registrarSolicitud();
+                  }
+                }
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    editarSolicitud: function editarSolicitud() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                alert("editar");
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    registrarSolicitud: function registrarSolicitud() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+                _context3.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'createSolicitud',
+                  data: {
+                    fecha: _this2.date,
+                    folio: _this2.folio,
+                    agente: _this2.agente,
+                    cliente: _this2.cliente,
+                    solicitante: _this2.solicitante,
+                    responsable: _this2.empleado,
+                    comentarios: _this2.comentarios
+                  }
+                });
+
+              case 3:
+                response = _context3.sent;
+                _context3.next = 10;
+                break;
+
+              case 6:
+                _context3.prev = 6;
+                _context3.t0 = _context3["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+                console.log(_context3.t0);
+
+              case 10:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, null, [[0, 6]]);
+      }))();
+    }
   }
 });
 
@@ -49455,394 +49593,521 @@ var render = function() {
           attrs: { width: "100%", align: "center", justify: "space-around" }
         },
         [
-          _c("v-card-title", { staticClass: "font-weight-black" }, [
-            _vm._v("Registrar Nueva Solicitud")
-          ]),
-          _vm._v(" "),
-          _c("v-divider"),
-          _vm._v(" "),
-          _c(
-            "v-card-text",
-            { staticClass: "d-flex justify-center" },
-            [
-              _c(
-                "v-row",
-                [
-                  _c(
-                    "v-col",
-                    { attrs: { cols: "12", md: "6" } },
-                    [
-                      _c("p", { staticClass: "font-weight-black" }, [
-                        _vm._v("Atributos de la Solicitud")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "v-form",
-                        [
-                          _c(
-                            "v-menu",
-                            {
-                              ref: "menu",
-                              attrs: {
-                                "close-on-content-click": false,
-                                "return-value": _vm.date,
-                                transition: "scale-transition",
-                                "offset-y": "",
-                                "min-width": "290px"
-                              },
-                              on: {
-                                "update:returnValue": function($event) {
-                                  _vm.date = $event
-                                },
-                                "update:return-value": function($event) {
-                                  _vm.date = $event
-                                }
-                              },
-                              scopedSlots: _vm._u([
-                                {
-                                  key: "activator",
-                                  fn: function(ref) {
-                                    var on = ref.on
-                                    var attrs = ref.attrs
-                                    return [
-                                      _c(
-                                        "v-text-field",
-                                        _vm._g(
-                                          _vm._b(
-                                            {
-                                              attrs: {
-                                                label: "Fecha de Solicitud",
-                                                "prepend-icon": "mdi-calendar",
-                                                readonly: ""
-                                              },
-                                              model: {
-                                                value: _vm.date,
-                                                callback: function($$v) {
-                                                  _vm.date = $$v
-                                                },
-                                                expression: "date"
-                                              }
-                                            },
-                                            "v-text-field",
-                                            attrs,
-                                            false
-                                          ),
-                                          on
-                                        )
-                                      )
-                                    ]
-                                  }
-                                }
-                              ]),
-                              model: {
-                                value: _vm.menu,
-                                callback: function($$v) {
-                                  _vm.menu = $$v
-                                },
-                                expression: "menu"
-                              }
-                            },
-                            [
-                              _vm._v(" "),
-                              _c(
-                                "v-date-picker",
-                                {
-                                  attrs: {
-                                    locale: "es-419",
-                                    "no-title": "",
-                                    scrollable: ""
-                                  },
-                                  model: {
-                                    value: _vm.date,
-                                    callback: function($$v) {
-                                      _vm.date = $$v
-                                    },
-                                    expression: "date"
-                                  }
-                                },
-                                [
-                                  _c("v-spacer"),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      attrs: { text: "", color: "primary" },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.menu = false
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("\n            Cancel\n          ")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      attrs: { text: "", color: "primary" },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.$refs.menu.save(_vm.date)
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("\n            OK\n          ")]
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("v-text-field", {
-                            attrs: { label: "Folio Interno", required: "" },
-                            model: {
-                              value: _vm.folio,
-                              callback: function($$v) {
-                                _vm.folio = $$v
-                              },
-                              expression: "folio"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-col",
-                    { attrs: { cols: "12", md: "6" } },
-                    [
-                      _c("p", { staticClass: "font-weight-black" }, [
-                        _vm._v("Información del Cliente")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "v-form",
-                        [
-                          _c("v-select", {
-                            attrs: {
-                              items: _vm.catclientes,
-                              label: "Seleccione un Cliente",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.cliente,
-                              callback: function($$v) {
-                                _vm.cliente = $$v
-                              },
-                              expression: "cliente"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("v-select", {
-                            attrs: {
-                              items: _vm.catsolicitantes,
-                              label: "Seleccione un Solicitante",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.solicitante,
-                              callback: function($$v) {
-                                _vm.solicitante = $$v
-                              },
-                              expression: "solicitante"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-col",
-                    { attrs: { cols: "12" } },
-                    [
-                      _c("v-divider"),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "font-weight-black" }, [
-                        _vm._v("Configuración de la solicitud")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "v-row",
-                        [
-                          _c(
-                            "v-col",
-                            { attrs: { cols: "12", md: "6" } },
-                            [
-                              _c("v-select", {
-                                attrs: {
-                                  items: _vm.empleados,
-                                  label: "Empleado Responsable",
-                                  required: ""
-                                },
-                                model: {
-                                  value: _vm.responsable,
-                                  callback: function($$v) {
-                                    _vm.responsable = $$v
-                                  },
-                                  expression: "responsable"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            { attrs: { cols: "12", md: "6" } },
-                            [
-                              _c("v-select", {
-                                attrs: {
-                                  items: _vm.catutilidades,
-                                  label: "Margen de Utilidad",
-                                  required: ""
-                                },
-                                model: {
-                                  value: _vm.utilidad,
-                                  callback: function($$v) {
-                                    _vm.utilidad = $$v
-                                  },
-                                  expression: "utilidad"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            { attrs: { cols: "12" } },
-                            [
-                              _c("v-text-field", {
-                                attrs: {
-                                  label:
-                                    "Ingrese el Porcentaje de Utilidad Personalizada",
-                                  required: ""
-                                },
-                                model: {
-                                  value: _vm.utilidadpersonalizada,
-                                  callback: function($$v) {
-                                    _vm.utilidadpersonalizada = $$v
-                                  },
-                                  expression: "utilidadpersonalizada"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            { attrs: { cols: "12", md: "6" } },
-                            [
-                              _c("v-select", {
-                                attrs: {
-                                  items: _vm.catreplicas,
-                                  label: "Desea agregar réplicas?",
-                                  required: ""
-                                },
-                                model: {
-                                  value: _vm.replicas,
-                                  callback: function($$v) {
-                                    _vm.replicas = $$v
-                                  },
-                                  expression: "replicas"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            { attrs: { cols: "12", md: "6" } },
-                            [
-                              _c("v-select", {
-                                attrs: {
-                                  items: _vm.catemails,
-                                  attach: "",
-                                  chips: "",
-                                  label:
-                                    "Notificar Atención por Correo Electrónico?",
-                                  multiple: ""
-                                },
-                                model: {
-                                  value: _vm.notificar,
-                                  callback: function($$v) {
-                                    _vm.notificar = $$v
-                                  },
-                                  expression: "notificar"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-col",
-                    { attrs: { cols: "12" } },
-                    [
-                      _c("v-divider"),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "font-weight-black" }, [
-                        _vm._v("Comentarios")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-textarea", {
-                        attrs: {
-                          solo: "",
-                          name: "comentarios",
-                          label: "Ingresa Aquí tus Comentarios"
+          _c("validation-observer", {
+            ref: "observer",
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(ref) {
+                  var invalid = ref.invalid
+                  return [
+                    _c(
+                      "form",
+                      {
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.submit($event)
+                          }
                         }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("v-divider"),
-          _vm._v(" "),
-          _c(
-            "v-card-actions",
-            [
-              _c(
-                "v-row",
-                [
-                  _c(
-                    "v-col",
-                    [
-                      _c(
-                        "v-btn",
-                        { attrs: { cols: "6", block: "", color: "primary" } },
-                        [_vm._v("\n      Registrar Solicitud\n    ")]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
+                      },
+                      [
+                        _c(
+                          "v-card-title",
+                          { staticClass: "font-weight-black" },
+                          [_vm._v("Registrar Nueva Solicitud de Cotización")]
+                        ),
+                        _vm._v(" "),
+                        _c("v-divider"),
+                        _vm._v(" "),
+                        _c(
+                          "v-row",
+                          [
+                            _c("v-col", { attrs: { cols: "12" } }, [
+                              _c("p", [
+                                _c("strong", [
+                                  _vm._v(
+                                    "Por favor complete el formulario, los campos marcados con un asterisco  *  son obligatorios."
+                                  )
+                                ])
+                              ])
+                            ])
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-card-text",
+                          { staticClass: "d-flex justify-center" },
+                          [
+                            _c(
+                              "v-row",
+                              [
+                                _c(
+                                  "v-col",
+                                  { attrs: { cols: "12", md: "6" } },
+                                  [
+                                    _c(
+                                      "p",
+                                      { staticClass: "font-weight-black" },
+                                      [_vm._v("Información de la Solicitud")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-menu",
+                                      {
+                                        ref: "menu",
+                                        attrs: {
+                                          "close-on-content-click": false,
+                                          "return-value": _vm.date,
+                                          transition: "scale-transition",
+                                          "offset-y": "",
+                                          "min-width": "290px"
+                                        },
+                                        on: {
+                                          "update:returnValue": function(
+                                            $event
+                                          ) {
+                                            _vm.date = $event
+                                          },
+                                          "update:return-value": function(
+                                            $event
+                                          ) {
+                                            _vm.date = $event
+                                          }
+                                        },
+                                        scopedSlots: _vm._u(
+                                          [
+                                            {
+                                              key: "activator",
+                                              fn: function(ref) {
+                                                var on = ref.on
+                                                var attrs = ref.attrs
+                                                return [
+                                                  _c(
+                                                    "v-text-field",
+                                                    _vm._g(
+                                                      _vm._b(
+                                                        {
+                                                          attrs: {
+                                                            label:
+                                                              "Fecha de recepción de la solicitud * ",
+                                                            "prepend-icon":
+                                                              "mdi-calendar",
+                                                            readonly: ""
+                                                          },
+                                                          model: {
+                                                            value: _vm.date,
+                                                            callback: function(
+                                                              $$v
+                                                            ) {
+                                                              _vm.date = $$v
+                                                            },
+                                                            expression: "date"
+                                                          }
+                                                        },
+                                                        "v-text-field",
+                                                        attrs,
+                                                        false
+                                                      ),
+                                                      on
+                                                    )
+                                                  )
+                                                ]
+                                              }
+                                            }
+                                          ],
+                                          null,
+                                          true
+                                        ),
+                                        model: {
+                                          value: _vm.menu,
+                                          callback: function($$v) {
+                                            _vm.menu = $$v
+                                          },
+                                          expression: "menu"
+                                        }
+                                      },
+                                      [
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-date-picker",
+                                          {
+                                            attrs: {
+                                              locale: "es-419",
+                                              "no-title": "",
+                                              scrollable: ""
+                                            },
+                                            model: {
+                                              value: _vm.date,
+                                              callback: function($$v) {
+                                                _vm.date = $$v
+                                              },
+                                              expression: "date"
+                                            }
+                                          },
+                                          [
+                                            _c("v-spacer"),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-btn",
+                                              {
+                                                attrs: {
+                                                  text: "",
+                                                  color: "primary"
+                                                },
+                                                on: {
+                                                  click: function($event) {
+                                                    _vm.menu = false
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n            Cancel\n          "
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-btn",
+                                              {
+                                                attrs: {
+                                                  text: "",
+                                                  color: "primary"
+                                                },
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.$refs.menu.save(
+                                                      _vm.date
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n            OK\n          "
+                                                )
+                                              ]
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c("validation-provider", {
+                                      attrs: {
+                                        name: "Folio Interno para la solicitud",
+                                        rules: "required"
+                                      },
+                                      scopedSlots: _vm._u(
+                                        [
+                                          {
+                                            key: "default",
+                                            fn: function(ref) {
+                                              var errors = ref.errors
+                                              return [
+                                                _c("v-text-field", {
+                                                  attrs: {
+                                                    "error-messages": errors,
+                                                    label:
+                                                      "Folio Interno para la solicitud * "
+                                                  },
+                                                  model: {
+                                                    value: _vm.folio,
+                                                    callback: function($$v) {
+                                                      _vm.folio = $$v
+                                                    },
+                                                    expression: "folio"
+                                                  }
+                                                })
+                                              ]
+                                            }
+                                          }
+                                        ],
+                                        null,
+                                        true
+                                      )
+                                    }),
+                                    _vm._v(" "),
+                                    _c("validation-provider", {
+                                      attrs: {
+                                        name: "Agende de Ventas",
+                                        rules: "required"
+                                      },
+                                      scopedSlots: _vm._u(
+                                        [
+                                          {
+                                            key: "default",
+                                            fn: function(ref) {
+                                              var errors = ref.errors
+                                              return [
+                                                _c("v-select", {
+                                                  attrs: {
+                                                    items: _vm.agentes,
+                                                    label:
+                                                      "Agende de Ventas * ",
+                                                    "error-messages": errors
+                                                  },
+                                                  model: {
+                                                    value: _vm.agente,
+                                                    callback: function($$v) {
+                                                      _vm.agente = $$v
+                                                    },
+                                                    expression: "agente"
+                                                  }
+                                                })
+                                              ]
+                                            }
+                                          }
+                                        ],
+                                        null,
+                                        true
+                                      )
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-col",
+                                  { attrs: { cols: "12", md: "6" } },
+                                  [
+                                    _c(
+                                      "p",
+                                      { staticClass: "font-weight-black" },
+                                      [_vm._v("Información del Cliente")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("validation-provider", {
+                                      attrs: {
+                                        name: "Con atención a (Cliente)",
+                                        rules: "required"
+                                      },
+                                      scopedSlots: _vm._u(
+                                        [
+                                          {
+                                            key: "default",
+                                            fn: function(ref) {
+                                              var errors = ref.errors
+                                              return [
+                                                _c("v-select", {
+                                                  attrs: {
+                                                    items: _vm.clientes,
+                                                    label:
+                                                      "Con atención a (Cliente) * ",
+                                                    "error-messages": errors
+                                                  },
+                                                  model: {
+                                                    value: _vm.cliente,
+                                                    callback: function($$v) {
+                                                      _vm.cliente = $$v
+                                                    },
+                                                    expression: "cliente"
+                                                  }
+                                                })
+                                              ]
+                                            }
+                                          }
+                                        ],
+                                        null,
+                                        true
+                                      )
+                                    }),
+                                    _vm._v(" "),
+                                    _c("validation-provider", {
+                                      attrs: {
+                                        name: "Solicitante de la cotización",
+                                        rules: "required"
+                                      },
+                                      scopedSlots: _vm._u(
+                                        [
+                                          {
+                                            key: "default",
+                                            fn: function(ref) {
+                                              var errors = ref.errors
+                                              return [
+                                                _c("v-select", {
+                                                  attrs: {
+                                                    items: _vm.solicitantes,
+                                                    label:
+                                                      "Solicitante de la cotización * ",
+                                                    "error-messages": errors
+                                                  },
+                                                  model: {
+                                                    value: _vm.solicitante,
+                                                    callback: function($$v) {
+                                                      _vm.solicitante = $$v
+                                                    },
+                                                    expression: "solicitante"
+                                                  }
+                                                })
+                                              ]
+                                            }
+                                          }
+                                        ],
+                                        null,
+                                        true
+                                      )
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-col",
+                                  { attrs: { cols: "12" } },
+                                  [
+                                    _c("v-divider"),
+                                    _vm._v(" "),
+                                    _c(
+                                      "p",
+                                      { staticClass: "font-weight-black" },
+                                      [
+                                        _vm._v(
+                                          "Configuración para la atención de la Solicitud"
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-row",
+                                      [
+                                        _c(
+                                          "v-col",
+                                          { attrs: { cols: "12", md: "12" } },
+                                          [
+                                            _c("validation-provider", {
+                                              attrs: {
+                                                name:
+                                                  "Empleado Responsable para Cotizar",
+                                                rules: "required"
+                                              },
+                                              scopedSlots: _vm._u(
+                                                [
+                                                  {
+                                                    key: "default",
+                                                    fn: function(ref) {
+                                                      var errors = ref.errors
+                                                      return [
+                                                        _c("v-select", {
+                                                          attrs: {
+                                                            items:
+                                                              _vm.empleados,
+                                                            label:
+                                                              "Empleado Responsable para Cotizar * ",
+                                                            "error-messages": errors
+                                                          },
+                                                          model: {
+                                                            value: _vm.empleado,
+                                                            callback: function(
+                                                              $$v
+                                                            ) {
+                                                              _vm.empleado = $$v
+                                                            },
+                                                            expression:
+                                                              "empleado"
+                                                          }
+                                                        })
+                                                      ]
+                                                    }
+                                                  }
+                                                ],
+                                                null,
+                                                true
+                                              )
+                                            })
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-col",
+                                  { attrs: { cols: "12" } },
+                                  [
+                                    _c("v-divider"),
+                                    _vm._v(" "),
+                                    _c(
+                                      "p",
+                                      { staticClass: "font-weight-black" },
+                                      [_vm._v("Comentarios")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("v-textarea", {
+                                      attrs: {
+                                        solo: "",
+                                        label: "Ingresa Aquí tus Comentarios"
+                                      },
+                                      model: {
+                                        value: _vm.comentarios,
+                                        callback: function($$v) {
+                                          _vm.comentarios = $$v
+                                        },
+                                        expression: "comentarios"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("v-divider"),
+                        _vm._v(" "),
+                        _c(
+                          "v-card-actions",
+                          [
+                            _c(
+                              "v-row",
+                              [
+                                _c(
+                                  "v-col",
+                                  [
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: {
+                                          cols: "6",
+                                          block: "",
+                                          color: "primary",
+                                          type: "submit"
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n      Registrar Solicitud\n    "
+                                        )
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                }
+              }
+            ])
+          })
         ],
         1
       )

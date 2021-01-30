@@ -39,3 +39,6 @@ Route::post('getUsuario', 'UserController@getUser')->name('getUsuario');
 
 //clientes
 Route::post('createCliente', 'UserController@create')->name('createCliente');
+
+//solicitudes
+Route::post('createSolicitud', 'SolicitudController@create')->name('createSolicitud');
