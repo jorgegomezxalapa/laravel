@@ -55,6 +55,11 @@ export default new Router ({
 		component: require('./views/RegistroClientesComponent.vue').default
 	},
 	{
+		path:'/editar-cliente/:id',
+		name:'editarCliente',
+		component: require('./views/RegistroClientesComponent.vue').default
+	},
+	{
 
 		path:'/solicitantes',
 		name:'solicitantes',

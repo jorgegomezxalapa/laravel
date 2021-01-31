@@ -38,7 +38,10 @@ Route::get('getUsuarios', 'UserController@getUsers')->name('getUsuarios');
 Route::post('getUsuario', 'UserController@getUser')->name('getUsuario');
 
 //clientes
-Route::post('createCliente', 'UserController@create')->name('createCliente');
+Route::get('getClientes', 'ClienteController@getClientes')->name('getClientes');
+Route::post('createCliente', 'ClienteController@createCliente')->name('createCliente');
+Route::post('editarCliente', 'ClienteController@editarCliente')->name('editarCliente');
+Route::post('getCliente', 'ClienteController@getCliente')->name('getCliente');
 
 //solicitudes
 Route::post('createSolicitud', 'SolicitudController@create')->name('createSolicitud');

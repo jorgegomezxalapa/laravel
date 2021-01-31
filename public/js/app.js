@@ -2600,35 +2600,14 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -2774,25 +2753,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    this.getClientes();
+  },
   data: function data() {
     return {
       search: '',
       headers: [{
-        text: 'Empresa',
+        text: 'Razón Social(Empresa)',
         align: 'center',
-        value: 'nombre'
+        value: 'razonSocial'
       }, {
         text: 'Representante',
         align: 'center',
-        value: 'usuario'
+        value: 'representante'
       }, {
-        text: 'RFC',
+        text: 'RFC(Empresa)',
         align: 'center',
-        value: 'rol'
+        value: 'rfc'
       }, {
-        text: '% Utilidad',
+        text: 'Email(Empresa)',
         align: 'center',
-        value: 'areaTrabajo'
+        value: 'email'
+      }, {
+        text: 'Teléfono(Empresa)',
+        align: 'center',
+        value: 'telefono'
       }, {
         text: 'Cotizaciones',
         align: 'center',
@@ -2806,20 +2792,47 @@ __webpack_require__.r(__webpack_exports__);
         align: 'center',
         value: 'acciones'
       }],
-      desserts: [{
-        nombre: 'CFE Xalapa',
-        usuario: "JUAN VALDEZ CALDERÓN",
-        rol: "RAGJ9406251X7",
-        areaTrabajo: 30,
-        cotizaciones: 3,
-        cotizaciones2: 10,
-        cotizaciones3: 5,
-        ventas: 10,
-        acciones: "Acciones"
-      }]
+      clientes: []
     };
   },
   methods: {
+    getClientes: function getClientes() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios({
+                  method: 'get',
+                  url: 'getClientes'
+                });
+
+              case 3:
+                response = _context.sent;
+                _this.clientes = response.data.response;
+                console.log(_this.clientes);
+                _context.next = 12;
+                break;
+
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](0);
+                swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+                console.log(_context.t0);
+
+              case 12:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 8]]);
+      }))();
+    },
     nuevoCliente: function nuevoCliente() {
       this.$router.push({
         name: 'nuevoCliente'
@@ -3484,10 +3497,18 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vee-validate/dist/rules */ "./node_modules/vee-validate/dist/rules.js");
-/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
-/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
-/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate/dist/rules */ "./node_modules/vee-validate/dist/rules.js");
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_3__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -3612,40 +3633,269 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
 
 
-Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["setInteractionMode"])('eager');
-Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('digits', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_0__["digits"]), {}, {
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["setInteractionMode"])('eager');
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('digits', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["digits"]), {}, {
   message: '{_field_} needs to be {length} digits. ({_value_})'
 }));
-Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('required', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_0__["required"]), {}, {
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('required', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["required"]), {}, {
   message: '{_field_} no puede quedarse vacío'
 }));
-Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('max', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_0__["max"]), {}, {
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('max', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["max"]), {}, {
   message: '{_field_} may not be greater than {length} characters'
 }));
-Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('regex', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_0__["regex"]), {}, {
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('regex', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["regex"]), {}, {
   message: '{_field_} {_value_} does not match {regex}'
 }));
-Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])('email', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_0__["email"]), {}, {
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["email"]), {}, {
   message: 'El formato de email debe ser válido'
 }));
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    ValidationProvider: vee_validate__WEBPACK_IMPORTED_MODULE_2__["ValidationProvider"],
+    ValidationObserver: vee_validate__WEBPACK_IMPORTED_MODULE_2__["ValidationObserver"]
+  },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    this.verificar();
   },
   data: function data() {
     return {
-      esEditar: false,
+      cliente: [],
+      editar: false,
       razonSocial: null,
       representante: null,
       rfc: null,
       email: null,
       telefono: null
     };
+  },
+  methods: {
+    verificar: function verificar() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (_this.$route.params.id != undefined) {
+                  _this.editar = true;
+
+                  _this.getEditar();
+                } else {}
+
+              case 1:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    submit: function submit(evt) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var result;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                evt.preventDefault();
+                _context2.next = 3;
+                return _this2.$refs.observer.validate();
+
+              case 3:
+                result = _context2.sent;
+
+                if (result) {
+                  if (_this2.editar == true) {
+                    _this2.editarDatos();
+                  } else {
+                    _this2.registrar();
+                  }
+                }
+
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    editarDatos: function editarDatos() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+                _context3.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'editarCliente',
+                  data: {
+                    id: _this3.$route.params.id,
+                    razonSocial: _this3.razonSocial,
+                    representante: _this3.representante,
+                    rfc: _this3.rfc,
+                    email: _this3.email,
+                    telefono: _this3.telefono
+                  }
+                });
+
+              case 3:
+                response = _context3.sent;
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ëxito", "El Cliente se ha actualizado con éxito", "success");
+
+                _this3.$router.push({
+                  name: 'clientes'
+                });
+
+                _context3.next = 12;
+                break;
+
+              case 8:
+                _context3.prev = 8;
+                _context3.t0 = _context3["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+                console.log(_context3.t0);
+
+              case 12:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, null, [[0, 8]]);
+      }))();
+    },
+    getEditar: function getEditar() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.prev = 0;
+                _context4.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'getCliente',
+                  data: {
+                    id: _this4.$route.params.id
+                  }
+                });
+
+              case 3:
+                response = _context4.sent;
+                _this4.cliente = response.data.response;
+                console.log("solicitd", _this4.cliente.fecha);
+                _this4.razonSocial = _this4.cliente.razonSocial;
+                _this4.representante = _this4.cliente.representante;
+                _this4.rfc = _this4.cliente.rfc;
+                _this4.email = _this4.cliente.email;
+                _this4.telefono = _this4.cliente.telefono;
+                _context4.next = 17;
+                break;
+
+              case 13:
+                _context4.prev = 13;
+                _context4.t0 = _context4["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+                console.log(_context4.t0);
+
+              case 17:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, null, [[0, 13]]);
+      }))();
+    },
+    registrar: function registrar() {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.prev = 0;
+                _context5.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'createCliente',
+                  data: {
+                    razonSocial: _this5.razonSocial,
+                    representante: _this5.representante,
+                    rfc: _this5.rfc,
+                    email: _this5.email,
+                    telefono: _this5.telefono
+                  }
+                });
+
+              case 3:
+                response = _context5.sent;
+                //correcto
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "El cliente se ha registrado de manera correcta", "success");
+
+                _this5.$router.push({
+                  name: 'clientes'
+                });
+
+                _context5.next = 15;
+                break;
+
+              case 8:
+                _context5.prev = 8;
+                _context5.t0 = _context5["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error de servidor", "error");
+                console.log(_context5.t0.response.data);
+                console.log(_context5.t0.response.status);
+                console.log(_context5.t0.response.headers);
+                console.log(_context5.t0);
+
+              case 15:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, null, [[0, 8]]);
+      }))();
+    }
   }
 });
 
@@ -46997,7 +47247,7 @@ var render = function() {
                       _c("v-data-table", {
                         attrs: {
                           headers: _vm.headers,
-                          items: _vm.desserts,
+                          items: _vm.clientes,
                           search: _vm.search
                         },
                         scopedSlots: _vm._u([
@@ -47239,29 +47489,43 @@ var render = function() {
                                             var attrs = ref.attrs
                                             return [
                                               _c(
-                                                "v-btn",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      attrs: {
-                                                        small: "",
-                                                        color: "primary",
-                                                        dark: "",
-                                                        fab: ""
-                                                      }
-                                                    },
-                                                    "v-btn",
-                                                    attrs,
-                                                    false
-                                                  ),
-                                                  on
-                                                ),
+                                                "router-link",
+                                                {
+                                                  attrs: {
+                                                    to: {
+                                                      name: "editarCliente",
+                                                      params: { id: item.id }
+                                                    }
+                                                  }
+                                                },
                                                 [
-                                                  _c("v-icon", [
-                                                    _vm._v(
-                                                      "mdi-information-outline"
-                                                    )
-                                                  ])
+                                                  _c(
+                                                    "v-btn",
+                                                    _vm._g(
+                                                      _vm._b(
+                                                        {
+                                                          attrs: {
+                                                            small: "",
+                                                            color: "warning",
+                                                            dark: "",
+                                                            fab: ""
+                                                          }
+                                                        },
+                                                        "v-btn",
+                                                        attrs,
+                                                        false
+                                                      ),
+                                                      on
+                                                    ),
+                                                    [
+                                                      _c("v-icon", [
+                                                        _vm._v(
+                                                          "mdi-pencil-box-outline"
+                                                        )
+                                                      ])
+                                                    ],
+                                                    1
+                                                  )
                                                 ],
                                                 1
                                               )
@@ -47275,113 +47539,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(" "),
-                                    _c("span", [_vm._v("Ver Información")])
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-tooltip",
-                                  {
-                                    attrs: { top: "" },
-                                    scopedSlots: _vm._u(
-                                      [
-                                        {
-                                          key: "activator",
-                                          fn: function(ref) {
-                                            var on = ref.on
-                                            var attrs = ref.attrs
-                                            return [
-                                              _c(
-                                                "v-btn",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      attrs: {
-                                                        small: "",
-                                                        color: "primary",
-                                                        dark: "",
-                                                        fab: ""
-                                                      }
-                                                    },
-                                                    "v-btn",
-                                                    attrs,
-                                                    false
-                                                  ),
-                                                  on
-                                                ),
-                                                [
-                                                  _c("v-icon", [
-                                                    _vm._v(
-                                                      "mdi-microphone-outline"
-                                                    )
-                                                  ])
-                                                ],
-                                                1
-                                              )
-                                            ]
-                                          }
-                                        }
-                                      ],
-                                      null,
-                                      true
-                                    )
-                                  },
-                                  [
-                                    _vm._v(" "),
-                                    _c("span", [_vm._v("Llamar por teléfono")])
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-tooltip",
-                                  {
-                                    attrs: { top: "" },
-                                    scopedSlots: _vm._u(
-                                      [
-                                        {
-                                          key: "activator",
-                                          fn: function(ref) {
-                                            var on = ref.on
-                                            var attrs = ref.attrs
-                                            return [
-                                              _c(
-                                                "v-btn",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      attrs: {
-                                                        small: "",
-                                                        color: "primary",
-                                                        dark: "",
-                                                        fab: ""
-                                                      }
-                                                    },
-                                                    "v-btn",
-                                                    attrs,
-                                                    false
-                                                  ),
-                                                  on
-                                                ),
-                                                [
-                                                  _c("v-icon", [
-                                                    _vm._v(
-                                                      "mdi-email-edit-outline"
-                                                    )
-                                                  ])
-                                                ],
-                                                1
-                                              )
-                                            ]
-                                          }
-                                        }
-                                      ],
-                                      null,
-                                      true
-                                    )
-                                  },
-                                  [
-                                    _vm._v(" "),
-                                    _c("span", [_vm._v("Enviar Correo")])
+                                    _c("span", [_vm._v("Editar Cliente")])
                                   ]
                                 )
                               ]
@@ -48370,196 +48528,290 @@ var render = function() {
           attrs: { width: "100%", align: "center", justify: "space-around" }
         },
         [
-          _c("v-card-title", { staticClass: "font-weight-black" }, [
-            _vm._v("Nuevo Cliente")
-          ]),
-          _vm._v(" "),
-          _c("v-divider"),
-          _vm._v(" "),
-          _c(
-            "v-row",
-            [
-              _c("v-col", { attrs: { cols: "12" } }, [
-                _c("p", [
-                  _c("strong", [
-                    _vm._v(
-                      "Por favor complete el formulario, los campos marcados con un asterisco (*) son obligatorios."
+          _c("validation-observer", {
+            ref: "observer",
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(ref) {
+                  var invalid = ref.invalid
+                  return [
+                    _c(
+                      "form",
+                      {
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.submit($event)
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "v-card-title",
+                          { staticClass: "font-weight-black" },
+                          [_vm._v("Nuevo Cliente")]
+                        ),
+                        _vm._v(" "),
+                        _c("v-divider"),
+                        _vm._v(" "),
+                        _c(
+                          "v-row",
+                          [
+                            _c("v-col", { attrs: { cols: "12" } }, [
+                              _c("p", [
+                                _c("strong", [
+                                  _vm._v(
+                                    "Por favor complete el formulario, los campos marcados con un asterisco (*) son obligatorios."
+                                  )
+                                ])
+                              ])
+                            ])
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-card-text",
+                          [
+                            _c(
+                              "v-container",
+                              [
+                                _c("p", { staticClass: "font-weight-black" }, [
+                                  _vm._v("Información del Cliente")
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "v-row",
+                                  [
+                                    _c(
+                                      "v-col",
+                                      { attrs: { cols: "12", md: "12" } },
+                                      [
+                                        _c("validation-provider", {
+                                          attrs: {
+                                            name:
+                                              "Razón Social(Nombre de la empresa)",
+                                            rules: "required"
+                                          },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "default",
+                                                fn: function(ref) {
+                                                  var errors = ref.errors
+                                                  return [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        label:
+                                                          "Razón Social(Nombre de la empresa)*",
+                                                        "error-messages": errors
+                                                      },
+                                                      model: {
+                                                        value: _vm.razonSocial,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.razonSocial = $$v
+                                                        },
+                                                        expression:
+                                                          "razonSocial"
+                                                      }
+                                                    })
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-col",
+                                      { attrs: { cols: "12", md: "12" } },
+                                      [
+                                        _c("validation-provider", {
+                                          attrs: {
+                                            name: "Dirigido a(Representante)",
+                                            rules: "required"
+                                          },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "default",
+                                                fn: function(ref) {
+                                                  var errors = ref.errors
+                                                  return [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        label:
+                                                          "Dirigido a(Representante)*",
+                                                        "error-messages": errors
+                                                      },
+                                                      model: {
+                                                        value:
+                                                          _vm.representante,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.representante = $$v
+                                                        },
+                                                        expression:
+                                                          "representante"
+                                                      }
+                                                    })
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-col",
+                                      { attrs: { cols: "12", md: "6" } },
+                                      [
+                                        _c("v-text-field", {
+                                          attrs: {
+                                            label: "RFC(De la Razón Social)"
+                                          },
+                                          model: {
+                                            value: _vm.rfc,
+                                            callback: function($$v) {
+                                              _vm.rfc = $$v
+                                            },
+                                            expression: "rfc"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-col",
+                                      { attrs: { cols: "12", md: "6" } },
+                                      [
+                                        _c("v-text-field", {
+                                          attrs: {
+                                            label:
+                                              "Correo Electrónico(De la Razón Social)"
+                                          },
+                                          model: {
+                                            value: _vm.email,
+                                            callback: function($$v) {
+                                              _vm.email = $$v
+                                            },
+                                            expression: "email"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-col",
+                                      { attrs: { cols: "12", md: "6" } },
+                                      [
+                                        _c("v-text-field", {
+                                          attrs: {
+                                            label:
+                                              "Teléfono(De la Razón Social)"
+                                          },
+                                          model: {
+                                            value: _vm.telefono,
+                                            callback: function($$v) {
+                                              _vm.telefono = $$v
+                                            },
+                                            expression: "telefono"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("v-divider"),
+                        _vm._v(" "),
+                        _c(
+                          "v-card-actions",
+                          [
+                            _c(
+                              "v-row",
+                              [
+                                _c(
+                                  "v-col",
+                                  { attrs: { cols: "12" } },
+                                  [
+                                    _vm.editar
+                                      ? _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              color: "warning",
+                                              cols: "12",
+                                              block: "",
+                                              type: "submit"
+                                            }
+                                          },
+                                          [_vm._v("\n      Editar\n    ")]
+                                        )
+                                      : _vm._e()
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-col",
+                                  { attrs: { cols: "12" } },
+                                  [
+                                    !_vm.editar
+                                      ? _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              cols: "12",
+                                              block: "",
+                                              color: "primary",
+                                              type: "submit"
+                                            }
+                                          },
+                                          [_vm._v("\n      Registrar\n    ")]
+                                        )
+                                      : _vm._e()
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
                     )
-                  ])
-                ])
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-card-text",
-            [
-              _c(
-                "v-container",
-                [
-                  _c("p", { staticClass: "font-weight-black" }, [
-                    _vm._v("Información del Cliente")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "v-row",
-                    [
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "12" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "Razón Social(Nombre de la empresa)*",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.razonSocial,
-                              callback: function($$v) {
-                                _vm.razonSocial = $$v
-                              },
-                              expression: "razonSocial"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "12" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "Dirigido a(Representante)*",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.representante,
-                              callback: function($$v) {
-                                _vm.representante = $$v
-                              },
-                              expression: "representante"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "RFC", required: "" },
-                            model: {
-                              value: _vm.rfc,
-                              callback: function($$v) {
-                                _vm.rfc = $$v
-                              },
-                              expression: "rfc"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "Correo Electrónico",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.email,
-                              callback: function($$v) {
-                                _vm.email = $$v
-                              },
-                              expression: "email"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "Teléfono", required: "" },
-                            model: {
-                              value: _vm.telefono,
-                              callback: function($$v) {
-                                _vm.telefono = $$v
-                              },
-                              expression: "telefono"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("v-divider"),
-          _vm._v(" "),
-          _c(
-            "v-card-actions",
-            [
-              _c(
-                "v-row",
-                [
-                  _c(
-                    "v-col",
-                    { attrs: { cols: "12" } },
-                    [
-                      _vm.esEditar
-                        ? _c(
-                            "v-btn",
-                            {
-                              attrs: { color: "warning", cols: "12", block: "" }
-                            },
-                            [_vm._v("\n      Editar\n    ")]
-                          )
-                        : _vm._e()
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-col",
-                    { attrs: { cols: "12" } },
-                    [
-                      !_vm.esEditar
-                        ? _c(
-                            "v-btn",
-                            {
-                              attrs: { cols: "12", block: "", color: "primary" }
-                            },
-                            [_vm._v("\n      Registrar\n    ")]
-                          )
-                        : _vm._e()
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
+                  ]
+                }
+              }
+            ])
+          })
         ],
         1
       )
@@ -111905,6 +112157,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
   }, {
     path: '/nuevo-cliente',
     name: 'nuevoCliente',
+    component: __webpack_require__(/*! ./views/RegistroClientesComponent.vue */ "./resources/js/views/RegistroClientesComponent.vue")["default"]
+  }, {
+    path: '/editar-cliente/:id',
+    name: 'editarCliente',
     component: __webpack_require__(/*! ./views/RegistroClientesComponent.vue */ "./resources/js/views/RegistroClientesComponent.vue")["default"]
   }, {
     path: '/solicitantes',

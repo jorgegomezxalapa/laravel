@@ -32,15 +32,15 @@
       ></v-text-field>
         </v-col>
     </v-row>
-    
+
     <v-row>
        <v-col cols="12">
           <v-data-table
       :headers="headers"
-      :items="desserts"
+      :items="clientes"
       :search="search"
     >
-      
+
     <template v-slot:item.cotizaciones="{ item }">
      <v-tooltip top>
       <template v-slot:activator="{ on, attrs }">
@@ -82,7 +82,7 @@
        <span>Cotizadas</span>
   </v-tooltip>
 
-      
+
     </template>
 
     <template v-slot:item.ventas="{ item }">
@@ -99,73 +99,44 @@
       </template>
        <span>Realizadas</span>
   </v-tooltip>
-      
-       
 
-      
+
+
+
     </template>
     <template v-slot:item.acciones="{ item }">
       <v-tooltip top>
         <template v-slot:activator="{ on, attrs }">
-        <v-btn
-         v-bind="attrs"
-          v-on="on"
-               small
-                color="primary"
-                dark
-                
-                fab
-              >
-                <v-icon>mdi-information-outline</v-icon>
-              </v-btn>
+          <router-link :to="{name: 'editarCliente', params:{id:item.id}}">
+          <v-btn
+           v-bind="attrs"
+              v-on="on"
+                   small
+                    color="warning"
+                    dark
+
+                    fab
+                  >
+                    <v-icon>mdi-pencil-box-outline</v-icon>
+                  </v-btn>
+                </router-link>
           </template>
-          <span>Ver Información</span>
+          <span>Editar Cliente</span>
       </v-tooltip>
-        <v-tooltip top>
-        <template v-slot:activator="{ on, attrs }">
-        <v-btn
-         v-bind="attrs"
-          v-on="on"
-               small
-                color="primary"
-                dark
-                
-                fab
-              >
-                <v-icon>mdi-microphone-outline</v-icon>
-              </v-btn>
-          </template>
-          <span>Llamar por teléfono</span>
-      </v-tooltip>
-     
-      <v-tooltip top>
-      <template v-slot:activator="{ on, attrs }">
-      <v-btn
-       v-bind="attrs"
-          v-on="on"
-               small
-                color="primary"
-                dark
-                
-                fab
-              >
-                <v-icon>mdi-email-edit-outline</v-icon>
-              </v-btn>
-          </template>
-          <span>Enviar Correo</span>
-      </v-tooltip>
-      
+
+
+
     </template>
     </v-data-table>
-       </v-col> 
+       </v-col>
     </v-row>
 
- 
+
     </v-card-text>
     <v-divider></v-divider>
     <v-card-actions>
-        
-    
+
+
     </v-card-actions>
   </v-card>
     </v-container>
@@ -173,40 +144,50 @@
 
 <script>
     export default {
+      mounted(){
+   this.getClientes()
+
+   },
     data () {
       return {
         search: '',
         headers: [
           {
-            text: 'Empresa',
+            text: 'Razón Social(Empresa)',
             align: 'center',
-           
-            value: 'nombre',
+
+            value: 'razonSocial',
           },
-          { text: 'Representante', align: 'center', value: 'usuario' },
-          { text: 'RFC', align: 'center', value: 'rol' },
-          { text: '% Utilidad', align: 'center', value: 'areaTrabajo' },
+          { text: 'Representante', align: 'center', value: 'representante' },
+          { text: 'RFC(Empresa)', align: 'center', value: 'rfc' },
+          { text: 'Email(Empresa)', align: 'center', value: 'email' },
+            { text: 'Teléfono(Empresa)', align: 'center', value: 'telefono' },
           { text: 'Cotizaciones', align: 'center', value: 'cotizaciones' },
           { text: 'Ventas', align: 'center', value: 'ventas' },
           { text: 'Acciones', align: 'center', value: 'acciones' },
         ],
-        desserts: [
-          {
-            nombre: 'CFE Xalapa',
-            usuario: "JUAN VALDEZ CALDERÓN",
-            rol: "RAGJ9406251X7",
-            areaTrabajo: 30,
-            cotizaciones: 3,
-            cotizaciones2: 10,
-            cotizaciones3: 5,
-            ventas:10,
-            acciones: "Acciones",
-          },
-          
-        ],
+        clientes: [],
       }
     },
      methods: {
+       async getClientes(){
+         try {
+               const response = await axios({
+                 method: 'get',
+                 url: 'getClientes',
+               })
+
+               this.clientes = response.data.response
+               console.log(this.clientes)
+
+
+           } catch (error) {
+
+              swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+               console.log(error);
+
+           }
+       },
         nuevoCliente(){
             this.$router.push({ name: 'nuevoCliente' }).catch(()=>{});
         }

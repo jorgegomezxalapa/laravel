@@ -8,19 +8,18 @@ use App\Cliente;
 
 class ClienteController extends Controller
 {
-  public function create(Request $request)
+  public function createCliente(Request $request)
   {
     try {
       if ($request) {
+
         DB::beginTransaction();
-        $user = new User();
-        $user->name = $request->name;
-        $user->userName = $request->userName;
+        $user = new Cliente();
+        $user->razonSocial = $request->razonSocial;
+        $user->representante = $request->representante;
+        $user->rfc = $request->rfc;
         $user->email = $request->email;
-        $user->rol = $request->rol;
         $user->telefono = $request->telefono;
-        $user->sexo = $request->sexo;
-        $user->password = bcrypt($request->password);
         $user->save();
         DB::commit();
       }
@@ -29,6 +28,48 @@ class ClienteController extends Controller
     DB::rollBack();
       return response()->json(['response' => $e],500);
     }
-    return response()->json(['response' => 'éxito'],200);
+    return response()->json(['response' => true],200);
   }
+
+    public function getClientes(){
+      try {
+        $clientes = Cliente::orderBy('id', 'DESC')->get();
+      } catch (\Exception $e) {
+        DB::rollBack();
+          return response()->json(['response' => $e],500);
+      }
+return response()->json(['response' => $clientes],200);
+
+    }
+
+    public function getCliente(Request $request){
+      try {
+        $cliente = Cliente::where('id', '=', $request->id)->first();
+      } catch (\Exception $e) {
+        DB::rollBack();
+          return response()->json(['response' => $e],500);
+      }
+return response()->json(['response' => $cliente],200);
+
+    }
+
+    public function editarCliente(Request $request){
+      try {
+        DB::beginTransaction();
+        $cliente = Cliente::where('id', '=', $request->id )->first();
+
+       $cliente->razonSocial = $request->razonSocial;
+       $cliente->representante = $request->representante;
+       $cliente->rfc = $request->rfc;
+       $cliente->email = $request->email;
+       $cliente->telefono = $request->telefono;
+       $cliente->save();
+        DB::commit();
+      } catch (\Exception $e) {
+        DB::rollBack();
+          return response()->json(['response' => $e],500);
+      }
+return response()->json(['response' =>true],200);
+
+    }
 }

@@ -6,6 +6,11 @@
         align="center"
         justify="space-around"
       >
+      <validation-observer
+    ref="observer"
+    v-slot="{ invalid }"
+  >
+   <form @submit.prevent="submit">
     <v-card-title class="font-weight-black">Nuevo Cliente</v-card-title>
 
 <v-divider></v-divider>
@@ -24,23 +29,35 @@
           cols="12"
           md="12"
         >
+        <validation-provider
+         v-slot="{ errors }"
+         name="Razón Social(Nombre de la empresa)"
+         rules="required"
+       >
           <v-text-field
       v-model="razonSocial"
       label="Razón Social(Nombre de la empresa)*"
-      required
+       :error-messages="errors"
     ></v-text-field>
+  </validation-provider>
         </v-col>
 
         <v-col
           cols="12"
           md="12"
         >
+        <validation-provider
+         v-slot="{ errors }"
+         name="Dirigido a(Representante)"
+         rules="required"
+       >
          <v-text-field
       v-model="representante"
 
       label="Dirigido a(Representante)*"
-      required
+      :error-messages="errors"
     ></v-text-field>
+  </validation-provider>
         </v-col>
 
         <v-col
@@ -50,8 +67,8 @@
           <v-text-field
       v-model="rfc"
 
-      label="RFC"
-      required
+      label="RFC(De la Razón Social)"
+
     ></v-text-field>
         </v-col>
 
@@ -62,8 +79,8 @@
           <v-text-field
       v-model="email"
 
-      label="Correo Electrónico"
-      required
+      label="Correo Electrónico(De la Razón Social)"
+
     ></v-text-field>
         </v-col>
 
@@ -74,8 +91,8 @@
           <v-text-field
       v-model="telefono"
 
-      label="Teléfono"
-      required
+      label="Teléfono(De la Razón Social)"
+
     ></v-text-field>
         </v-col>
 
@@ -93,7 +110,8 @@
       color="warning"
       cols="12"
       block
-      v-if="esEditar"
+      v-if="editar"
+       type="submit"
     >
       Editar
     </v-btn>
@@ -104,7 +122,8 @@
                cols="12"
                block
       color="primary"
-      v-if="!esEditar"
+      v-if="!editar"
+       type="submit"
     >
       Registrar
     </v-btn>
@@ -112,6 +131,9 @@
         </v-row>
 
     </v-card-actions>
+  </form>
+    </validation-observer>
+
   </v-card>
     </v-container>
 </template>
@@ -144,17 +166,134 @@ extend('email', {
 message: 'El formato de email debe ser válido',
 })
     export default {
+      components: {
+      ValidationProvider,
+      ValidationObserver,
+    },
         mounted() {
-            console.log('Component mounted.')
+          this.verificar()
         },
         data: () => ({
-          esEditar:false,
+          cliente:[],
+          editar:false,
           razonSocial:null,
           representante:null,
           rfc:null,
           email:null,
           telefono:null,
          }),
+
+         methods: {
+           async verificar(){
+              if (this.$route.params.id != undefined) {
+                 this.editar = true
+                 this.getEditar()
+             }else{
+
+             }
+           },
+           async submit (evt) {
+
+         evt.preventDefault();
+         const result = await this.$refs.observer.validate()
+
+         if (result) {
+           if (this.editar == true ) {
+             this.editarDatos()
+           }else{
+             this.registrar()
+           }
+
+         }
+       },
+
+       async editarDatos(){
+         try {
+             const response = await axios({
+               method: 'post',
+               url: 'editarCliente',
+               data: {
+                 id: this.$route.params.id,
+                 razonSocial: this.razonSocial,
+                 representante: this.representante,
+                 rfc: this.rfc,
+                 email: this.email,
+                 telefono: this.telefono,
+               }
+             })
+
+               swal("Ëxito", "El Cliente se ha actualizado con éxito", "success");
+                this.$router.push({ name: 'clientes' });
+
+
+
+
+
+         } catch (error) {
+            swal("Error", "Ha ocurrido un error en el servidor", "warning");
+
+             console.log(error);
+
+         }
+       },
+       async getEditar(){
+         try {
+             const response = await axios({
+               method: 'post',
+               url: 'getCliente',
+               data: {
+                 id: this.$route.params.id,
+               }
+             })
+             this.cliente= response.data.response
+             console.log("solicitd", this.cliente.fecha)
+
+           this.razonSocial = this.cliente.razonSocial
+           this.representante = this.cliente.representante
+           this.rfc = this.cliente.rfc
+           this.email = this.cliente.email
+           this.telefono = this.cliente.telefono
+
+
+
+         } catch (error) {
+            swal("Error", "Ha ocurrido un error en el servidor", "warning");
+
+             console.log(error);
+
+         }
+
+       },
+
+       async registrar(){
+         try {
+             const response = await axios({
+               method: 'post',
+               url: 'createCliente',
+               data: {
+                 razonSocial: this.razonSocial,
+                 representante: this.representante,
+                 rfc: this.rfc,
+                 email: this.email,
+                 telefono: this.telefono,
+               }
+             })
+            //correcto
+            swal("Éxito", "El cliente se ha registrado de manera correcta", "success");
+            this.$router.push({ name: 'clientes' });
+
+         } catch (error) {
+          swal("Error", "Ha ocurrido un error de servidor", "error");
+                 console.log(error.response.data);
+                 console.log(error.response.status);
+                 console.log(error.response.headers);
+
+
+             console.log(error);
+
+         }
+       },
+     },
 
     }
 </script>
