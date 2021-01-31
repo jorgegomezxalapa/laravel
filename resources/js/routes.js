@@ -25,6 +25,11 @@ export default new Router ({
 		component: require('./views/RegistroSolicitudesComponent.vue').default
 	},
 	{
+		path:'/editar-solicitud/:id',
+		name:'editarSolicitud',
+		component: require('./views/RegistroSolicitudesComponent.vue').default
+	},
+	{
 		path:'/cotizaciones',
 		name:'cotizaciones',
 		component: require('./views/CotizacionesComponent.vue').default

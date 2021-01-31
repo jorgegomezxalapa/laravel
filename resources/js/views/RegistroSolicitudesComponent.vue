@@ -186,6 +186,7 @@ label="Agende de Ventas * "
         <v-row>
             <v-col>
                <v-btn
+               v-if="!editar"
                cols="6"
                block
       color="primary"
@@ -193,6 +194,15 @@ label="Agende de Ventas * "
     >
       Registrar Solicitud
     </v-btn>
+    <v-btn
+    v-if="editar"
+    cols="6"
+    block
+color="primary"
+type="submit"
+>
+Editar Solicitud
+</v-btn>
             </v-col>
         </v-row>
 
@@ -233,7 +243,7 @@ message: 'El formato de email debe ser válido',
 })
     export default {
         mounted() {
-            console.log('Component mounted.')
+            this.verificar()
         },
         components: {
         ValidationProvider,
@@ -242,6 +252,7 @@ message: 'El formato de email debe ser válido',
         data: () => ({
 
              date: new Date().toISOString().substr(0, 10),
+             solicitud:[],
               menu: false,
               editar:false,
             folio:null,
@@ -259,6 +270,43 @@ agente:null,
 
          }),
          methods: {
+           async verificar(){
+              if (this.$route.params.id != undefined) {
+                 this.editar = true
+                 this.getEditar()
+             }else{
+
+             }
+           },
+           async getEditar(){
+             try {
+                 const response = await axios({
+                   method: 'post',
+                   url: 'getSolicitud',
+                   data: {
+                     id: this.$route.params.id,
+                   }
+                 })
+                 this.solicitud= response.data.response
+                 console.log("solicitd", this.solicitud.fecha)
+
+               this.date = this.solicitud.fecha
+               this.folio = this.solicitud.folio
+               this.agente = this.solicitud.agente
+               this.cliente = this.solicitud.cliente
+               this.solicitante = this.solicitud.solicitante
+               this.empleado = this.solicitud.responsable
+               this.comentarios = this.solicitud.comentario
+
+
+             } catch (error) {
+                swal("Error", "Ha ocurrido un error en el servidor", "warning");
+
+                 console.log(error);
+
+             }
+
+           },
            async submit (evt) {
 
          evt.preventDefault();
@@ -274,7 +322,31 @@ agente:null,
          }
        },
        async editarSolicitud () {
-         alert("editar")
+         try {
+             const response = await axios({
+               method: 'post',
+               url: 'editarSolicitud',
+               data: {
+                 id: this.$route.params.id,
+                 fecha: this.date,
+                 folio: this.folio,
+                 agente: this.agente,
+                 cliente: this.cliente,
+                 solicitante: this.solicitante,
+                 responsable: this.empleado,
+                 comentarios: this.comentarios,
+               }
+             })
+              this.$router.push({ name: 'solicitudes' });
+             swal("Éxito", "La solicitud se ha registrado de manera correcta", "success");
+
+
+         } catch (error) {
+            swal("Error", "Ha ocurrido un error en el servidor", "warning");
+
+             console.log(error);
+
+         }
        },
        async registrarSolicitud () {
          try {
@@ -292,6 +364,8 @@ agente:null,
                }
              })
 
+             swal("Éxito", "La solicitud se ha registrado de manera correcta", "success");
+             this.$router.push({ name: 'solicitudes ' });
 
          } catch (error) {
             swal("Error", "Ha ocurrido un error en el servidor", "warning");

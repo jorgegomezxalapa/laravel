@@ -42,3 +42,6 @@ Route::post('createCliente', 'UserController@create')->name('createCliente');
 
 //solicitudes
 Route::post('createSolicitud', 'SolicitudController@create')->name('createSolicitud');
+Route::post('editarSolicitud', 'SolicitudController@editarSolicitud')->name('editarSolicitud');
+Route::get('getSolicitudes', 'SolicitudController@getSolicitudes')->name('getSolicitudes');
+Route::post('getSolicitud', 'SolicitudController@getSolicitud')->name('getSolicitud');

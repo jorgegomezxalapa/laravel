@@ -4959,6 +4959,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -4982,7 +4992,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
 }));
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    console.log('Component mounted.');
+    this.verificar();
   },
   components: {
     ValidationProvider: vee_validate__WEBPACK_IMPORTED_MODULE_2__["ValidationProvider"],
@@ -4991,6 +5001,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
   data: function data() {
     return {
       date: new Date().toISOString().substr(0, 10),
+      solicitud: [],
       menu: false,
       editar: false,
       folio: null,
@@ -5006,31 +5017,21 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
     };
   },
   methods: {
-    submit: function submit(evt) {
+    verificar: function verificar() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var result;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                evt.preventDefault();
-                _context.next = 3;
-                return _this.$refs.observer.validate();
+                if (_this.$route.params.id != undefined) {
+                  _this.editar = true;
 
-              case 3:
-                result = _context.sent;
+                  _this.getEditar();
+                } else {}
 
-                if (result) {
-                  if (_this.editar == true) {
-                    _this.editarSolicitud();
-                  } else {
-                    _this.registrarSolicitud();
-                  }
-                }
-
-              case 5:
+              case 1:
               case "end":
                 return _context.stop();
             }
@@ -5038,64 +5039,184 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
         }, _callee);
       }))();
     },
-    editarSolicitud: function editarSolicitud() {
+    getEditar: function getEditar() {
+      var _this2 = this;
+
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                alert("editar");
-
-              case 1:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    },
-    registrarSolicitud: function registrarSolicitud() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _context3.prev = 0;
-                _context3.next = 3;
+                _context2.prev = 0;
+                _context2.next = 3;
                 return axios({
                   method: 'post',
-                  url: 'createSolicitud',
+                  url: 'getSolicitud',
                   data: {
-                    fecha: _this2.date,
-                    folio: _this2.folio,
-                    agente: _this2.agente,
-                    cliente: _this2.cliente,
-                    solicitante: _this2.solicitante,
-                    responsable: _this2.empleado,
-                    comentarios: _this2.comentarios
+                    id: _this2.$route.params.id
                   }
                 });
 
               case 3:
-                response = _context3.sent;
-                _context3.next = 10;
+                response = _context2.sent;
+                _this2.solicitud = response.data.response;
+                console.log("solicitd", _this2.solicitud.fecha);
+                _this2.date = _this2.solicitud.fecha;
+                _this2.folio = _this2.solicitud.folio;
+                _this2.agente = _this2.solicitud.agente;
+                _this2.cliente = _this2.solicitud.cliente;
+                _this2.solicitante = _this2.solicitud.solicitante;
+                _this2.empleado = _this2.solicitud.responsable;
+                _this2.comentarios = _this2.solicitud.comentario;
+                _context2.next = 19;
                 break;
 
-              case 6:
-                _context3.prev = 6;
-                _context3.t0 = _context3["catch"](0);
+              case 15:
+                _context2.prev = 15;
+                _context2.t0 = _context2["catch"](0);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
-                console.log(_context3.t0);
+                console.log(_context2.t0);
 
-              case 10:
+              case 19:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 15]]);
+      }))();
+    },
+    submit: function submit(evt) {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var result;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                evt.preventDefault();
+                _context3.next = 3;
+                return _this3.$refs.observer.validate();
+
+              case 3:
+                result = _context3.sent;
+
+                if (result) {
+                  if (_this3.editar == true) {
+                    _this3.editarSolicitud();
+                  } else {
+                    _this3.registrarSolicitud();
+                  }
+                }
+
+              case 5:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[0, 6]]);
+        }, _callee3);
+      }))();
+    },
+    editarSolicitud: function editarSolicitud() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.prev = 0;
+                _context4.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'editarSolicitud',
+                  data: {
+                    id: _this4.$route.params.id,
+                    fecha: _this4.date,
+                    folio: _this4.folio,
+                    agente: _this4.agente,
+                    cliente: _this4.cliente,
+                    solicitante: _this4.solicitante,
+                    responsable: _this4.empleado,
+                    comentarios: _this4.comentarios
+                  }
+                });
+
+              case 3:
+                response = _context4.sent;
+
+                _this4.$router.push({
+                  name: 'solicitudes'
+                });
+
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "La solicitud se ha registrado de manera correcta", "success");
+                _context4.next = 12;
+                break;
+
+              case 8:
+                _context4.prev = 8;
+                _context4.t0 = _context4["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+                console.log(_context4.t0);
+
+              case 12:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, null, [[0, 8]]);
+      }))();
+    },
+    registrarSolicitud: function registrarSolicitud() {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.prev = 0;
+                _context5.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'createSolicitud',
+                  data: {
+                    fecha: _this5.date,
+                    folio: _this5.folio,
+                    agente: _this5.agente,
+                    cliente: _this5.cliente,
+                    solicitante: _this5.solicitante,
+                    responsable: _this5.empleado,
+                    comentarios: _this5.comentarios
+                  }
+                });
+
+              case 3:
+                response = _context5.sent;
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "La solicitud se ha registrado de manera correcta", "success");
+
+                _this5.$router.push({
+                  name: 'solicitudes '
+                });
+
+                _context5.next = 12;
+                break;
+
+              case 8:
+                _context5.prev = 8;
+                _context5.t0 = _context5["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+                console.log(_context5.t0);
+
+              case 12:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, null, [[0, 8]]);
       }))();
     }
   }
@@ -5647,6 +5768,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
 //
 //
 //
@@ -5750,59 +5881,82 @@ __webpack_require__.r(__webpack_exports__);
     return {
       search: '',
       headers: [{
-        text: 'Fecha de solicitud',
+        text: 'Fecha de recepción',
         align: 'center',
-        value: 'nombre'
+        value: 'fecha'
       }, {
-        text: 'Folio',
+        text: 'Folio asignado',
         align: 'center',
-        value: 'usuario'
-      }, {
-        text: 'Cliente',
-        align: 'center',
-        value: 'rol'
-      }, {
-        text: 'Solicitante',
-        align: 'center',
-        value: 'solicitante'
+        value: 'folio'
       }, {
         text: 'Responsable',
         align: 'center',
         value: 'responsable'
       }, {
-        text: '% Utilidad',
+        text: 'Agente de Venta',
         align: 'center',
-        value: 'areaTrabajo'
+        value: 'agente'
       }, {
-        text: '# Réplicas',
+        text: 'Con Atención a',
         align: 'center',
-        value: 'replicas'
+        value: 'cliente'
+      }, {
+        text: 'Solicitante',
+        align: 'center',
+        value: 'solicitante'
       }, {
         text: 'Acciones',
         align: 'center',
         value: 'acciones'
       }],
-      desserts: [{
-        nombre: '01-01-2021',
-        usuario: "XAV/V/F1/2020",
-        rol: "CFE XALAPA",
-        solicitante: "JUAN VALDEZ ORTEGA",
-        responsable: "Cotizador 2(Jorge Iván)",
-        areaTrabajo: '10%',
-        replicas: 2,
-        cotizaciones: 3,
-        cotizaciones2: 10,
-        cotizaciones3: 5,
-        ventas: 10,
-        acciones: "Acciones"
-      }]
+      solicitudes: []
     };
+  },
+  mounted: function mounted() {
+    this.getsolicitudes();
   },
   methods: {
     nuevaSolicitud: function nuevaSolicitud() {
       this.$router.push({
         name: 'nuevaSolicitud'
       })["catch"](function () {});
+    },
+    getsolicitudes: function getsolicitudes() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios({
+                  method: 'get',
+                  url: 'getSolicitudes'
+                });
+
+              case 3:
+                response = _context.sent;
+                _this.solicitudes = response.data.response;
+                console.log(_this.solicitudes);
+                _context.next = 12;
+                break;
+
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](0);
+                swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+                console.log(_context.t0);
+
+              case 12:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 8]]);
+      }))();
     }
   }
 });
@@ -50075,22 +50229,39 @@ var render = function() {
                                 _c(
                                   "v-col",
                                   [
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        attrs: {
-                                          cols: "6",
-                                          block: "",
-                                          color: "primary",
-                                          type: "submit"
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n      Registrar Solicitud\n    "
+                                    !_vm.editar
+                                      ? _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              cols: "6",
+                                              block: "",
+                                              color: "primary",
+                                              type: "submit"
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n      Registrar Solicitud\n    "
+                                            )
+                                          ]
                                         )
-                                      ]
-                                    )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.editar
+                                      ? _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              cols: "6",
+                                              block: "",
+                                              color: "primary",
+                                              type: "submit"
+                                            }
+                                          },
+                                          [_vm._v("\nEditar Solicitud\n")]
+                                        )
+                                      : _vm._e()
                                   ],
                                   1
                                 )
@@ -51068,7 +51239,7 @@ var render = function() {
                       _c("v-data-table", {
                         attrs: {
                           headers: _vm.headers,
-                          items: _vm.desserts,
+                          items: _vm.solicitudes,
                           search: _vm.search
                         },
                         scopedSlots: _vm._u([
@@ -51090,27 +51261,43 @@ var render = function() {
                                             var attrs = ref.attrs
                                             return [
                                               _c(
-                                                "v-btn",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      attrs: {
-                                                        small: "",
-                                                        color: "primary",
-                                                        dark: "",
-                                                        fab: ""
-                                                      }
-                                                    },
-                                                    "v-btn",
-                                                    attrs,
-                                                    false
-                                                  ),
-                                                  on
-                                                ),
+                                                "router-link",
+                                                {
+                                                  attrs: {
+                                                    to: {
+                                                      name: "editarSolicitud",
+                                                      params: { id: item.id }
+                                                    }
+                                                  }
+                                                },
                                                 [
-                                                  _c("v-icon", [
-                                                    _vm._v("mdi-import")
-                                                  ])
+                                                  _c(
+                                                    "v-btn",
+                                                    _vm._g(
+                                                      _vm._b(
+                                                        {
+                                                          attrs: {
+                                                            small: "",
+                                                            color: "warning",
+                                                            dark: "",
+                                                            fab: ""
+                                                          }
+                                                        },
+                                                        "v-btn",
+                                                        attrs,
+                                                        false
+                                                      ),
+                                                      on
+                                                    ),
+                                                    [
+                                                      _c("v-icon", [
+                                                        _vm._v(
+                                                          "mdi-pencil-box-outline"
+                                                        )
+                                                      ])
+                                                    ],
+                                                    1
+                                                  )
                                                 ],
                                                 1
                                               )
@@ -51124,7 +51311,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(" "),
-                                    _c("span", [_vm._v("Ver Solicitud")])
+                                    _c("span", [_vm._v("Editar Solicitud")])
                                   ]
                                 ),
                                 _vm._v(" "),
@@ -111694,6 +111881,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
   }, {
     path: '/nueva-solicitud',
     name: 'nuevaSolicitud',
+    component: __webpack_require__(/*! ./views/RegistroSolicitudesComponent.vue */ "./resources/js/views/RegistroSolicitudesComponent.vue")["default"]
+  }, {
+    path: '/editar-solicitud/:id',
+    name: 'editarSolicitud',
     component: __webpack_require__(/*! ./views/RegistroSolicitudesComponent.vue */ "./resources/js/views/RegistroSolicitudesComponent.vue")["default"]
   }, {
     path: '/cotizaciones',
