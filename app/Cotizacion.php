@@ -22,6 +22,9 @@ class Cotizacion extends Model
       function solicitud(){
           return $this->hasOne('App\Solicitud','id','idSolicitud');
       }
+      function utilidad(){
+          return $this->hasOne('App\Utilidad','id','idUtilidad');
+      }
 
 
 }

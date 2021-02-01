@@ -6581,6 +6581,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -6589,7 +6590,6 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.getCotizacion();
-    this.gettipoventas();
   },
   watch: {
     // whenever question changes, this function will run
@@ -6623,7 +6623,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       unidadmedida: null,
       cantidad: 0,
       precioproveedor: 0,
-      utilidaddefault: 0.25,
+      utilidaddefault: 0,
+      nombreutilidad: "",
       importe1: 0,
       utilidadgenerada: 0,
       preciounitario: 0,
@@ -6636,41 +6637,41 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       iva: 16,
       ieps: 0,
       headers: [{
-        text: 'No Artículo(Partida)',
+        text: 'No de Partida',
         align: 'center',
-        value: 'fecha'
+        value: 'partida'
       }, {
         text: 'Descripción',
         align: 'center',
-        value: 'folio'
+        value: 'descripcion'
       }, {
         text: 'Unidad de Medida',
         align: 'center',
-        value: 'responsable.name'
+        value: 'unidadmedida'
       }, {
         text: 'Cantidad',
         align: 'center',
-        value: 'agente.name'
+        value: 'cantidad'
       }, {
         text: 'Precio Proveedor',
         align: 'center',
-        value: 'cliente.razonSocial'
+        value: 'precioproveedor'
       }, {
         text: 'Importe',
         align: 'center',
-        value: 'solicitante.nombre'
+        value: 'importe1'
       }, {
         text: 'Utilidad',
         align: 'center',
-        value: 'solicitante.nombre'
+        value: 'utilidad'
       }, {
-        text: 'Precio de Venta',
+        text: 'Precio Unitario',
         align: 'center',
-        value: 'solicitante.nombre'
+        value: 'preciounitario'
       }, {
         text: 'Importe',
         align: 'center',
-        value: 'solicitante.nombre'
+        value: 'importe2'
       }, {
         text: 'Acciones',
         align: 'center',
@@ -6702,31 +6703,27 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
               case 3:
                 response = _context.sent;
                 _this.cotizacion = response.data.response;
+                _this.utilidaddefault = _this.cotizacion.utilidad.porcentaje;
+                _this.nombreutilidad = _this.cotizacion.utilidad.descripcion;
                 console.log(_this.cotizacion);
-                _this.solicitud = _this.cotizacion.solicitud;
-                _this.cliente = _this.cotizacion.solicitud.cliente;
-                _this.solicitante = _this.cotizacion.solicitud.solicitante;
-                _this.agente = _this.cotizacion.solicitud.agente;
-                _this.responsable = _this.cotizacion.solicitud.responsable;
-                console.log(_this.cliente, _this.solicitante, _this.agente, _this.responsable);
-                _context.next = 18;
+                _context.next = 14;
                 break;
 
-              case 14:
-                _context.prev = 14;
+              case 10:
+                _context.prev = 10;
                 _context.t0 = _context["catch"](0);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
                 console.log(_context.t0);
 
-              case 18:
+              case 14:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 14]]);
+        }, _callee, null, [[0, 10]]);
       }))();
     },
-    gettipoventas: function gettipoventas() {
+    guardarPartida: function guardarPartida() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -6738,91 +6735,54 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
                 _context2.prev = 0;
                 _context2.next = 3;
                 return axios({
-                  method: 'get',
-                  url: 'getUtilidades'
+                  method: 'post',
+                  url: 'savePartida',
+                  data: {
+                    idCotizacion: _this2.$route.params.id,
+                    partida: _this2.partida,
+                    descripcion: _this2.descripcion,
+                    unidadmedida: _this2.unidadmedida,
+                    cantidad: _this2.cantidad,
+                    precioproveedor: _this2.precioproveedor,
+                    utilidaddefault: _this2.utilidaddefault,
+                    iva: _this2.iva,
+                    ieps: _this2.ieps,
+                    importe1: _this2.importe1,
+                    utilidadgenerada: _this2.utilidadgenerada,
+                    preciounitario: _this2.preciounitario,
+                    importe2: _this2.importe2
+                  }
                 });
 
               case 3:
                 response = _context2.sent;
-                _this2.utilidades = response.data.response;
-                _context2.next = 11;
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "La partida #" + _this2.partida + " se registró con éxito", "success");
+                _this2.partida = parseInt(_this2.partida) + 1, _this2.descripcion = null;
+                _this2.unidadmedida = 0;
+                _this2.cantidad = 0;
+                _this2.precioproveedor = 0;
+                _this2.utilidaddefault = _this2.cotizacion.utilidad.porcentaje;
+                _this2.importe1 = 0;
+                _this2.utilidadgenerada = 0;
+                _this2.preciounitario = 0;
+                _this2.importe2 = 0;
+                _this2.partidas = response.data.response;
+                console.log(_this2.partidas);
+                _context2.next = 22;
                 break;
 
-              case 7:
-                _context2.prev = 7;
+              case 18:
+                _context2.prev = 18;
                 _context2.t0 = _context2["catch"](0);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
                 console.log(_context2.t0);
 
-              case 11:
+              case 22:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 7]]);
-      }))();
-    },
-    iniciarCotizacion: function iniciarCotizacion() {
-      var _this3 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _context3.prev = 0;
-                _context3.next = 3;
-                return axios({
-                  method: 'post',
-                  url: 'iniciarCotizacion',
-                  data: {
-                    id: _this3.$route.params.id,
-                    utilidad: _this3.utilidad
-                  }
-                });
-
-              case 3:
-                response = _context3.sent;
-
-                _this3.$router.push({
-                  name: 'registroPartidas',
-                  params: {
-                    id: _this3.$route.params.id
-                  }
-                });
-
-                _context3.next = 11;
-                break;
-
-              case 7:
-                _context3.prev = 7;
-                _context3.t0 = _context3["catch"](0);
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
-                console.log(_context3.t0);
-
-              case 11:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, null, [[0, 7]]);
-      }))();
-    },
-    editarCotizacion: function editarCotizacion() {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                alert("editar");
-
-              case 1:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4);
+        }, _callee2, null, [[0, 18]]);
       }))();
     }
   }
@@ -49635,7 +49595,7 @@ var render = function() {
                                 _c("p", { staticClass: "font-weight-black" }, [
                                   _vm._v("Solicitud con #Folio: "),
                                   _c("br"),
-                                  _vm._v(_vm._s(this.cliente.razonSocial) + " ")
+                                  _vm._v(_vm._s(this.solicitud.folio) + " ")
                                 ])
                               ])
                             ],
@@ -51476,131 +51436,7 @@ var render = function() {
                                 key: "item.acciones",
                                 fn: function(ref) {
                                   var item = ref.item
-                                  return [
-                                    _c(
-                                      "v-tooltip",
-                                      {
-                                        attrs: { top: "" },
-                                        scopedSlots: _vm._u(
-                                          [
-                                            {
-                                              key: "activator",
-                                              fn: function(ref) {
-                                                var on = ref.on
-                                                var attrs = ref.attrs
-                                                return [
-                                                  _c(
-                                                    "router-link",
-                                                    {
-                                                      attrs: {
-                                                        to: {
-                                                          name:
-                                                            "editarSolicitud",
-                                                          params: {
-                                                            id: item.id
-                                                          }
-                                                        }
-                                                      }
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "v-btn",
-                                                        _vm._g(
-                                                          _vm._b(
-                                                            {
-                                                              attrs: {
-                                                                small: "",
-                                                                color:
-                                                                  "warning",
-                                                                dark: "",
-                                                                fab: ""
-                                                              }
-                                                            },
-                                                            "v-btn",
-                                                            attrs,
-                                                            false
-                                                          ),
-                                                          on
-                                                        ),
-                                                        [
-                                                          _c("v-icon", [
-                                                            _vm._v(
-                                                              "mdi-pencil-box-outline"
-                                                            )
-                                                          ])
-                                                        ],
-                                                        1
-                                                      )
-                                                    ],
-                                                    1
-                                                  )
-                                                ]
-                                              }
-                                            }
-                                          ],
-                                          null,
-                                          true
-                                        )
-                                      },
-                                      [
-                                        _vm._v(" "),
-                                        _c("span", [_vm._v("Editar Solicitud")])
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-tooltip",
-                                      {
-                                        attrs: { top: "" },
-                                        scopedSlots: _vm._u(
-                                          [
-                                            {
-                                              key: "activator",
-                                              fn: function(ref) {
-                                                var on = ref.on
-                                                var attrs = ref.attrs
-                                                return [
-                                                  _c(
-                                                    "v-btn",
-                                                    _vm._g(
-                                                      _vm._b(
-                                                        {
-                                                          attrs: {
-                                                            small: "",
-                                                            color: "primary",
-                                                            dark: "",
-                                                            fab: ""
-                                                          }
-                                                        },
-                                                        "v-btn",
-                                                        attrs,
-                                                        false
-                                                      ),
-                                                      on
-                                                    ),
-                                                    [
-                                                      _c("v-icon", [
-                                                        _vm._v(
-                                                          "mdi-file-send-outline"
-                                                        )
-                                                      ])
-                                                    ],
-                                                    1
-                                                  )
-                                                ]
-                                              }
-                                            }
-                                          ],
-                                          null,
-                                          true
-                                        )
-                                      },
-                                      [
-                                        _vm._v(" "),
-                                        _c("span", [_vm._v("Ver Cotización")])
-                                      ]
-                                    )
-                                  ]
+                                  return undefined
                                 }
                               }
                             ])
@@ -51758,7 +51594,7 @@ var render = function() {
                                             block: "",
                                             color: "primary"
                                           },
-                                          on: { click: _vm.iniciarCotizacion }
+                                          on: { click: _vm.guardarPartida }
                                         },
                                         [_vm._v("\nGuardar Partida\n")]
                                       )
@@ -51870,7 +51706,7 @@ var render = function() {
                                 _c("p", { staticClass: "font-weight-black" }, [
                                   _vm._v("TIPO DE VENTA: "),
                                   _c("br"),
-                                  _vm._v("Nombre tipo de venta "),
+                                  _vm._v(_vm._s(this.nombreutilidad) + " "),
                                   _c("br"),
                                   _vm._v(
                                     "(" + _vm._s(this.utilidaddefault) + " %) "
@@ -51968,8 +51804,7 @@ var render = function() {
                         ? _c(
                             "v-btn",
                             {
-                              attrs: { cols: "6", block: "", color: "warning" },
-                              on: { click: _vm.iniciarCotizacion }
+                              attrs: { cols: "6", block: "", color: "warning" }
                             },
                             [
                               _vm._v(

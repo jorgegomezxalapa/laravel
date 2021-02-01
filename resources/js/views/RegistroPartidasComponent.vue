@@ -38,7 +38,7 @@
 
 <template v-slot:item.acciones="{ item }">
 
-<v-tooltip top>
+<!-- <v-tooltip top>
 <template v-slot:activator="{ on, attrs }">
 <router-link :to="{name: 'editarSolicitud', params:{id:item.id}}">
 <v-btn
@@ -72,7 +72,7 @@ v-on="on"
     </v-btn>
 </template>
 <span>Ver Cotización</span>
-</v-tooltip>
+</v-tooltip> -->
 
 </template>
 </v-data-table>
@@ -169,7 +169,7 @@ cols="12"
 
 block
 color="primary"
-@click="iniciarCotizacion"
+  @click="guardarPartida"
 v-if="!editar"
 >
 Guardar Partida
@@ -180,6 +180,7 @@ Guardar Partida
   <v-col
     cols="12"
     md="4"
+
   >
   <hr>
 
@@ -237,7 +238,7 @@ Guardar Partida
 
   >
     <v-card-text>
-      <p class="font-weight-black">TIPO DE VENTA: <br>Nombre tipo de venta <br>({{this.utilidaddefault}} %) </p>
+      <p class="font-weight-black">TIPO DE VENTA: <br>{{this.nombreutilidad}} <br>({{this.utilidaddefault}} %) </p>
     </v-card-text>
       </v-card>
     <v-card
@@ -296,7 +297,7 @@ Guardar Partida
                cols="6"
                block
       color="warning"
-      @click="iniciarCotizacion"
+
       v-if="!editar"
     >
       Finalizar Registro de Partidas
@@ -331,7 +332,7 @@ import swal from 'sweetalert';
     export default {
         mounted() {
           this.getCotizacion()
-          this.gettipoventas()
+
         },
         watch: {
     // whenever question changes, this function will run
@@ -374,7 +375,8 @@ import swal from 'sweetalert';
             unidadmedida:null,
             cantidad:0,
             precioproveedor:0,
-            utilidaddefault:0.25,
+            utilidaddefault:0,
+            nombreutilidad:"",
             importe1:0,
             utilidadgenerada:0,
             preciounitario:0,
@@ -388,19 +390,19 @@ import swal from 'sweetalert';
             ieps:0,
             headers: [
               {
-                text: 'No Artículo(Partida)',
+                text: 'No de Partida',
                 align: 'center',
 
-                value: 'fecha',
+                value: 'partida',
               },
-              { text: 'Descripción', align: 'center', value: 'folio' },
-                { text: 'Unidad de Medida', align: 'center', value: 'responsable.name' },
-              { text: 'Cantidad', align: 'center', value: 'agente.name' },
-              { text: 'Precio Proveedor', align: 'center', value: 'cliente.razonSocial' },
-              { text: 'Importe', align: 'center', value: 'solicitante.nombre' },
-                { text: 'Utilidad', align: 'center', value: 'solicitante.nombre' },
-                  { text: 'Precio de Venta', align: 'center', value: 'solicitante.nombre' },
-                    { text: 'Importe', align: 'center', value: 'solicitante.nombre' },
+              { text: 'Descripción', align: 'center', value: 'descripcion' },
+                { text: 'Unidad de Medida', align: 'center', value: 'unidadmedida' },
+              { text: 'Cantidad', align: 'center', value: 'cantidad' },
+              { text: 'Precio Proveedor', align: 'center', value: 'precioproveedor' },
+              { text: 'Importe', align: 'center', value: 'importe1' },
+                { text: 'Utilidad', align: 'center', value: 'utilidad' },
+                  { text: 'Precio Unitario', align: 'center', value: 'preciounitario' },
+                    { text: 'Importe', align: 'center', value: 'importe2' },
               { text: 'Acciones', align: 'center', value: 'acciones' },
             ],
             partidas: [],
@@ -418,13 +420,10 @@ import swal from 'sweetalert';
                     })
 
                     this.cotizacion = response.data.response
-                      console.log(this.cotizacion)
-                      this.solicitud = this.cotizacion.solicitud
-                    this.cliente = this.cotizacion.solicitud.cliente
-                      this.solicitante = this.cotizacion.solicitud.solicitante
-                        this.agente = this.cotizacion.solicitud.agente
-                          this.responsable = this.cotizacion.solicitud.responsable
-                    console.log(this.cliente, this.solicitante, this.agente, this.responsable)
+                    this.utilidaddefault =   this.cotizacion.utilidad.porcentaje
+                    this.nombreutilidad =   this.cotizacion.utilidad.descripcion
+                    console.log(this.cotizacion)
+
 
 
                 } catch (error) {
@@ -434,17 +433,41 @@ import swal from 'sweetalert';
 
                 }
             },
-            async gettipoventas(){
+            async guardarPartida(){
               try {
                     const response = await axios({
-                      method: 'get',
-                      url: 'getUtilidades',
-
+                      method: 'post',
+                      url: 'savePartida',
+                      data:{
+                        idCotizacion:this.$route.params.id,
+                        partida:this.partida,
+                        descripcion:this.descripcion,
+                        unidadmedida:this.unidadmedida,
+                        cantidad:this.cantidad,
+                        precioproveedor:this.precioproveedor,
+                        utilidaddefault:this.utilidaddefault,
+                        iva:this.iva,
+                        ieps:this.ieps,
+                        importe1:this.importe1,
+                        utilidadgenerada:this.utilidadgenerada,
+                        preciounitario:this.preciounitario,
+                        importe2:this.importe2,
+                      }
                     })
 
-                    this.utilidades = response.data.response
-
-
+                    swal("Éxito", "La partida #"+this.partida+" se registró con éxito", "success");
+                    this.partida = parseInt(this.partida)+1,
+                    this.descripcion = null
+                    this.unidadmedida = 0
+                    this.cantidad = 0
+                    this.precioproveedor = 0
+                  this.utilidaddefault =   this.cotizacion.utilidad.porcentaje
+                    this.importe1 = 0
+                    this.utilidadgenerada = 0
+                    this.preciounitario = 0
+                    this.importe2 = 0
+                    this.partidas = response.data.response
+                    console.log(this.partidas)
 
                 } catch (error) {
 
@@ -453,31 +476,8 @@ import swal from 'sweetalert';
 
                 }
             },
-            async iniciarCotizacion () {
-              try {
-                  const response = await axios({
-                    method: 'post',
-                    url: 'iniciarCotizacion',
-                    data: {
-                      id:this.$route.params.id,
-                      utilidad : this.utilidad
-
-                    }
-                  })
 
 
-                   this.$router.push({ name: 'registroPartidas', params:{id:this.$route.params.id} });
-
-              } catch (error) {
-                 swal("Error", "Ha ocurrido un error en el servidor", "warning");
-
-                  console.log(error);
-
-              }
-            },
-            async editarCotizacion(){
-              alert("editar")
-            },
 
           },
 

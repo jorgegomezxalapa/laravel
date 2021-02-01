@@ -28,7 +28,7 @@
 
   >
     <v-card-text>
-      <p class="font-weight-black">Solicitud con #Folio: <br>{{this.cliente.razonSocial}} </p>
+      <p class="font-weight-black">Solicitud con #Folio: <br>{{this.solicitud.folio}} </p>
     </v-card-text>
 
   </v-card>
