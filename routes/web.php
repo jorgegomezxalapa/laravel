@@ -61,6 +61,7 @@ Route::get('catalogosSolicitud', 'CatalogosController@catalogosSolicitud')->name
 //cotizaciones
 Route::get('getCotizaciones', 'CotizacionController@getCotizaciones')->name('getCotizaciones');
 Route::post('getCotizacion', 'CotizacionController@getCotizacion')->name('getCotizacion');
+Route::post('iniciarCotizacion', 'CotizacionController@iniciarCotizacion')->name('iniciarCotizacion');
 
 //utilidades
 Route::post('createUtilidad', 'UtilidadController@createUtilidad')->name('createUtilidad');

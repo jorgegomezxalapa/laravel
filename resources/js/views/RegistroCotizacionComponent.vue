@@ -23,7 +23,16 @@
             cols="12"
             md="6"
           >
-          <p class="font-weight-black">Solicitud con #Folio: <br>{{this.cliente.razonSocial}} </p>
+          <v-card
+    class="mx-auto"
+
+  >
+    <v-card-text>
+      <p class="font-weight-black">Solicitud con #Folio: <br>{{this.cliente.razonSocial}} </p>
+    </v-card-text>
+
+  </v-card>
+
 
         </v-col>
 
@@ -31,8 +40,16 @@
           cols="12"
           md="6"
         >
+        <v-card
+            class="mx-auto"
 
-          <p class="font-weight-black">Solicitante: <br>{{this.solicitante.nombre}} </p>
+          >
+            <v-card-text>
+              <p class="font-weight-black">Solicitante: <br>{{this.solicitante.nombre}} </p>
+            </v-card-text>
+
+          </v-card>
+
 
       </v-col>
 
@@ -40,8 +57,16 @@
         cols="12"
         md="6"
       >
+      <v-card
+          class="mx-auto"
 
-          <p class="font-weight-black">Dirigido a(Cliente): <br>{{this.cliente.razonSocial}} </p>
+        >
+          <v-card-text>
+            <p class="font-weight-black">Dirigido a(Cliente): <br>{{this.cliente.razonSocial}} </p>
+          </v-card-text>
+
+        </v-card>
+
 
     </v-col>
 
@@ -49,9 +74,32 @@
       cols="12"
       md="12"
     >
+    <v-card
+        class="mx-auto"
 
-          <p class="font-weight-black">Comentarios: <br>{{this.solicitud.comentarios}} </p>
+      >
+        <v-card-text>
+          <p class="font-weight-black">Comentarios: <br>{{this.solicitud.comentario}} </p>
+        </v-card-text>
+
+      </v-card>
+
   </v-col>
+  <v-col
+    cols="12"
+    md="12"
+  >
+<hr>
+        <p class="font-weight-black">Seleccionar Tipo de Venta </p>
+        <v-select
+        v-model="utilidad"
+        :items="utilidades"
+        item-text="descripcion"
+        item-value="id"
+        label="Tipo de Venta * "
+
+        ></v-select>
+</v-col>
 
       </v-row>
 
@@ -65,36 +113,27 @@
     <v-divider></v-divider>
     <v-card-actions>
         <v-row>
-            <v-col>
-                <v-btn
 
-      color="warning"
-      cols="6"
-      block
 
-    >
-      Editar
-    </v-btn>
-            </v-col>
-            <v-col>
-                <v-btn
-      color="error"
-      cols="6"
-      block
-
-    >
-     Eliminar
-    </v-btn>
-            </v-col>
             <v-col>
                <v-btn
                cols="6"
                block
       color="primary"
-
+      @click="iniciarCotizacion"
+      v-if="!editar"
     >
-      Registrar
+      Iniciar Cotización
     </v-btn>
+    <v-btn
+    cols="6"
+    block
+color="primary"
+@click="editarCotizacion"
+v-if="editar"
+>
+Editar Cotización
+</v-btn>
             </v-col>
         </v-row>
 
@@ -109,12 +148,19 @@
 </template>
 
 <script>
+const axios = require('axios');
+import { required, digits, email, max, regex } from 'vee-validate/dist/rules'
+import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+import swal from 'sweetalert';
     export default {
         mounted() {
           this.getCotizacion()
+          this.gettipoventas()
         },
         data: () => ({
             editar: false,
+            utilidad:null,
+            utilidades:[],
             cotizacion:[],
             cliente:[],
             solicitante:[],
@@ -150,6 +196,50 @@
                     console.log(error);
 
                 }
+            },
+            async gettipoventas(){
+              try {
+                    const response = await axios({
+                      method: 'get',
+                      url: 'getUtilidades',
+
+                    })
+
+                    this.utilidades = response.data.response
+
+
+
+                } catch (error) {
+
+                   swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+                    console.log(error);
+
+                }
+            },
+            async iniciarCotizacion () {
+              try {
+                  const response = await axios({
+                    method: 'post',
+                    url: 'iniciarCotizacion',
+                    data: {
+                      id:this.$route.params.id,
+                      utilidad : this.utilidad
+
+                    }
+                  })
+
+
+                   this.$router.push({ name: 'registroPartidas', params:{id:this.$route.params.id} });
+
+              } catch (error) {
+                 swal("Error", "Ha ocurrido un error en el servidor", "warning");
+
+                  console.log(error);
+
+              }
+            },
+            async editarCotizacion(){
+              alert("editar")
             },
 
           },

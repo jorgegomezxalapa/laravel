@@ -5,13 +5,13 @@
       app
       class="px-3"
       color="grey lighten-4"
-      
+
     >
     <v-btn
       block
       class="mt-3"
       outlined
-      
+
     >
       MENÚ PRINCIPAL
     </v-btn>
@@ -47,7 +47,7 @@
       <v-app-bar-nav-icon large @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="font-weight-black mr-3 hidden-sm-and-down">JVX SERP PRO</v-toolbar-title>
     <v-responsive max-width="65%">
-         
+
           <v-text-field
               v-model="folio"
               label="Buscar Folio"
@@ -63,8 +63,8 @@
 
         </v-responsive>
    <v-spacer></v-spacer>
-    
-   
+
+
       <v-menu
         bottom
         min-width="200px"
@@ -92,7 +92,7 @@
         <v-card>
           <v-list-item-content class="justify-center">
             <div class="mx-12 text-center">
-             
+
             <p>panel de notificaciones</p>
             </div>
           </v-list-item-content>
@@ -124,11 +124,11 @@
                   class="mb-3"
                 >
                   <img
-                  
+
                     alt="Avatar"
                     src="https://cdn.pixabay.com/photo/2018/11/13/21/43/instagram-3814049_960_720.png"
                   >
-                 
+
                 </v-avatar>
               <h3>MI PERFIL</h3>
                             <p class="body-1 mt-1 mb-3">
@@ -138,11 +138,11 @@
                 {{ perfil.email }}
               </p>
               <v-divider class="my-3"></v-divider>
-           
+
     <v-row class="justify-center mt-3 mb-5">
        <v-btn
       rounded
-      
+
      outlined
       color="black"
     >
@@ -152,7 +152,7 @@
      <v-row class="justify-center mt-3 mb-5">
        <v-btn
       rounded
-      
+
       outlined
       color="black"
       @click="logout()"
@@ -165,7 +165,7 @@
         </v-card>
       </v-menu>
     </v-app-bar>
-    
+
 
     <v-main>
    <transition name="slide-fade" mode="out-in">
@@ -186,13 +186,13 @@
 <script>
   const axios = require('axios');
   export default {
-    data: () => ({ 
+    data: () => ({
       drawer: null,
       folio: null,
          messages: 0,
         show: false,
         perfil:{},
-     
+
       selectedItem: 0,
       items: [
       { text: 'Dashboard', icon: 'mdi-devices' , url:'dashboard'},
@@ -201,26 +201,26 @@
          { text: 'Ventas', icon: 'mdi-account-cash-outline' , url:'ventas'},
         { text: 'Clientes', icon: 'mdi-account-badge-horizontal-outline' , url:'clientes'},
          { text: 'Solicitantes', icon: 'mdi-account-badge-horizontal-outline' , url:'solicitantes'},
-        { text: 'Utilidades', icon: 'mdi-file-percent-outline' , url:'utilidades'},
+        { text: 'Tipo de Venta', icon: 'mdi-file-percent-outline' , url:'utilidades'},
         { text: 'Formatos', icon: 'mdi-file-pdf-box-outline' , url:'formatos'},
         { text: 'Empleados', icon: 'mdi-account-box-multiple-outline' , url:'empleados'},
         { text: 'Historial', icon: 'mdi-history' , url:'historial'},
       ],
-       
+
        }),
     watch: {
-      
+
     },
     methods: {
       buscarFolio(){
-        
+
       },
       cargarMain(){
         // this.$router.push({ path: 'dashboard' }).catch(()=>{});
       },
       enrutar(url){
         this.$router.push({ name: url }).catch(()=>{});
-        
+
       },
       async getperfil(){
 
@@ -230,13 +230,13 @@
         url: 'getperfil',
       })
             // Success 🎉
-           
+
             this.perfil = response.data
             this.perfil = response.data.data
             this.name = this.perfil.name
             this.email = this.perfil.email
-           
-           
+
+
         } catch (error) {
             // Error 😨
             if (error.response) {
@@ -267,12 +267,12 @@
             this.desactivar = false
         }
 
-      
+
 
       },
       async logout(){
 
-        
+
 
         try {
             const response = await axios({
@@ -281,9 +281,9 @@
       })
             // Success 🎉
             window.location.href = route('logout');
-            
-           
-           
+
+
+
         } catch (error) {
             // Error 😨
             if (error.response) {
@@ -310,17 +310,17 @@
                 console.log("console.log 6", error.message);
             }
             console.log(error);
-            
+
         }
 
-      
+
 
       },
-      
+
     },
     beforeMount: function () {
     this.cargarMain()
-    
+
   },
   mounted: function () {
   this.getperfil()

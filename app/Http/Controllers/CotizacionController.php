@@ -35,4 +35,18 @@ class CotizacionController extends Controller
 
         }
       }
+
+      public function iniciarCotizacion (Request $request) {
+        try {
+
+          $cotizacion = Cotizacion::where('id', '=', $request->id)->first();
+          $cotizacion->idUtilidad = $request->utilidad;
+          $cotizacion->save();
+          return response()->json(['response' => true],200);
+
+        } catch (Exception $e) {
+          return response()->json(['response' => $e],500);
+
+        }
+      }
 }
