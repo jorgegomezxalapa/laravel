@@ -30,21 +30,13 @@
 
 
       >
-    <v-card-title class="font-weight-black">Registro de Cotizaciones</v-card-title>
+    <v-card-title class="font-weight-black">Módulo de Cotizaciones</v-card-title>
 
 <v-divider></v-divider>
   <v-card-text>
     <v-row>
-        <v-col cols="12" md="4">
-            <v-btn
-              color="primary"
-              dark
-             @click="capturarCotizacion"
-            >
-              Módulo registro de cotización
-            </v-btn>
-        </v-col>
-        <v-col cols="12" md="8">
+
+        <v-col cols="12" md="12">
             <v-text-field
         v-model="search"
         append-icon="mdi-magnify"
@@ -54,7 +46,7 @@
       ></v-text-field>
         </v-col>
     </v-row>
-    
+
     <v-row>
        <v-col cols="12">
           <v-data-table
@@ -62,14 +54,14 @@
       :items="desserts"
       :search="search"
     >
-      
-   
 
-    
+
+
+
     <template v-slot:item.acciones="{ item }">
-      
-        
-     
+
+
+
       <v-tooltip top>
       <template v-slot:activator="{ on, attrs }">
       <v-btn
@@ -78,26 +70,26 @@
                small
                 color="primary"
                 dark
-                
+
                 fab
               >
                 <v-icon>mdi-file-send-outline</v-icon>
               </v-btn>
           </template>
-          <span>Ver Cotización</span>
+          <span>Acceder a la Cotización</span>
       </v-tooltip>
-      
+
     </template>
     </v-data-table>
-       </v-col> 
+       </v-col>
     </v-row>
 
- 
+
     </v-card-text>
     <v-divider></v-divider>
     <v-card-actions>
-        
-    
+
+
     </v-card-actions>
   </v-card>
     </v-container>
@@ -113,7 +105,7 @@
           {
             text: 'Fecha de solicitud',
             align: 'center',
-           
+
             value: 'nombre',
           },
           { text: 'Folio', align: 'center', value: 'usuario' },
@@ -139,7 +131,7 @@
             ventas:10,
             acciones: "Acciones",
           },
-          
+
         ],
       }
     },

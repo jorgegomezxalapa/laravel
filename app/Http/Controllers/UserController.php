@@ -109,7 +109,7 @@ class UserController extends Controller
     {
     	try {
 
-    		$usuarios = User::orderBy('rol')->get();
+    		$usuarios = User::orderBy('rol')->where('rol','!=','AGENTE')->get();
 
     		return response()->json(['response' => $usuarios],200);
 

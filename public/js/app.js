@@ -2768,6 +2768,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         align: 'center',
         value: 'representante'
       }, {
+        text: 'Con Atención A',
+        align: 'center',
+        value: 'conatencion'
+      }, {
         text: 'RFC(Empresa)',
         align: 'center',
         value: 'rfc'
@@ -2852,14 +2856,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -3318,7 +3314,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
       this.ideliminar = empleado.id;
       console.log(empleado);
-      sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El empleado será eliminado, desea continuar?", {
+      sweetalert__WEBPACK_IMPORTED_MODULE_1___default()(empleado.userName + " será eliminado, desea continuar?", {
         buttons: {
           cancel: "Cancelar",
           "catch": {
@@ -3655,6 +3651,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -3688,6 +3698,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
     return {
       cliente: [],
       editar: false,
+      conatencion: null,
       razonSocial: null,
       representante: null,
       rfc: null,
@@ -3766,6 +3777,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
                   url: 'editarCliente',
                   data: {
                     id: _this3.$route.params.id,
+                    conatencion: _this3.conatencion,
                     razonSocial: _this3.razonSocial,
                     representante: _this3.representante,
                     rfc: _this3.rfc,
@@ -3776,7 +3788,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
 
               case 3:
                 response = _context3.sent;
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ëxito", "El Cliente se ha actualizado con éxito", "success");
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", _this3.razonSocial + " se ha actualizado con éxito", "success");
 
                 _this3.$router.push({
                   name: 'clientes'
@@ -3822,26 +3834,27 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
                 response = _context4.sent;
                 _this4.cliente = response.data.response;
                 console.log("solicitd", _this4.cliente.fecha);
+                _this4.conatencion = _this4.cliente.conatencion;
                 _this4.razonSocial = _this4.cliente.razonSocial;
                 _this4.representante = _this4.cliente.representante;
                 _this4.rfc = _this4.cliente.rfc;
                 _this4.email = _this4.cliente.email;
                 _this4.telefono = _this4.cliente.telefono;
-                _context4.next = 17;
+                _context4.next = 18;
                 break;
 
-              case 13:
-                _context4.prev = 13;
+              case 14:
+                _context4.prev = 14;
                 _context4.t0 = _context4["catch"](0);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
                 console.log(_context4.t0);
 
-              case 17:
+              case 18:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4, null, [[0, 13]]);
+        }, _callee4, null, [[0, 14]]);
       }))();
     },
     registrar: function registrar() {
@@ -3859,6 +3872,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
                   method: 'post',
                   url: 'createCliente',
                   data: {
+                    conatencion: _this5.conatencion,
                     razonSocial: _this5.razonSocial,
                     representante: _this5.representante,
                     rfc: _this5.rfc,
@@ -3870,7 +3884,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
               case 3:
                 response = _context5.sent;
                 //correcto
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "El cliente se ha registrado de manera correcta", "success");
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", _this5.razonSocial + " se ha registrado de manera correcta", "success");
 
                 _this5.$router.push({
                   name: 'clientes'
@@ -4456,7 +4470,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
       telefono: null,
       password: null,
       sexo: null,
-      catroles: ['ADMINISTRADOR', 'COTIZADOR']
+      catroles: ['ADMINISTRADOR', 'COTIZADOR', 'AGENTE']
     };
   },
   methods: {
@@ -4589,7 +4603,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
               case 3:
                 response = _context4.sent;
                 //correcto
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "El empleado se ha registrado de manera correcta", "success");
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", _this4.userName + " se ha registrado de manera correcta", "success");
 
                 _this4.$router.push({
                   name: 'empleados'
@@ -4658,7 +4672,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
               case 3:
                 response = _context5.sent;
                 //correcto
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "El empleado se ha registrado de manera correcta", "success");
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", _this5.userName + " se ha actualizado de manera correcta", "success");
 
                 _this5.$router.push({
                   name: 'empleados'
@@ -4802,6 +4816,24 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate/dist/rules */ "./node_modules/vee-validate/dist/rules.js");
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_3__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -4933,44 +4965,235 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+
+
+
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["setInteractionMode"])('eager');
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('digits', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["digits"]), {}, {
+  message: '{_field_} needs to be {length} digits. ({_value_})'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('required', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["required"]), {}, {
+  message: '{_field_} no puede quedarse vacío'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('max', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["max"]), {}, {
+  message: '{_field_} may not be greater than {length} characters'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('regex', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["regex"]), {}, {
+  message: '{_field_} {_value_} does not match {regex}'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["email"]), {}, {
+  message: 'El formato de email debe ser válido'
+}));
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    console.log('Component mounted.');
+    this.verificar();
+  },
+  components: {
+    ValidationProvider: vee_validate__WEBPACK_IMPORTED_MODULE_2__["ValidationProvider"],
+    ValidationObserver: vee_validate__WEBPACK_IMPORTED_MODULE_2__["ValidationObserver"]
   },
   data: function data() {
     return {
-      selectedItem: 7,
-      nombreUsuario: null,
+      editar: false,
+      nombre: null,
       email: null,
-      rol: null,
-      areatrabajo: null,
-      nombreCompleto: null,
-      telefono: null,
-      password: null,
-      sexo: null,
-      catareas: ['ADMINISTRACIÓN', 'COTIZACIONES', 'VENTAS'],
-      catroles: ['ADMINISTRADOR', 'COTIZADOR']
+      telefono: null
     };
+  },
+  methods: {
+    submit: function submit(evt) {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var result;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                evt.preventDefault();
+                _context.next = 3;
+                return _this.$refs.observer.validate();
+
+              case 3:
+                result = _context.sent;
+
+                if (result) {
+                  if (_this.editar == true) {
+                    _this.editarSolicitante();
+                  } else {
+                    _this.registrarSolicitante();
+                  }
+                }
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    verificar: function verificar() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (_this2.$route.params.id != undefined) {
+                  _this2.editar = true;
+
+                  _this2.getEditar();
+                } else {}
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    registrarSolicitante: function registrarSolicitante() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+                _context3.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'createSolicitante',
+                  data: {
+                    solicitante: [],
+                    nombre: _this3.nombre,
+                    email: _this3.email,
+                    telefono: _this3.telefono
+                  }
+                });
+
+              case 3:
+                response = _context3.sent;
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", _this3.nombre + " se ha registrado de manera correcta", "success");
+
+                _this3.$router.push({
+                  name: 'solicitantes'
+                });
+
+                _context3.next = 12;
+                break;
+
+              case 8:
+                _context3.prev = 8;
+                _context3.t0 = _context3["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+                console.log(_context3.t0);
+
+              case 12:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, null, [[0, 8]]);
+      }))();
+    },
+    getEditar: function getEditar() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.prev = 0;
+                _context4.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'getSolicitante',
+                  data: {
+                    id: _this4.$route.params.id
+                  }
+                });
+
+              case 3:
+                response = _context4.sent;
+                _this4.solicitante = response.data.response;
+                console.log("solicitd", _this4.solicitante);
+                _this4.nombre = _this4.solicitante.nombre;
+                _this4.email = _this4.solicitante.email;
+                _this4.telefono = _this4.solicitante.telefono;
+                _context4.next = 15;
+                break;
+
+              case 11:
+                _context4.prev = 11;
+                _context4.t0 = _context4["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+                console.log(_context4.t0);
+
+              case 15:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, null, [[0, 11]]);
+      }))();
+    },
+    editarSolicitante: function editarSolicitante() {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.prev = 0;
+                _context5.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'editarSolicitante',
+                  data: {
+                    id: _this5.$route.params.id,
+                    nombre: _this5.nombre,
+                    email: _this5.email,
+                    telefono: _this5.telefono
+                  }
+                });
+
+              case 3:
+                response = _context5.sent;
+
+                _this5.$router.push({
+                  name: 'solicitantes'
+                });
+
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", _this5.nombre + " se ha editado de manera correcta", "success");
+                _context5.next = 12;
+                break;
+
+              case 8:
+                _context5.prev = 8;
+                _context5.t0 = _context5["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+                console.log(_context5.t0);
+
+              case 12:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, null, [[0, 8]]);
+      }))();
+    }
   }
 });
 
@@ -5219,6 +5442,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -5242,6 +5473,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
 }));
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
+    this.getCatalogos();
     this.verificar();
   },
   components: {
@@ -5260,10 +5492,10 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
       comentarios: null,
       agente: null,
       empleado: null,
-      empleados: ['Cotizador 1(Ana)', 'Cotizador 2(José Luis)', 'Cotizador 4(Juan G)', 'Administrador 1(Diego H)', 'Administrador 2(Fabiola)'],
-      agentes: ['EMAIL', 'WHATSAPP', 'OFICIO', 'DIEGO HDZ', 'FABIOLA', 'BETZAIDA'],
-      clientes: ['CMAS', 'CFE XALAPA', 'CFE COATEPEC', 'FGE', 'Dulcería Xalapa'],
-      solicitantes: ['El Propio Cliente', 'Juan Pablo ', 'Isabela Castillo']
+      empleados: [],
+      agentes: [],
+      clientes: [],
+      solicitantes: []
     };
   },
   methods: {
@@ -5311,13 +5543,13 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
               case 3:
                 response = _context2.sent;
                 _this2.solicitud = response.data.response;
-                console.log("solicitd", _this2.solicitud.fecha);
+                console.log("solicitd", _this2.solicitud.agente);
                 _this2.date = _this2.solicitud.fecha;
                 _this2.folio = _this2.solicitud.folio;
-                _this2.agente = _this2.solicitud.agente;
-                _this2.cliente = _this2.solicitud.cliente;
-                _this2.solicitante = _this2.solicitud.solicitante;
-                _this2.empleado = _this2.solicitud.responsable;
+                _this2.agente = parseInt(_this2.solicitud.agente);
+                _this2.cliente = parseInt(_this2.solicitud.cliente);
+                _this2.solicitante = parseInt(_this2.solicitud.solicitante);
+                _this2.empleado = parseInt(_this2.solicitud.responsable);
                 _this2.comentarios = _this2.solicitud.comentario;
                 _context2.next = 19;
                 break;
@@ -5401,7 +5633,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
                   name: 'solicitudes'
                 });
 
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "La solicitud se ha registrado de manera correcta", "success");
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "La solicitud con folio " + _this4.folio + " se ha editado de manera correcta", "success");
                 _context4.next = 12;
                 break;
 
@@ -5446,10 +5678,10 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
 
               case 3:
                 response = _context5.sent;
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "La solicitud se ha registrado de manera correcta", "success");
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "La solicitud con folio " + _this5.folio + " se ha registrado de manera correcta", "success");
 
                 _this5.$router.push({
-                  name: 'solicitudes '
+                  name: 'solicitudes'
                 });
 
                 _context5.next = 12;
@@ -5467,6 +5699,49 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
             }
           }
         }, _callee5, null, [[0, 8]]);
+      }))();
+    },
+    getCatalogos: function getCatalogos() {
+      var _this6 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.prev = 0;
+                _context6.next = 3;
+                return axios({
+                  method: 'get',
+                  url: 'catalogosSolicitud'
+                });
+
+              case 3:
+                response = _context6.sent;
+                _this6.agentes = response.data.agentes;
+                _this6.clientes = response.data.clientes;
+                _this6.solicitantes = response.data.solicitantes;
+                _this6.empleados = response.data.responsables;
+                console.log(response.data.solicitantes);
+                console.log(response.data.agentes);
+                console.log(response.data.responsables);
+                console.log(response.data.clientes);
+                _context6.next = 18;
+                break;
+
+              case 14:
+                _context6.prev = 14;
+                _context6.t0 = _context6["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+                console.log(_context6.t0);
+
+              case 18:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, null, [[0, 14]]);
       }))();
     }
   }
@@ -5779,35 +6054,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -5953,6 +6207,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    this.getsolicitantes();
+  },
   data: function data() {
     return {
       search: '',
@@ -5961,17 +6218,13 @@ __webpack_require__.r(__webpack_exports__);
         align: 'center',
         value: 'nombre'
       }, {
-        text: 'Giro Comercial',
+        text: 'Email',
         align: 'center',
-        value: 'usuario'
+        value: 'email'
       }, {
-        text: 'RFC',
+        text: 'Teléfono',
         align: 'center',
-        value: 'rol'
-      }, {
-        text: '% Utilidad',
-        align: 'center',
-        value: 'areaTrabajo'
+        value: 'telefono'
       }, {
         text: 'Cotizaciones',
         align: 'center',
@@ -5985,17 +6238,7 @@ __webpack_require__.r(__webpack_exports__);
         align: 'center',
         value: 'acciones'
       }],
-      desserts: [{
-        nombre: 'ANTONIO AGUILAR V.',
-        usuario: "ELECTRÓNICOS",
-        rol: "RAGJ1233441XS",
-        areaTrabajo: 30,
-        cotizaciones: 3,
-        cotizaciones2: 10,
-        cotizaciones3: 5,
-        ventas: 10,
-        acciones: "Acciones"
-      }]
+      solicitantes: []
     };
   },
   methods: {
@@ -6003,6 +6246,42 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push({
         name: 'nuevoSolicitante'
       })["catch"](function () {});
+    },
+    getsolicitantes: function getsolicitantes() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios({
+                  method: 'get',
+                  url: 'getSolicitantes'
+                });
+
+              case 3:
+                response = _context.sent;
+                _this.solicitantes = response.data.response;
+                _context.next = 11;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](0);
+                swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+                console.log(_context.t0);
+
+              case 11:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 7]]);
+      }))();
     }
   }
 });
@@ -6141,19 +6420,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, {
         text: 'Responsable',
         align: 'center',
-        value: 'responsable'
+        value: 'responsable.name'
       }, {
         text: 'Agente de Venta',
         align: 'center',
-        value: 'agente'
+        value: 'agente.name'
       }, {
         text: 'Con Atención a',
         align: 'center',
-        value: 'cliente'
+        value: 'cliente.razonSocial'
       }, {
         text: 'Solicitante',
         align: 'center',
-        value: 'solicitante'
+        value: 'solicitante.nombre'
       }, {
         text: 'Acciones',
         align: 'center',
@@ -47180,7 +47459,7 @@ var render = function() {
         },
         [
           _c("v-card-title", { staticClass: "font-weight-black" }, [
-            _vm._v("Registro de Clientes")
+            _vm._v("Módulo de Clientes")
           ]),
           _vm._v(" "),
           _c("v-divider"),
@@ -47659,7 +47938,7 @@ var render = function() {
         },
         [
           _c("v-card-title", { staticClass: "font-weight-black" }, [
-            _vm._v("Registro de Cotizaciones")
+            _vm._v("Módulo de Cotizaciones")
           ]),
           _vm._v(" "),
           _c("v-divider"),
@@ -47672,27 +47951,7 @@ var render = function() {
                 [
                   _c(
                     "v-col",
-                    { attrs: { cols: "12", md: "4" } },
-                    [
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: { color: "primary", dark: "" },
-                          on: { click: _vm.capturarCotizacion }
-                        },
-                        [
-                          _vm._v(
-                            "\n              Módulo registro de cotización\n            "
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-col",
-                    { attrs: { cols: "12", md: "8" } },
+                    { attrs: { cols: "12", md: "12" } },
                     [
                       _c("v-text-field", {
                         attrs: {
@@ -47784,7 +48043,9 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(" "),
-                                    _c("span", [_vm._v("Ver Cotización")])
+                                    _c("span", [
+                                      _vm._v("Acceder a la Cotización")
+                                    ])
                                   ]
                                 )
                               ]
@@ -47944,7 +48205,7 @@ var render = function() {
         },
         [
           _c("v-card-title", { staticClass: "font-weight-black" }, [
-            _vm._v("Registro de Empleados")
+            _vm._v("Módulo de Empleados")
           ]),
           _vm._v(" "),
           _c("v-divider"),
@@ -48550,7 +48811,7 @@ var render = function() {
                         _c(
                           "v-card-title",
                           { staticClass: "font-weight-black" },
-                          [_vm._v("Nuevo Cliente")]
+                          [_vm._v("Información del Cliente")]
                         ),
                         _vm._v(" "),
                         _c("v-divider"),
@@ -48671,6 +48932,27 @@ var render = function() {
                                             null,
                                             true
                                           )
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-col",
+                                      { attrs: { cols: "12", md: "12" } },
+                                      [
+                                        _c("v-text-field", {
+                                          attrs: {
+                                            label: "Con Atención a",
+                                            "error-messages": _vm.errors
+                                          },
+                                          model: {
+                                            value: _vm.conatencion,
+                                            callback: function($$v) {
+                                              _vm.conatencion = $$v
+                                            },
+                                            expression: "conatencion"
+                                          }
                                         })
                                       ],
                                       1
@@ -49268,16 +49550,7 @@ var render = function() {
                         _c(
                           "v-card-title",
                           { staticClass: "font-weight-black" },
-                          [_vm._v("Nuevo Empleado")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-card-title",
-                          {
-                            staticClass: "font-weight-black",
-                            attrs: { hidden: "true" }
-                          },
-                          [_vm._v("Información de Empleado")]
+                          [_vm._v("Información del Empleado")]
                         ),
                         _vm._v(" "),
                         _c("v-divider"),
@@ -49312,7 +49585,7 @@ var render = function() {
                                     _c(
                                       "p",
                                       { staticClass: "font-weight-black" },
-                                      [_vm._v("Datos del Empleado")]
+                                      [_vm._v("Información del Empleado")]
                                     ),
                                     _vm._v(" "),
                                     _c("validation-provider", {
@@ -49755,210 +50028,259 @@ var render = function() {
           attrs: { width: "100%", align: "center", justify: "space-around" }
         },
         [
-          _c("v-card-title", { staticClass: "font-weight-black" }, [
-            _vm._v("Nuevo Solicitante")
-          ]),
-          _vm._v(" "),
-          _c("v-divider"),
-          _vm._v(" "),
-          _c(
-            "v-card-text",
-            [
-              _c(
-                "v-container",
-                [
-                  _c("p", { staticClass: "font-weight-black" }, [
-                    _vm._v("Información del Solicitante")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "v-row",
-                    [
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "12" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "Nombre del solicitante",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.razonSocial,
-                              callback: function($$v) {
-                                _vm.razonSocial = $$v
-                              },
-                              expression: "razonSocial"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "Giro Comercial", required: "" },
-                            model: {
-                              value: _vm.giro,
-                              callback: function($$v) {
-                                _vm.giro = $$v
-                              },
-                              expression: "giro"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "RFC", required: "" },
-                            model: {
-                              value: _vm.giro,
-                              callback: function($$v) {
-                                _vm.giro = $$v
-                              },
-                              expression: "giro"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "Correo Electrónico",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.giro,
-                              callback: function($$v) {
-                                _vm.giro = $$v
-                              },
-                              expression: "giro"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "Teléfono", required: "" },
-                            model: {
-                              value: _vm.giro,
-                              callback: function($$v) {
-                                _vm.giro = $$v
-                              },
-                              expression: "giro"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-weight-black mt-5" }, [
-                    _vm._v("Configuración para cotizaciones")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "v-row",
-                    [
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "Porcentaje de utilidad",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.razonSocial,
-                              callback: function($$v) {
-                                _vm.razonSocial = $$v
-                              },
-                              expression: "razonSocial"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("v-divider"),
-          _vm._v(" "),
-          _c(
-            "v-card-actions",
-            [
-              _c(
-                "v-row",
-                [
-                  _c(
-                    "v-col",
-                    [
-                      _c(
-                        "v-btn",
-                        { attrs: { color: "warning", cols: "6", block: "" } },
-                        [_vm._v("\n      Editar\n    ")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-col",
-                    [
-                      _c(
-                        "v-btn",
-                        { attrs: { color: "error", cols: "6", block: "" } },
-                        [_vm._v("\n     Eliminar\n    ")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-col",
-                    [
-                      _c(
-                        "v-btn",
-                        { attrs: { cols: "6", block: "", color: "primary" } },
-                        [_vm._v("\n      Registrar\n    ")]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
+          _c("validation-observer", {
+            ref: "observer",
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(ref) {
+                  var invalid = ref.invalid
+                  return [
+                    _c(
+                      "form",
+                      {
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.submit($event)
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "v-card-title",
+                          { staticClass: "font-weight-black" },
+                          [_vm._v("Información del Solicitante")]
+                        ),
+                        _vm._v(" "),
+                        _c("v-divider"),
+                        _vm._v(" "),
+                        _c(
+                          "v-row",
+                          [
+                            _c("v-col", { attrs: { cols: "12" } }, [
+                              _c("p", [
+                                _c("strong", [
+                                  _vm._v(
+                                    "Por favor complete el formulario, los campos marcados con un asterisco (*) son obligatorios."
+                                  )
+                                ])
+                              ])
+                            ])
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-card-text",
+                          [
+                            _c(
+                              "v-container",
+                              [
+                                _c("p", { staticClass: "font-weight-black" }, [
+                                  _vm._v("Información del Solicitante")
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "v-row",
+                                  [
+                                    _c(
+                                      "v-col",
+                                      { attrs: { cols: "12", md: "12" } },
+                                      [
+                                        _c("validation-provider", {
+                                          attrs: {
+                                            name: "Nombre Completo",
+                                            rules: "required"
+                                          },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "default",
+                                                fn: function(ref) {
+                                                  var errors = ref.errors
+                                                  return [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        label:
+                                                          "Nombre Completo *",
+                                                        "error-messages": errors
+                                                      },
+                                                      model: {
+                                                        value: _vm.nombre,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.nombre = $$v
+                                                        },
+                                                        expression: "nombre"
+                                                      }
+                                                    })
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-col",
+                                      { attrs: { cols: "12", md: "6" } },
+                                      [
+                                        _c("validation-provider", {
+                                          attrs: {
+                                            name: "Correo Electrónico",
+                                            rules: "required"
+                                          },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "default",
+                                                fn: function(ref) {
+                                                  var errors = ref.errors
+                                                  return [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        label:
+                                                          "Correo Electrónico *",
+                                                        "error-messages": errors
+                                                      },
+                                                      model: {
+                                                        value: _vm.email,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.email = $$v
+                                                        },
+                                                        expression: "email"
+                                                      }
+                                                    })
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-col",
+                                      { attrs: { cols: "12", md: "6" } },
+                                      [
+                                        _c("validation-provider", {
+                                          attrs: {
+                                            name: "Teléfono",
+                                            rules: "required"
+                                          },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "default",
+                                                fn: function(ref) {
+                                                  var errors = ref.errors
+                                                  return [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        label: "Teléfono *",
+                                                        "error-messages": errors
+                                                      },
+                                                      model: {
+                                                        value: _vm.telefono,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.telefono = $$v
+                                                        },
+                                                        expression: "telefono"
+                                                      }
+                                                    })
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("v-divider"),
+                        _vm._v(" "),
+                        _c(
+                          "v-card-actions",
+                          [
+                            _c(
+                              "v-row",
+                              [
+                                _c(
+                                  "v-col",
+                                  [
+                                    _vm.editar
+                                      ? _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              color: "warning",
+                                              cols: "12",
+                                              block: "",
+                                              type: "submit"
+                                            }
+                                          },
+                                          [_vm._v("\n     Editar\n    ")]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.editar
+                                      ? _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              cols: "12",
+                                              block: "",
+                                              color: "primary",
+                                              type: "submit"
+                                            }
+                                          },
+                                          [_vm._v("\nRegistrar\n")]
+                                        )
+                                      : _vm._e()
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                }
+              }
+            ])
+          })
         ],
         1
       )
@@ -50021,7 +50343,7 @@ var render = function() {
                         _c(
                           "v-card-title",
                           { staticClass: "font-weight-black" },
-                          [_vm._v("Registrar Nueva Solicitud de Cotización")]
+                          [_vm._v("Información de la Solicitud")]
                         ),
                         _vm._v(" "),
                         _c("v-divider"),
@@ -50253,6 +50575,8 @@ var render = function() {
                                                 _c("v-select", {
                                                   attrs: {
                                                     items: _vm.agentes,
+                                                    "item-text": "name",
+                                                    "item-value": "id",
                                                     label:
                                                       "Agende de Ventas * ",
                                                     "error-messages": errors
@@ -50302,6 +50626,8 @@ var render = function() {
                                                 _c("v-select", {
                                                   attrs: {
                                                     items: _vm.clientes,
+                                                    "item-text": "razonSocial",
+                                                    "item-value": "id",
                                                     label:
                                                       "Con atención a (Cliente) * ",
                                                     "error-messages": errors
@@ -50338,6 +50664,8 @@ var render = function() {
                                                 _c("v-select", {
                                                   attrs: {
                                                     items: _vm.solicitantes,
+                                                    "item-text": "nombre",
+                                                    "item-value": "id",
                                                     label:
                                                       "Solicitante de la cotización * ",
                                                     "error-messages": errors
@@ -50402,6 +50730,8 @@ var render = function() {
                                                           attrs: {
                                                             items:
                                                               _vm.empleados,
+                                                            "item-text": "name",
+                                                            "item-value": "id",
                                                             label:
                                                               "Empleado Responsable para Cotizar * ",
                                                             "error-messages": errors
@@ -50507,7 +50837,7 @@ var render = function() {
                                             attrs: {
                                               cols: "6",
                                               block: "",
-                                              color: "primary",
+                                              color: "warning",
                                               type: "submit"
                                             }
                                           },
@@ -50911,7 +51241,7 @@ var render = function() {
         },
         [
           _c("v-card-title", { staticClass: "font-weight-black" }, [
-            _vm._v("Registro de Solicitantes")
+            _vm._v("Módulo de Solicitantes")
           ]),
           _vm._v(" "),
           _c("v-divider"),
@@ -50978,7 +51308,7 @@ var render = function() {
                       _c("v-data-table", {
                         attrs: {
                           headers: _vm.headers,
-                          items: _vm.desserts,
+                          items: _vm.solicitantes,
                           search: _vm.search
                         },
                         scopedSlots: _vm._u([
@@ -51220,29 +51550,43 @@ var render = function() {
                                             var attrs = ref.attrs
                                             return [
                                               _c(
-                                                "v-btn",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      attrs: {
-                                                        small: "",
-                                                        color: "primary",
-                                                        dark: "",
-                                                        fab: ""
-                                                      }
-                                                    },
-                                                    "v-btn",
-                                                    attrs,
-                                                    false
-                                                  ),
-                                                  on
-                                                ),
+                                                "router-link",
+                                                {
+                                                  attrs: {
+                                                    to: {
+                                                      name: "editarSolicitante",
+                                                      params: { id: item.id }
+                                                    }
+                                                  }
+                                                },
                                                 [
-                                                  _c("v-icon", [
-                                                    _vm._v(
-                                                      "mdi-information-outline"
-                                                    )
-                                                  ])
+                                                  _c(
+                                                    "v-btn",
+                                                    _vm._g(
+                                                      _vm._b(
+                                                        {
+                                                          attrs: {
+                                                            small: "",
+                                                            color: "warning",
+                                                            dark: "",
+                                                            fab: ""
+                                                          }
+                                                        },
+                                                        "v-btn",
+                                                        attrs,
+                                                        false
+                                                      ),
+                                                      on
+                                                    ),
+                                                    [
+                                                      _c("v-icon", [
+                                                        _vm._v(
+                                                          "mdi-pencil-box-outline"
+                                                        )
+                                                      ])
+                                                    ],
+                                                    1
+                                                  )
                                                 ],
                                                 1
                                               )
@@ -51256,113 +51600,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(" "),
-                                    _c("span", [_vm._v("Ver Información")])
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-tooltip",
-                                  {
-                                    attrs: { top: "" },
-                                    scopedSlots: _vm._u(
-                                      [
-                                        {
-                                          key: "activator",
-                                          fn: function(ref) {
-                                            var on = ref.on
-                                            var attrs = ref.attrs
-                                            return [
-                                              _c(
-                                                "v-btn",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      attrs: {
-                                                        small: "",
-                                                        color: "primary",
-                                                        dark: "",
-                                                        fab: ""
-                                                      }
-                                                    },
-                                                    "v-btn",
-                                                    attrs,
-                                                    false
-                                                  ),
-                                                  on
-                                                ),
-                                                [
-                                                  _c("v-icon", [
-                                                    _vm._v(
-                                                      "mdi-microphone-outline"
-                                                    )
-                                                  ])
-                                                ],
-                                                1
-                                              )
-                                            ]
-                                          }
-                                        }
-                                      ],
-                                      null,
-                                      true
-                                    )
-                                  },
-                                  [
-                                    _vm._v(" "),
-                                    _c("span", [_vm._v("Llamar por teléfono")])
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-tooltip",
-                                  {
-                                    attrs: { top: "" },
-                                    scopedSlots: _vm._u(
-                                      [
-                                        {
-                                          key: "activator",
-                                          fn: function(ref) {
-                                            var on = ref.on
-                                            var attrs = ref.attrs
-                                            return [
-                                              _c(
-                                                "v-btn",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      attrs: {
-                                                        small: "",
-                                                        color: "primary",
-                                                        dark: "",
-                                                        fab: ""
-                                                      }
-                                                    },
-                                                    "v-btn",
-                                                    attrs,
-                                                    false
-                                                  ),
-                                                  on
-                                                ),
-                                                [
-                                                  _c("v-icon", [
-                                                    _vm._v(
-                                                      "mdi-email-edit-outline"
-                                                    )
-                                                  ])
-                                                ],
-                                                1
-                                              )
-                                            ]
-                                          }
-                                        }
-                                      ],
-                                      null,
-                                      true
-                                    )
-                                  },
-                                  [
-                                    _vm._v(" "),
-                                    _c("span", [_vm._v("Enviar Correo")])
+                                    _c("span", [_vm._v("Editar Solicitud")])
                                   ]
                                 )
                               ]
@@ -51424,7 +51662,7 @@ var render = function() {
         },
         [
           _c("v-card-title", { staticClass: "font-weight-black" }, [
-            _vm._v("Registro de Solicitudes")
+            _vm._v("Módulo de Solicitudes")
           ]),
           _vm._v(" "),
           _c("v-divider"),
@@ -112169,6 +112407,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
   }, {
     path: '/nuevo-solicitante',
     name: 'nuevoSolicitante',
+    component: __webpack_require__(/*! ./views/RegistroSolicitantesComponent.vue */ "./resources/js/views/RegistroSolicitantesComponent.vue")["default"]
+  }, {
+    path: '/editar-solicitante/:id',
+    name: 'editarSolicitante',
     component: __webpack_require__(/*! ./views/RegistroSolicitantesComponent.vue */ "./resources/js/views/RegistroSolicitantesComponent.vue")["default"]
   }, {
     path: '/utilidades',

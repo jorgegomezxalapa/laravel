@@ -48,3 +48,12 @@ Route::post('createSolicitud', 'SolicitudController@create')->name('createSolici
 Route::post('editarSolicitud', 'SolicitudController@editarSolicitud')->name('editarSolicitud');
 Route::get('getSolicitudes', 'SolicitudController@getSolicitudes')->name('getSolicitudes');
 Route::post('getSolicitud', 'SolicitudController@getSolicitud')->name('getSolicitud');
+
+//solicitantes
+Route::post('createSolicitante', 'SolicitantesController@createSolicitante')->name('createSolicitante');
+Route::get('getSolicitantes', 'SolicitantesController@getSolicitantes')->name('getSolicitantes');
+Route::post('getSolicitante', 'SolicitantesController@getSolicitante')->name('getSolicitante');
+Route::post('editarSolicitante', 'SolicitantesController@editarSolicitante')->name('editarSolicitante');
+
+//catalogos
+Route::get('catalogosSolicitud', 'CatalogosController@catalogosSolicitud')->name('catalogosSolicitud');

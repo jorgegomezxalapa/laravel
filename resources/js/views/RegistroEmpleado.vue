@@ -14,8 +14,8 @@
     v-slot="{ invalid }"
   >
    <form @submit.prevent="submit">
-    <v-card-title class="font-weight-black">Nuevo Empleado</v-card-title>
-    <v-card-title class="font-weight-black" hidden="true">Información de Empleado</v-card-title>
+    <v-card-title class="font-weight-black">Información del Empleado</v-card-title>
+
 <v-divider></v-divider>
 <v-row>
        <v-col
@@ -33,7 +33,7 @@
 
         md="6"
       >
-        <p class="font-weight-black">Datos del Empleado</p>
+        <p class="font-weight-black">Información del Empleado</p>
        <validation-provider
         v-slot="{ errors }"
         name="Nombre de Usuario"
@@ -272,7 +272,7 @@
             telefono:null,
             password:null,
             sexo:null,
-            catroles:['ADMINISTRADOR', 'COTIZADOR'],
+            catroles:['ADMINISTRADOR', 'COTIZADOR','AGENTE'],
          }),
          methods: {
           async verificar(){
@@ -344,7 +344,7 @@
                   }
                 })
                //correcto
-               swal("Éxito", "El empleado se ha registrado de manera correcta", "success");
+               swal("Éxito", this.userName+" se ha registrado de manera correcta", "success");
                this.$router.push({ name: 'empleados' });
 
             } catch (error) {
@@ -391,7 +391,7 @@
                   }
                 })
                //correcto
-               swal("Éxito", "El empleado se ha registrado de manera correcta", "success");
+               swal("Éxito", this.userName+" se ha actualizado de manera correcta", "success");
                this.$router.push({ name: 'empleados' });
 
             } catch (error) {

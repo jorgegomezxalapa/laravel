@@ -8,7 +8,7 @@
 
 
       >
-    <v-card-title class="font-weight-black">Registro de Solicitudes</v-card-title>
+    <v-card-title class="font-weight-black">Módulo de Solicitudes</v-card-title>
 
 <v-divider></v-divider>
   <v-card-text>
@@ -111,10 +111,10 @@
             value: 'fecha',
           },
           { text: 'Folio asignado', align: 'center', value: 'folio' },
-            { text: 'Responsable', align: 'center', value: 'responsable' },
-          { text: 'Agente de Venta', align: 'center', value: 'agente' },
-          { text: 'Con Atención a', align: 'center', value: 'cliente' },
-          { text: 'Solicitante', align: 'center', value: 'solicitante' },
+            { text: 'Responsable', align: 'center', value: 'responsable.name' },
+          { text: 'Agente de Venta', align: 'center', value: 'agente.name' },
+          { text: 'Con Atención a', align: 'center', value: 'cliente.razonSocial' },
+          { text: 'Solicitante', align: 'center', value: 'solicitante.nombre' },
           { text: 'Acciones', align: 'center', value: 'acciones' },
         ],
         solicitudes: [],

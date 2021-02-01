@@ -35,7 +35,7 @@ class SolicitudController extends Controller
     public function getSolicitudes ( Request $request ) {
       try {
 
-        $solicitudes = Solicitud::orderBy('id', 'DESC')->get();
+        $solicitudes = Solicitud::orderBy('id', 'DESC')->with('agente')->with('solicitante')->with('responsable')->with('cliente')->get();
 
         return response()->json(['response' => $solicitudes],200);
 

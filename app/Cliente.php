@@ -11,6 +11,7 @@ class Cliente extends Model
         'id',
         'razonSocial',
         'representante',
+        'conatencion',
         'rfc',
         'email',
         'telefono',

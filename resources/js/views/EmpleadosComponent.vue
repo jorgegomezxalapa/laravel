@@ -8,7 +8,7 @@
 
 
       >
-    <v-card-title class="font-weight-black">Registro de Empleados</v-card-title>
+    <v-card-title class="font-weight-black">Módulo de Empleados</v-card-title>
 
 <v-divider></v-divider>
   <v-card-text>
@@ -190,7 +190,7 @@
         eliminarEmpleado(empleado){
           this.ideliminar = empleado.id
           console.log(empleado)
-          swal("El empleado será eliminado, desea continuar?", {
+          swal(empleado.userName+" será eliminado, desea continuar?", {
 buttons: {
   cancel: "Cancelar",
   catch: {

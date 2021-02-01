@@ -13,7 +13,7 @@
     v-slot="{ invalid }"
   >
    <form @submit.prevent="submit">
-    <v-card-title class="font-weight-black">Registrar Nueva Solicitud de Cotización</v-card-title>
+    <v-card-title class="font-weight-black">Información de la Solicitud</v-card-title>
 
 <v-divider></v-divider>
 <v-row>
@@ -98,6 +98,8 @@
 <v-select
 v-model="agente"
 :items="agentes"
+item-text="name"
+item-value="id"
 label="Agende de Ventas * "
 :error-messages="errors"
 ></v-select>
@@ -118,6 +120,8 @@ label="Agende de Ventas * "
 <v-select
       v-model="cliente"
       :items="clientes"
+      item-text="razonSocial"
+      item-value="id"
       label="Con atención a (Cliente) * "
       :error-messages="errors"
     ></v-select>
@@ -131,6 +135,8 @@ label="Agende de Ventas * "
 <v-select
       v-model="solicitante"
       :items="solicitantes"
+      item-text="nombre"
+      item-value="id"
       label="Solicitante de la cotización * "
 :error-messages="errors"
     ></v-select>
@@ -155,6 +161,8 @@ label="Agende de Ventas * "
            <v-select
       v-model="empleado"
       :items="empleados"
+      item-text="name"
+      item-value="id"
       label="Empleado Responsable para Cotizar * "
 :error-messages="errors"
     ></v-select>
@@ -198,7 +206,7 @@ label="Agende de Ventas * "
     v-if="editar"
     cols="6"
     block
-color="primary"
+color="warning"
 type="submit"
 >
 Editar Solicitud
@@ -243,7 +251,9 @@ message: 'El formato de email debe ser válido',
 })
     export default {
         mounted() {
+            this.getCatalogos()
             this.verificar()
+
         },
         components: {
         ValidationProvider,
@@ -261,11 +271,10 @@ message: 'El formato de email debe ser válido',
             comentarios:null,
 agente:null,
             empleado:null,
-            empleados:['Cotizador 1(Ana)', 'Cotizador 2(José Luis)','Cotizador 4(Juan G)', 'Administrador 1(Diego H)', 'Administrador 2(Fabiola)'],
-
-  agentes:['EMAIL', 'WHATSAPP','OFICIO','DIEGO HDZ','FABIOLA', 'BETZAIDA'],
-            clientes:['CMAS', 'CFE XALAPA', 'CFE COATEPEC' , 'FGE', 'Dulcería Xalapa'],
-            solicitantes:['El Propio Cliente','Juan Pablo ', 'Isabela Castillo'],
+            empleados:[],
+  agentes:[],
+            clientes:[],
+            solicitantes:[],
 
 
          }),
@@ -288,14 +297,14 @@ agente:null,
                    }
                  })
                  this.solicitud= response.data.response
-                 console.log("solicitd", this.solicitud.fecha)
+                 console.log("solicitd", this.solicitud.agente)
 
                this.date = this.solicitud.fecha
                this.folio = this.solicitud.folio
-               this.agente = this.solicitud.agente
-               this.cliente = this.solicitud.cliente
-               this.solicitante = this.solicitud.solicitante
-               this.empleado = this.solicitud.responsable
+               this.agente = parseInt(this.solicitud.agente)
+               this.cliente = parseInt(this.solicitud.cliente)
+               this.solicitante = parseInt(this.solicitud.solicitante)
+               this.empleado = parseInt(this.solicitud.responsable)
                this.comentarios = this.solicitud.comentario
 
 
@@ -338,7 +347,7 @@ agente:null,
                }
              })
               this.$router.push({ name: 'solicitudes' });
-             swal("Éxito", "La solicitud se ha registrado de manera correcta", "success");
+             swal("Éxito", "La solicitud con folio "+this.folio+" se ha editado de manera correcta", "success");
 
 
          } catch (error) {
@@ -364,8 +373,8 @@ agente:null,
                }
              })
 
-             swal("Éxito", "La solicitud se ha registrado de manera correcta", "success");
-             this.$router.push({ name: 'solicitudes ' });
+             swal("Éxito", "La solicitud con folio "+this.folio+" se ha registrado de manera correcta", "success");
+              this.$router.push({ name: 'solicitudes' });
 
          } catch (error) {
             swal("Error", "Ha ocurrido un error en el servidor", "warning");
@@ -374,6 +383,39 @@ agente:null,
 
          }
        },
+
+          async getCatalogos () {
+            try {
+                const response = await axios({
+                  method: 'get',
+                  url: 'catalogosSolicitud',
+                })
+
+                this.agentes = response.data.agentes
+                this.clientes = response.data.clientes
+                this.solicitantes = response.data.solicitantes
+                this.empleados = response.data.responsables
+
+              
+
+
+
+
+
+              console.log(response.data.solicitantes)
+                console.log(response.data.agentes)
+                  console.log(response.data.responsables)
+                    console.log(response.data.clientes)
+
+
+            } catch (error) {
+               swal("Error", "Ha ocurrido un error en el servidor", "warning");
+
+                console.log(error);
+
+            }
+
+          }
          }
 
     }

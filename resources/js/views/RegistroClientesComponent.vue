@@ -11,7 +11,7 @@
     v-slot="{ invalid }"
   >
    <form @submit.prevent="submit">
-    <v-card-title class="font-weight-black">Nuevo Cliente</v-card-title>
+    <v-card-title class="font-weight-black">Información del Cliente</v-card-title>
 
 <v-divider></v-divider>
 <v-row>
@@ -58,6 +58,20 @@
       :error-messages="errors"
     ></v-text-field>
   </validation-provider>
+        </v-col>
+
+        <v-col
+          cols="12"
+          md="12"
+        >
+
+         <v-text-field
+      v-model="conatencion"
+
+      label="Con Atención a"
+      :error-messages="errors"
+    ></v-text-field>
+
         </v-col>
 
         <v-col
@@ -176,6 +190,7 @@ message: 'El formato de email debe ser válido',
         data: () => ({
           cliente:[],
           editar:false,
+          conatencion:null,
           razonSocial:null,
           representante:null,
           rfc:null,
@@ -214,6 +229,7 @@ message: 'El formato de email debe ser válido',
                url: 'editarCliente',
                data: {
                  id: this.$route.params.id,
+                 conatencion:this.conatencion,
                  razonSocial: this.razonSocial,
                  representante: this.representante,
                  rfc: this.rfc,
@@ -222,7 +238,7 @@ message: 'El formato de email debe ser válido',
                }
              })
 
-               swal("Ëxito", "El Cliente se ha actualizado con éxito", "success");
+               swal("Éxito", this.razonSocial+" se ha actualizado con éxito", "success");
                 this.$router.push({ name: 'clientes' });
 
 
@@ -247,7 +263,7 @@ message: 'El formato de email debe ser válido',
              })
              this.cliente= response.data.response
              console.log("solicitd", this.cliente.fecha)
-
+             this.conatencion = this.cliente.conatencion
            this.razonSocial = this.cliente.razonSocial
            this.representante = this.cliente.representante
            this.rfc = this.cliente.rfc
@@ -271,6 +287,7 @@ message: 'El formato de email debe ser válido',
                method: 'post',
                url: 'createCliente',
                data: {
+                 conatencion:this.conatencion,
                  razonSocial: this.razonSocial,
                  representante: this.representante,
                  rfc: this.rfc,
@@ -279,7 +296,7 @@ message: 'El formato de email debe ser válido',
                }
              })
             //correcto
-            swal("Éxito", "El cliente se ha registrado de manera correcta", "success");
+            swal("Éxito", this.razonSocial+" se ha registrado de manera correcta", "success");
             this.$router.push({ name: 'clientes' });
 
          } catch (error) {

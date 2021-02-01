@@ -22,7 +22,19 @@ class Solicitud extends Model
 
       ];
 
-      // function municipio(){
-      //     return $this->hasOne('App\Models\CatMunicipio','cve_mun','municipio');
-      // }
+      function agente(){
+          return $this->hasOne('App\User','id','agente');
+      }
+
+      function cliente(){
+          return $this->hasOne('App\Cliente','id','cliente');
+      }
+
+      function solicitante(){
+          return $this->hasOne('App\Solicitante','id','solicitante');
+      }
+
+      function responsable(){
+          return $this->hasOne('App\User','id','responsable');
+      }
 }

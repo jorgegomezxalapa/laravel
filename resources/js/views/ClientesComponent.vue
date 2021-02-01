@@ -8,7 +8,7 @@
 
 
       >
-    <v-card-title class="font-weight-black">Registro de Clientes</v-card-title>
+    <v-card-title class="font-weight-black">Módulo de Clientes</v-card-title>
 
 <v-divider></v-divider>
   <v-card-text>
@@ -159,6 +159,7 @@
             value: 'razonSocial',
           },
           { text: 'Representante', align: 'center', value: 'representante' },
+            { text: 'Con Atención A', align: 'center', value: 'conatencion' },
           { text: 'RFC(Empresa)', align: 'center', value: 'rfc' },
           { text: 'Email(Empresa)', align: 'center', value: 'email' },
             { text: 'Teléfono(Empresa)', align: 'center', value: 'telefono' },
