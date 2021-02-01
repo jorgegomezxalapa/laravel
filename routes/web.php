@@ -57,3 +57,13 @@ Route::post('editarSolicitante', 'SolicitantesController@editarSolicitante')->na
 
 //catalogos
 Route::get('catalogosSolicitud', 'CatalogosController@catalogosSolicitud')->name('catalogosSolicitud');
+
+//cotizaciones
+Route::get('getCotizaciones', 'CotizacionController@getCotizaciones')->name('getCotizaciones');
+Route::post('getCotizacion', 'CotizacionController@getCotizacion')->name('getCotizacion');
+
+//utilidades
+Route::post('createUtilidad', 'UtilidadController@createUtilidad')->name('createUtilidad');
+Route::get('getUtilidades', 'UtilidadController@getUtilidades')->name('getUtilidades');
+Route::post('getUtilidad', 'UtilidadController@getUtilidad')->name('getUtilidad');
+Route::post('editarUtilidad', 'UtilidadController@editarUtilidad')->name('editarUtilidad');

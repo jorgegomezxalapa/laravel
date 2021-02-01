@@ -2856,6 +2856,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
 //
 //
 //
@@ -2954,57 +2964,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    this.getCotizaciones();
+  },
   data: function data() {
     return {
       value: 0,
       search: '',
       headers: [{
-        text: 'Fecha de solicitud',
-        align: 'center',
-        value: 'nombre'
-      }, {
         text: 'Folio',
         align: 'center',
-        value: 'usuario'
+        value: 'solicitud.folio'
       }, {
-        text: 'Cliente',
+        text: 'Fecha de Solicitud',
         align: 'center',
-        value: 'rol'
+        value: 'solicitud.fecha'
+      }, {
+        text: 'Fecha de Finalizado',
+        align: 'center',
+        value: 'fechafinalizado'
+      }, {
+        text: 'Dirigido A(Cliente)',
+        align: 'center',
+        value: 'solicitud.cliente.razonSocial'
       }, {
         text: 'Solicitante',
         align: 'center',
-        value: 'solicitante'
+        value: 'solicitud.solicitante.nombre'
       }, {
         text: 'Responsable',
         align: 'center',
-        value: 'responsable'
+        value: 'solicitud.responsable.name'
       }, {
-        text: '% Utilidad',
+        text: 'Agente de venta',
         align: 'center',
-        value: 'areaTrabajo'
-      }, {
-        text: '# Réplicas',
-        align: 'center',
-        value: 'replicas'
+        value: 'solicitud.agente.name'
       }, {
         text: 'Acciones',
         align: 'center',
         value: 'acciones'
       }],
-      desserts: [{
-        nombre: '01-01-2021',
-        usuario: "XAV/V/F1/2020",
-        rol: "CFE XALAPA",
-        solicitante: "JUAN VALDEZ ORTEGA",
-        responsable: "Cotizador 2(Jorge Iván)",
-        areaTrabajo: '10%',
-        replicas: 2,
-        cotizaciones: 3,
-        cotizaciones2: 10,
-        cotizaciones3: 5,
-        ventas: 10,
-        acciones: "Acciones"
-      }]
+      cotizaciones: []
     };
   },
   methods: {
@@ -3012,6 +3012,43 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push({
         name: 'capturarCotizacion'
       })["catch"](function () {});
+    },
+    getCotizaciones: function getCotizaciones() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios({
+                  method: 'get',
+                  url: 'getCotizaciones'
+                });
+
+              case 3:
+                response = _context.sent;
+                _this.cotizaciones = response.data.response;
+                console.log(_this.cotizaciones);
+                _context.next = 12;
+                break;
+
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](0);
+                swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+                console.log(_context.t0);
+
+              case 12:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 8]]);
+      }))();
     }
   }
 });
@@ -3924,126 +3961,14 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -4156,22 +4081,66 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    console.log('Component mounted.');
+    this.getCotizacion();
   },
   data: function data() {
     return {
-      selectedItem: 7,
-      nombreUsuario: null,
-      email: null,
-      rol: null,
-      areatrabajo: null,
-      nombreCompleto: null,
-      telefono: null,
-      password: null,
-      sexo: null,
-      catareas: ['ADMINISTRACIÓN', 'COTIZACIONES', 'VENTAS'],
-      catroles: ['ADMINISTRADOR', 'COTIZADOR']
+      editar: false,
+      cotizacion: [],
+      cliente: [],
+      solicitante: [],
+      agente: [],
+      responsable: [],
+      solicitud: []
     };
+  },
+  methods: {
+    getCotizacion: function getCotizacion() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'getCotizacion',
+                  data: {
+                    id: _this.$route.params.id
+                  }
+                });
+
+              case 3:
+                response = _context.sent;
+                _this.cotizacion = response.data.response;
+                console.log(_this.cotizacion);
+                _this.solicitud = _this.cotizacion.solicitud;
+                _this.cliente = _this.cotizacion.solicitud.cliente;
+                _this.solicitante = _this.cotizacion.solicitud.solicitante;
+                _this.agente = _this.cotizacion.solicitud.agente;
+                _this.responsable = _this.cotizacion.solicitud.responsable;
+                console.log(_this.cliente, _this.solicitante, _this.agente, _this.responsable);
+                _context.next = 18;
+                break;
+
+              case 14:
+                _context.prev = 14;
+                _context.t0 = _context["catch"](0);
+                swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+                console.log(_context.t0);
+
+              case 18:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 14]]);
+      }))();
+    }
   }
 });
 
@@ -5749,147 +5718,6 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  },
-  data: function data() {
-    return {
-      selectedItem: 7,
-      nombreUsuario: null,
-      email: null,
-      rol: null,
-      areatrabajo: null,
-      nombreCompleto: null,
-      telefono: null,
-      password: null,
-      sexo: null,
-      catareas: ['ADMINISTRACIÓN', 'COTIZACIONES', 'VENTAS'],
-      catroles: ['ADMINISTRADOR', 'COTIZADOR'],
-      catclientes: ['Utilidad por Campaña', 'Utilidad por Monto Total']
-    };
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroUtilidadMontoComponent.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/RegistroUtilidadMontoComponent.vue?vue&type=script&lang=js& ***!
@@ -5899,6 +5727,24 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate/dist/rules */ "./node_modules/vee-validate/dist/rules.js");
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_3__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -6009,37 +5855,231 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+
+
+
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["setInteractionMode"])('eager');
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('digits', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["digits"]), {}, {
+  message: '{_field_} needs to be {length} digits. ({_value_})'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('required', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["required"]), {}, {
+  message: '{_field_} no puede quedarse vacío'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('max', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["max"]), {}, {
+  message: '{_field_} may not be greater than {length} characters'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('regex', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["regex"]), {}, {
+  message: '{_field_} {_value_} does not match {regex}'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["email"]), {}, {
+  message: 'El formato de email debe ser válido'
+}));
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    console.log('Component mounted.');
+    this.verificar();
+  },
+  components: {
+    ValidationProvider: vee_validate__WEBPACK_IMPORTED_MODULE_2__["ValidationProvider"],
+    ValidationObserver: vee_validate__WEBPACK_IMPORTED_MODULE_2__["ValidationObserver"]
   },
   data: function data() {
     return {
-      selectedItem: 7,
-      nombreUsuario: null,
-      email: null,
-      rol: null,
-      areatrabajo: null,
-      nombreCompleto: null,
-      telefono: null,
-      password: null,
-      sexo: null,
-      catareas: ['ADMINISTRACIÓN', 'COTIZACIONES', 'VENTAS'],
-      catroles: ['ADMINISTRADOR', 'COTIZADOR'],
-      catclientes: ['Utilidad por Campaña', 'Utilidad por Monto Total']
+      editar: false,
+      descripcion: null,
+      porcentaje: null,
+      utilidad: []
     };
+  },
+  methods: {
+    verificar: function verificar() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (_this.$route.params.id != undefined) {
+                  _this.editar = true;
+
+                  _this.getEditar();
+                } else {}
+
+              case 1:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    getEditar: function getEditar() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                _context2.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'getUtilidad',
+                  data: {
+                    id: _this2.$route.params.id
+                  }
+                });
+
+              case 3:
+                response = _context2.sent;
+                _this2.utilidad = response.data.response;
+                console.log("solicitd", _this2.utilidad.agente);
+                _this2.descripcion = _this2.utilidad.descripcion;
+                _this2.porcentaje = _this2.utilidad.porcentaje;
+                _context2.next = 14;
+                break;
+
+              case 10:
+                _context2.prev = 10;
+                _context2.t0 = _context2["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+                console.log(_context2.t0);
+
+              case 14:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 10]]);
+      }))();
+    },
+    submit: function submit(evt) {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var result;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                evt.preventDefault();
+                _context3.next = 3;
+                return _this3.$refs.observer.validate();
+
+              case 3:
+                result = _context3.sent;
+
+                if (result) {
+                  if (_this3.editar == true) {
+                    _this3.editarUtilidad();
+                  } else {
+                    _this3.registrarUtilidad();
+                  }
+                }
+
+              case 5:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    registrarUtilidad: function registrarUtilidad() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.prev = 0;
+                _context4.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'createUtilidad',
+                  data: {
+                    descripcion: _this4.descripcion,
+                    porcentaje: _this4.porcentaje
+                  }
+                });
+
+              case 3:
+                response = _context4.sent;
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "El Tipos de Venta se ha registrado de manera correcta", "success");
+
+                _this4.$router.push({
+                  name: 'utilidades'
+                });
+
+                _context4.next = 12;
+                break;
+
+              case 8:
+                _context4.prev = 8;
+                _context4.t0 = _context4["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+                console.log(_context4.t0);
+
+              case 12:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, null, [[0, 8]]);
+      }))();
+    },
+    editarUtilidad: function editarUtilidad() {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.prev = 0;
+                _context5.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'editarUtilidad',
+                  data: {
+                    id: _this5.$route.params.id,
+                    descripcion: _this5.descripcion,
+                    porcentaje: _this5.porcentaje
+                  }
+                });
+
+              case 3:
+                response = _context5.sent;
+
+                _this5.$router.push({
+                  name: 'utilidades'
+                });
+
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "El tipo de Venta se ha editado de manera correcta", "success");
+                _context5.next = 12;
+                break;
+
+              case 8:
+                _context5.prev = 8;
+                _context5.t0 = _context5["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+                console.log(_context5.t0);
+
+              case 12:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, null, [[0, 8]]);
+      }))();
+    }
   }
 });
 
@@ -6501,238 +6541,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -6822,172 +6638,67 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      value: 0,
-      mostrarsolicitudes: false,
-      mostrarsolicitantes: false,
-      mostrarclientes: true,
-      mostrarMontos: false,
-      mostrarPersonalizados: false,
-      mostrarcampanias: false,
       search: '',
       headers: [{
-        text: 'Empresa',
+        text: 'Fecha de registro',
         align: 'center',
-        value: 'nombre'
+        value: 'created_at'
       }, {
-        text: 'Representante',
+        text: 'Descripción',
         align: 'center',
-        value: 'usuario'
+        value: 'descripcion'
       }, {
-        text: 'RFC',
+        text: 'Porcentaje %',
         align: 'center',
-        value: 'rol'
-      }, {
-        text: '% Utilidad',
-        align: 'center',
-        value: 'areaTrabajo'
-      }, {
-        text: 'Cotizaciones',
-        align: 'center',
-        value: 'cotizaciones'
-      }, {
-        text: 'Ventas',
-        align: 'center',
-        value: 'ventas'
+        value: 'porcentaje'
       }, {
         text: 'Acciones',
         align: 'center',
         value: 'acciones'
       }],
-      headers2: [{
-        text: 'Nombre de la Campaña',
-        align: 'center',
-        value: 'item1'
-      }, {
-        text: 'Fecha',
-        align: 'center',
-        value: 'item2'
-      }, {
-        text: '% Utilidad',
-        align: 'center',
-        value: 'item3'
-      }, {
-        text: 'Acciones',
-        align: 'center',
-        value: 'acciones'
-      }],
-      desserts2: [{
-        item1: 'Descuento Verano 10%',
-        item2: '12-06-2021',
-        item3: '10%',
-        item4: 'item'
-      }],
-      headers3: [{
-        text: 'Nombre',
-        align: 'center',
-        value: 'item1'
-      }, {
-        text: 'Fecha',
-        align: 'center',
-        value: 'item2'
-      }, {
-        text: 'Cantidad a superar',
-        align: 'center',
-        value: 'item3'
-      }, {
-        text: '% Utilidad',
-        align: 'center',
-        value: 'item4'
-      }, {
-        text: 'Acciones',
-        align: 'center',
-        value: 'acciones'
-      }],
-      desserts3: [{
-        item1: 'Utilidad menor o igual a 1999',
-        item2: '12-06-2021',
-        item3: '$2000',
-        item4: '10'
-      }, {
-        item1: 'Utilidad menor o igual a 4999',
-        item2: '12-06-2021',
-        item3: '$5000',
-        item4: '25'
-      }],
-      desserts: [{
-        nombre: 'CFE',
-        usuario: "JUAN VALDEZ",
-        rol: "FADJFASDEQ1VS",
-        areaTrabajo: 30,
-        cotizaciones: 3,
-        cotizaciones2: 10,
-        cotizaciones3: 5,
-        ventas: 10,
-        acciones: "Acciones"
-      }],
-      ocliente: false,
-      osolicitante: false,
-      omonto: false,
-      ocampania: false,
-      opersonalizada: false
+      utilidades: []
     };
   },
+  mounted: function mounted() {
+    this.getUtilidades();
+  },
   methods: {
-    nuevoMonto: function nuevoMonto() {
-      this.$router.push({
-        name: 'nuevoMonto'
-      })["catch"](function () {});
-    },
-    nuevaCampania: function nuevaCampania() {
-      this.$router.push({
-        name: 'nuevaCampania'
-      })["catch"](function () {});
-    },
-    mostrarTabla: function mostrarTabla(mostrar) {
-      if (mostrar == 'ocliente') {
-        this.mostrarclientes = true;
-        this.mostrarsolicitantes = false;
-        this.mostrarMontos = false;
-        this.mostrarcampanias = false;
-        this.mostrarPersonalizados = false;
-        console.log(this.mostrarclientes, this.mostrarsolicitantes, this.mostrarMontos, this.mostrarcampanias, this.mostrarPersonalizados);
-      }
+    getUtilidades: function getUtilidades() {
+      var _this = this;
 
-      if (mostrar == 'osolicitante') {
-        this.mostrarclientes = false;
-        this.mostrarsolicitantes = true;
-        this.mostrarPersonalizados = false;
-        this.mostrarcampanias = false;
-        this.mostrarPersonalizados = false;
-        console.log(this.mostrarclientes, this.mostrarsolicitantes, this.mostrarMontos, this.mostrarcampanias, this.mostrarPersonalizados);
-      }
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios({
+                  method: 'get',
+                  url: 'getUtilidades'
+                });
 
-      if (mostrar == 'omonto') {
-        this.mostrarclientes = false;
-        this.mostrarsolicitantes = false;
-        this.mostrarMontos = true;
-        this.mostrarcampanias = false;
-        this.mostrarPersonalizados = false;
-        console.log(this.mostrarclientes, this.mostrarsolicitantes, this.mostrarMontos, this.mostrarcampanias, this.mostrarPersonalizados);
-      }
+              case 3:
+                response = _context.sent;
+                _this.utilidades = response.data.response;
+                console.log(_this.utilidades);
+                _context.next = 12;
+                break;
 
-      if (mostrar == 'ocampania') {
-        this.mostrarclientes = false;
-        this.mostrarsolicitantes = false;
-        this.mostrarMontos = false;
-        this.mostrarcampanias = true;
-        this.mostrarPersonalizados = false;
-        console.log(this.mostrarclientes, this.mostrarsolicitantes, this.mostrarMontos, this.mostrarcampanias, this.mostrarPersonalizados);
-      }
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](0);
+                swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+                console.log(_context.t0);
 
-      if (mostrar == 'opersonalizada') {
-        this.mostrarclientes = false;
-        this.mostrarsolicitantes = false;
-        this.mostrarMontos = false;
-        this.mostrarcampanias = false;
-        this.mostrarPersonalizados = true;
-        console.log(this.mostrarclientes, this.mostrarsolicitantes, this.mostrarMontos, this.mostrarcampanias, this.mostrarPersonalizados);
-      }
+              case 12:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 8]]);
+      }))();
     }
   }
 });
@@ -47985,7 +47696,7 @@ var render = function() {
                       _c("v-data-table", {
                         attrs: {
                           headers: _vm.headers,
-                          items: _vm.desserts,
+                          items: _vm.cotizaciones,
                           search: _vm.search
                         },
                         scopedSlots: _vm._u([
@@ -48007,29 +47718,43 @@ var render = function() {
                                             var attrs = ref.attrs
                                             return [
                                               _c(
-                                                "v-btn",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      attrs: {
-                                                        small: "",
-                                                        color: "primary",
-                                                        dark: "",
-                                                        fab: ""
-                                                      }
-                                                    },
-                                                    "v-btn",
-                                                    attrs,
-                                                    false
-                                                  ),
-                                                  on
-                                                ),
+                                                "router-link",
+                                                {
+                                                  attrs: {
+                                                    to: {
+                                                      name: "iniciarCotizacion",
+                                                      params: { id: item.id }
+                                                    }
+                                                  }
+                                                },
                                                 [
-                                                  _c("v-icon", [
-                                                    _vm._v(
-                                                      "mdi-file-send-outline"
-                                                    )
-                                                  ])
+                                                  _c(
+                                                    "v-btn",
+                                                    _vm._g(
+                                                      _vm._b(
+                                                        {
+                                                          attrs: {
+                                                            small: "",
+                                                            color: "primary",
+                                                            dark: "",
+                                                            fab: ""
+                                                          }
+                                                        },
+                                                        "v-btn",
+                                                        attrs,
+                                                        false
+                                                      ),
+                                                      on
+                                                    ),
+                                                    [
+                                                      _c("v-icon", [
+                                                        _vm._v(
+                                                          "mdi-file-send-outline"
+                                                        )
+                                                      ])
+                                                    ],
+                                                    1
+                                                  )
                                                 ],
                                                 1
                                               )
@@ -49135,7 +48860,7 @@ var render = function() {
         },
         [
           _c("v-card-title", { staticClass: "font-weight-black" }, [
-            _vm._v("Cotizar Folio XAF/F1/1/2021(Ver Detalle)")
+            _vm._v("Información de la cotización")
           ]),
           _vm._v(" "),
           _c("v-divider"),
@@ -49147,288 +48872,43 @@ var render = function() {
                 "v-container",
                 [
                   _c("p", { staticClass: "font-weight-black" }, [
-                    _vm._v("Datos del producto")
+                    _vm._v("Datos generales")
                   ]),
                   _vm._v(" "),
                   _c(
                     "v-row",
                     [
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "4", md: "4" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "Partida", required: "" },
-                            model: {
-                              value: _vm.razonSocial,
-                              callback: function($$v) {
-                                _vm.razonSocial = $$v
-                              },
-                              expression: "razonSocial"
-                            }
-                          })
-                        ],
-                        1
-                      ),
+                      _c("v-col", { attrs: { cols: "12", md: "6" } }, [
+                        _c("p", { staticClass: "font-weight-black" }, [
+                          _vm._v("Solicitud con #Folio: "),
+                          _c("br"),
+                          _vm._v(_vm._s(this.cliente.razonSocial) + " ")
+                        ])
+                      ]),
                       _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "8", md: "8" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "Descripción", required: "" },
-                            model: {
-                              value: _vm.razonSocial,
-                              callback: function($$v) {
-                                _vm.razonSocial = $$v
-                              },
-                              expression: "razonSocial"
-                            }
-                          })
-                        ],
-                        1
-                      ),
+                      _c("v-col", { attrs: { cols: "12", md: "6" } }, [
+                        _c("p", { staticClass: "font-weight-black" }, [
+                          _vm._v("Solicitante: "),
+                          _c("br"),
+                          _vm._v(_vm._s(this.solicitante.nombre) + " ")
+                        ])
+                      ]),
                       _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "6", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "Unidad de Medida", required: "" },
-                            model: {
-                              value: _vm.razonSocial,
-                              callback: function($$v) {
-                                _vm.razonSocial = $$v
-                              },
-                              expression: "razonSocial"
-                            }
-                          })
-                        ],
-                        1
-                      ),
+                      _c("v-col", { attrs: { cols: "12", md: "6" } }, [
+                        _c("p", { staticClass: "font-weight-black" }, [
+                          _vm._v("Dirigido a(Cliente): "),
+                          _c("br"),
+                          _vm._v(_vm._s(this.cliente.razonSocial) + " ")
+                        ])
+                      ]),
                       _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "6", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "Cantidad", required: "" },
-                            model: {
-                              value: _vm.razonSocial,
-                              callback: function($$v) {
-                                _vm.razonSocial = $$v
-                              },
-                              expression: "razonSocial"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "6", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "Precio del provedor",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.razonSocial,
-                              callback: function($$v) {
-                                _vm.razonSocial = $$v
-                              },
-                              expression: "razonSocial"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "6", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "Importe", required: "" },
-                            model: {
-                              value: _vm.razonSocial,
-                              callback: function($$v) {
-                                _vm.razonSocial = $$v
-                              },
-                              expression: "razonSocial"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "6", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "Utilidad", required: "" },
-                            model: {
-                              value: _vm.razonSocial,
-                              callback: function($$v) {
-                                _vm.razonSocial = $$v
-                              },
-                              expression: "razonSocial"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "6", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "Precio Unitario", required: "" },
-                            model: {
-                              value: _vm.razonSocial,
-                              callback: function($$v) {
-                                _vm.razonSocial = $$v
-                              },
-                              expression: "razonSocial"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "6", md: "6" } },
-                        [
-                          _c("v-checkbox", {
-                            staticClass: "shrink mr-2 mt-0",
-                            attrs: { "hide-details": "" },
-                            model: {
-                              value: _vm.includeFiles,
-                              callback: function($$v) {
-                                _vm.includeFiles = $$v
-                              },
-                              expression: "includeFiles"
-                            }
-                          }),
-                          _vm._v("¿Incluye IVA?\n        "),
-                          _c("v-text-field", {
-                            attrs: { label: "Ingrese IVA variable" }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "6", md: "6" } },
-                        [
-                          _c("v-checkbox", {
-                            staticClass: "shrink mr-2 mt-0",
-                            attrs: { "hide-details": "" },
-                            model: {
-                              value: _vm.includeFiles,
-                              callback: function($$v) {
-                                _vm.includeFiles = $$v
-                              },
-                              expression: "includeFiles"
-                            }
-                          }),
-                          _vm._v("¿Incluye IEPS?\n        "),
-                          _c("v-text-field", {
-                            attrs: { label: "Ingrese IEPS variable" }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-weight-black mt-5" }, [
-                    _vm._v("Detalle general")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "v-row",
-                    [
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "6", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "Subtotal", required: "" },
-                            model: {
-                              value: _vm.razonSocial,
-                              callback: function($$v) {
-                                _vm.razonSocial = $$v
-                              },
-                              expression: "razonSocial"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "6", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "IVA", required: "" },
-                            model: {
-                              value: _vm.razonSocial,
-                              callback: function($$v) {
-                                _vm.razonSocial = $$v
-                              },
-                              expression: "razonSocial"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "6", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "IEPS", required: "" },
-                            model: {
-                              value: _vm.razonSocial,
-                              callback: function($$v) {
-                                _vm.razonSocial = $$v
-                              },
-                              expression: "razonSocial"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "6", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "TOTAL", required: "" },
-                            model: {
-                              value: _vm.razonSocial,
-                              callback: function($$v) {
-                                _vm.razonSocial = $$v
-                              },
-                              expression: "razonSocial"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("v-col", { attrs: { cols: "12", md: "12" } }, [
+                        _c("p", { staticClass: "font-weight-black" }, [
+                          _vm._v("Comentarios: "),
+                          _c("br"),
+                          _vm._v(_vm._s(this.solicitud.comentarios) + " ")
+                        ])
+                      ])
                     ],
                     1
                   )
@@ -50875,165 +50355,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=template&id=be725416&":
-/*!*******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=template&id=be725416& ***!
-  \*******************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "v-container",
-    { attrs: { fluid: "" } },
-    [
-      _c(
-        "v-card",
-        {
-          staticClass: "mx-auto rounded-lg py-5 px-2 mt-5 mb-5",
-          attrs: { width: "100%", align: "center", justify: "space-around" }
-        },
-        [
-          _c("v-card-title", { staticClass: "font-weight-black" }, [
-            _vm._v("Nueva Regla de Utilidad(Campaña)")
-          ]),
-          _vm._v(" "),
-          _c("v-divider"),
-          _vm._v(" "),
-          _c(
-            "v-card-text",
-            [
-              _c(
-                "v-container",
-                [
-                  _c("p", { staticClass: "font-weight-black" }, [
-                    _vm._v("Información de la regla")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "v-row",
-                    [
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "12" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "Nombre de la regla de utilidad",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.razonSocial,
-                              callback: function($$v) {
-                                _vm.razonSocial = $$v
-                              },
-                              expression: "razonSocial"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "Porcentaje de Utilidad",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.giro,
-                              callback: function($$v) {
-                                _vm.giro = $$v
-                              },
-                              expression: "giro"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("v-divider"),
-          _vm._v(" "),
-          _c(
-            "v-card-actions",
-            [
-              _c(
-                "v-row",
-                [
-                  _c(
-                    "v-col",
-                    [
-                      _c(
-                        "v-btn",
-                        { attrs: { color: "warning", cols: "6", block: "" } },
-                        [_vm._v("\n      Editar\n    ")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-col",
-                    [
-                      _c(
-                        "v-btn",
-                        { attrs: { color: "error", cols: "6", block: "" } },
-                        [_vm._v("\n     Eliminar\n    ")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-col",
-                    [
-                      _c(
-                        "v-btn",
-                        { attrs: { cols: "6", block: "", color: "primary" } },
-                        [_vm._v("\n      Registrar\n    ")]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroUtilidadMontoComponent.vue?vue&type=template&id=645ae848&":
 /*!****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/RegistroUtilidadMontoComponent.vue?vue&type=template&id=645ae848& ***!
@@ -51060,146 +50381,203 @@ var render = function() {
           attrs: { width: "100%", align: "center", justify: "space-around" }
         },
         [
-          _c("v-card-title", { staticClass: "font-weight-black" }, [
-            _vm._v("Nueva Regla de Utilidad(Monto)")
-          ]),
-          _vm._v(" "),
-          _c("v-divider"),
-          _vm._v(" "),
-          _c(
-            "v-card-text",
-            [
-              _c(
-                "v-container",
-                [
-                  _c("p", { staticClass: "font-weight-black" }, [
-                    _vm._v("Información de la regla")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "v-row",
-                    [
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "12" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "Nombre del regla de utilidad",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.razonSocial,
-                              callback: function($$v) {
-                                _vm.razonSocial = $$v
-                              },
-                              expression: "razonSocial"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "Cantidad a superar",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.giro,
-                              callback: function($$v) {
-                                _vm.giro = $$v
-                              },
-                              expression: "giro"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "6" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "Porcentaje de Utilidad",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.giro,
-                              callback: function($$v) {
-                                _vm.giro = $$v
-                              },
-                              expression: "giro"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("v-divider"),
-          _vm._v(" "),
-          _c(
-            "v-card-actions",
-            [
-              _c(
-                "v-row",
-                [
-                  _c(
-                    "v-col",
-                    [
-                      _c(
-                        "v-btn",
-                        { attrs: { color: "warning", cols: "6", block: "" } },
-                        [_vm._v("\n      Editar\n    ")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-col",
-                    [
-                      _c(
-                        "v-btn",
-                        { attrs: { color: "error", cols: "6", block: "" } },
-                        [_vm._v("\n     Eliminar\n    ")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-col",
-                    [
-                      _c(
-                        "v-btn",
-                        { attrs: { cols: "6", block: "", color: "primary" } },
-                        [_vm._v("\n      Registrar\n    ")]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
+          _c("validation-observer", {
+            ref: "observer",
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(ref) {
+                  var invalid = ref.invalid
+                  return [
+                    _c(
+                      "form",
+                      {
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.submit($event)
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "v-card-title",
+                          { staticClass: "font-weight-black" },
+                          [_vm._v("Nuevo Tipo de Venta(Utilidad)")]
+                        ),
+                        _vm._v(" "),
+                        _c("v-divider"),
+                        _vm._v(" "),
+                        _c(
+                          "v-card-text",
+                          [
+                            _c(
+                              "v-container",
+                              [
+                                _c("p", { staticClass: "font-weight-black" }, [
+                                  _vm._v("Información del tipo de venta")
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "v-row",
+                                  [
+                                    _c(
+                                      "v-col",
+                                      { attrs: { cols: "12", md: "12" } },
+                                      [
+                                        _c("validation-provider", {
+                                          attrs: {
+                                            name:
+                                              "Descripción del tipo de venta",
+                                            rules: "required"
+                                          },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "default",
+                                                fn: function(ref) {
+                                                  var errors = ref.errors
+                                                  return [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        label:
+                                                          "Descripción del tipo de venta *",
+                                                        "error-messages": errors
+                                                      },
+                                                      model: {
+                                                        value: _vm.descripcion,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.descripcion = $$v
+                                                        },
+                                                        expression:
+                                                          "descripcion"
+                                                      }
+                                                    })
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-col",
+                                      { attrs: { cols: "12", md: "6" } },
+                                      [
+                                        _c("validation-provider", {
+                                          attrs: {
+                                            name:
+                                              "Porcentaje del tipo de venta",
+                                            rules: "required"
+                                          },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "default",
+                                                fn: function(ref) {
+                                                  var errors = ref.errors
+                                                  return [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        label:
+                                                          "Porcentaje del tipo de venta *",
+                                                        "error-messages": errors
+                                                      },
+                                                      model: {
+                                                        value: _vm.porcentaje,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.porcentaje = $$v
+                                                        },
+                                                        expression: "porcentaje"
+                                                      }
+                                                    })
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("v-divider"),
+                        _vm._v(" "),
+                        _c(
+                          "v-card-actions",
+                          [
+                            _c(
+                              "v-row",
+                              [
+                                _c(
+                                  "v-col",
+                                  [
+                                    _vm.editar
+                                      ? _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              color: "warning",
+                                              cols: "6",
+                                              block: "",
+                                              type: "submit"
+                                            }
+                                          },
+                                          [_vm._v("\n      Editar\n    ")]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.editar
+                                      ? _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              cols: "6",
+                                              block: "",
+                                              type: "submit",
+                                              color: "primary"
+                                            }
+                                          },
+                                          [_vm._v("\nRegistrar\n")]
+                                        )
+                                      : _vm._e()
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                }
+              }
+            ])
+          })
         ],
         1
       )
@@ -51909,880 +51287,180 @@ var render = function() {
     { attrs: { fluid: "" } },
     [
       _c(
-        "v-bottom-navigation",
-        { attrs: { value: _vm.value, color: "primary", horizontal: "" } },
+        "v-card",
+        {
+          staticClass: "mx-auto rounded-lg py-5 px-2 mt-5 mb-5",
+          attrs: { width: "100%", align: "center", justify: "space-around" }
+        },
         [
+          _c("v-card-title", { staticClass: "font-weight-black" }, [
+            _vm._v("Módulo de Tipos de Venta(Utilidades)")
+          ]),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
           _c(
-            "v-btn",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.mostrarTabla("ocliente")
-                }
-              }
-            },
+            "v-card-text",
             [
-              _c("span", [_vm._v("Cliente")]),
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12", md: "4" } },
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "nuevaUtilidad" } } },
+                        [
+                          _c(
+                            "v-btn",
+                            { attrs: { color: "primary", dark: "" } },
+                            [
+                              _vm._v(
+                                "\n              Registrar Nuevo Tipo de Venta\n            "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12", md: "8" } },
+                    [
+                      _c("v-text-field", {
+                        attrs: {
+                          "append-icon": "mdi-magnify",
+                          label: "Buscar por parámetro",
+                          "single-line": "",
+                          "hide-details": ""
+                        },
+                        model: {
+                          value: _vm.search,
+                          callback: function($$v) {
+                            _vm.search = $$v
+                          },
+                          expression: "search"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("v-icon", [_vm._v("mdi-history")])
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12" } },
+                    [
+                      _c("v-data-table", {
+                        attrs: {
+                          headers: _vm.headers,
+                          items: _vm.utilidades,
+                          search: _vm.search
+                        },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "item.acciones",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c(
+                                  "v-tooltip",
+                                  {
+                                    attrs: { top: "" },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "activator",
+                                          fn: function(ref) {
+                                            var on = ref.on
+                                            var attrs = ref.attrs
+                                            return [
+                                              _c(
+                                                "router-link",
+                                                {
+                                                  attrs: {
+                                                    to: {
+                                                      name: "editarUtilidad",
+                                                      params: { id: item.id }
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "v-btn",
+                                                    _vm._g(
+                                                      _vm._b(
+                                                        {
+                                                          attrs: {
+                                                            small: "",
+                                                            color: "warning",
+                                                            dark: "",
+                                                            fab: ""
+                                                          }
+                                                        },
+                                                        "v-btn",
+                                                        attrs,
+                                                        false
+                                                      ),
+                                                      on
+                                                    ),
+                                                    [
+                                                      _c("v-icon", [
+                                                        _vm._v(
+                                                          "mdi-pencil-box-outline"
+                                                        )
+                                                      ])
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      null,
+                                      true
+                                    )
+                                  },
+                                  [
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v("Editar Tipo de Venta")])
+                                  ]
+                                )
+                              ]
+                            }
+                          }
+                        ])
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
             ],
             1
           ),
           _vm._v(" "),
-          _c(
-            "v-btn",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.mostrarTabla("osolicitante")
-                }
-              }
-            },
-            [
-              _c("span", [_vm._v("Solicitante")]),
-              _vm._v(" "),
-              _c("v-icon", [_vm._v("mdi-history")])
-            ],
-            1
-          ),
+          _c("v-divider"),
           _vm._v(" "),
-          _c(
-            "v-btn",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.mostrarTabla("omonto")
-                }
-              }
-            },
-            [
-              _c("span", [_vm._v("Monto")]),
-              _vm._v(" "),
-              _c("v-icon", [_vm._v("mdi-history")])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.mostrarTabla("ocampania")
-                }
-              }
-            },
-            [
-              _c("span", [_vm._v("Campaña")]),
-              _vm._v(" "),
-              _c("v-icon", [_vm._v("mdi-history")])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.mostrarTabla("opersonalizada")
-                }
-              }
-            },
-            [
-              _c("span", [_vm._v("Personalizada")]),
-              _vm._v(" "),
-              _c("v-icon", [_vm._v("mdi-history")])
-            ],
-            1
-          )
+          _c("v-card-actions")
         ],
         1
-      ),
-      _vm._v(" "),
-      _vm.mostrarclientes ? _c("componente-clientes") : _vm._e(),
-      _vm._v(" "),
-      _vm.mostrarsolicitantes ? _c("componente-solicitantes") : _vm._e(),
-      _vm._v(" "),
-      _vm.mostrarPersonalizados ? _c("componente-solicitudes") : _vm._e(),
-      _vm._v(" "),
-      _vm.mostrarcampanias
-        ? _c(
-            "v-card",
-            {
-              staticClass: "mx-auto rounded-lg py-5 px-2 mt-5 mb-5",
-              attrs: { width: "100%", align: "center", justify: "space-around" }
-            },
-            [
-              _c("v-card-title", { staticClass: "font-weight-black" }, [
-                _vm._v("Registro de Utilidades(Campaña)")
-              ]),
-              _vm._v(" "),
-              _c("v-divider"),
-              _vm._v(" "),
-              _c(
-                "v-card-text",
-                [
-                  _c(
-                    "v-row",
-                    [
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "4" } },
-                        [
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: { color: "primary", dark: "" },
-                              on: { click: _vm.nuevaCampania }
-                            },
-                            [
-                              _vm._v(
-                                "\n              Registrar Nueva Utilidad\n            "
-                              )
-                            ]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "8" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              "append-icon": "mdi-magnify",
-                              label: "Buscar por parámetro",
-                              "single-line": "",
-                              "hide-details": ""
-                            },
-                            model: {
-                              value: _vm.search,
-                              callback: function($$v) {
-                                _vm.search = $$v
-                              },
-                              expression: "search"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-row",
-                    [
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12" } },
-                        [
-                          _c("v-data-table", {
-                            attrs: {
-                              headers: _vm.headers2,
-                              items: _vm.desserts2,
-                              search: _vm.search
-                            },
-                            scopedSlots: _vm._u(
-                              [
-                                {
-                                  key: "item.cotizaciones",
-                                  fn: function(ref) {
-                                    var item = ref.item
-                                    return [
-                                      _c(
-                                        "v-tooltip",
-                                        {
-                                          attrs: { top: "" },
-                                          scopedSlots: _vm._u(
-                                            [
-                                              {
-                                                key: "activator",
-                                                fn: function(ref) {
-                                                  var on = ref.on
-                                                  var attrs = ref.attrs
-                                                  return [
-                                                    _c(
-                                                      "v-chip",
-                                                      _vm._g(
-                                                        _vm._b(
-                                                          {
-                                                            attrs: {
-                                                              color: "grey",
-                                                              dark: ""
-                                                            }
-                                                          },
-                                                          "v-chip",
-                                                          attrs,
-                                                          false
-                                                        ),
-                                                        on
-                                                      ),
-                                                      [
-                                                        _vm._v(
-                                                          "\n        " +
-                                                            _vm._s(
-                                                              item.cotizaciones
-                                                            ) +
-                                                            "\n      "
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                }
-                                              }
-                                            ],
-                                            null,
-                                            true
-                                          )
-                                        },
-                                        [
-                                          _vm._v(" "),
-                                          _c("span", [_vm._v("Pendientes")])
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-tooltip",
-                                        {
-                                          attrs: { top: "" },
-                                          scopedSlots: _vm._u(
-                                            [
-                                              {
-                                                key: "activator",
-                                                fn: function(ref) {
-                                                  var on = ref.on
-                                                  var attrs = ref.attrs
-                                                  return [
-                                                    _c(
-                                                      "v-chip",
-                                                      _vm._g(
-                                                        _vm._b(
-                                                          {
-                                                            attrs: {
-                                                              color: "orange",
-                                                              dark: ""
-                                                            }
-                                                          },
-                                                          "v-chip",
-                                                          attrs,
-                                                          false
-                                                        ),
-                                                        on
-                                                      ),
-                                                      [
-                                                        _vm._v(
-                                                          "\n        " +
-                                                            _vm._s(
-                                                              item.cotizaciones2
-                                                            ) +
-                                                            "\n      "
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                }
-                                              }
-                                            ],
-                                            null,
-                                            true
-                                          )
-                                        },
-                                        [
-                                          _vm._v(" "),
-                                          _c("span", [_vm._v("En Proceso")])
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-tooltip",
-                                        {
-                                          attrs: { top: "" },
-                                          scopedSlots: _vm._u(
-                                            [
-                                              {
-                                                key: "activator",
-                                                fn: function(ref) {
-                                                  var on = ref.on
-                                                  var attrs = ref.attrs
-                                                  return [
-                                                    _c(
-                                                      "v-chip",
-                                                      _vm._g(
-                                                        _vm._b(
-                                                          {
-                                                            attrs: {
-                                                              color: "green",
-                                                              dark: ""
-                                                            }
-                                                          },
-                                                          "v-chip",
-                                                          attrs,
-                                                          false
-                                                        ),
-                                                        on
-                                                      ),
-                                                      [
-                                                        _vm._v(
-                                                          "\n        " +
-                                                            _vm._s(
-                                                              item.cotizaciones3
-                                                            ) +
-                                                            "\n      "
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                }
-                                              }
-                                            ],
-                                            null,
-                                            true
-                                          )
-                                        },
-                                        [
-                                          _vm._v(" "),
-                                          _c("span", [_vm._v("Cotizadas")])
-                                        ]
-                                      )
-                                    ]
-                                  }
-                                },
-                                {
-                                  key: "item.ventas",
-                                  fn: function(ref) {
-                                    var item = ref.item
-                                    return [
-                                      _c(
-                                        "v-tooltip",
-                                        {
-                                          attrs: { top: "" },
-                                          scopedSlots: _vm._u(
-                                            [
-                                              {
-                                                key: "activator",
-                                                fn: function(ref) {
-                                                  var on = ref.on
-                                                  var attrs = ref.attrs
-                                                  return [
-                                                    _c(
-                                                      "v-chip",
-                                                      _vm._g(
-                                                        _vm._b(
-                                                          {
-                                                            attrs: {
-                                                              color: "green",
-                                                              dark: ""
-                                                            }
-                                                          },
-                                                          "v-chip",
-                                                          attrs,
-                                                          false
-                                                        ),
-                                                        on
-                                                      ),
-                                                      [
-                                                        _vm._v(
-                                                          "\n        " +
-                                                            _vm._s(
-                                                              item.ventas
-                                                            ) +
-                                                            "\n      "
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                }
-                                              }
-                                            ],
-                                            null,
-                                            true
-                                          )
-                                        },
-                                        [
-                                          _vm._v(" "),
-                                          _c("span", [_vm._v("Realizadas")])
-                                        ]
-                                      )
-                                    ]
-                                  }
-                                },
-                                {
-                                  key: "item.acciones",
-                                  fn: function(ref) {
-                                    var item = ref.item
-                                    return [
-                                      _c(
-                                        "v-tooltip",
-                                        {
-                                          attrs: { top: "" },
-                                          scopedSlots: _vm._u(
-                                            [
-                                              {
-                                                key: "activator",
-                                                fn: function(ref) {
-                                                  var on = ref.on
-                                                  var attrs = ref.attrs
-                                                  return [
-                                                    _c(
-                                                      "v-btn",
-                                                      _vm._g(
-                                                        _vm._b(
-                                                          {
-                                                            attrs: {
-                                                              small: "",
-                                                              color: "primary",
-                                                              dark: "",
-                                                              fab: ""
-                                                            }
-                                                          },
-                                                          "v-btn",
-                                                          attrs,
-                                                          false
-                                                        ),
-                                                        on
-                                                      ),
-                                                      [
-                                                        _c("v-icon", [
-                                                          _vm._v(
-                                                            "mdi-information-outline"
-                                                          )
-                                                        ])
-                                                      ],
-                                                      1
-                                                    )
-                                                  ]
-                                                }
-                                              }
-                                            ],
-                                            null,
-                                            true
-                                          )
-                                        },
-                                        [
-                                          _vm._v(" "),
-                                          _c("span", [
-                                            _vm._v("Ver Información")
-                                          ])
-                                        ]
-                                      )
-                                    ]
-                                  }
-                                }
-                              ],
-                              null,
-                              false,
-                              1702654524
-                            )
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("v-divider"),
-              _vm._v(" "),
-              _c("v-card-actions")
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.mostrarMontos
-        ? _c(
-            "v-card",
-            {
-              staticClass: "mx-auto rounded-lg py-5 px-2 mt-5 mb-5",
-              attrs: { width: "100%", align: "center", justify: "space-around" }
-            },
-            [
-              _c("v-card-title", { staticClass: "font-weight-black" }, [
-                _vm._v("Registro de Utilidades(Monto)")
-              ]),
-              _vm._v(" "),
-              _c("v-divider"),
-              _vm._v(" "),
-              _c(
-                "v-card-text",
-                [
-                  _c(
-                    "v-row",
-                    [
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "4" } },
-                        [
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: { color: "primary", dark: "" },
-                              on: { click: _vm.nuevoMonto }
-                            },
-                            [
-                              _vm._v(
-                                "\n              Registrar Nueva Utilidad\n            "
-                              )
-                            ]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", md: "8" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              "append-icon": "mdi-magnify",
-                              label: "Buscar por parámetro",
-                              "single-line": "",
-                              "hide-details": ""
-                            },
-                            model: {
-                              value: _vm.search,
-                              callback: function($$v) {
-                                _vm.search = $$v
-                              },
-                              expression: "search"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-row",
-                    [
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12" } },
-                        [
-                          _c("v-data-table", {
-                            attrs: {
-                              headers: _vm.headers3,
-                              items: _vm.desserts3,
-                              search: _vm.search
-                            },
-                            scopedSlots: _vm._u(
-                              [
-                                {
-                                  key: "item.cotizaciones",
-                                  fn: function(ref) {
-                                    var item = ref.item
-                                    return [
-                                      _c(
-                                        "v-tooltip",
-                                        {
-                                          attrs: { top: "" },
-                                          scopedSlots: _vm._u(
-                                            [
-                                              {
-                                                key: "activator",
-                                                fn: function(ref) {
-                                                  var on = ref.on
-                                                  var attrs = ref.attrs
-                                                  return [
-                                                    _c(
-                                                      "v-chip",
-                                                      _vm._g(
-                                                        _vm._b(
-                                                          {
-                                                            attrs: {
-                                                              color: "grey",
-                                                              dark: ""
-                                                            }
-                                                          },
-                                                          "v-chip",
-                                                          attrs,
-                                                          false
-                                                        ),
-                                                        on
-                                                      ),
-                                                      [
-                                                        _vm._v(
-                                                          "\n        " +
-                                                            _vm._s(
-                                                              item.cotizaciones
-                                                            ) +
-                                                            "\n      "
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                }
-                                              }
-                                            ],
-                                            null,
-                                            true
-                                          )
-                                        },
-                                        [
-                                          _vm._v(" "),
-                                          _c("span", [_vm._v("Pendientes")])
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-tooltip",
-                                        {
-                                          attrs: { top: "" },
-                                          scopedSlots: _vm._u(
-                                            [
-                                              {
-                                                key: "activator",
-                                                fn: function(ref) {
-                                                  var on = ref.on
-                                                  var attrs = ref.attrs
-                                                  return [
-                                                    _c(
-                                                      "v-chip",
-                                                      _vm._g(
-                                                        _vm._b(
-                                                          {
-                                                            attrs: {
-                                                              color: "orange",
-                                                              dark: ""
-                                                            }
-                                                          },
-                                                          "v-chip",
-                                                          attrs,
-                                                          false
-                                                        ),
-                                                        on
-                                                      ),
-                                                      [
-                                                        _vm._v(
-                                                          "\n        " +
-                                                            _vm._s(
-                                                              item.cotizaciones2
-                                                            ) +
-                                                            "\n      "
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                }
-                                              }
-                                            ],
-                                            null,
-                                            true
-                                          )
-                                        },
-                                        [
-                                          _vm._v(" "),
-                                          _c("span", [_vm._v("En Proceso")])
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-tooltip",
-                                        {
-                                          attrs: { top: "" },
-                                          scopedSlots: _vm._u(
-                                            [
-                                              {
-                                                key: "activator",
-                                                fn: function(ref) {
-                                                  var on = ref.on
-                                                  var attrs = ref.attrs
-                                                  return [
-                                                    _c(
-                                                      "v-chip",
-                                                      _vm._g(
-                                                        _vm._b(
-                                                          {
-                                                            attrs: {
-                                                              color: "green",
-                                                              dark: ""
-                                                            }
-                                                          },
-                                                          "v-chip",
-                                                          attrs,
-                                                          false
-                                                        ),
-                                                        on
-                                                      ),
-                                                      [
-                                                        _vm._v(
-                                                          "\n        " +
-                                                            _vm._s(
-                                                              item.cotizaciones3
-                                                            ) +
-                                                            "\n      "
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                }
-                                              }
-                                            ],
-                                            null,
-                                            true
-                                          )
-                                        },
-                                        [
-                                          _vm._v(" "),
-                                          _c("span", [_vm._v("Cotizadas")])
-                                        ]
-                                      )
-                                    ]
-                                  }
-                                },
-                                {
-                                  key: "item.ventas",
-                                  fn: function(ref) {
-                                    var item = ref.item
-                                    return [
-                                      _c(
-                                        "v-tooltip",
-                                        {
-                                          attrs: { top: "" },
-                                          scopedSlots: _vm._u(
-                                            [
-                                              {
-                                                key: "activator",
-                                                fn: function(ref) {
-                                                  var on = ref.on
-                                                  var attrs = ref.attrs
-                                                  return [
-                                                    _c(
-                                                      "v-chip",
-                                                      _vm._g(
-                                                        _vm._b(
-                                                          {
-                                                            attrs: {
-                                                              color: "green",
-                                                              dark: ""
-                                                            }
-                                                          },
-                                                          "v-chip",
-                                                          attrs,
-                                                          false
-                                                        ),
-                                                        on
-                                                      ),
-                                                      [
-                                                        _vm._v(
-                                                          "\n        " +
-                                                            _vm._s(
-                                                              item.ventas
-                                                            ) +
-                                                            "\n      "
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                }
-                                              }
-                                            ],
-                                            null,
-                                            true
-                                          )
-                                        },
-                                        [
-                                          _vm._v(" "),
-                                          _c("span", [_vm._v("Realizadas")])
-                                        ]
-                                      )
-                                    ]
-                                  }
-                                },
-                                {
-                                  key: "item.acciones",
-                                  fn: function(ref) {
-                                    var item = ref.item
-                                    return [
-                                      _c(
-                                        "v-tooltip",
-                                        {
-                                          attrs: { top: "" },
-                                          scopedSlots: _vm._u(
-                                            [
-                                              {
-                                                key: "activator",
-                                                fn: function(ref) {
-                                                  var on = ref.on
-                                                  var attrs = ref.attrs
-                                                  return [
-                                                    _c(
-                                                      "v-btn",
-                                                      _vm._g(
-                                                        _vm._b(
-                                                          {
-                                                            attrs: {
-                                                              small: "",
-                                                              color: "primary",
-                                                              dark: "",
-                                                              fab: ""
-                                                            }
-                                                          },
-                                                          "v-btn",
-                                                          attrs,
-                                                          false
-                                                        ),
-                                                        on
-                                                      ),
-                                                      [
-                                                        _c("v-icon", [
-                                                          _vm._v(
-                                                            "mdi-information-outline"
-                                                          )
-                                                        ])
-                                                      ],
-                                                      1
-                                                    )
-                                                  ]
-                                                }
-                                              }
-                                            ],
-                                            null,
-                                            true
-                                          )
-                                        },
-                                        [
-                                          _vm._v(" "),
-                                          _c("span", [
-                                            _vm._v("Ver Información")
-                                          ])
-                                        ]
-                                      )
-                                    ]
-                                  }
-                                }
-                              ],
-                              null,
-                              false,
-                              1702654524
-                            )
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("v-divider"),
-              _vm._v(" "),
-              _c("v-card-actions")
-            ],
-            1
-          )
-        : _vm._e()
+      )
     ],
     1
   )
@@ -112381,8 +111059,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     name: 'cotizaciones',
     component: __webpack_require__(/*! ./views/CotizacionesComponent.vue */ "./resources/js/views/CotizacionesComponent.vue")["default"]
   }, {
-    path: '/capturar-cotizacion',
-    name: 'capturarCotizacion',
+    path: '/iniciar-cotizacion/:id',
+    name: 'iniciarCotizacion',
     component: __webpack_require__(/*! ./views/RegistroCotizacionComponent.vue */ "./resources/js/views/RegistroCotizacionComponent.vue")["default"]
   }, {
     path: '/ventas',
@@ -112417,13 +111095,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     name: 'utilidades',
     component: __webpack_require__(/*! ./views/UtilidadesComponent.vue */ "./resources/js/views/UtilidadesComponent.vue")["default"]
   }, {
-    path: '/nuevo-monto-utilidad',
-    name: 'nuevoMonto',
+    path: '/editar-tipo-de-venta/:id',
+    name: 'editarUtilidad',
     component: __webpack_require__(/*! ./views/RegistroUtilidadMontoComponent.vue */ "./resources/js/views/RegistroUtilidadMontoComponent.vue")["default"]
   }, {
-    path: '/nueva-campania-utilidad',
-    name: 'nuevaCampania',
-    component: __webpack_require__(/*! ./views/RegistroUtilidadCampaniaComponent.vue */ "./resources/js/views/RegistroUtilidadCampaniaComponent.vue")["default"]
+    path: '/nuevo-tipo-de-venta',
+    name: 'nuevaUtilidad',
+    component: __webpack_require__(/*! ./views/RegistroUtilidadMontoComponent.vue */ "./resources/js/views/RegistroUtilidadMontoComponent.vue")["default"]
   }, {
     path: '/formatos',
     name: 'formatos',
@@ -113277,75 +111955,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroSolicitudesComponent_vue_vue_type_template_id_58876186___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroSolicitudesComponent_vue_vue_type_template_id_58876186___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/views/RegistroUtilidadCampaniaComponent.vue":
-/*!******************************************************************!*\
-  !*** ./resources/js/views/RegistroUtilidadCampaniaComponent.vue ***!
-  \******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _RegistroUtilidadCampaniaComponent_vue_vue_type_template_id_be725416___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RegistroUtilidadCampaniaComponent.vue?vue&type=template&id=be725416& */ "./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=template&id=be725416&");
-/* harmony import */ var _RegistroUtilidadCampaniaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RegistroUtilidadCampaniaComponent.vue?vue&type=script&lang=js& */ "./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _RegistroUtilidadCampaniaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _RegistroUtilidadCampaniaComponent_vue_vue_type_template_id_be725416___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _RegistroUtilidadCampaniaComponent_vue_vue_type_template_id_be725416___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/views/RegistroUtilidadCampaniaComponent.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************!*\
-  !*** ./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroUtilidadCampaniaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./RegistroUtilidadCampaniaComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroUtilidadCampaniaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=template&id=be725416&":
-/*!*************************************************************************************************!*\
-  !*** ./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=template&id=be725416& ***!
-  \*************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroUtilidadCampaniaComponent_vue_vue_type_template_id_be725416___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./RegistroUtilidadCampaniaComponent.vue?vue&type=template&id=be725416& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroUtilidadCampaniaComponent.vue?vue&type=template&id=be725416&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroUtilidadCampaniaComponent_vue_vue_type_template_id_be725416___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroUtilidadCampaniaComponent_vue_vue_type_template_id_be725416___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

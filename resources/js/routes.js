@@ -35,8 +35,8 @@ export default new Router ({
 		component: require('./views/CotizacionesComponent.vue').default
 	},
 	{
-		path:'/capturar-cotizacion',
-		name:'capturarCotizacion',
+		path:'/iniciar-cotizacion/:id',
+		name:'iniciarCotizacion',
 		component: require('./views/RegistroCotizacionComponent.vue').default
 	},
 	{
@@ -80,17 +80,17 @@ export default new Router ({
 		name:'utilidades',
 		component: require('./views/UtilidadesComponent.vue').default
 	},
-
 	{
-		path:'/nuevo-monto-utilidad',
-		name:'nuevoMonto',
+		path:'/editar-tipo-de-venta/:id',
+		name:'editarUtilidad',
 		component: require('./views/RegistroUtilidadMontoComponent.vue').default
 	},
 	{
-		path:'/nueva-campania-utilidad',
-		name:'nuevaCampania',
-		component: require('./views/RegistroUtilidadCampaniaComponent.vue').default
+		path:'/nuevo-tipo-de-venta',
+		name:'nuevaUtilidad',
+		component: require('./views/RegistroUtilidadMontoComponent.vue').default
 	},
+
 	{
 		path:'/formatos',
 		name:'formatos',

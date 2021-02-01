@@ -51,7 +51,7 @@
        <v-col cols="12">
           <v-data-table
       :headers="headers"
-      :items="desserts"
+      :items="cotizaciones"
       :search="search"
     >
 
@@ -64,6 +64,7 @@
 
       <v-tooltip top>
       <template v-slot:activator="{ on, attrs }">
+        <router-link :to="{name: 'iniciarCotizacion', params:{id:item.id}}">
       <v-btn
        v-bind="attrs"
           v-on="on"
@@ -75,6 +76,7 @@
               >
                 <v-icon>mdi-file-send-outline</v-icon>
               </v-btn>
+            </router-link>
           </template>
           <span>Acceder a la Cotización</span>
       </v-tooltip>
@@ -97,48 +99,54 @@
 
 <script>
     export default {
+      mounted(){
+   this.getCotizaciones()
+
+   },
     data () {
       return {
         value:0,
         search: '',
         headers: [
           {
-            text: 'Fecha de solicitud',
+            text: 'Folio',
             align: 'center',
-
-            value: 'nombre',
+            value: 'solicitud.folio',
           },
-          { text: 'Folio', align: 'center', value: 'usuario' },
-          { text: 'Cliente', align: 'center', value: 'rol' },
-          { text: 'Solicitante', align: 'center', value: 'solicitante' },
-          { text: 'Responsable', align: 'center', value: 'responsable' },
-          { text: '% Utilidad', align: 'center', value: 'areaTrabajo' },
-          { text: '# Réplicas', align: 'center', value: 'replicas' },
+          { text: 'Fecha de Solicitud', align: 'center', value: 'solicitud.fecha' },
+          { text: 'Fecha de Finalizado', align: 'center', value: 'fechafinalizado' },
+          { text: 'Dirigido A(Cliente)', align: 'center', value: 'solicitud.cliente.razonSocial' },
+          { text: 'Solicitante', align: 'center', value: 'solicitud.solicitante.nombre' },
+          { text: 'Responsable', align: 'center', value: 'solicitud.responsable.name' },
+          { text: 'Agente de venta', align: 'center', value: 'solicitud.agente.name' },
           { text: 'Acciones', align: 'center', value: 'acciones' },
         ],
-        desserts: [
-          {
-            nombre: '01-01-2021',
-            usuario: "XAV/V/F1/2020",
-            rol: "CFE XALAPA",
-            solicitante: "JUAN VALDEZ ORTEGA",
-            responsable: "Cotizador 2(Jorge Iván)",
-            areaTrabajo: '10%',
-            replicas:2,
-            cotizaciones: 3,
-            cotizaciones2: 10,
-            cotizaciones3: 5,
-            ventas:10,
-            acciones: "Acciones",
-          },
-
-        ],
+        cotizaciones: [],
       }
     },
      methods: {
         capturarCotizacion(){
             this.$router.push({ name: 'capturarCotizacion' }).catch(()=>{});
+        },
+        async getCotizaciones(){
+          try {
+                const response = await axios({
+                  method: 'get',
+                  url: 'getCotizaciones',
+                })
+
+                this.cotizaciones = response.data.response
+                console.log(this.cotizaciones)
+
+
+            } catch (error) {
+
+               swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+                console.log(error);
+
+            }
         }
+
      },
   }
 </script>

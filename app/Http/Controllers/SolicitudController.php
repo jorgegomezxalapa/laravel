@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Solicitud;
+use App\Cotizacion;
 
 class SolicitudController extends Controller
 {
@@ -14,15 +15,22 @@ class SolicitudController extends Controller
       try {
         if ($request) {
           DB::beginTransaction();
-          $user = new Solicitud();
-          $user->fecha = $request->fecha;
-          $user->folio = $request->folio;
-          $user->agente = $request->agente;
-          $user->cliente = $request->cliente;
-          $user->solicitante = $request->solicitante;
-          $user->responsable = $request->responsable;
-          $user->comentario = $request->comentarios;
-          $user->save();
+          $solicitud = new Solicitud();
+          $solicitud->fecha = $request->fecha;
+          $solicitud->folio = $request->folio;
+          $solicitud->agente = $request->agente;
+          $solicitud->cliente = $request->cliente;
+          $solicitud->solicitante = $request->solicitante;
+          $solicitud->responsable = $request->responsable;
+          $solicitud->comentario = $request->comentarios;
+          $solicitud->save();
+
+
+
+          $cotizacion = new Cotizacion();
+          $cotizacion->idSolicitud = $solicitud->id;
+            $cotizacion->estatus = 0;
+          $cotizacion->save();
           DB::commit();
         }
 
@@ -30,9 +38,10 @@ class SolicitudController extends Controller
       DB::rollBack();
         return response()->json(['response' => $e],500);
       }
+      	return response()->json(['response' => true],200);
     }
 
-    public function getSolicitudes ( Request $request ) {
+    public function getSolicitudes () {
       try {
 
         $solicitudes = Solicitud::orderBy('id', 'DESC')->with('agente')->with('solicitante')->with('responsable')->with('cliente')->get();
