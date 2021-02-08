@@ -22,6 +22,7 @@ class CreateSolicitudesTable extends Migration
                     $table->string('solicitante',250)->nullable();
                     $table->string('responsable',250)->nullable();
                     $table->string('comentario',250)->nullable();
+                    $table->boolean('urgente')->nullable();
             $table->timestamps();
         });
     }

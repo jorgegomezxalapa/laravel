@@ -26,11 +26,12 @@
 
     >
 
-<p class="font-weight-black">Detalle de Partidas Registradas</p>
+<p class="font-weight-black">Partidas Registradas en Esta Cotización</p>
 <v-data-table
 :headers="headers"
 :items="partidas"
 :search="search"
+  :items-per-page="5"
 >
 
 
@@ -38,47 +39,219 @@
 
 <template v-slot:item.acciones="{ item }">
 
-<!-- <v-tooltip top>
-<template v-slot:activator="{ on, attrs }">
-<router-link :to="{name: 'editarSolicitud', params:{id:item.id}}">
-<v-btn
-v-bind="attrs"
-v-on="on"
-     small
-      color="warning"
-      dark
 
-      fab
-    >
-      <v-icon>mdi-pencil-box-outline</v-icon>
-    </v-btn>
-  </router-link>
-</template>
-<span>Editar Solicitud</span>
-</v-tooltip>
-
-<v-tooltip top>
-<template v-slot:activator="{ on, attrs }">
-<v-btn
-v-bind="attrs"
-v-on="on"
-     small
-      color="primary"
-      dark
-
-      fab
-    >
-      <v-icon>mdi-file-send-outline</v-icon>
-    </v-btn>
-</template>
-<span>Ver Cotización</span>
-</v-tooltip> -->
 
 </template>
 </v-data-table>
   </v-col>
+
+
 </v-row>
-      <v-row>
+<v-row>
+    <v-divider></v-divider>
+</v-row>
+<v-row>
+  <p class="font-weight-black mb-3"  align="center">Llena el Formulario para registrar una nueva Partida</p>
+  <br>
+</v-row>
+<v-row>
+  <v-col
+          cols="12"
+
+          md="4"
+        >
+        <v-text-field
+          v-model="partida"
+          type="number"
+          label="Número de Partida sugerida  "
+
+        ></v-text-field>
+      </v-col>
+      <v-col
+              cols="12"
+
+              md="8"
+            >
+            <v-textarea
+            solo
+              v-model="descripcion"
+            label="Descripción"
+            ></v-textarea>
+          </v-col>
+
+          <v-col
+                  cols="12"
+                  sm="6"
+                  md="4"
+                >
+                <v-text-field
+                  v-model="unidadmedida"
+
+                  label="Unidad de Medida  "
+
+                ></v-text-field>
+              </v-col>
+
+              <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                    <v-text-field
+                      v-model="cantidad"
+                      type="number"
+                      label="Cantidad "
+
+                    ></v-text-field>
+                  </v-col>
+
+                  <v-col
+                          cols="12"
+                          sm="6"
+                          md="4"
+                        >
+                        <v-text-field
+                          v-model="precioproveedor"
+                          type="number"
+                          label="Precio del Proveedor "
+
+                        ></v-text-field>
+                        <v-switch
+      v-model="switch1"
+      label="¿Desea restar el valor del IVA al Precio del Proveedor?"
+    ></v-switch>
+                      </v-col>
+                      <v-col
+                              cols="12"
+
+
+                            >
+                            <v-textarea
+                            solo
+                              v-model="notasproducto"
+                            label="Espacio para notas del producto"
+                            ></v-textarea>
+                          </v-col>
+</v-row>
+<v-row>
+    <v-divider></v-divider>
+</v-row>
+<v-row>
+  <p class="font-weight-black mb-3"  align="center">Configuración de Parámetros en porcentaje representado con punto decimal</p>
+  <br>
+</v-row>
+<v-row>
+  <v-col
+          cols="12"
+
+          md="4"
+        >
+        <v-text-field
+          v-model="utilidaddefault"
+          type="number"
+          label="Tipo de Venta / Utilidad (En escala del 0 al 100 %)"
+
+        ></v-text-field>
+      </v-col>
+  <v-col
+          cols="12"
+
+          md="4"
+        >
+        <v-text-field
+          v-model="iva"
+          type="number"
+          label="PORCENTAJE DE IVA(En escala del 0 al 100 %) "
+
+        ></v-text-field>
+      </v-col>
+      <v-col
+              cols="12"
+
+              md="4"
+            >
+            <v-text-field
+              v-model="ieps"
+              type="number"
+              label="PORCENTAJE DE IEPS(En escala del 0 al 100 %) "
+
+            ></v-text-field>
+          </v-col>
+
+
+</v-row>
+<v-row>
+    <v-divider></v-divider>
+</v-row>
+<v-row>
+  <p class="font-weight-black mb-3"  align="center">Cálculo automático a partir de los datos capturados</p>
+  <br>
+</v-row>
+<v-row>
+  <v-col
+          cols="12"
+
+          md="3"
+        >
+        <v-text-field
+          v-model="importe1"
+          type="number"
+          label="Importe(1) * "
+
+        ></v-text-field>
+      </v-col>
+      <v-col
+              cols="12"
+
+              md="3"
+            >
+            <v-text-field
+              v-model="utilidadgenerada"
+              type="number"
+              label="Utilidad * "
+
+            ></v-text-field>
+          </v-col>
+          <v-col
+                  cols="12"
+
+                  md="3"
+                >
+                <v-text-field
+                  v-model="preciounitario"
+                  type="number"
+                  label="Precio Unitario * "
+
+                ></v-text-field>
+              </v-col>
+              <v-col
+                      cols="12"
+
+                      md="3"
+                    >
+                    <v-text-field
+                      v-model="importe2"
+                      type="number"
+                      label="Importe(2) * "
+
+                    ></v-text-field>
+                  </v-col>
+</v-row>
+<v-row>
+  <v-col cols="12">
+    <v-btn
+
+    block
+    color="primary"
+      @click="guardarPartida"
+    v-if="!editar"
+    >
+    Guardar Partida
+    </v-btn>
+  </v-col>
+</v-row>
+
+      <!-- <v-row>
 
 
 
@@ -278,7 +451,7 @@ Guardar Partida
 </v-col>
 
 
-      </v-row>
+      </v-row> -->
 
 
     </v-container>
@@ -293,6 +466,7 @@ Guardar Partida
 
 
             <v-col>
+              <router-link :to="{name: 'detalleCotizacion', params:{id:this.$route.params.id}}">
                <v-btn
                cols="6"
                block
@@ -302,6 +476,7 @@ Guardar Partida
     >
       Finalizar Registro de Partidas
     </v-btn>
+      </router-link>
     <v-btn
     cols="6"
     block
@@ -363,11 +538,22 @@ import swal from 'sweetalert';
     iva: function (newQuestion, oldQuestion) {
 
     },
+    switch1 :function (newVal, oldVal){
+      if (this.precioproveedor != null || this.precioproveedor != "") {
+        if (newVal) {
+            var ibai = 0.16
+            var calculo1 = this.precioproveedor * ibai
+            var calculo2 = this.precioproveedor - calculo1
+            this.precioproveedor = calculo2
+        }
+      }
+    }
 
 
 
   },
         data: () => ({
+          switch1: false,
           search:"",
             editar: false,
             partida:1,
@@ -386,8 +572,9 @@ import swal from 'sweetalert';
             subtotal:0,
             total:0,
             checkbox:false,
-            iva:16,
+            iva:0.16,
             ieps:0,
+            notasproducto:null,
             headers: [
               {
                 text: 'No de Partida',
@@ -461,11 +648,14 @@ import swal from 'sweetalert';
                     this.unidadmedida = 0
                     this.cantidad = 0
                     this.precioproveedor = 0
-                  this.utilidaddefault =   this.cotizacion.utilidad.porcentaje
+                    this.utilidaddefault =   this.cotizacion.utilidad.porcentaje
+                    this.iva = 0.16
+                    this.ieps = 0.0
                     this.importe1 = 0
                     this.utilidadgenerada = 0
                     this.preciounitario = 0
                     this.importe2 = 0
+                    this.switch1 = false,
                     this.partidas = response.data.response
                     console.log(this.partidas)
 

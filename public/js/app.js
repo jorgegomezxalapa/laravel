@@ -2591,6 +2591,338 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/AccionesCotizacionComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/AccionesCotizacionComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate/dist/rules */ "./node_modules/vee-validate/dist/rules.js");
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_3__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    this.getCotizacion();
+  },
+  data: function data() {
+    return {
+      editar: false,
+      utilidad: null,
+      utilidades: [],
+      cotizacion: [],
+      cliente: [],
+      solicitante: [],
+      agente: [],
+      responsable: [],
+      solicitud: [],
+      iva: 0,
+      subtotal: 0,
+      total: 0,
+      partidas: 0
+    };
+  },
+  methods: {
+    getCotizacion: function getCotizacion() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'getCotizacion',
+                  data: {
+                    id: _this.$route.params.id
+                  }
+                });
+
+              case 3:
+                response = _context.sent;
+                _this.cotizacion = response.data.response;
+                console.log(_this.cotizacion);
+                _this.solicitud = _this.cotizacion.solicitud;
+                _this.cliente = _this.cotizacion.solicitud.cliente;
+                _this.solicitante = _this.cotizacion.solicitud.solicitante;
+                _this.agente = _this.cotizacion.solicitud.agente;
+                _this.responsable = _this.cotizacion.solicitud.responsable;
+                console.log(_this.cliente, _this.solicitante, _this.agente, _this.responsable);
+                _this.iva = response.data.iva;
+                _this.subtotal = response.data.subtotal;
+                _this.total = response.data.total;
+                _this.partidas = response.data.partidas;
+                _context.next = 22;
+                break;
+
+              case 18:
+                _context.prev = 18;
+                _context.t0 = _context["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+                console.log(_context.t0);
+
+              case 22:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 18]]);
+      }))();
+    },
+    iniciarCotizacion: function iniciarCotizacion() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                _context2.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'iniciarCotizacion',
+                  data: {
+                    id: _this2.$route.params.id,
+                    utilidad: _this2.utilidad
+                  }
+                });
+
+              case 3:
+                response = _context2.sent;
+
+                _this2.$router.push({
+                  name: 'registroPartidas',
+                  params: {
+                    id: _this2.$route.params.id
+                  }
+                });
+
+                _context2.next = 11;
+                break;
+
+              case 7:
+                _context2.prev = 7;
+                _context2.t0 = _context2["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+                console.log(_context2.t0);
+
+              case 11:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 7]]);
+      }))();
+    },
+    editarCotizacion: function editarCotizacion() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                alert("editar");
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/ClientesComponent.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/ClientesComponent.vue?vue&type=script&lang=js& ***!
@@ -4535,10 +4867,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -4589,7 +4917,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
       telefono: null,
       password: null,
       sexo: null,
-      catroles: ['ADMINISTRADOR', 'COTIZADOR', 'AGENTE']
+      catroles: ['ADMINISTRADOR', 'COTIZADOR']
     };
   },
   methods: {
@@ -5569,6 +5897,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -5608,6 +5943,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
       folio: null,
       cliente: null,
       solicitante: null,
+      urgente: false,
       comentarios: null,
       agente: null,
       empleado: null,
@@ -5670,21 +6006,22 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
                 _this2.solicitante = parseInt(_this2.solicitud.solicitante);
                 _this2.empleado = parseInt(_this2.solicitud.responsable);
                 _this2.comentarios = _this2.solicitud.comentario;
-                _context2.next = 19;
+                _this2.urgente = _this2.solicitud.urgente;
+                _context2.next = 20;
                 break;
 
-              case 15:
-                _context2.prev = 15;
+              case 16:
+                _context2.prev = 16;
                 _context2.t0 = _context2["catch"](0);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
                 console.log(_context2.t0);
 
-              case 19:
+              case 20:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 15]]);
+        }, _callee2, null, [[0, 16]]);
       }))();
     },
     submit: function submit(evt) {
@@ -5741,7 +6078,8 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
                     cliente: _this4.cliente,
                     solicitante: _this4.solicitante,
                     responsable: _this4.empleado,
-                    comentarios: _this4.comentarios
+                    comentarios: _this4.comentarios,
+                    urgente: _this4.urgente
                   }
                 });
 
@@ -5791,7 +6129,8 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
                     cliente: _this5.cliente,
                     solicitante: _this5.solicitante,
                     responsable: _this5.empleado,
-                    comentarios: _this5.comentarios
+                    comentarios: _this5.comentarios,
+                    urgente: _this5.urgente
                   }
                 });
 
@@ -6582,6 +6921,181 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -6612,10 +7126,21 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       this.importe2 = parseFloat(this.preciounitario) * parseFloat(this.cantidad);
     },
     ieps: function ieps(newQuestion, oldQuestion) {},
-    iva: function iva(newQuestion, oldQuestion) {}
+    iva: function iva(newQuestion, oldQuestion) {},
+    switch1: function switch1(newVal, oldVal) {
+      if (this.precioproveedor != null || this.precioproveedor != "") {
+        if (newVal) {
+          var ibai = 0.16;
+          var calculo1 = this.precioproveedor * ibai;
+          var calculo2 = this.precioproveedor - calculo1;
+          this.precioproveedor = calculo2;
+        }
+      }
+    }
   },
   data: function data() {
     return {
+      switch1: false,
       search: "",
       editar: false,
       partida: 1,
@@ -6634,8 +7159,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       subtotal: 0,
       total: 0,
       checkbox: false,
-      iva: 16,
+      iva: 0.16,
       ieps: 0,
+      notasproducto: null,
       headers: [{
         text: 'No de Partida',
         align: 'center',
@@ -6762,27 +7288,29 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
                 _this2.cantidad = 0;
                 _this2.precioproveedor = 0;
                 _this2.utilidaddefault = _this2.cotizacion.utilidad.porcentaje;
+                _this2.iva = 0.16;
+                _this2.ieps = 0.0;
                 _this2.importe1 = 0;
                 _this2.utilidadgenerada = 0;
                 _this2.preciounitario = 0;
                 _this2.importe2 = 0;
-                _this2.partidas = response.data.response;
+                _this2.switch1 = false, _this2.partidas = response.data.response;
                 console.log(_this2.partidas);
-                _context2.next = 22;
+                _context2.next = 24;
                 break;
 
-              case 18:
-                _context2.prev = 18;
+              case 20:
+                _context2.prev = 20;
                 _context2.t0 = _context2["catch"](0);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
                 console.log(_context2.t0);
 
-              case 22:
+              case 24:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 18]]);
+        }, _callee2, null, [[0, 20]]);
       }))();
     }
   }
@@ -47848,6 +48376,251 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/AccionesCotizacionComponent.vue?vue&type=template&id=8ebcf1e8&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/AccionesCotizacionComponent.vue?vue&type=template&id=8ebcf1e8& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "v-card",
+        {
+          staticClass: "mx-auto rounded-lg py-5 px-2 mt-5 mb-5",
+          attrs: { width: "100%", align: "center", justify: "space-around" }
+        },
+        [
+          _c("v-card-title", { staticClass: "font-weight-black" }, [
+            _vm._v("Detalle General de la cotización")
+          ]),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c(
+            "v-card-text",
+            [
+              _c(
+                "v-container",
+                [
+                  _c("p", { staticClass: "font-weight-black" }, [
+                    _vm._v("Resúmen de las partidas")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6" } },
+                        [
+                          _c(
+                            "v-card",
+                            { staticClass: "mx-auto" },
+                            [
+                              _c("v-card-text", [
+                                _c("p", { staticClass: "font-weight-black" }, [
+                                  _vm._v("Cantidad de Partidas: "),
+                                  _c("br"),
+                                  _vm._v(" " + _vm._s(this.partidas))
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6" } },
+                        [
+                          _c(
+                            "v-card",
+                            { staticClass: "mx-auto" },
+                            [
+                              _c("v-card-text", [
+                                _c("p", { staticClass: "font-weight-black" }, [
+                                  _vm._v("IVA "),
+                                  _c("br"),
+                                  _vm._v(" " + _vm._s(this.iva) + " ")
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6" } },
+                        [
+                          _c(
+                            "v-card",
+                            { staticClass: "mx-auto" },
+                            [
+                              _c("v-card-text", [
+                                _c("p", { staticClass: "font-weight-black" }, [
+                                  _vm._v("IEPS ")
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6" } },
+                        [
+                          _c(
+                            "v-card",
+                            { staticClass: "mx-auto" },
+                            [
+                              _c("v-card-text", [
+                                _c("p", { staticClass: "font-weight-black" }, [
+                                  _vm._v("SUBTOTAL "),
+                                  _c("br"),
+                                  _vm._v(" " + _vm._s(this.subtotal) + " ")
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "12" } },
+                        [
+                          _c(
+                            "v-card",
+                            { staticClass: "mx-auto" },
+                            [
+                              _c("v-card-text", [
+                                _c("p", { staticClass: "font-weight-black" }, [
+                                  _vm._v("TOTAL: "),
+                                  _c("br"),
+                                  _vm._v(" " + _vm._s(this.total))
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "12" } },
+                        [
+                          _c("hr"),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "font-weight-black" }, [
+                            _vm._v("FORMATOS DE IMPRESIÓN DISPONIBLES")
+                          ]),
+                          _vm._v(" "),
+                          _c("v-select", {
+                            attrs: {
+                              items: _vm.utilidades,
+                              "item-text": "descripcion",
+                              "item-value": "id",
+                              label: "Seleccione un formato * "
+                            },
+                            model: {
+                              value: _vm.utilidad,
+                              callback: function($$v) {
+                                _vm.utilidad = $$v
+                              },
+                              expression: "utilidad"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c(
+            "v-card-actions",
+            [
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    [
+                      !_vm.editar
+                        ? _c(
+                            "v-btn",
+                            {
+                              attrs: { cols: "6", block: "", color: "primary" }
+                            },
+                            [_vm._v("\n    Generar Impresión PDF\n    ")]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.editar
+                        ? _c(
+                            "v-btn",
+                            {
+                              attrs: { cols: "6", block: "", color: "primary" },
+                              on: { click: _vm.editarCotizacion }
+                            },
+                            [_vm._v("\nEditar Cotización\n")]
+                          )
+                        : _vm._e()
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/ClientesComponent.vue?vue&type=template&id=20e6ca35&":
 /*!***************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/ClientesComponent.vue?vue&type=template&id=20e6ca35& ***!
@@ -49890,41 +50663,16 @@ var render = function() {
                                       )
                                     }),
                                     _vm._v(" "),
-                                    _c("validation-provider", {
-                                      attrs: {
-                                        name: "Email de Usuario",
-                                        rules: "required"
-                                      },
-                                      scopedSlots: _vm._u(
-                                        [
-                                          {
-                                            key: "default",
-                                            fn: function(ref) {
-                                              var errors = ref.errors
-                                              return [
-                                                _c("v-text-field", {
-                                                  attrs: {
-                                                    "error-messages": errors,
-                                                    label: "Email de Usuario*"
-                                                  },
-                                                  on: {
-                                                    blur: _vm.compararEmail
-                                                  },
-                                                  model: {
-                                                    value: _vm.email,
-                                                    callback: function($$v) {
-                                                      _vm.email = $$v
-                                                    },
-                                                    expression: "email"
-                                                  }
-                                                })
-                                              ]
-                                            }
-                                          }
-                                        ],
-                                        null,
-                                        true
-                                      )
+                                    _c("v-text-field", {
+                                      attrs: { label: "Email de Usuario" },
+                                      on: { blur: _vm.compararEmail },
+                                      model: {
+                                        value: _vm.email,
+                                        callback: function($$v) {
+                                          _vm.email = $$v
+                                        },
+                                        expression: "email"
+                                      }
                                     }),
                                     _vm._v(" "),
                                     _c("validation-provider", {
@@ -50949,6 +51697,21 @@ var render = function() {
                                         null,
                                         true
                                       )
+                                    }),
+                                    _vm._v(" "),
+                                    _c("v-switch", {
+                                      attrs: {
+                                        label: "¿Marcar como urgente?",
+                                        color: "red darken-3",
+                                        "hide-details": ""
+                                      },
+                                      model: {
+                                        value: _vm.urgente,
+                                        callback: function($$v) {
+                                          _vm.urgente = $$v
+                                        },
+                                        expression: "urgente"
+                                      }
                                     })
                                   ],
                                   1
@@ -51271,7 +52034,7 @@ var render = function() {
                                                     _c("v-text-field", {
                                                       attrs: {
                                                         label:
-                                                          "Porcentaje del tipo de venta *",
+                                                          "Porcentaje del tipo de venta(En escala de 0 a 100 %) *",
                                                         "error-messages": errors
                                                       },
                                                       model: {
@@ -51422,14 +52185,15 @@ var render = function() {
                         { attrs: { cols: "12" } },
                         [
                           _c("p", { staticClass: "font-weight-black" }, [
-                            _vm._v("Detalle de Partidas Registradas")
+                            _vm._v("Partidas Registradas en Esta Cotización")
                           ]),
                           _vm._v(" "),
                           _c("v-data-table", {
                             attrs: {
                               headers: _vm.headers,
                               items: _vm.partidas,
-                              search: _vm.search
+                              search: _vm.search,
+                              "items-per-page": 5
                             },
                             scopedSlots: _vm._u([
                               {
@@ -51448,163 +52212,202 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
+                  _c("v-row", [_c("v-divider")], 1),
+                  _vm._v(" "),
+                  _c("v-row", [
+                    _c(
+                      "p",
+                      {
+                        staticClass: "font-weight-black mb-3",
+                        attrs: { align: "center" }
+                      },
+                      [
+                        _vm._v(
+                          "Llena el Formulario para registrar una nueva Partida"
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("br")
+                  ]),
+                  _vm._v(" "),
                   _c(
                     "v-row",
                     [
                       _c(
                         "v-col",
-                        { attrs: { cols: "12", md: "5" } },
+                        { attrs: { cols: "12", md: "4" } },
                         [
-                          _c("hr"),
+                          _c("v-text-field", {
+                            attrs: {
+                              type: "number",
+                              label: "Número de Partida sugerida  "
+                            },
+                            model: {
+                              value: _vm.partida,
+                              callback: function($$v) {
+                                _vm.partida = $$v
+                              },
+                              expression: "partida"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "8" } },
+                        [
+                          _c("v-textarea", {
+                            attrs: { solo: "", label: "Descripción" },
+                            model: {
+                              value: _vm.descripcion,
+                              callback: function($$v) {
+                                _vm.descripcion = $$v
+                              },
+                              expression: "descripcion"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", sm: "6", md: "4" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: { label: "Unidad de Medida  " },
+                            model: {
+                              value: _vm.unidadmedida,
+                              callback: function($$v) {
+                                _vm.unidadmedida = $$v
+                              },
+                              expression: "unidadmedida"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", sm: "6", md: "4" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: { type: "number", label: "Cantidad " },
+                            model: {
+                              value: _vm.cantidad,
+                              callback: function($$v) {
+                                _vm.cantidad = $$v
+                              },
+                              expression: "cantidad"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", sm: "6", md: "4" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              type: "number",
+                              label: "Precio del Proveedor "
+                            },
+                            model: {
+                              value: _vm.precioproveedor,
+                              callback: function($$v) {
+                                _vm.precioproveedor = $$v
+                              },
+                              expression: "precioproveedor"
+                            }
+                          }),
                           _vm._v(" "),
-                          _c("p", { staticClass: "font-weight-black" }, [
-                            _vm._v("Ingreso de Partida")
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "v-row",
-                            [
-                              _c("p", { staticClass: "font-weight-black" }, [
-                                _vm._v("Partida #" + _vm._s(this.partida))
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                { attrs: { cols: "12" } },
-                                [
-                                  _c("v-textarea", {
-                                    attrs: { solo: "", label: "Descripción" },
-                                    model: {
-                                      value: _vm.descripcion,
-                                      callback: function($$v) {
-                                        _vm.descripcion = $$v
-                                      },
-                                      expression: "descripcion"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                { attrs: { cols: "6" } },
-                                [
-                                  _c("v-text-field", {
-                                    attrs: { label: "Unidad de Medida * " },
-                                    model: {
-                                      value: _vm.unidadmedida,
-                                      callback: function($$v) {
-                                        _vm.unidadmedida = $$v
-                                      },
-                                      expression: "unidadmedida"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                { attrs: { cols: "6" } },
-                                [
-                                  _c("v-text-field", {
-                                    attrs: { label: "Cantidad * " },
-                                    model: {
-                                      value: _vm.cantidad,
-                                      callback: function($$v) {
-                                        _vm.cantidad = $$v
-                                      },
-                                      expression: "cantidad"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                { attrs: { cols: "6" } },
-                                [
-                                  _c("v-text-field", {
-                                    attrs: { label: "Precio del Proveedor * " },
-                                    model: {
-                                      value: _vm.precioproveedor,
-                                      callback: function($$v) {
-                                        _vm.precioproveedor = $$v
-                                      },
-                                      expression: "precioproveedor"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                { attrs: { cols: "6" } },
-                                [
-                                  _c("v-checkbox", {
-                                    attrs: {
-                                      label: "¿Modificar tipo de venta actual?"
-                                    },
-                                    model: {
-                                      value: _vm.checkbox,
-                                      callback: function($$v) {
-                                        _vm.checkbox = $$v
-                                      },
-                                      expression: "checkbox"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                { attrs: { cols: "12" } },
-                                [
-                                  _vm.checkbox
-                                    ? _c("v-text-field", {
-                                        attrs: {
-                                          label: "Tipo de Venta(Utilidad) * "
-                                        },
-                                        model: {
-                                          value: _vm.utilidaddefault,
-                                          callback: function($$v) {
-                                            _vm.utilidaddefault = $$v
-                                          },
-                                          expression: "utilidaddefault"
-                                        }
-                                      })
-                                    : _vm._e()
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                { attrs: { cols: "12" } },
-                                [
-                                  !_vm.editar
-                                    ? _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            block: "",
-                                            color: "primary"
-                                          },
-                                          on: { click: _vm.guardarPartida }
-                                        },
-                                        [_vm._v("\nGuardar Partida\n")]
-                                      )
-                                    : _vm._e()
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
+                          _c("v-switch", {
+                            attrs: {
+                              label:
+                                "¿Desea restar el valor del IVA al Precio del Proveedor?"
+                            },
+                            model: {
+                              value: _vm.switch1,
+                              callback: function($$v) {
+                                _vm.switch1 = $$v
+                              },
+                              expression: "switch1"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12" } },
+                        [
+                          _c("v-textarea", {
+                            attrs: {
+                              solo: "",
+                              label: "Espacio para notas del producto"
+                            },
+                            model: {
+                              value: _vm.notasproducto,
+                              callback: function($$v) {
+                                _vm.notasproducto = $$v
+                              },
+                              expression: "notasproducto"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-row", [_c("v-divider")], 1),
+                  _vm._v(" "),
+                  _c("v-row", [
+                    _c(
+                      "p",
+                      {
+                        staticClass: "font-weight-black mb-3",
+                        attrs: { align: "center" }
+                      },
+                      [
+                        _vm._v(
+                          "Configuración de Parámetros en porcentaje representado con punto decimal"
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("br")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "4" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              type: "number",
+                              label:
+                                "Tipo de Venta / Utilidad (En escala del 0 al 100 %)"
+                            },
+                            model: {
+                              value: _vm.utilidaddefault,
+                              callback: function($$v) {
+                                _vm.utilidaddefault = $$v
+                              },
+                              expression: "utilidaddefault"
+                            }
+                          })
                         ],
                         1
                       ),
@@ -51613,14 +52416,12 @@ var render = function() {
                         "v-col",
                         { attrs: { cols: "12", md: "4" } },
                         [
-                          _c("hr"),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "font-weight-black" }, [
-                            _vm._v("Cálculo Automático")
-                          ]),
-                          _vm._v(" "),
                           _c("v-text-field", {
-                            attrs: { label: "% IVA * " },
+                            attrs: {
+                              type: "number",
+                              label:
+                                "PORCENTAJE DE IVA(En escala del 0 al 100 %) "
+                            },
                             model: {
                               value: _vm.iva,
                               callback: function($$v) {
@@ -51628,10 +52429,21 @@ var render = function() {
                               },
                               expression: "iva"
                             }
-                          }),
-                          _vm._v(" "),
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "4" } },
+                        [
                           _c("v-text-field", {
-                            attrs: { label: "% IEPS * " },
+                            attrs: {
+                              type: "number",
+                              label:
+                                "PORCENTAJE DE IEPS(En escala del 0 al 100 %) "
+                            },
                             model: {
                               value: _vm.ieps,
                               callback: function($$v) {
@@ -51639,49 +52451,48 @@ var render = function() {
                               },
                               expression: "ieps"
                             }
-                          }),
-                          _vm._v(" "),
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-row", [_c("v-divider")], 1),
+                  _vm._v(" "),
+                  _c("v-row", [
+                    _c(
+                      "p",
+                      {
+                        staticClass: "font-weight-black mb-3",
+                        attrs: { align: "center" }
+                      },
+                      [
+                        _vm._v(
+                          "Cálculo automático a partir de los datos capturados"
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("br")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "3" } },
+                        [
                           _c("v-text-field", {
-                            attrs: { label: "Importe(1) * " },
+                            attrs: { type: "number", label: "Importe(1) * " },
                             model: {
                               value: _vm.importe1,
                               callback: function($$v) {
                                 _vm.importe1 = $$v
                               },
                               expression: "importe1"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("v-text-field", {
-                            attrs: { label: "Utilidad * " },
-                            model: {
-                              value: _vm.utilidadgenerada,
-                              callback: function($$v) {
-                                _vm.utilidadgenerada = $$v
-                              },
-                              expression: "utilidadgenerada"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("v-text-field", {
-                            attrs: { label: "Precio Unitario * " },
-                            model: {
-                              value: _vm.preciounitario,
-                              callback: function($$v) {
-                                _vm.preciounitario = $$v
-                              },
-                              expression: "preciounitario"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("v-text-field", {
-                            attrs: { label: "Importe(2) * " },
-                            model: {
-                              value: _vm.importe2,
-                              callback: function($$v) {
-                                _vm.importe2 = $$v
-                              },
-                              expression: "importe2"
                             }
                           })
                         ],
@@ -51692,90 +52503,79 @@ var render = function() {
                         "v-col",
                         { attrs: { cols: "12", md: "3" } },
                         [
-                          _c("hr"),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "font-weight-black" }, [
-                            _vm._v("Detalle General")
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "v-card",
-                            { staticClass: "mx-auto" },
-                            [
-                              _c("v-card-text", [
-                                _c("p", { staticClass: "font-weight-black" }, [
-                                  _vm._v("TIPO DE VENTA: "),
-                                  _c("br"),
-                                  _vm._v(_vm._s(this.nombreutilidad) + " "),
-                                  _c("br"),
-                                  _vm._v(
-                                    "(" + _vm._s(this.utilidaddefault) + " %) "
-                                  )
-                                ])
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-card",
-                            { staticClass: "mx-auto" },
-                            [
-                              _c("v-card-text", [
-                                _c("p", { staticClass: "font-weight-black" }, [
-                                  _vm._v("CÁLCULO DE IVA: "),
-                                  _c("br"),
-                                  _vm._v(_vm._s(this.totalIva) + " ")
-                                ])
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-card",
-                            { staticClass: "mx-auto" },
-                            [
-                              _c("v-card-text", [
-                                _c("p", { staticClass: "font-weight-black" }, [
-                                  _vm._v("CÁLCULO DE IEPS: "),
-                                  _c("br"),
-                                  _vm._v(_vm._s(this.totalIeps) + " ")
-                                ])
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-card",
-                            { staticClass: "mx-auto" },
-                            [
-                              _c("v-card-text", [
-                                _c("p", { staticClass: "font-weight-black" }, [
-                                  _vm._v("SUBTOTAL: "),
-                                  _c("br"),
-                                  _vm._v(_vm._s(this.subtotal) + " ")
-                                ])
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-card",
-                            { staticClass: "mx-auto" },
-                            [
-                              _c("v-card-text", [
-                                _c("p", { staticClass: "font-weight-black" }, [
-                                  _vm._v("TOTAL: "),
-                                  _c("br"),
-                                  _vm._v(_vm._s(this.total) + " ")
-                                ])
-                              ])
-                            ],
-                            1
-                          )
+                          _c("v-text-field", {
+                            attrs: { type: "number", label: "Utilidad * " },
+                            model: {
+                              value: _vm.utilidadgenerada,
+                              callback: function($$v) {
+                                _vm.utilidadgenerada = $$v
+                              },
+                              expression: "utilidadgenerada"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "3" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              type: "number",
+                              label: "Precio Unitario * "
+                            },
+                            model: {
+                              value: _vm.preciounitario,
+                              callback: function($$v) {
+                                _vm.preciounitario = $$v
+                              },
+                              expression: "preciounitario"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "3" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: { type: "number", label: "Importe(2) * " },
+                            model: {
+                              value: _vm.importe2,
+                              callback: function($$v) {
+                                _vm.importe2 = $$v
+                              },
+                              expression: "importe2"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12" } },
+                        [
+                          !_vm.editar
+                            ? _c(
+                                "v-btn",
+                                {
+                                  attrs: { block: "", color: "primary" },
+                                  on: { click: _vm.guardarPartida }
+                                },
+                                [_vm._v("\n    Guardar Partida\n    ")]
+                              )
+                            : _vm._e()
                         ],
                         1
                       )
@@ -51800,19 +52600,37 @@ var render = function() {
                   _c(
                     "v-col",
                     [
-                      !_vm.editar
-                        ? _c(
-                            "v-btn",
-                            {
-                              attrs: { cols: "6", block: "", color: "warning" }
-                            },
-                            [
-                              _vm._v(
-                                "\n      Finalizar Registro de Partidas\n    "
+                      _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            to: {
+                              name: "detalleCotizacion",
+                              params: { id: this.$route.params.id }
+                            }
+                          }
+                        },
+                        [
+                          !_vm.editar
+                            ? _c(
+                                "v-btn",
+                                {
+                                  attrs: {
+                                    cols: "6",
+                                    block: "",
+                                    color: "warning"
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n      Finalizar Registro de Partidas\n    "
+                                  )
+                                ]
                               )
-                            ]
-                          )
-                        : _vm._e(),
+                            : _vm._e()
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _vm.editar
                         ? _c(
@@ -112322,6 +113140,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     name: 'registroPartidas',
     component: __webpack_require__(/*! ./views/RegistropartidasComponent.vue */ "./resources/js/views/RegistropartidasComponent.vue")["default"]
   }, {
+    path: '/acciones-cotizaciones/:id',
+    name: 'detalleCotizacion',
+    component: __webpack_require__(/*! ./views/AccionesCotizacionComponent.vue */ "./resources/js/views/AccionesCotizacionComponent.vue")["default"]
+  }, {
     path: '/ventas',
     name: 'ventas',
     component: __webpack_require__(/*! ./views/VentasComponent.vue */ "./resources/js/views/VentasComponent.vue")["default"]
@@ -112388,6 +113210,75 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
   }] // mode:'history'
 
 }));
+
+/***/ }),
+
+/***/ "./resources/js/views/AccionesCotizacionComponent.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/views/AccionesCotizacionComponent.vue ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AccionesCotizacionComponent_vue_vue_type_template_id_8ebcf1e8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AccionesCotizacionComponent.vue?vue&type=template&id=8ebcf1e8& */ "./resources/js/views/AccionesCotizacionComponent.vue?vue&type=template&id=8ebcf1e8&");
+/* harmony import */ var _AccionesCotizacionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AccionesCotizacionComponent.vue?vue&type=script&lang=js& */ "./resources/js/views/AccionesCotizacionComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AccionesCotizacionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AccionesCotizacionComponent_vue_vue_type_template_id_8ebcf1e8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AccionesCotizacionComponent_vue_vue_type_template_id_8ebcf1e8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/AccionesCotizacionComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/AccionesCotizacionComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/views/AccionesCotizacionComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AccionesCotizacionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./AccionesCotizacionComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/AccionesCotizacionComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AccionesCotizacionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/AccionesCotizacionComponent.vue?vue&type=template&id=8ebcf1e8&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/views/AccionesCotizacionComponent.vue?vue&type=template&id=8ebcf1e8& ***!
+  \*******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AccionesCotizacionComponent_vue_vue_type_template_id_8ebcf1e8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./AccionesCotizacionComponent.vue?vue&type=template&id=8ebcf1e8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/AccionesCotizacionComponent.vue?vue&type=template&id=8ebcf1e8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AccionesCotizacionComponent_vue_vue_type_template_id_8ebcf1e8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AccionesCotizacionComponent_vue_vue_type_template_id_8ebcf1e8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

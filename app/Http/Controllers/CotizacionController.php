@@ -28,8 +28,19 @@ class CotizacionController extends Controller
         try {
 
           $cotizacion = Cotizacion::where('id', '=', $request->id)->with('utilidad')->with('solicitud')->with('solicitud.agente')->with('solicitud.cliente')->with('solicitud.solicitante')->with('solicitud.responsable')->first();
-
-          return response()->json(['response' => $cotizacion],200);
+          $datos = Partida::where('idCotizacion', '=', $request->id)->get();
+          $subtotal = 0;
+          $iva = 0.16;
+          $total = 0;
+          $ieps = 0;
+          $partidas = 0;
+          foreach($datos as $dato){
+            $partidas = $partidas + 1;
+            $subtotal = $subtotal + floatval($dato->importe2);
+          }
+          $iva = $iva * $subtotal;
+          $total = $subtotal + $iva + $ieps;
+          return response()->json(['response' => $cotizacion, 'iva' => $iva, 'subtotal' => $subtotal, 'total' => $total, 'partidas' => $partidas ],200);
 
         } catch (Exception $e) {
           return response()->json(['response' => $e],500);

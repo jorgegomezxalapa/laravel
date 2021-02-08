@@ -53,7 +53,7 @@
           <v-text-field
       v-model="porcentaje"
 
-      label="Porcentaje del tipo de venta *"
+      label="Porcentaje del tipo de venta(En escala de 0 a 100 %) *"
 :error-messages="errors"
     ></v-text-field>
     </validation-provider>
@@ -219,7 +219,7 @@ message: 'El formato de email debe ser válido',
          }
        },
        async editarUtilidad () {
-      
+
 
          try {
              const response = await axios({

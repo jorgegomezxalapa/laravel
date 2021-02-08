@@ -45,6 +45,11 @@ export default new Router ({
 		component: require('./views/RegistropartidasComponent.vue').default
 	},
 	{
+		path:'/acciones-cotizaciones/:id',
+		name:'detalleCotizacion',
+		component: require('./views/AccionesCotizacionComponent.vue').default
+	},
+	{
 		path:'/ventas',
 		name:'ventas',
 		component: require('./views/VentasComponent.vue').default

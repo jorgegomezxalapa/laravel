@@ -18,6 +18,10 @@ class CreateCotizacionesTable extends Migration
               $table->string('idSolicitud',250)->nullable();
                 $table->string('idUtilidad',250)->nullable();
                 $table->string('estatus',250)->nullable();
+                  $table->string('iva',250)->nullable();
+                    $table->string('ieps',250)->nullable();
+                      $table->string('subtotal',250)->nullable();
+                        $table->string('total',250)->nullable();
                 $table->string('fechafinalizado',250)->nullable();
               $table->timestamps();
 

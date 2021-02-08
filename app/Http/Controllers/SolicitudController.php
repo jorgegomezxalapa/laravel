@@ -23,6 +23,7 @@ class SolicitudController extends Controller
           $solicitud->solicitante = $request->solicitante;
           $solicitud->responsable = $request->responsable;
           $solicitud->comentario = $request->comentarios;
+          $solicitud->urgente = $request->urgente;
           $solicitud->save();
 
 
@@ -79,6 +80,7 @@ class SolicitudController extends Controller
   		   $usuario->solicitante = $request->solicitante;
   		   $usuario->responsable = $request->responsable;
   		    $usuario->comentario = $request->comentarios;
+            $solicitud->urgente = $request->urgente;
   		   $usuario->save();
   		    DB::commit();
 

@@ -141,6 +141,13 @@ label="Agende de Ventas * "
 :error-messages="errors"
     ></v-select>
     </validation-provider>
+    <v-switch
+             v-model="urgente"
+             label="¿Marcar como urgente?"
+             color="red darken-3"
+
+             hide-details
+           ></v-switch>
 
 
 
@@ -268,6 +275,7 @@ message: 'El formato de email debe ser válido',
             folio:null,
           cliente:null,
             solicitante:null,
+            urgente:false,
             comentarios:null,
 agente:null,
             empleado:null,
@@ -306,6 +314,7 @@ agente:null,
                this.solicitante = parseInt(this.solicitud.solicitante)
                this.empleado = parseInt(this.solicitud.responsable)
                this.comentarios = this.solicitud.comentario
+               this.urgente = this.solicitud.urgente
 
 
              } catch (error) {
@@ -344,6 +353,7 @@ agente:null,
                  solicitante: this.solicitante,
                  responsable: this.empleado,
                  comentarios: this.comentarios,
+                 urgente:this.urgente,
                }
              })
               this.$router.push({ name: 'solicitudes' });
@@ -370,6 +380,7 @@ agente:null,
                  solicitante: this.solicitante,
                  responsable: this.empleado,
                  comentarios: this.comentarios,
+                 urgente:this.urgente,
                }
              })
 
@@ -396,7 +407,7 @@ agente:null,
                 this.solicitantes = response.data.solicitantes
                 this.empleados = response.data.responsables
 
-              
+
 
 
 

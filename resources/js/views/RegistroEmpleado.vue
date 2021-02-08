@@ -46,19 +46,15 @@
       @blur="compararUsuario"
     ></v-text-field>
   </validation-provider>
-  <validation-provider
-        v-slot="{ errors }"
-        name="Email de Usuario"
-        rules="required"
-      >
+
 
     <v-text-field
       v-model="email"
-      :error-messages="errors"
-      label="Email de Usuario*"
+
+      label="Email de Usuario"
       @blur="compararEmail"
     ></v-text-field>
-  </validation-provider>
+
 
 
 <validation-provider
@@ -272,7 +268,7 @@
             telefono:null,
             password:null,
             sexo:null,
-            catroles:['ADMINISTRADOR', 'COTIZADOR','AGENTE'],
+            catroles:['ADMINISTRADOR', 'COTIZADOR'],
          }),
          methods: {
           async verificar(){

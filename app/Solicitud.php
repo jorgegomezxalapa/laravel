@@ -17,6 +17,7 @@ class Solicitud extends Model
           'solicitante',
           'responsable',
           'comentarios',
+          'urgente',
           'created_at',
           'updated_at'
 

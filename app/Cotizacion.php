@@ -14,6 +14,10 @@ class Cotizacion extends Model
         'idSolicitud',
           'idUtilidad',
         'estatus',
+        'iva',
+        'ieps',
+        'subtotal',
+        'total',
           'fechafinalizado',
 
 
