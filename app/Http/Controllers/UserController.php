@@ -3,11 +3,38 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use Validator;
 
 class UserController extends Controller
 {
+
+  public function ingreso(Request $request)
+	{
+		$input = $request->all();
+		$validator = Validator::make($input, [
+			'userName' => 'required',
+			'password' => 'required',
+		]);
+		if ($validator->fails()) {
+
+			return response()->json($validator->errors(), 417);
+		}
+		$credentials = $request->only(['userName', 'password']);
+		if (Auth::attempt($credentials)) {
+
+			$user = Auth::user();
+
+			return response()->json(['success' => $user], 200);
+		}
+		else {
+			return response()->json(['error' => 'Unauthorized'], 401);
+		}
+	}
+
+
     public function create(Request $request)
     {
     	try {

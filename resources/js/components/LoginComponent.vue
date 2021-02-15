@@ -1,16 +1,16 @@
 <template>
   <v-app>
-  
+
 
   <!-- <v-app-bar app class="d-flex justify-center">
     Sistema de planificación de recursos empresariales
-    
+
   </v-app-bar> -->
 
-  
+
   <v-main>
 
-   
+
     <v-container fill-height fluid>
       <v-card
         class="mx-auto rounded-xl py-5 px-2"
@@ -20,7 +20,7 @@
 
 
       >
-   
+
    <img :src="'img/profile.png'" width="100%">
 
     <v-card-title><h5><strong>Ingresa con tus datos personales</strong></h5></v-card-title>
@@ -38,14 +38,14 @@
           >
           <validation-provider
             v-slot="{ errors }"
-            name="Correo electrónico"
-            rules="email|required"
+            name="Nombre de Usuario"
+            rules="required"
           >
             <v-text-field
-              v-model="email"
+              v-model="usuario"
               outlined
               :error-messages="errors"
-              label="Correo electrónico"
+              label="Nombre de Usuario"
               autocomplete="new-password"
             ></v-text-field>
              </validation-provider>
@@ -79,7 +79,7 @@
     <strong>Ingresar</strong>
   </v-btn>
 
-      
+
     </v-card-actions>
   </form>
   </validation-observer>
@@ -135,7 +135,7 @@
     },
     data: () => ({
       desactivar: false,
-      email: null,
+      usuario: null,
       password: null,
       show1: false,
     }),
@@ -150,7 +150,7 @@
         this.desactivar = false
       },
       clear () {
-        this.email = null
+        this.usuario = null
         this.password = null
         this.$refs.observer.reset()
       },
@@ -159,9 +159,9 @@
         try {
             const response = await axios({
         method: 'post',
-        url: 'authenticate',
+        url: 'ingreso',
         data: {
-          email: this.email,
+          userName: this.usuario,
           password: this.password
         }
       })
@@ -198,7 +198,7 @@
             this.desactivar = false
         }
 
-      
+
 
       },
     },
@@ -215,4 +215,3 @@
     padding: 8px!important;
   }
 </style>
-

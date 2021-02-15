@@ -2474,7 +2474,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
   data: function data() {
     return {
       desactivar: false,
-      email: null,
+      usuario: null,
       password: null,
       show1: false
     };
@@ -2512,7 +2512,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
       }))();
     },
     clear: function clear() {
-      this.email = null;
+      this.usuario = null;
       this.password = null;
       this.$refs.observer.reset();
     },
@@ -2529,9 +2529,9 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
                 _context2.next = 3;
                 return axios({
                   method: 'post',
-                  url: 'authenticate',
+                  url: 'ingreso',
                   data: {
-                    email: _this2.email,
+                    userName: _this2.usuario,
                     password: _this2.password
                   }
                 });
@@ -48206,8 +48206,8 @@ var render = function() {
                                           [
                                             _c("validation-provider", {
                                               attrs: {
-                                                name: "Correo electrónico",
-                                                rules: "email|required"
+                                                name: "Nombre de Usuario",
+                                                rules: "required"
                                               },
                                               scopedSlots: _vm._u(
                                                 [
@@ -48221,18 +48221,19 @@ var render = function() {
                                                             outlined: "",
                                                             "error-messages": errors,
                                                             label:
-                                                              "Correo electrónico",
+                                                              "Nombre de Usuario",
                                                             autocomplete:
                                                               "new-password"
                                                           },
                                                           model: {
-                                                            value: _vm.email,
+                                                            value: _vm.usuario,
                                                             callback: function(
                                                               $$v
                                                             ) {
-                                                              _vm.email = $$v
+                                                              _vm.usuario = $$v
                                                             },
-                                                            expression: "email"
+                                                            expression:
+                                                              "usuario"
                                                           }
                                                         })
                                                       ]

@@ -29,6 +29,7 @@ Route::get('logout', 'HomeController@logout')->name('logout');
 Auth::routes();
 
 //usuarios
+Route::post('ingreso', 'UserController@ingreso')->name('ingreso');
 Route::post('createUser', 'UserController@create')->name('createUser');
 Route::post('deleteUser', 'UserController@deleteUser')->name('deleteUser');
 Route::post('editUser', 'UserController@editUser')->name('editUser');
