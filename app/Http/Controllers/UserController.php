@@ -66,7 +66,7 @@ class UserController extends Controller
     {
     	try {
     		if ($request->idusuario == 0) {
-    			$usuario = User::where('email', '=', $request->email)->count();
+    			$usuario = User::where('email', '=', $request->email)->where('email', '!=', null)->count();
     		}else{
     			$usuario = User::where('email', '=', $request->email)->where('id', '!=', $request->idusuario)->count();
     		}
@@ -136,7 +136,7 @@ class UserController extends Controller
     {
     	try {
 
-    		$usuarios = User::orderBy('rol')->where('rol','!=','AGENTE')->get();
+    		$usuarios = User::orderBy('rol')->get();
 
     		return response()->json(['response' => $usuarios],200);
 

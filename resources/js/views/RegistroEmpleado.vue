@@ -110,7 +110,7 @@
       v-model="password"
      :error-messages="errors"
 
-      label="Contraseña *"
+      label="Contraseña(Mínimo 8 caracteres) *"
 
     ></v-text-field>
 
@@ -134,7 +134,7 @@
        :error-messages="errors"
        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
       @click:append="show1 = !show1"
-        label="Contraseña *"
+        label="Contraseña(Mínimo 8 caracteres) *"
       ></v-text-field>
     </validation-provider>
 
@@ -268,7 +268,7 @@
             telefono:null,
             password:null,
             sexo:null,
-            catroles:['ADMINISTRADOR', 'COTIZADOR'],
+            catroles:['ADMINISTRADOR', 'COTIZADOR', 'ALMACÉN'],
          }),
          methods: {
           async verificar(){

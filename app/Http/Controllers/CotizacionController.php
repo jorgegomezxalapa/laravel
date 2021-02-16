@@ -48,11 +48,14 @@ class CotizacionController extends Controller
         }
       }
 
-      public function iniciarCotizacion (Request $request) {
+      public function saveConfigCotizacion (Request $request) {
+    
         try {
 
           $cotizacion = Cotizacion::where('id', '=', $request->id)->first();
-          $cotizacion->idUtilidad = $request->utilidad;
+          $cotizacion->ivaGlobal = $request->ivaGlobal;
+          $cotizacion->iepsGlobal = $request->iepsGlobal;
+          $cotizacion->utilidadGlobal = $request->utilidadGlobal;
           $cotizacion->estatus = 1;
           $cotizacion->save();
           return response()->json(['response' => true],200);

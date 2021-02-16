@@ -15,13 +15,20 @@ class CreateCotizacionesTable extends Migration
     {
         Schema::create('cotizaciones', function (Blueprint $table) {
             $table->bigIncrements('id');
-              $table->string('idSolicitud',250)->nullable();
-                $table->string('idUtilidad',250)->nullable();
-                $table->string('estatus',250)->nullable();
-                  $table->string('iva',250)->nullable();
-                    $table->string('ieps',250)->nullable();
-                      $table->string('subtotal',250)->nullable();
-                        $table->string('total',250)->nullable();
+
+            $table->string('idSolicitud',250)->nullable();
+
+            $table->string('estatus',250)->nullable();
+
+                $table->string('utilidadGlobal',250)->nullable();
+                $table->string('ivaGlobal',250)->nullable();
+                $table->string('iepsGlobal',250)->nullable();
+
+                  $table->string('ivaTotal',250)->nullable();
+                  $table->string('iepsTotal',250)->nullable();
+                  $table->string('subtotal',250)->nullable();
+                  $table->string('total',250)->nullable();
+                  
                 $table->string('fechafinalizado',250)->nullable();
               $table->timestamps();
 

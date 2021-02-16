@@ -10,15 +10,17 @@ class Cotizacion extends Model
     protected $table = 'cotizaciones';
       protected $fillable =[
 
-        'id',
-        'idSolicitud',
-          'idUtilidad',
-        'estatus',
-        'iva',
-        'ieps',
-        'subtotal',
-        'total',
-          'fechafinalizado',
+            'id',
+            'idSolicitud',
+            'estatus',
+            'utilidadGlobal',
+            'ivaGlobal',
+            'iepsGlobal',
+            'ivaTotal',
+            'iepsTotal',
+            'subtotal',
+            'total',
+          'fechafinalizado'
 
 
       ];

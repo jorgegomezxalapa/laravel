@@ -37,6 +37,7 @@ Route::post('compararEmail', 'UserController@compararEmail')->name('compararEmai
 Route::post('compararUsuario', 'UserController@compararUsuario')->name('compararUsuario');
 Route::get('getUsuarios', 'UserController@getUsers')->name('getUsuarios');
 Route::post('getUsuario', 'UserController@getUser')->name('getUsuario');
+Route::post('getDetalle', 'UserController@getDetalle')->name('getDetalle');
 
 //clientes
 Route::get('getClientes', 'ClienteController@getClientes')->name('getClientes');
@@ -62,7 +63,7 @@ Route::get('catalogosSolicitud', 'CatalogosController@catalogosSolicitud')->name
 //cotizaciones
 Route::get('getCotizaciones', 'CotizacionController@getCotizaciones')->name('getCotizaciones');
 Route::post('getCotizacion', 'CotizacionController@getCotizacion')->name('getCotizacion');
-Route::post('iniciarCotizacion', 'CotizacionController@iniciarCotizacion')->name('iniciarCotizacion');
+Route::post('saveConfigCotizacion', 'CotizacionController@saveConfigCotizacion')->name('saveConfigCotizacion');
 Route::post('savePartida', 'CotizacionController@savePartida')->name('savePartida');
 
 //utilidades

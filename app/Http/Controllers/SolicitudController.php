@@ -69,6 +69,7 @@ class SolicitudController extends Controller
       }
 
       public function editarSolicitud ( Request $request ) {
+
         try {
       		DB::beginTransaction();
       		$usuario = Solicitud::where('id', '=', $request->id )->first();
@@ -80,7 +81,7 @@ class SolicitudController extends Controller
   		   $usuario->solicitante = $request->solicitante;
   		   $usuario->responsable = $request->responsable;
   		    $usuario->comentario = $request->comentarios;
-            $solicitud->urgente = $request->urgente;
+          $usuario->urgente = $request->urgente;
   		   $usuario->save();
   		    DB::commit();
 

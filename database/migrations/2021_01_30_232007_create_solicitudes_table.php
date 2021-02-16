@@ -15,13 +15,13 @@ class CreateSolicitudesTable extends Migration
     {
         Schema::create('solicitudes', function (Blueprint $table) {
           $table->bigIncrements('id');
-            $table->string('fecha',250)->nullable();
-              $table->string('folio',250)->nullable();
-                $table->string('agente',250)->nullable();
-                  $table->string('cliente',250)->nullable();
-                    $table->string('solicitante',250)->nullable();
-                    $table->string('responsable',250)->nullable();
-                    $table->string('comentario',250)->nullable();
+            $table->string('fecha',64)->nullable();
+              $table->string('folio',64)->nullable();
+                $table->string('agente',64)->nullable();
+                  $table->string('cliente',64)->nullable();
+                    $table->string('solicitante',64)->nullable();
+                    $table->string('responsable',64)->nullable();
+                    $table->text('comentario',65535)->nullable();
                     $table->boolean('urgente')->nullable();
             $table->timestamps();
         });

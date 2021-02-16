@@ -15,10 +15,10 @@ class CatalogosController extends Controller
     public function catalogosSolicitud () {
       try {
 
-        $agentes = User::orderBy('id', 'DESC')->where('rol', '=', 'ADMINISTRADOR')->orWhere('rol', '=', 'AGENTE')->get();
+        $agentes = User::orderBy('id', 'DESC')->where('rol', '=', 'ADMINISTRADOR')->get();
         $clientes = Cliente::orderBy('id', 'DESC')->get();
         $solicitantes = Solicitante::orderBy('id', 'DESC')->get();
-        $responsables = User::orderBy('id', 'DESC')->where('rol', '!=', 'AGENTE')->get();
+        $responsables = User::orderBy('id', 'DESC')->get();
 
 
         return response()->json(['agentes' => $agentes, 'clientes' => $clientes, 'solicitantes' => $solicitantes, 'responsables' => $responsables],200);

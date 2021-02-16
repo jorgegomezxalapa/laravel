@@ -8,144 +8,244 @@
 
 
       >
-    <v-card-title class="font-weight-black">Información de la cotización</v-card-title>
 
-<v-divider></v-divider>
-  <v-card-text>
-
-
-
-    <v-container>
-      <p class="font-weight-black">Datos generales</p>
-      <v-row>
-
-          <v-col
-            cols="12"
-            md="6"
-          >
-          <v-card
-    class="mx-auto"
-
-  >
-    <v-card-text>
-      <p class="font-weight-black">Solicitud con #Folio: <br>{{this.solicitud.folio}} </p>
-    </v-card-text>
-
-  </v-card>
-
-
-        </v-col>
-
-        <v-col
-          cols="12"
-          md="6"
-        >
-        <v-card
-            class="mx-auto"
-
-          >
-            <v-card-text>
-              <p class="font-weight-black">Solicitante: <br>{{this.solicitante.nombre}} </p>
-            </v-card-text>
-
-          </v-card>
-
-
-      </v-col>
-
-      <v-col
-        cols="12"
-        md="6"
-      >
-      <v-card
-          class="mx-auto"
-
-        >
-          <v-card-text>
-            <p class="font-weight-black">Dirigido a(Cliente): <br>{{this.cliente.razonSocial}} </p>
-          </v-card-text>
-
-        </v-card>
-
-
-    </v-col>
-
-    <v-col
-      cols="12"
-      md="12"
+      <v-toolbar
+      flat
+      color="secondary"
+      dark
     >
-    <v-card
-        class="mx-auto"
+      <v-toolbar-title>Detalle de la Cotización</v-toolbar-title>
+    </v-toolbar>
+    <v-card>
+   <v-tabs
+     v-model="tab"
 
-      >
-        <v-card-text>
-          <p class="font-weight-black">Comentarios: <br>{{this.solicitud.comentario}} </p>
-        </v-card-text>
+     centered
 
-      </v-card>
+     icons-and-text
+   >
+     <v-tabs-slider></v-tabs-slider>
 
-  </v-col>
-  <v-col
-    cols="12"
-    md="12"
-  >
-<hr>
-        <p class="font-weight-black">Seleccionar Tipo de Venta </p>
-        <v-select
-        v-model="utilidad"
-        :items="utilidades"
-        item-text="descripcion"
-        item-value="id"
-        label="Tipo de Venta * "
+     <v-tab href="#tab-a">
+       Detalle de la solicitud
+       <v-icon>mdi-import</v-icon>
+     </v-tab>
 
-        ></v-select>
-</v-col>
+     <v-tab href="#tab-2">
+       Configuración de Parámetros
+       <v-icon>mdi-settings-box</v-icon>
+     </v-tab>
+
+     <v-tab href="#tab-3">
+       Registrar Partida
+       <v-icon>mdi-file-document</v-icon>
+     </v-tab>
+
+     <v-tab href="#tab-4">
+       Partidas Registradas
+       <v-icon>mdi-clipboard-text</v-icon>
+     </v-tab>
+
+     <v-tab href="#tab-5">
+       Acciones Disponibles
+       <v-icon>mdi-auto-fix</v-icon>
+     </v-tab>
+   </v-tabs>
+
+   <v-tabs-items v-model="tab">
+     <v-tab-item
+
+       value="tab-a"
+     >
+     <v-container>
+       <v-row>
+
+       <br>
+       <v-col v-if ="this.solicitud.urgente == 1">
+         <v-alert
+       dense
+       outlined
+       type="error"
+     >
+      Solicitud marcada como urgente
+     </v-alert>
+       </v-col>
+
 
       </v-row>
 
+       <v-row>
 
-    </v-container>
+           <v-col
+             cols="12"
+             md="6"
+           >
+           <v-card
+     class="mx-auto"
 
+   >
+     <v-card-text>
+       <p class="font-weight-black">Folio de la Solicitud <br><br>{{this.solicitud.folio}} </p>
+     </v-card-text>
 
-
-
-    </v-card-text>
-    <v-divider></v-divider>
-    <v-card-actions>
-        <v-row>
-
-
-            <v-col>
-               <v-btn
-               cols="6"
-               block
-      color="primary"
-      @click="iniciarCotizacion"
-      v-if="!editar"
-    >
-      Iniciar Cotización
-    </v-btn>
-    <v-btn
-    cols="6"
-    block
-color="primary"
-@click="editarCotizacion"
-v-if="editar"
->
-Editar Cotización
-</v-btn>
-            </v-col>
-        </v-row>
+   </v-card>
 
 
+         </v-col>
+
+         <v-col
+           cols="12"
+           md="6"
+         >
+         <v-card
+             class="mx-auto"
+
+           >
+             <v-card-text>
+               <p class="font-weight-black">Persona Solicitante <br><br>{{this.solicitante.nombre}} </p>
+             </v-card-text>
+
+           </v-card>
 
 
+       </v-col>
+
+       <v-col
+         cols="12"
+
+       >
+       <v-card
+           class="mx-auto"
+
+         >
+           <v-card-text>
+             <p class="font-weight-black">Persona/Empresa a quien se dirige esta cotización<br><br>{{this.cliente.razonSocial}} </p>
+           </v-card-text>
+
+         </v-card>
 
 
-    </v-card-actions>
+     </v-col>
+
+     <v-col
+       cols="12"
+       md="12"
+     >
+     <v-card
+         class="mx-auto"
+
+       >
+         <v-card-text>
+           <p class="font-weight-black">Comentarios: <br>{{this.solicitud.comentario}} </p>
+         </v-card-text>
+
+       </v-card>
+
+   </v-col>
+
+
+       </v-row>
+
+
+     </v-container>
+     </v-tab-item>
+
+     <v-tab-item
+
+       value="tab-2"
+     >
+       <v-card flat>
+         <v-card-text>
+
+           <v-row>
+             <v-col
+                     cols="12"
+
+                   >
+                   <p>Todos los porcentajes se definen en escala del 0 al 100 %, ingresando únicamente el valor numérico.</p>
+                   <p>No está permitido el ingreso de símbolo de pesos($), símbolo de porcentaje($) y símbolo de coma (,).</p>
+                 </v-col>
+
+             <v-col
+                     cols="12"
+
+                     md="4"
+                   >
+                   <v-select
+                   v-model="utilidadGlobal"
+                   :items="utilidades"
+
+                   item-text="descripcion"
+                   item-value="id"
+                   label="Tipo de Venta"
+
+                   ></v-select>
+                 </v-col>
+             <v-col
+                     cols="12"
+
+                     md="4"
+                   >
+                   <v-text-field
+                     v-model="ivaGlobal"
+                     type="number"
+                     label="PORCENTAJE DE IVA"
+
+                   ></v-text-field>
+                 </v-col>
+                 <v-col
+                         cols="12"
+
+                         md="4"
+                       >
+                       <v-text-field
+                         v-model="iepsGlobal"
+                         type="number"
+                         label="PORCENTAJE DE IEPS"
+
+                       ></v-text-field>
+                     </v-col>
+                     <v-col
+                             cols="12"
+
+                           >
+                           <v-btn
+                           block
+                           color="primary"
+                           @click="guardarConfiguracion"
+                           >
+                           Guardar Configuración
+                           </v-btn>
+                         </v-col>
+
+
+           </v-row>
+
+         </v-card-text>
+       </v-card>
+     </v-tab-item>
+
+     <v-tab-item
+
+       value="tab-3"
+     >
+       <v-card flat>
+         <v-card-text>
+
+             <p class="font-weight-black mb-3"  align="center">Llena el Formulario para registrar una nueva Partida</p>
+         </v-card-text>
+       </v-card>
+     </v-tab-item>
+
+
+   </v-tabs-items>
+ </v-card>
+
+
   </v-card>
     </v-container>
 </template>
+
 
 <script>
 const axios = require('axios');
@@ -158,8 +258,10 @@ import swal from 'sweetalert';
           this.gettipoventas()
         },
         data: () => ({
-            editar: false,
-            utilidad:null,
+          tab:null,
+            utilidadGlobal:null,
+            ivaGlobal:16,
+            iepsGlobal:0,
             utilidades:[],
             cotizacion:[],
             cliente:[],
@@ -167,6 +269,7 @@ import swal from 'sweetalert';
             agente:[],
             responsable:[],
             solicitud:[],
+
 
          }),
           methods:{
@@ -181,13 +284,23 @@ import swal from 'sweetalert';
                     })
 
                     this.cotizacion = response.data.response
-                      console.log(this.cotizacion)
+
                       this.solicitud = this.cotizacion.solicitud
                     this.cliente = this.cotizacion.solicitud.cliente
                       this.solicitante = this.cotizacion.solicitud.solicitante
                         this.agente = this.cotizacion.solicitud.agente
                           this.responsable = this.cotizacion.solicitud.responsable
-                    console.log(this.cliente, this.solicitante, this.agente, this.responsable)
+
+                          this.ivaGlobal = this.cotizacion.ivaGlobal
+                          this.iepsGlobal = this.cotizacion.iepsGlobal
+                          if (this.cotizacion.utilidadGlobal != null) {
+                              this.utilidadGlobal = parseInt(this.cotizacion.utilidadGlobal)
+                          }
+                        
+
+
+
+
 
 
                 } catch (error) {
@@ -216,20 +329,22 @@ import swal from 'sweetalert';
 
                 }
             },
-            async iniciarCotizacion () {
+            async guardarConfiguracion () {
               try {
                   const response = await axios({
                     method: 'post',
-                    url: 'iniciarCotizacion',
+                    url: 'saveConfigCotizacion',
                     data: {
                       id:this.$route.params.id,
-                      utilidad : this.utilidad
-
+                      utilidadGlobal : this.utilidadGlobal,
+                      ivaGlobal:this.ivaGlobal,
+                      iepsGlobal:this.iepsGlobal,
                     }
                   })
+                   swal("Éxito", "Se ha configuradado esta cotización", "success");
 
 
-                   this.$router.push({ name: 'registroPartidas', params:{id:this.$route.params.id} });
+
 
               } catch (error) {
                  swal("Error", "Ha ocurrido un error en el servidor", "warning");
@@ -238,9 +353,7 @@ import swal from 'sweetalert';
 
               }
             },
-            async editarCotizacion(){
-              alert("editar")
-            },
+
 
           },
 

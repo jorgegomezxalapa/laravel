@@ -188,6 +188,7 @@ label="Agende de Ventas * "
           solo
             v-model="comentarios"
           label="Ingresa Aquí tus Comentarios"
+          :counter="65535"
         ></v-textarea>
       </v-col>
     </v-row>
