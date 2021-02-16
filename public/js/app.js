@@ -4584,6 +4584,213 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -4596,6 +4803,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   },
   data: function data() {
     return {
+      switchVariables: false,
+      switch1: false,
       tab: null,
       utilidadGlobal: null,
       ivaGlobal: 16,
@@ -4606,63 +4815,38 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       solicitante: [],
       agente: [],
       responsable: [],
-      solicitud: []
+      solicitud: [],
+      partida: 1,
+      descripcion: null,
+      unidadmedida: null,
+      cantidad: null,
+      precioproveedor: null,
+      notasproducto: null,
+      utilidadpartida: null,
+      iepspartida: 0,
+      ivapartida: 16,
+      importe1: null,
+      utilidadgenerada: null,
+      preciounitario: null,
+      importe2: null
     };
   },
   methods: {
-    getCotizacion: function getCotizacion() {
-      var _this = this;
-
+    guardarPartida: function guardarPartida() {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.prev = 0;
-                _context.next = 3;
-                return axios({
-                  method: 'post',
-                  url: 'getCotizacion',
-                  data: {
-                    id: _this.$route.params.id
-                  }
-                });
-
-              case 3:
-                response = _context.sent;
-                _this.cotizacion = response.data.response;
-                _this.solicitud = _this.cotizacion.solicitud;
-                _this.cliente = _this.cotizacion.solicitud.cliente;
-                _this.solicitante = _this.cotizacion.solicitud.solicitante;
-                _this.agente = _this.cotizacion.solicitud.agente;
-                _this.responsable = _this.cotizacion.solicitud.responsable;
-                _this.ivaGlobal = _this.cotizacion.ivaGlobal;
-                _this.iepsGlobal = _this.cotizacion.iepsGlobal;
-
-                if (_this.cotizacion.utilidadGlobal != null) {
-                  _this.utilidadGlobal = parseInt(_this.cotizacion.utilidadGlobal);
-                }
-
-                _context.next = 19;
-                break;
-
-              case 15:
-                _context.prev = 15;
-                _context.t0 = _context["catch"](0);
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
-                console.log(_context.t0);
-
-              case 19:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 15]]);
+        }, _callee);
       }))();
     },
-    gettipoventas: function gettipoventas() {
-      var _this2 = this;
+    getCotizacion: function getCotizacion() {
+      var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var response;
@@ -4673,32 +4857,54 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
                 _context2.prev = 0;
                 _context2.next = 3;
                 return axios({
-                  method: 'get',
-                  url: 'getUtilidades'
+                  method: 'post',
+                  url: 'getCotizacion',
+                  data: {
+                    id: _this.$route.params.id
+                  }
                 });
 
               case 3:
                 response = _context2.sent;
-                _this2.utilidades = response.data.response;
-                _context2.next = 11;
+                console.log(response.data.response);
+                _this.cotizacion = response.data.response;
+                _this.solicitud = _this.cotizacion.solicitud;
+                _this.cliente = _this.cotizacion.solicitud.cliente;
+                _this.solicitante = _this.cotizacion.solicitud.solicitante;
+                _this.agente = _this.cotizacion.solicitud.agente;
+                _this.responsable = _this.cotizacion.solicitud.responsable;
+                _this.ivaGlobal = parseInt(_this.cotizacion.ivaGlobal);
+                _this.iepsGlobal = parseInt(_this.cotizacion.iepsGlobal);
+
+                if (_this.cotizacion.utilidadGlobal != null) {
+                  _this.utilidadGlobal = parseInt(_this.cotizacion.utilidadGlobal);
+                }
+
+                if (_this.cotizacion.utilidad != null) {
+                  if (_this.cotizacion.utilidad.porcentaje != null) {
+                    _this.utilidadpartida = _this.cotizacion.utilidad.porcentaje;
+                  }
+                }
+
+                _context2.next = 21;
                 break;
 
-              case 7:
-                _context2.prev = 7;
+              case 17:
+                _context2.prev = 17;
                 _context2.t0 = _context2["catch"](0);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
                 console.log(_context2.t0);
 
-              case 11:
+              case 21:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 7]]);
+        }, _callee2, null, [[0, 17]]);
       }))();
     },
-    guardarConfiguracion: function guardarConfiguracion() {
-      var _this3 = this;
+    gettipoventas: function gettipoventas() {
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var response;
@@ -4708,6 +4914,42 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
               case 0:
                 _context3.prev = 0;
                 _context3.next = 3;
+                return axios({
+                  method: 'get',
+                  url: 'getUtilidades'
+                });
+
+              case 3:
+                response = _context3.sent;
+                _this2.utilidades = response.data.response;
+                _context3.next = 11;
+                break;
+
+              case 7:
+                _context3.prev = 7;
+                _context3.t0 = _context3["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+                console.log(_context3.t0);
+
+              case 11:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, null, [[0, 7]]);
+      }))();
+    },
+    guardarConfiguracion: function guardarConfiguracion() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.prev = 0;
+                _context4.next = 3;
                 return axios({
                   method: 'post',
                   url: 'saveConfigCotizacion',
@@ -4720,23 +4962,23 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
                 });
 
               case 3:
-                response = _context3.sent;
+                response = _context4.sent;
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "Se ha configuradado esta cotización", "success");
-                _context3.next = 11;
+                _context4.next = 11;
                 break;
 
               case 7:
-                _context3.prev = 7;
-                _context3.t0 = _context3["catch"](0);
+                _context4.prev = 7;
+                _context4.t0 = _context4["catch"](0);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
-                console.log(_context3.t0);
+                console.log(_context4.t0);
 
               case 11:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3, null, [[0, 7]]);
+        }, _callee4, null, [[0, 7]]);
       }))();
     }
   }
@@ -49742,7 +49984,7 @@ var render = function() {
                     "v-tab",
                     { attrs: { href: "#tab-a" } },
                     [
-                      _vm._v("\n      Detalle de la solicitud\n      "),
+                      _vm._v("\n       Detalle de la solicitud\n       "),
                       _c("v-icon", [_vm._v("mdi-import")])
                     ],
                     1
@@ -49752,7 +49994,7 @@ var render = function() {
                     "v-tab",
                     { attrs: { href: "#tab-2" } },
                     [
-                      _vm._v("\n      Configuración de Parámetros\n      "),
+                      _vm._v("\n       Configuración de Parámetros\n       "),
                       _c("v-icon", [_vm._v("mdi-settings-box")])
                     ],
                     1
@@ -49762,7 +50004,7 @@ var render = function() {
                     "v-tab",
                     { attrs: { href: "#tab-3" } },
                     [
-                      _vm._v("\n      Registrar Partida\n      "),
+                      _vm._v("\n       Registrar Partida\n       "),
                       _c("v-icon", [_vm._v("mdi-file-document")])
                     ],
                     1
@@ -49772,7 +50014,7 @@ var render = function() {
                     "v-tab",
                     { attrs: { href: "#tab-4" } },
                     [
-                      _vm._v("\n      Partidas Registradas\n      "),
+                      _vm._v("\n       Partidas Registradas\n       "),
                       _c("v-icon", [_vm._v("mdi-clipboard-text")])
                     ],
                     1
@@ -49782,7 +50024,7 @@ var render = function() {
                     "v-tab",
                     { attrs: { href: "#tab-5" } },
                     [
-                      _vm._v("\n      Acciones Disponibles\n      "),
+                      _vm._v("\n       Acciones Disponibles\n       "),
                       _c("v-icon", [_vm._v("mdi-auto-fix")])
                     ],
                     1
@@ -49830,7 +50072,7 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n     Solicitud marcada como urgente\n    "
+                                            "\n      Solicitud marcada como urgente\n     "
                                           )
                                         ]
                                       )
@@ -50085,7 +50327,7 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n                          Guardar Configuración\n                          "
+                                            "\n                           Guardar Configuración\n                           "
                                           )
                                         ]
                                       )
@@ -50113,20 +50355,414 @@ var render = function() {
                         "v-card",
                         { attrs: { flat: "" } },
                         [
-                          _c("v-card-text", [
-                            _c(
-                              "p",
-                              {
-                                staticClass: "font-weight-black mb-3",
-                                attrs: { align: "center" }
-                              },
-                              [
-                                _vm._v(
-                                  "Llena el Formulario para registrar una nueva Partida"
-                                )
-                              ]
-                            )
-                          ])
+                          _c(
+                            "v-card-text",
+                            [
+                              _c("br"),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                {
+                                  staticClass: "font-weight-black mb-3",
+                                  attrs: { align: "center" }
+                                },
+                                [
+                                  _vm._v(
+                                    "Llena el Formulario para registrar una nueva Partida"
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("br"),
+                              _vm._v(" "),
+                              _c(
+                                "v-row",
+                                [
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", md: "4" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          type: "number",
+                                          label: "Número de Partida sugerida  "
+                                        },
+                                        model: {
+                                          value: _vm.partida,
+                                          callback: function($$v) {
+                                            _vm.partida = $$v
+                                          },
+                                          expression: "partida"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", md: "8" } },
+                                    [
+                                      _c("v-textarea", {
+                                        attrs: {
+                                          solo: "",
+                                          label: "Descripción",
+                                          counter: 65535
+                                        },
+                                        model: {
+                                          value: _vm.descripcion,
+                                          callback: function($$v) {
+                                            _vm.descripcion = $$v
+                                          },
+                                          expression: "descripcion"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", sm: "6", md: "4" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: { label: "Unidad de Medida  " },
+                                        model: {
+                                          value: _vm.unidadmedida,
+                                          callback: function($$v) {
+                                            _vm.unidadmedida = $$v
+                                          },
+                                          expression: "unidadmedida"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", sm: "6", md: "4" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          type: "number",
+                                          label: "Cantidad "
+                                        },
+                                        model: {
+                                          value: _vm.cantidad,
+                                          callback: function($$v) {
+                                            _vm.cantidad = $$v
+                                          },
+                                          expression: "cantidad"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", sm: "6", md: "4" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          type: "number",
+                                          label: "Precio del Proveedor "
+                                        },
+                                        model: {
+                                          value: _vm.precioproveedor,
+                                          callback: function($$v) {
+                                            _vm.precioproveedor = $$v
+                                          },
+                                          expression: "precioproveedor"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-switch", {
+                                        attrs: {
+                                          label:
+                                            "¿Desea restar el valor del IVA al Precio del Proveedor?",
+                                          color: "warning"
+                                        },
+                                        model: {
+                                          value: _vm.switch1,
+                                          callback: function($$v) {
+                                            _vm.switch1 = $$v
+                                          },
+                                          expression: "switch1"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12" } },
+                                    [
+                                      _c("v-textarea", {
+                                        attrs: {
+                                          solo: "",
+                                          label:
+                                            "Espacio para notas del producto"
+                                        },
+                                        model: {
+                                          value: _vm.notasproducto,
+                                          callback: function($$v) {
+                                            _vm.notasproducto = $$v
+                                          },
+                                          expression: "notasproducto"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("v-row", [_c("v-divider")], 1),
+                              _vm._v(" "),
+                              _c(
+                                "v-row",
+                                [
+                                  _c("v-switch", {
+                                    attrs: {
+                                      label:
+                                        "¿Desea personalizar los parámetros de TIPO DE VENTA, IVA, IEPS?",
+                                      color: "warning",
+                                      "hide-details": ""
+                                    },
+                                    model: {
+                                      value: _vm.switchVariables,
+                                      callback: function($$v) {
+                                        _vm.switchVariables = $$v
+                                      },
+                                      expression: "switchVariables"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("br")
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-row",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.switchVariables,
+                                      expression: "switchVariables"
+                                    }
+                                  ]
+                                },
+                                [
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", md: "4" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          type: "number",
+                                          label:
+                                            "Tipo de Venta / Utilidad (En escala del 0 al 100 %)"
+                                        },
+                                        model: {
+                                          value: _vm.utilidadpartida,
+                                          callback: function($$v) {
+                                            _vm.utilidadpartida = $$v
+                                          },
+                                          expression: "utilidadpartida"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", md: "4" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          type: "number",
+                                          label:
+                                            "PORCENTAJE DE IVA(En escala del 0 al 100 %) "
+                                        },
+                                        model: {
+                                          value: _vm.ivapartida,
+                                          callback: function($$v) {
+                                            _vm.ivapartida = $$v
+                                          },
+                                          expression: "ivapartida"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", md: "4" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          type: "number",
+                                          label:
+                                            "PORCENTAJE DE IEPS(En escala del 0 al 100 %) "
+                                        },
+                                        model: {
+                                          value: _vm.iepspartida,
+                                          callback: function($$v) {
+                                            _vm.iepspartida = $$v
+                                          },
+                                          expression: "iepspartida"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("v-row", [_c("v-divider")], 1),
+                              _vm._v(" "),
+                              _c("v-row", [
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass: "font-weight-black mb-3",
+                                    attrs: { align: "center" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "Cálculo automático a partir de los datos capturados"
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("br")
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "v-row",
+                                [
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", md: "3" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          type: "number",
+                                          label: "Importe(1) * "
+                                        },
+                                        model: {
+                                          value: _vm.importe1,
+                                          callback: function($$v) {
+                                            _vm.importe1 = $$v
+                                          },
+                                          expression: "importe1"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", md: "3" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          type: "number",
+                                          label: "Utilidad * "
+                                        },
+                                        model: {
+                                          value: _vm.utilidadgenerada,
+                                          callback: function($$v) {
+                                            _vm.utilidadgenerada = $$v
+                                          },
+                                          expression: "utilidadgenerada"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", md: "3" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          type: "number",
+                                          label: "Precio Unitario * "
+                                        },
+                                        model: {
+                                          value: _vm.preciounitario,
+                                          callback: function($$v) {
+                                            _vm.preciounitario = $$v
+                                          },
+                                          expression: "preciounitario"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", md: "3" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          type: "number",
+                                          label: "Importe(2) * "
+                                        },
+                                        model: {
+                                          value: _vm.importe2,
+                                          callback: function($$v) {
+                                            _vm.importe2 = $$v
+                                          },
+                                          expression: "importe2"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12" } },
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            block: "",
+                                            color: "primary"
+                                          },
+                                          on: { click: _vm.guardarPartida }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                     Guardar Partida\n                                     "
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
                         ],
                         1
                       )
