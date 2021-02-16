@@ -17,7 +17,7 @@ class UtilidadController extends Controller
           DB::beginTransaction();
           $utilidad = new Utilidad();
           $utilidad->descripcion = $request->descripcion;
-          $utilidad->porcentaje = floatval($request->porcentaje) / 100 ;
+          $utilidad->porcentaje = floatval($request->porcentaje);
           $utilidad->save();
           DB::commit();
         }

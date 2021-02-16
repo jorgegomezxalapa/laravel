@@ -575,6 +575,9 @@ import swal from 'sweetalert';
                       iepsGlobal:this.iepsGlobal,
                     }
                   })
+                if (response.data.utilidad.porcentaje != null) {
+                  this.utilidadpartida = response.data.utilidad.porcentaje
+                }
                    swal("Éxito", "Se ha configuradado esta cotización", "success");
 
 

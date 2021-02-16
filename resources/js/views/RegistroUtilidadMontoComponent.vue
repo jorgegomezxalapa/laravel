@@ -52,7 +52,7 @@
         >
           <v-text-field
       v-model="porcentaje"
-
+ type="number"
       label="Porcentaje del tipo de venta(En escala de 0 a 100 %) *"
 :error-messages="errors"
     ></v-text-field>

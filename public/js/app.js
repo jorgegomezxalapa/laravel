@@ -4963,22 +4963,27 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
               case 3:
                 response = _context4.sent;
+
+                if (response.data.utilidad.porcentaje != null) {
+                  _this3.utilidadpartida = response.data.utilidad.porcentaje;
+                }
+
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "Se ha configuradado esta cotización", "success");
-                _context4.next = 11;
+                _context4.next = 12;
                 break;
 
-              case 7:
-                _context4.prev = 7;
+              case 8:
+                _context4.prev = 8;
                 _context4.t0 = _context4["catch"](0);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
                 console.log(_context4.t0);
 
-              case 11:
+              case 12:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4, null, [[0, 7]]);
+        }, _callee4, null, [[0, 8]]);
       }))();
     }
   }
@@ -52284,6 +52289,7 @@ var render = function() {
                                                   return [
                                                     _c("v-text-field", {
                                                       attrs: {
+                                                        type: "number",
                                                         label:
                                                           "Porcentaje del tipo de venta(En escala de 0 a 100 %) *",
                                                         "error-messages": errors
