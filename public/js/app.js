@@ -5130,6 +5130,58 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -5246,7 +5298,11 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       activareditar: false,
       idEditar: null,
       singleSelect: false,
-      selected: []
+      selected: [],
+      ivaCotizacion: 0,
+      iepsCotizacion: 0,
+      subtotalCotizacion: 0,
+      totalCotizacion: 0
     };
   },
   watch: {
@@ -5353,7 +5409,11 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
               case 3:
                 response = _context.sent;
-                console.log(response.data.response);
+                console.log("aqui", response.data.cotizacion);
+                _this.ivaCotizacion = response.data.cotizacion.ivaTotal;
+                _this.iepsCotizacion = response.data.cotizacion.iepsTotal;
+                _this.subtotalCotizacion = response.data.cotizacion.subtotal;
+                _this.totalCotizacion = response.data.cotizacion.total;
                 _this.partidas = response.data.response;
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "La partida #" + _this.partida + " se registró con éxito", "success");
                 _this.partida = parseInt(_this.partida) + 1;
@@ -5372,21 +5432,21 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
                 _this.utilidadgenerada = 0;
                 _this.preciounitario = 0;
                 _this.importe2 = 0;
-                _context.next = 29;
+                _context.next = 33;
                 break;
 
-              case 25:
-                _context.prev = 25;
+              case 29:
+                _context.prev = 29;
                 _context.t0 = _context["catch"](0);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
                 console.log(_context.t0);
 
-              case 29:
+              case 33:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 25]]);
+        }, _callee, null, [[0, 29]]);
       }))();
     },
     editarPartida: function editarPartida() {
@@ -5430,6 +5490,11 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
                 _this2.partidas = response.data.response;
                 _this2.idEditar = null;
                 _this2.activareditar = false;
+                console.log("aqui", response.data.cotizacion);
+                _this2.ivaCotizacion = response.data.cotizacion.ivaTotal;
+                _this2.iepsCotizacion = response.data.cotizacion.iepsTotal;
+                _this2.subtotalCotizacion = response.data.cotizacion.subtotal;
+                _this2.totalCotizacion = response.data.cotizacion.total;
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "La partida #" + _this2.partida + " se actualizó con éxito", "success");
                 _this2.partida = parseInt(_this2.partida) + 1;
                 _this2.descripcion = null;
@@ -5447,21 +5512,21 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
                 _this2.utilidadgenerada = 0;
                 _this2.preciounitario = 0;
                 _this2.importe2 = 0;
-                _context2.next = 30;
+                _context2.next = 35;
                 break;
 
-              case 26:
-                _context2.prev = 26;
+              case 31:
+                _context2.prev = 31;
                 _context2.t0 = _context2["catch"](0);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
                 console.log(_context2.t0);
 
-              case 30:
+              case 35:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 26]]);
+        }, _callee2, null, [[0, 31]]);
       }))();
     },
     iniciar: function iniciar() {
@@ -51605,6 +51670,114 @@ var render = function() {
                           _c(
                             "v-card-text",
                             [
+                              _c(
+                                "v-row",
+                                [
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", md: "4" } },
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            block: "",
+                                            depressed: "",
+                                            color: "primary"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n    SUBTOTAL:  " +
+                                              _vm._s(_vm.subtotalCotizacion) +
+                                              "\n   "
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", md: "4" } },
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            block: "",
+                                            depressed: "",
+                                            color: "primary"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n     IVA: " +
+                                              _vm._s(_vm.ivaCotizacion) +
+                                              "\n   "
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", md: "4" } },
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            block: "",
+                                            depressed: "",
+                                            color: "primary"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n    IEPS:   " +
+                                              _vm._s(_vm.iepsCotizacion) +
+                                              "\n   "
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12" } },
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            block: "",
+                                            depressed: "",
+                                            color: "primary"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n        TOTAL:   " +
+                                              _vm._s(_vm.totalCotizacion) +
+                                              "\n       "
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c("br")
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
                               _c(
                                 "v-row",
                                 [

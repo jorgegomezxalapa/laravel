@@ -139,7 +139,31 @@ class CotizacionController extends Controller
           $partida->save();
 
             $partidas = Partida::orderBy('partida', 'ASC')->where('idCotizacion', '=' ,$request->idCotizacion )->get();
-            return response()->json(['response' => $partidas],200);
+            $iva = 0;
+            $ieps = 0;
+            $subtotal = 0;
+            $total = 0;
+
+
+            foreach($partidas as $partida){
+
+            $subtotal = intval($subtotal) + intval($partida->importe2);
+            $iva = intval($iva) + ( intval($partida->importe2) * intval(intval($partida->ivapartida)/100));
+            $ieps = intval($ieps) + ( intval($partida->importe2) * (intval($partida->iepspartida)/100));
+            }
+
+            $total = $subtotal + $iva + $ieps;
+
+
+            $cotizacion = Cotizacion::where('id', '=', $request->idCotizacion)->first();
+
+            $cotizacion->ivaTotal = $iva;
+            $cotizacion->iepsTotal = $ieps;
+            $cotizacion->subtotal = $subtotal;
+            $cotizacion->total = $total;
+            $cotizacion->save();
+
+            return response()->json(['response' => $partidas, 'cotizacion'=>$cotizacion],200);
 
         } catch (Exception $e) {
           return response()->json(['response' => $e],500);
@@ -198,7 +222,29 @@ class CotizacionController extends Controller
           $partida->save();
 
             $partidas = Partida::orderBy('partida', 'ASC')->where('idCotizacion', '=' ,$request->idCotizacion )->get();
-            return response()->json(['response' => $partidas],200);
+
+            $iva = 0;
+            $ieps = 0;
+            $subtotal = 0;
+            $total = 0;
+
+            foreach($partidas as $partida){
+
+            $subtotal = intval($subtotal) + intval($partida->importe2);
+            $iva = intval($iva) + ( intval($partida->importe2) * intval(intval($partida->ivapartida)/100));
+            $ieps = intval($ieps) + ( intval($partida->importe2) * (intval($partida->iepspartida)/100));
+            }
+            $total = $subtotal + $iva + $ieps;
+
+            $cotizacion = Cotizacion::where('id', '=', $request->idCotizacion)->first();
+            $cotizacion->ivaTotal = $iva;
+            $cotizacion->iepsTotal = $ieps;
+            $cotizacion->subtotal = $subtotal;
+            $cotizacion->total = $total;
+            $cotizacion->save();
+
+
+            return response()->json(['response' => $partidas, 'cotizacion'=>$cotizacion],200);
 
         } catch (Exception $e) {
           return response()->json(['response' => $e],500);

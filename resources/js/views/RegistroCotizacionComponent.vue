@@ -542,7 +542,59 @@
      >
        <v-card flat>
          <v-card-text>
+              <v-row>
+                <v-col
+                        cols="12"
+                        md="4"
+                      >
+                      <v-btn
+                      block
+     depressed
+     color="primary"
+   >
+    SUBTOTAL:  {{subtotalCotizacion}}
+   </v-btn>
+                    </v-col>
 
+                    <v-col
+                            cols="12"
+                            md="4"
+                          >
+                          <v-btn
+                          block
+     depressed
+     color="primary"
+   >
+     IVA: {{ivaCotizacion}}
+   </v-btn>
+                        </v-col>
+
+                        <v-col
+                                cols="12"
+                                md="4"
+                              >
+                              <v-btn
+                              block
+     depressed
+     color="primary"
+   >
+    IEPS:   {{iepsCotizacion}}
+   </v-btn>
+                            </v-col>
+                            <v-col
+                                    cols="12"
+
+                                  >
+                                  <v-btn
+                                  block
+         depressed
+         color="primary"
+       >
+        TOTAL:   {{totalCotizacion}}
+       </v-btn>
+                                </v-col>
+                <br>
+              </v-row>
            <v-row>
 
 
@@ -867,6 +919,10 @@ import swal from 'sweetalert';
             idEditar:null,
             singleSelect: false,
        selected: [],
+       ivaCotizacion:0,
+       iepsCotizacion:0,
+       subtotalCotizacion:0,
+       totalCotizacion:0,
 
 
 
@@ -980,7 +1036,11 @@ import swal from 'sweetalert';
                         importe2:parseInt(this.importe2),
                       }
                     })
-                      console.log(response.data.response)
+                    console.log("aqui",response.data.cotizacion)
+                    this.ivaCotizacion = response.data.cotizacion.ivaTotal
+                    this.iepsCotizacion = response.data.cotizacion.iepsTotal
+                    this.subtotalCotizacion = response.data.cotizacion.subtotal
+                    this.totalCotizacion = response.data.cotizacion.total
                       this.partidas = response.data.response
 
                     swal("Éxito", "La partida #"+this.partida+" se registró con éxito", "success");
@@ -1045,6 +1105,11 @@ import swal from 'sweetalert';
                       this.partidas = response.data.response
                       this.idEditar = null
                       this.activareditar = false
+                      console.log("aqui",response.data.cotizacion)
+                      this.ivaCotizacion = response.data.cotizacion.ivaTotal
+                      this.iepsCotizacion = response.data.cotizacion.iepsTotal
+                      this.subtotalCotizacion = response.data.cotizacion.subtotal
+                      this.totalCotizacion = response.data.cotizacion.total
 
                     swal("Éxito", "La partida #"+this.partida+" se actualizó con éxito", "success");
                     this.partida = parseInt(this.partida)+1
