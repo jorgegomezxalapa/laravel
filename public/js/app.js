@@ -4791,6 +4791,45 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -4828,8 +4867,29 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       importe1: null,
       utilidadgenerada: null,
       preciounitario: null,
-      importe2: null
+      importe2: null,
+      marca: null,
+      modelo: null,
+      numserie: null,
+      restariva: null
     };
+  },
+  watch: {
+    switch1: function switch1(newVal, oldVal) {
+      if (this.precioproveedor != null && this.precioproveedor != "" && this.ivapartida != 0) {
+        if (newVal) {
+          // resta
+          this.restariva = 0;
+          this.restariva = parseFloat(this.precioproveedor) * parseFloat(parseFloat(this.ivapartida) / 100);
+          this.precioproveedor = parseFloat(this.precioproveedor) - this.restariva;
+        } else {
+          //recuperar interval
+          this.precioproveedor = this.precioproveedor + this.restariva;
+        }
+
+        alert(this.restariva);
+      }
+    }
   },
   methods: {
     guardarPartida: function guardarPartida() {
@@ -50378,6 +50438,12 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(" "),
+                              _c("p", [
+                                _vm._v(
+                                  "El ingreso de los símbolos(Peso $ | Coma , | Porcentaje %) en campos numérico(EJ: Precio) no están permitidos"
+                                )
+                              ]),
+                              _vm._v(" "),
                               _c("br"),
                               _vm._v(" "),
                               _c(
@@ -50503,13 +50569,72 @@ var render = function() {
                                   _vm._v(" "),
                                   _c(
                                     "v-col",
+                                    { attrs: { cols: "12", md: "4" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: { type: "text", label: "Marca" },
+                                        model: {
+                                          value: _vm.marca,
+                                          callback: function($$v) {
+                                            _vm.marca = $$v
+                                          },
+                                          expression: "marca"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", md: "4" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          type: "text",
+                                          label: "Modelo"
+                                        },
+                                        model: {
+                                          value: _vm.modelo,
+                                          callback: function($$v) {
+                                            _vm.modelo = $$v
+                                          },
+                                          expression: "modelo"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", md: "4" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          type: "text",
+                                          label: "Número de Serie"
+                                        },
+                                        model: {
+                                          value: _vm.numserie,
+                                          callback: function($$v) {
+                                            _vm.numserie = $$v
+                                          },
+                                          expression: "numserie"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
                                     { attrs: { cols: "12" } },
                                     [
                                       _c("v-textarea", {
                                         attrs: {
                                           solo: "",
-                                          label:
-                                            "Espacio para notas del producto"
+                                          label: "Notas para esta partida"
                                         },
                                         model: {
                                           value: _vm.notasproducto,
@@ -50663,7 +50788,7 @@ var render = function() {
                                       _c("v-text-field", {
                                         attrs: {
                                           type: "number",
-                                          label: "Importe(1) * "
+                                          label: "Importe(1)  "
                                         },
                                         model: {
                                           value: _vm.importe1,
@@ -50684,7 +50809,7 @@ var render = function() {
                                       _c("v-text-field", {
                                         attrs: {
                                           type: "number",
-                                          label: "Utilidad * "
+                                          label: "Utilidad  "
                                         },
                                         model: {
                                           value: _vm.utilidadgenerada,
@@ -50705,7 +50830,7 @@ var render = function() {
                                       _c("v-text-field", {
                                         attrs: {
                                           type: "number",
-                                          label: "Precio Unitario * "
+                                          label: "Precio Unitario  "
                                         },
                                         model: {
                                           value: _vm.preciounitario,
@@ -50726,7 +50851,7 @@ var render = function() {
                                       _c("v-text-field", {
                                         attrs: {
                                           type: "number",
-                                          label: "Importe(2) * "
+                                          label: "Importe(2)  "
                                         },
                                         model: {
                                           value: _vm.importe2,

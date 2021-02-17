@@ -233,6 +233,7 @@
          <v-card-text>
 <br>
              <p class="font-weight-black mb-3"  align="center">Llena el Formulario para registrar una nueva Partida</p>
+             <p>El ingreso de los símbolos(Peso $ | Coma , | Porcentaje %) en campos numérico(EJ: Precio) no están permitidos</p>
              <br>
              <v-row>
                <v-col
@@ -303,17 +304,55 @@
                       color="warning"
                  ></v-switch>
                                    </v-col>
-                                   <v-col
-                                           cols="12"
 
 
-                                         >
-                                         <v-textarea
-                                         solo
-                                           v-model="notasproducto"
-                                         label="Espacio para notas del producto"
-                                         ></v-textarea>
-                                       </v-col>
+                                       <v-col
+                                               cols="12"
+                                               md="4"
+                                             >
+                                             <v-text-field
+                                               v-model="marca"
+                                               type="text"
+                                               label="Marca"
+
+                                             ></v-text-field>
+
+                                           </v-col>
+                                           <v-col
+                                                   cols="12"
+                                                   md="4"
+                                                 >
+                                                 <v-text-field
+                                                   v-model="modelo"
+                                                   type="text"
+                                                   label="Modelo"
+
+                                                 ></v-text-field>
+
+                                               </v-col>
+                                               <v-col
+                                                       cols="12"
+                                                       md="4"
+                                                     >
+                                                     <v-text-field
+                                                       v-model="numserie"
+                                                       type="text"
+                                                       label="Número de Serie"
+
+                                                     ></v-text-field>
+
+                                                   </v-col>
+                                                   <v-col
+                                                           cols="12"
+
+
+                                                         >
+                                                         <v-textarea
+                                                         solo
+                                                           v-model="notasproducto"
+                                                         label="Notas para esta partida"
+                                                         ></v-textarea>
+                                                       </v-col>
              </v-row>
              <v-row>
                  <v-divider></v-divider>
@@ -384,7 +423,7 @@
                      <v-text-field
                        v-model="importe1"
                        type="number"
-                       label="Importe(1) * "
+                       label="Importe(1)  "
 
                      ></v-text-field>
                    </v-col>
@@ -396,7 +435,7 @@
                          <v-text-field
                            v-model="utilidadgenerada"
                            type="number"
-                           label="Utilidad * "
+                           label="Utilidad  "
 
                          ></v-text-field>
                        </v-col>
@@ -408,7 +447,7 @@
                              <v-text-field
                                v-model="preciounitario"
                                type="number"
-                               label="Precio Unitario * "
+                               label="Precio Unitario  "
 
                              ></v-text-field>
                            </v-col>
@@ -420,7 +459,7 @@
                                  <v-text-field
                                    v-model="importe2"
                                    type="number"
-                                   label="Importe(2) * "
+                                   label="Importe(2)  "
 
                                  ></v-text-field>
                                </v-col>
@@ -491,11 +530,32 @@ import swal from 'sweetalert';
             utilidadgenerada:null,
             preciounitario:null,
             importe2:null,
+            marca:null,
+            modelo:null,
+            numserie:null,
+            restariva:null,
 
 
 
 
          }),
+         watch : {
+           switch1 :function (newVal, oldVal){
+
+             if (this.precioproveedor != null && this.precioproveedor != "" && this.ivapartida != 0) {
+               if (newVal) {
+                 // resta
+                    this.restariva = 0
+                    this.restariva = parseFloat(this.precioproveedor) * parseFloat(parseFloat(this.ivapartida)/100)
+                   this.precioproveedor = parseFloat(this.precioproveedor) - this.restariva
+               }else{
+                 //recuperar interval
+                 this.precioproveedor = this.precioproveedor + this.restariva
+               }
+               alert(this.restariva)
+             }
+           }
+         },
           methods:{
             async guardarPartida(){
 
