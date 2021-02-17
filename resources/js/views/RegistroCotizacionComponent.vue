@@ -14,7 +14,23 @@
       color="secondary"
       dark
     >
-      <v-toolbar-title>Detalle de la Cotización</v-toolbar-title>
+      <v-toolbar-title>
+        <v-btn
+              color="primary"
+              dark
+              @click="iniciar"
+              v-if="btniniciar"
+            >
+              Iniciar Cotización
+            </v-btn>
+            <v-btn
+                  color="warning"
+                  dark
+                  v-if="!btniniciar"
+                >
+                Cotización en Proceso
+                </v-btn>
+      </v-toolbar-title>
     </v-toolbar>
     <v-card>
    <v-tabs
@@ -500,8 +516,17 @@
                                      block
                                      color="primary"
                                      @click="guardarPartida"
+                                      v-if="!activareditar"
                                      >
                                      Guardar Partida
+                                     </v-btn>
+                                     <v-btn
+                                     block
+                                     color="warning"
+                                     @click="editarPartida"
+                                      v-if="activareditar"
+                                     >
+                                     Editar Partida
                                      </v-btn>
                                    </v-col>
              </v-row>
@@ -510,6 +535,253 @@
          </v-card-text>
        </v-card>
      </v-tab-item>
+
+     <v-tab-item
+
+       value="tab-4"
+     >
+       <v-card flat>
+         <v-card-text>
+
+           <v-row>
+
+
+             <v-col
+                     cols="12"
+                   >
+
+             <v-data-table
+             :headers="headers"
+             :items="partidas"
+             :search="search"
+             :single-select="singleSelect"
+    item-key="id"
+    show-select
+    class="elevation-1"
+               :items-per-page="5"
+             >
+             <template v-slot:[`item.actions`]="{ item }">
+
+            <v-tooltip bottom>
+                  <template v-slot:activator="{ on, attrs }">
+                      <v-btn class="mx-2" fab small width="32" height="30" v-bind="attrs" v-on="on" @click="cargarEdicion(item)">
+                        <v-icon >mdi-pencil</v-icon>
+                      </v-btn>
+                  </template>
+                  <span>Editar</span>
+              </v-tooltip>
+
+
+      </template>
+           </v-data-table>
+           </v-col>
+
+
+           </v-row>
+
+         </v-card-text>
+       </v-card>
+     </v-tab-item>
+
+     <v-tab-item
+
+       value="tab-5"
+     >
+       <v-card flat>
+         <v-card-text>
+
+           <v-row>
+
+
+            <v-col  cols="12" md="3">
+              <v-card
+                  class="mx-auto"
+                  max-width="344"
+                >
+                  <v-img
+                    src="https://banner2.cleanpng.com/20190423/hzg/kisspng-scalable-vector-graphics-computer-icons-computer-f-documents-files-and-folders-png-icons-and-graphics-5cbed2f5cceb05.4165270515560097178394.jpg"
+                    height="150px"
+                  ></v-img>
+
+                  <v-card-title>
+                    Oficio de Cotización
+                  </v-card-title>
+
+
+
+                  <v-card-actions>
+                    <v-btn
+                      color="orange lighten-2"
+                      text
+                    >
+                      Generar Oficio
+                    </v-btn>
+
+                    <v-spacer></v-spacer>
+
+                    <v-btn
+                      icon
+                      @click="show = !show"
+                    >
+                      <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                    </v-btn>
+                  </v-card-actions>
+
+                  <v-expand-transition>
+                    <div v-show="show">
+                      <v-divider></v-divider>
+
+                      <v-card-text>
+
+                      </v-card-text>
+                    </div>
+                  </v-expand-transition>
+                </v-card>
+            </v-col>
+
+            <v-col  cols="12" md="3">
+              <v-card
+                  class="mx-auto"
+                  max-width="344"
+                >
+                  <v-img
+                    src="https://banner2.cleanpng.com/20190423/hzg/kisspng-scalable-vector-graphics-computer-icons-computer-f-documents-files-and-folders-png-icons-and-graphics-5cbed2f5cceb05.4165270515560097178394.jpg"
+                    height="150px"
+                  ></v-img>
+
+                  <v-card-title>
+                    Segundo Oficio
+                  </v-card-title>
+
+
+
+                  <v-card-actions>
+                    <v-btn
+                      color="orange lighten-2"
+                      text
+                    >
+                      Generar Oficio
+                    </v-btn>
+
+                    <v-spacer></v-spacer>
+
+                    <v-btn
+                      icon
+                      @click="show = !show"
+                    >
+                      <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                    </v-btn>
+                  </v-card-actions>
+
+                  <v-expand-transition>
+                    <div v-show="show">
+                      <v-divider></v-divider>
+
+                      <v-card-text>
+
+                      </v-card-text>
+                    </div>
+                  </v-expand-transition>
+                </v-card>
+            </v-col>
+
+            <v-col  cols="12" md="3">
+              <v-card
+                  class="mx-auto"
+                  max-width="344"
+                >
+                  <v-img
+                    src="https://banner2.cleanpng.com/20190423/hzg/kisspng-scalable-vector-graphics-computer-icons-computer-f-documents-files-and-folders-png-icons-and-graphics-5cbed2f5cceb05.4165270515560097178394.jpg"
+                    height="150px"
+                  ></v-img>
+
+                  <v-card-title>
+                    Tercer Oficio
+                  </v-card-title>
+
+
+
+                  <v-card-actions>
+                    <v-btn
+                      color="orange lighten-2"
+                      text
+                    >
+                      Generar Oficio
+                    </v-btn>
+
+                    <v-spacer></v-spacer>
+
+                    <v-btn
+                      icon
+                      @click="show = !show"
+                    >
+                      <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                    </v-btn>
+                  </v-card-actions>
+
+                  <v-expand-transition>
+                    <div v-show="show">
+                      <v-divider></v-divider>
+
+                      <v-card-text>
+
+                      </v-card-text>
+                    </div>
+                  </v-expand-transition>
+                </v-card>
+            </v-col>
+
+            <v-col  cols="12" md="3">
+              <v-card
+                  class="mx-auto"
+                  max-width="344"
+                >
+                  <v-img
+                    src="https://banner2.cleanpng.com/20190423/hzg/kisspng-scalable-vector-graphics-computer-icons-computer-f-documents-files-and-folders-png-icons-and-graphics-5cbed2f5cceb05.4165270515560097178394.jpg"
+                    height="150px"
+                  ></v-img>
+
+                  <v-card-title>
+                    Cuarto Oficio
+                  </v-card-title>
+
+
+
+                  <v-card-actions>
+                    <v-btn
+                      color="orange lighten-2"
+                      text
+                    >
+                      Generar Oficio
+                    </v-btn>
+
+                    <v-spacer></v-spacer>
+
+                    <v-btn
+                      icon
+                      @click="show = !show"
+                    >
+                      <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                    </v-btn>
+                  </v-card-actions>
+
+                  <v-expand-transition>
+                    <div v-show="show">
+                      <v-divider></v-divider>
+
+                      <v-card-text>
+
+                      </v-card-text>
+                    </div>
+                  </v-expand-transition>
+                </v-card>
+            </v-col>
+          </v-row>
+
+         </v-card-text>
+       </v-card>
+     </v-tab-item>
+
 
 
    </v-tabs-items>
@@ -530,11 +802,13 @@ import swal from 'sweetalert';
         mounted() {
           this.getCotizacion()
           this.gettipoventas()
+          this.ivaGlobal = 16
+          this.iepsGlobal = 0
         },
         data: () => ({
-          switchVariables:false,
-          switch1:false,
-          tab:null,
+            switchVariables:false,
+            switch1:false,
+            tab:null,
             utilidadGlobal:null,
             ivaGlobal:16,
             iepsGlobal:0,
@@ -562,7 +836,37 @@ import swal from 'sweetalert';
             modelo:null,
             numserie:null,
             restariva:null,
+            btniniciar:false,
+            show:false,
+            headers: [
+              {
+                text: 'No de Partida',
+                align: 'center',
+                value: 'partida',
+              },
+              { text: 'Descripción', align: 'center', value: 'descripcion' },
+                { text: 'Unidad de Medida', align: 'center', value: 'unidadmedida' },
+              { text: 'Cantidad', align: 'center', value: 'cantidad' },
+              { text: 'Precio Proveedor', align: 'center', value: 'precioproveedor' },
+              { text: 'Marca', align: 'center', value: 'marca' },
+              { text: 'Modelo', align: 'center', value: 'modelo' },
+              { text: 'Número de Serie', align: 'center', value: 'numserie' },
+              { text: '% IVA', align: 'center', value: 'ivapartida' },
+              { text: '% IEPS', align: 'center', value: 'iepspartida' },
+              { text: 'Tipo de Venta', align: 'center', value: 'utilidadpartida' },
+              { text: 'Importe(1)', align: 'center', value: 'importe1' },
+              { text: 'Utilidad', align: 'center', value: 'utilidadgenerada' },
+              { text: 'Precio Unitario', align: 'center', value: 'preciounitario' },
+              { text: 'Importe(2)', align: 'center', value: 'importe2' },
 
+              { text: 'Acciones', align: 'center', value: 'actions' },
+            ],
+            partidas: [],
+            search:"",
+            activareditar:false,
+            idEditar:null,
+            singleSelect: false,
+       selected: [],
 
 
 
@@ -580,7 +884,7 @@ import swal from 'sweetalert';
                  //recuperar interval
                  this.precioproveedor = this.precioproveedor + this.restariva
                }
-               alert(this.restariva)
+
              }
            },
 
@@ -631,8 +935,168 @@ import swal from 'sweetalert';
 
          },
           methods:{
-            async guardarPartida(){
+            cargarEdicion(item){
+              console.log(item)
+            this.partida = item.partida
+            this.descripcion = item.descripcion
+            this.unidadmedida = item.unidadmedida
+            this.cantidad = item.cantidad
+            this.precioproveedor = item.precioproveedor
+            this.marca = item.marca
+            this.modelo = item.modelo
+            this.numserie = item.numserie
+            this.notasproducto = item.notasproducto
+            this.ivapartida = item.ivapartida
+            this.iepspartida = item.iepspartida
+            this.utilidadpartida = item.utilidadpartida
+            this.idEditar = item.id
+            this.activareditar = true
 
+            },
+            async guardarPartida(){
+              try {
+                    const response = await axios({
+                      method: 'post',
+                      url: 'savePartida',
+                      data:{
+                        idCotizacion:parseInt(this.$route.params.id),
+                        partida:parseInt(this.partida),
+                        descripcion:this.descripcion,
+                        unidadmedida:this.unidadmedida,
+                        cantidad:parseInt(this.cantidad),
+                        precioproveedor:parseInt(this.precioproveedor),
+                        marca:this.marca,
+                        modelo:this.modelo,
+                        numserie:this.numserie,
+                        notasproducto:this.notasproducto,
+
+                        ivapartida:parseInt(this.ivapartida),
+                        utilidadpartida:parseInt(this.utilidadpartida),
+                        iepspartida:parseInt(this.iepspartida),
+
+                        importe1:parseInt(this.importe1),
+                        utilidadgenerada:parseInt(this.utilidadgenerada),
+                        preciounitario:parseInt(this.preciounitario),
+                        importe2:parseInt(this.importe2),
+                      }
+                    })
+                      console.log(response.data.response)
+                      this.partidas = response.data.response
+
+                    swal("Éxito", "La partida #"+this.partida+" se registró con éxito", "success");
+                    this.partida = parseInt(this.partida)+1
+
+                    this.descripcion = null
+                    this.unidadmedida = null
+                    this.cantidad = 0
+                    this.precioproveedor = 0
+                    this.marca = null
+                    this.modelo = null
+                    this.numserie = null
+                    this.notasproducto = null
+
+                    this.ivapartida = this.ivaGlobal
+                    this.utilidadpartida = this.utilidadGlobal
+                    this.iepspartida = this.iepsGlobal
+
+                    this.importe1 = 0
+                    this.utilidadgenerada = 0
+                    this.preciounitario = 0
+                    this.importe2 = 0
+
+                } catch (error) {
+
+                   swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+                    console.log(error);
+
+                }
+
+            },
+
+            async editarPartida(){
+              try {
+                    const response = await axios({
+                      method: 'post',
+                      url: 'editarPartida',
+                      data:{
+                        idCotizacion:parseInt(this.$route.params.id),
+                        idPartida:this.idEditar,
+                        partida:parseInt(this.partida),
+                        descripcion:this.descripcion,
+                        unidadmedida:this.unidadmedida,
+                        cantidad:parseInt(this.cantidad),
+                        precioproveedor:parseInt(this.precioproveedor),
+                        marca:this.marca,
+                        modelo:this.modelo,
+                        numserie:this.numserie,
+                        notasproducto:this.notasproducto,
+
+                        ivapartida:parseInt(this.ivapartida),
+                        utilidadpartida:parseInt(this.utilidadpartida),
+                        iepspartida:parseInt(this.iepspartida),
+
+                        importe1:parseInt(this.importe1),
+                        utilidadgenerada:parseInt(this.utilidadgenerada),
+                        preciounitario:parseInt(this.preciounitario),
+                        importe2:parseInt(this.importe2),
+                      }
+                    })
+
+                      this.partidas = response.data.response
+                      this.idEditar = null
+                      this.activareditar = false
+
+                    swal("Éxito", "La partida #"+this.partida+" se actualizó con éxito", "success");
+                    this.partida = parseInt(this.partida)+1
+
+                    this.descripcion = null
+                    this.unidadmedida = null
+                    this.cantidad = 0
+                    this.precioproveedor = 0
+                    this.marca = null
+                    this.modelo = null
+                    this.numserie = null
+                    this.notasproducto = null
+
+                    this.ivapartida = this.ivaGlobal
+                    this.utilidadpartida = this.utilidadGlobal
+                    this.iepspartida = this.iepsGlobal
+
+                    this.importe1 = 0
+                    this.utilidadgenerada = 0
+                    this.preciounitario = 0
+                    this.importe2 = 0
+
+                } catch (error) {
+
+                   swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+                    console.log(error);
+
+                }
+
+            },
+            async iniciar(){
+              try {
+                    const response = await axios({
+                      method: 'post',
+                      url: 'iniciarCotizacion',
+                      data:{
+                        id:this.$route.params.id,
+                      }
+                    })
+                    console.log(response.data.response.estatus)
+                    if ( parseInt(response.data.response.estatus) != 0) {
+                        this.btniniciar = false
+                    }
+
+                  swal("Éxito", "Ha iniciado la cotización de manera correcta", "success");
+
+                } catch (error) {
+
+                   swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+                    console.log(error);
+
+                }
             },
             async getCotizacion(){
               try {
@@ -643,9 +1107,15 @@ import swal from 'sweetalert';
                         id:this.$route.params.id,
                       }
                     })
-                    console.log(response.data.response)
+                    this.partidas = response.data.response.partidas
+                    console.log(this.partidas.length)
+                    this.partida = parseInt(this.partidas.length)+1
 
                     this.cotizacion = response.data.response
+
+                    if (parseInt(this.cotizacion.estatus) == 0) {
+                        this.btniniciar = true
+                    }
 
                       this.solicitud = this.cotizacion.solicitud
                     this.cliente = this.cotizacion.solicitud.cliente
@@ -655,6 +1125,8 @@ import swal from 'sweetalert';
 
                           this.ivaGlobal = parseInt(this.cotizacion.ivaGlobal)
                           this.iepsGlobal = parseInt(this.cotizacion.iepsGlobal)
+                          this.iepspartida = this.iepsGlobal
+
                           if (this.cotizacion.utilidadGlobal != null) {
                               this.utilidadGlobal = parseInt(this.cotizacion.utilidadGlobal)
                           }
@@ -712,6 +1184,9 @@ import swal from 'sweetalert';
                 if (response.data.utilidad.porcentaje != null) {
                   this.utilidadpartida = response.data.utilidad.porcentaje
                 }
+
+
+
                    swal("Éxito", "Se ha configuradado esta cotización", "success");
 
 

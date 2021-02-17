@@ -4858,6 +4858,278 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -4867,6 +5139,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   mounted: function mounted() {
     this.getCotizacion();
     this.gettipoventas();
+    this.ivaGlobal = 16;
+    this.iepsGlobal = 0;
   },
   data: function data() {
     return {
@@ -4899,7 +5173,80 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       marca: null,
       modelo: null,
       numserie: null,
-      restariva: null
+      restariva: null,
+      btniniciar: false,
+      show: false,
+      headers: [{
+        text: 'No de Partida',
+        align: 'center',
+        value: 'partida'
+      }, {
+        text: 'Descripción',
+        align: 'center',
+        value: 'descripcion'
+      }, {
+        text: 'Unidad de Medida',
+        align: 'center',
+        value: 'unidadmedida'
+      }, {
+        text: 'Cantidad',
+        align: 'center',
+        value: 'cantidad'
+      }, {
+        text: 'Precio Proveedor',
+        align: 'center',
+        value: 'precioproveedor'
+      }, {
+        text: 'Marca',
+        align: 'center',
+        value: 'marca'
+      }, {
+        text: 'Modelo',
+        align: 'center',
+        value: 'modelo'
+      }, {
+        text: 'Número de Serie',
+        align: 'center',
+        value: 'numserie'
+      }, {
+        text: '% IVA',
+        align: 'center',
+        value: 'ivapartida'
+      }, {
+        text: '% IEPS',
+        align: 'center',
+        value: 'iepspartida'
+      }, {
+        text: 'Tipo de Venta',
+        align: 'center',
+        value: 'utilidadpartida'
+      }, {
+        text: 'Importe(1)',
+        align: 'center',
+        value: 'importe1'
+      }, {
+        text: 'Utilidad',
+        align: 'center',
+        value: 'utilidadgenerada'
+      }, {
+        text: 'Precio Unitario',
+        align: 'center',
+        value: 'preciounitario'
+      }, {
+        text: 'Importe(2)',
+        align: 'center',
+        value: 'importe2'
+      }, {
+        text: 'Acciones',
+        align: 'center',
+        value: 'actions'
+      }],
+      partidas: [],
+      search: "",
+      activareditar: false,
+      idEditar: null,
+      singleSelect: false,
+      selected: []
     };
   },
   watch: {
@@ -4914,8 +5261,6 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
           //recuperar interval
           this.precioproveedor = this.precioproveedor + this.restariva;
         }
-
-        alert(this.restariva);
       }
     },
     precioproveedor: function precioproveedor(newVal, oldVal) {
@@ -4954,21 +5299,98 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     }
   },
   methods: {
+    cargarEdicion: function cargarEdicion(item) {
+      console.log(item);
+      this.partida = item.partida;
+      this.descripcion = item.descripcion;
+      this.unidadmedida = item.unidadmedida;
+      this.cantidad = item.cantidad;
+      this.precioproveedor = item.precioproveedor;
+      this.marca = item.marca;
+      this.modelo = item.modelo;
+      this.numserie = item.numserie;
+      this.notasproducto = item.notasproducto;
+      this.ivapartida = item.ivapartida;
+      this.iepspartida = item.iepspartida;
+      this.utilidadpartida = item.utilidadpartida;
+      this.idEditar = item.id;
+      this.activareditar = true;
+    },
     guardarPartida: function guardarPartida() {
+      var _this = this;
+
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'savePartida',
+                  data: {
+                    idCotizacion: parseInt(_this.$route.params.id),
+                    partida: parseInt(_this.partida),
+                    descripcion: _this.descripcion,
+                    unidadmedida: _this.unidadmedida,
+                    cantidad: parseInt(_this.cantidad),
+                    precioproveedor: parseInt(_this.precioproveedor),
+                    marca: _this.marca,
+                    modelo: _this.modelo,
+                    numserie: _this.numserie,
+                    notasproducto: _this.notasproducto,
+                    ivapartida: parseInt(_this.ivapartida),
+                    utilidadpartida: parseInt(_this.utilidadpartida),
+                    iepspartida: parseInt(_this.iepspartida),
+                    importe1: parseInt(_this.importe1),
+                    utilidadgenerada: parseInt(_this.utilidadgenerada),
+                    preciounitario: parseInt(_this.preciounitario),
+                    importe2: parseInt(_this.importe2)
+                  }
+                });
+
+              case 3:
+                response = _context.sent;
+                console.log(response.data.response);
+                _this.partidas = response.data.response;
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "La partida #" + _this.partida + " se registró con éxito", "success");
+                _this.partida = parseInt(_this.partida) + 1;
+                _this.descripcion = null;
+                _this.unidadmedida = null;
+                _this.cantidad = 0;
+                _this.precioproveedor = 0;
+                _this.marca = null;
+                _this.modelo = null;
+                _this.numserie = null;
+                _this.notasproducto = null;
+                _this.ivapartida = _this.ivaGlobal;
+                _this.utilidadpartida = _this.utilidadGlobal;
+                _this.iepspartida = _this.iepsGlobal;
+                _this.importe1 = 0;
+                _this.utilidadgenerada = 0;
+                _this.preciounitario = 0;
+                _this.importe2 = 0;
+                _context.next = 29;
+                break;
+
+              case 25:
+                _context.prev = 25;
+                _context.t0 = _context["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+                console.log(_context.t0);
+
+              case 29:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
+        }, _callee, null, [[0, 25]]);
       }))();
     },
-    getCotizacion: function getCotizacion() {
-      var _this = this;
+    editarPartida: function editarPartida() {
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var response;
@@ -4980,53 +5402,70 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
                 _context2.next = 3;
                 return axios({
                   method: 'post',
-                  url: 'getCotizacion',
+                  url: 'editarPartida',
                   data: {
-                    id: _this.$route.params.id
+                    idCotizacion: parseInt(_this2.$route.params.id),
+                    idPartida: _this2.idEditar,
+                    partida: parseInt(_this2.partida),
+                    descripcion: _this2.descripcion,
+                    unidadmedida: _this2.unidadmedida,
+                    cantidad: parseInt(_this2.cantidad),
+                    precioproveedor: parseInt(_this2.precioproveedor),
+                    marca: _this2.marca,
+                    modelo: _this2.modelo,
+                    numserie: _this2.numserie,
+                    notasproducto: _this2.notasproducto,
+                    ivapartida: parseInt(_this2.ivapartida),
+                    utilidadpartida: parseInt(_this2.utilidadpartida),
+                    iepspartida: parseInt(_this2.iepspartida),
+                    importe1: parseInt(_this2.importe1),
+                    utilidadgenerada: parseInt(_this2.utilidadgenerada),
+                    preciounitario: parseInt(_this2.preciounitario),
+                    importe2: parseInt(_this2.importe2)
                   }
                 });
 
               case 3:
                 response = _context2.sent;
-                console.log(response.data.response);
-                _this.cotizacion = response.data.response;
-                _this.solicitud = _this.cotizacion.solicitud;
-                _this.cliente = _this.cotizacion.solicitud.cliente;
-                _this.solicitante = _this.cotizacion.solicitud.solicitante;
-                _this.agente = _this.cotizacion.solicitud.agente;
-                _this.responsable = _this.cotizacion.solicitud.responsable;
-                _this.ivaGlobal = parseInt(_this.cotizacion.ivaGlobal);
-                _this.iepsGlobal = parseInt(_this.cotizacion.iepsGlobal);
-
-                if (_this.cotizacion.utilidadGlobal != null) {
-                  _this.utilidadGlobal = parseInt(_this.cotizacion.utilidadGlobal);
-                }
-
-                if (_this.cotizacion.utilidad != null) {
-                  if (_this.cotizacion.utilidad.porcentaje != null) {
-                    _this.utilidadpartida = _this.cotizacion.utilidad.porcentaje;
-                  }
-                }
-
-                _context2.next = 21;
+                _this2.partidas = response.data.response;
+                _this2.idEditar = null;
+                _this2.activareditar = false;
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "La partida #" + _this2.partida + " se actualizó con éxito", "success");
+                _this2.partida = parseInt(_this2.partida) + 1;
+                _this2.descripcion = null;
+                _this2.unidadmedida = null;
+                _this2.cantidad = 0;
+                _this2.precioproveedor = 0;
+                _this2.marca = null;
+                _this2.modelo = null;
+                _this2.numserie = null;
+                _this2.notasproducto = null;
+                _this2.ivapartida = _this2.ivaGlobal;
+                _this2.utilidadpartida = _this2.utilidadGlobal;
+                _this2.iepspartida = _this2.iepsGlobal;
+                _this2.importe1 = 0;
+                _this2.utilidadgenerada = 0;
+                _this2.preciounitario = 0;
+                _this2.importe2 = 0;
+                _context2.next = 30;
                 break;
 
-              case 17:
-                _context2.prev = 17;
+              case 26:
+                _context2.prev = 26;
                 _context2.t0 = _context2["catch"](0);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
                 console.log(_context2.t0);
 
-              case 21:
+              case 30:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 17]]);
+        }, _callee2, null, [[0, 26]]);
       }))();
     },
-    gettipoventas: function gettipoventas() {
-      var _this2 = this;
+    iniciar: function iniciar() {
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var response;
@@ -5037,32 +5476,41 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
                 _context3.prev = 0;
                 _context3.next = 3;
                 return axios({
-                  method: 'get',
-                  url: 'getUtilidades'
+                  method: 'post',
+                  url: 'iniciarCotizacion',
+                  data: {
+                    id: _this3.$route.params.id
+                  }
                 });
 
               case 3:
                 response = _context3.sent;
-                _this2.utilidades = response.data.response;
-                _context3.next = 11;
+                console.log(response.data.response.estatus);
+
+                if (parseInt(response.data.response.estatus) != 0) {
+                  _this3.btniniciar = false;
+                }
+
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "Ha iniciado la cotización de manera correcta", "success");
+                _context3.next = 13;
                 break;
 
-              case 7:
-                _context3.prev = 7;
+              case 9:
+                _context3.prev = 9;
                 _context3.t0 = _context3["catch"](0);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
                 console.log(_context3.t0);
 
-              case 11:
+              case 13:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[0, 7]]);
+        }, _callee3, null, [[0, 9]]);
       }))();
     },
-    guardarConfiguracion: function guardarConfiguracion() {
-      var _this3 = this;
+    getCotizacion: function getCotizacion() {
+      var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         var response;
@@ -5074,38 +5522,140 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
                 _context4.next = 3;
                 return axios({
                   method: 'post',
-                  url: 'saveConfigCotizacion',
+                  url: 'getCotizacion',
                   data: {
-                    id: _this3.$route.params.id,
-                    utilidadGlobal: _this3.utilidadGlobal,
-                    ivaGlobal: _this3.ivaGlobal,
-                    iepsGlobal: _this3.iepsGlobal
+                    id: _this4.$route.params.id
                   }
                 });
 
               case 3:
                 response = _context4.sent;
+                _this4.partidas = response.data.response.partidas;
+                console.log(_this4.partidas.length);
+                _this4.partida = parseInt(_this4.partidas.length) + 1;
+                _this4.cotizacion = response.data.response;
 
-                if (response.data.utilidad.porcentaje != null) {
-                  _this3.utilidadpartida = response.data.utilidad.porcentaje;
+                if (parseInt(_this4.cotizacion.estatus) == 0) {
+                  _this4.btniniciar = true;
                 }
 
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "Se ha configuradado esta cotización", "success");
-                _context4.next = 12;
+                _this4.solicitud = _this4.cotizacion.solicitud;
+                _this4.cliente = _this4.cotizacion.solicitud.cliente;
+                _this4.solicitante = _this4.cotizacion.solicitud.solicitante;
+                _this4.agente = _this4.cotizacion.solicitud.agente;
+                _this4.responsable = _this4.cotizacion.solicitud.responsable;
+                _this4.ivaGlobal = parseInt(_this4.cotizacion.ivaGlobal);
+                _this4.iepsGlobal = parseInt(_this4.cotizacion.iepsGlobal);
+                _this4.iepspartida = _this4.iepsGlobal;
+
+                if (_this4.cotizacion.utilidadGlobal != null) {
+                  _this4.utilidadGlobal = parseInt(_this4.cotizacion.utilidadGlobal);
+                }
+
+                if (_this4.cotizacion.utilidad != null) {
+                  if (_this4.cotizacion.utilidad.porcentaje != null) {
+                    _this4.utilidadpartida = _this4.cotizacion.utilidad.porcentaje;
+                  }
+                }
+
+                _context4.next = 25;
                 break;
 
-              case 8:
-                _context4.prev = 8;
+              case 21:
+                _context4.prev = 21;
                 _context4.t0 = _context4["catch"](0);
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
                 console.log(_context4.t0);
 
-              case 12:
+              case 25:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4, null, [[0, 8]]);
+        }, _callee4, null, [[0, 21]]);
+      }))();
+    },
+    gettipoventas: function gettipoventas() {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.prev = 0;
+                _context5.next = 3;
+                return axios({
+                  method: 'get',
+                  url: 'getUtilidades'
+                });
+
+              case 3:
+                response = _context5.sent;
+                _this5.utilidades = response.data.response;
+                _context5.next = 11;
+                break;
+
+              case 7:
+                _context5.prev = 7;
+                _context5.t0 = _context5["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+                console.log(_context5.t0);
+
+              case 11:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, null, [[0, 7]]);
+      }))();
+    },
+    guardarConfiguracion: function guardarConfiguracion() {
+      var _this6 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.prev = 0;
+                _context6.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'saveConfigCotizacion',
+                  data: {
+                    id: _this6.$route.params.id,
+                    utilidadGlobal: _this6.utilidadGlobal,
+                    ivaGlobal: _this6.ivaGlobal,
+                    iepsGlobal: _this6.iepsGlobal
+                  }
+                });
+
+              case 3:
+                response = _context6.sent;
+
+                if (response.data.utilidad.porcentaje != null) {
+                  _this6.utilidadpartida = response.data.utilidad.porcentaje;
+                }
+
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "Se ha configuradado esta cotización", "success");
+                _context6.next = 12;
+                break;
+
+              case 8:
+                _context6.prev = 8;
+                _context6.t0 = _context6["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+                console.log(_context6.t0);
+
+              case 12:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, null, [[0, 8]]);
       }))();
     }
   }
@@ -50085,7 +50635,36 @@ var render = function() {
           _c(
             "v-toolbar",
             { attrs: { flat: "", color: "secondary", dark: "" } },
-            [_c("v-toolbar-title", [_vm._v("Detalle de la Cotización")])],
+            [
+              _c(
+                "v-toolbar-title",
+                [
+                  _vm.btniniciar
+                    ? _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "primary", dark: "" },
+                          on: { click: _vm.iniciar }
+                        },
+                        [
+                          _vm._v(
+                            "\n              Iniciar Cotización\n            "
+                          )
+                        ]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  !_vm.btniniciar
+                    ? _c("v-btn", { attrs: { color: "warning", dark: "" } }, [
+                        _vm._v(
+                          "\n                Cotización en Proceso\n                "
+                        )
+                      ])
+                    : _vm._e()
+                ],
+                1
+              )
+            ],
             1
           ),
           _vm._v(" "),
@@ -50964,20 +51543,599 @@ var render = function() {
                                     "v-col",
                                     { attrs: { cols: "12" } },
                                     [
+                                      !_vm.activareditar
+                                        ? _c(
+                                            "v-btn",
+                                            {
+                                              attrs: {
+                                                block: "",
+                                                color: "primary"
+                                              },
+                                              on: { click: _vm.guardarPartida }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                     Guardar Partida\n                                     "
+                                              )
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.activareditar
+                                        ? _c(
+                                            "v-btn",
+                                            {
+                                              attrs: {
+                                                block: "",
+                                                color: "warning"
+                                              },
+                                              on: { click: _vm.editarPartida }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                     Editar Partida\n                                     "
+                                              )
+                                            ]
+                                          )
+                                        : _vm._e()
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-tab-item",
+                    { attrs: { value: "tab-4" } },
+                    [
+                      _c(
+                        "v-card",
+                        { attrs: { flat: "" } },
+                        [
+                          _c(
+                            "v-card-text",
+                            [
+                              _c(
+                                "v-row",
+                                [
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12" } },
+                                    [
+                                      _c("v-data-table", {
+                                        staticClass: "elevation-1",
+                                        attrs: {
+                                          headers: _vm.headers,
+                                          items: _vm.partidas,
+                                          search: _vm.search,
+                                          "single-select": _vm.singleSelect,
+                                          "item-key": "id",
+                                          "show-select": "",
+                                          "items-per-page": 5
+                                        },
+                                        scopedSlots: _vm._u(
+                                          [
+                                            {
+                                              key: "item.actions",
+                                              fn: function(ref) {
+                                                var item = ref.item
+                                                return [
+                                                  _c(
+                                                    "v-tooltip",
+                                                    {
+                                                      attrs: { bottom: "" },
+                                                      scopedSlots: _vm._u(
+                                                        [
+                                                          {
+                                                            key: "activator",
+                                                            fn: function(ref) {
+                                                              var on = ref.on
+                                                              var attrs =
+                                                                ref.attrs
+                                                              return [
+                                                                _c(
+                                                                  "v-btn",
+                                                                  _vm._g(
+                                                                    _vm._b(
+                                                                      {
+                                                                        staticClass:
+                                                                          "mx-2",
+                                                                        attrs: {
+                                                                          fab:
+                                                                            "",
+                                                                          small:
+                                                                            "",
+                                                                          width:
+                                                                            "32",
+                                                                          height:
+                                                                            "30"
+                                                                        },
+                                                                        on: {
+                                                                          click: function(
+                                                                            $event
+                                                                          ) {
+                                                                            return _vm.cargarEdicion(
+                                                                              item
+                                                                            )
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      "v-btn",
+                                                                      attrs,
+                                                                      false
+                                                                    ),
+                                                                    on
+                                                                  ),
+                                                                  [
+                                                                    _c(
+                                                                      "v-icon",
+                                                                      [
+                                                                        _vm._v(
+                                                                          "mdi-pencil"
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  ],
+                                                                  1
+                                                                )
+                                                              ]
+                                                            }
+                                                          }
+                                                        ],
+                                                        null,
+                                                        true
+                                                      )
+                                                    },
+                                                    [
+                                                      _vm._v(" "),
+                                                      _c("span", [
+                                                        _vm._v("Editar")
+                                                      ])
+                                                    ]
+                                                  )
+                                                ]
+                                              }
+                                            }
+                                          ],
+                                          null,
+                                          true
+                                        )
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-tab-item",
+                    { attrs: { value: "tab-5" } },
+                    [
+                      _c(
+                        "v-card",
+                        { attrs: { flat: "" } },
+                        [
+                          _c(
+                            "v-card-text",
+                            [
+                              _c(
+                                "v-row",
+                                [
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", md: "3" } },
+                                    [
                                       _c(
-                                        "v-btn",
+                                        "v-card",
                                         {
-                                          attrs: {
-                                            block: "",
-                                            color: "primary"
-                                          },
-                                          on: { click: _vm.guardarPartida }
+                                          staticClass: "mx-auto",
+                                          attrs: { "max-width": "344" }
                                         },
                                         [
-                                          _vm._v(
-                                            "\n                                     Guardar Partida\n                                     "
-                                          )
-                                        ]
+                                          _c("v-img", {
+                                            attrs: {
+                                              src:
+                                                "https://banner2.cleanpng.com/20190423/hzg/kisspng-scalable-vector-graphics-computer-icons-computer-f-documents-files-and-folders-png-icons-and-graphics-5cbed2f5cceb05.4165270515560097178394.jpg",
+                                              height: "150px"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("v-card-title", [
+                                            _vm._v(
+                                              "\n                    Oficio de Cotización\n                  "
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-card-actions",
+                                            [
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    color: "orange lighten-2",
+                                                    text: ""
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                      Generar Oficio\n                    "
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("v-spacer"),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: { icon: "" },
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.show = !_vm.show
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("v-icon", [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.show
+                                                          ? "mdi-chevron-up"
+                                                          : "mdi-chevron-down"
+                                                      )
+                                                    )
+                                                  ])
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c("v-expand-transition", [
+                                            _c(
+                                              "div",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "show",
+                                                    rawName: "v-show",
+                                                    value: _vm.show,
+                                                    expression: "show"
+                                                  }
+                                                ]
+                                              },
+                                              [
+                                                _c("v-divider"),
+                                                _vm._v(" "),
+                                                _c("v-card-text")
+                                              ],
+                                              1
+                                            )
+                                          ])
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", md: "3" } },
+                                    [
+                                      _c(
+                                        "v-card",
+                                        {
+                                          staticClass: "mx-auto",
+                                          attrs: { "max-width": "344" }
+                                        },
+                                        [
+                                          _c("v-img", {
+                                            attrs: {
+                                              src:
+                                                "https://banner2.cleanpng.com/20190423/hzg/kisspng-scalable-vector-graphics-computer-icons-computer-f-documents-files-and-folders-png-icons-and-graphics-5cbed2f5cceb05.4165270515560097178394.jpg",
+                                              height: "150px"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("v-card-title", [
+                                            _vm._v(
+                                              "\n                    Segundo Oficio\n                  "
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-card-actions",
+                                            [
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    color: "orange lighten-2",
+                                                    text: ""
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                      Generar Oficio\n                    "
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("v-spacer"),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: { icon: "" },
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.show = !_vm.show
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("v-icon", [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.show
+                                                          ? "mdi-chevron-up"
+                                                          : "mdi-chevron-down"
+                                                      )
+                                                    )
+                                                  ])
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c("v-expand-transition", [
+                                            _c(
+                                              "div",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "show",
+                                                    rawName: "v-show",
+                                                    value: _vm.show,
+                                                    expression: "show"
+                                                  }
+                                                ]
+                                              },
+                                              [
+                                                _c("v-divider"),
+                                                _vm._v(" "),
+                                                _c("v-card-text")
+                                              ],
+                                              1
+                                            )
+                                          ])
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", md: "3" } },
+                                    [
+                                      _c(
+                                        "v-card",
+                                        {
+                                          staticClass: "mx-auto",
+                                          attrs: { "max-width": "344" }
+                                        },
+                                        [
+                                          _c("v-img", {
+                                            attrs: {
+                                              src:
+                                                "https://banner2.cleanpng.com/20190423/hzg/kisspng-scalable-vector-graphics-computer-icons-computer-f-documents-files-and-folders-png-icons-and-graphics-5cbed2f5cceb05.4165270515560097178394.jpg",
+                                              height: "150px"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("v-card-title", [
+                                            _vm._v(
+                                              "\n                    Tercer Oficio\n                  "
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-card-actions",
+                                            [
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    color: "orange lighten-2",
+                                                    text: ""
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                      Generar Oficio\n                    "
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("v-spacer"),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: { icon: "" },
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.show = !_vm.show
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("v-icon", [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.show
+                                                          ? "mdi-chevron-up"
+                                                          : "mdi-chevron-down"
+                                                      )
+                                                    )
+                                                  ])
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c("v-expand-transition", [
+                                            _c(
+                                              "div",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "show",
+                                                    rawName: "v-show",
+                                                    value: _vm.show,
+                                                    expression: "show"
+                                                  }
+                                                ]
+                                              },
+                                              [
+                                                _c("v-divider"),
+                                                _vm._v(" "),
+                                                _c("v-card-text")
+                                              ],
+                                              1
+                                            )
+                                          ])
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", md: "3" } },
+                                    [
+                                      _c(
+                                        "v-card",
+                                        {
+                                          staticClass: "mx-auto",
+                                          attrs: { "max-width": "344" }
+                                        },
+                                        [
+                                          _c("v-img", {
+                                            attrs: {
+                                              src:
+                                                "https://banner2.cleanpng.com/20190423/hzg/kisspng-scalable-vector-graphics-computer-icons-computer-f-documents-files-and-folders-png-icons-and-graphics-5cbed2f5cceb05.4165270515560097178394.jpg",
+                                              height: "150px"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("v-card-title", [
+                                            _vm._v(
+                                              "\n                    Cuarto Oficio\n                  "
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-card-actions",
+                                            [
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    color: "orange lighten-2",
+                                                    text: ""
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                      Generar Oficio\n                    "
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("v-spacer"),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: { icon: "" },
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.show = !_vm.show
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("v-icon", [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.show
+                                                          ? "mdi-chevron-up"
+                                                          : "mdi-chevron-down"
+                                                      )
+                                                    )
+                                                  ])
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c("v-expand-transition", [
+                                            _c(
+                                              "div",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "show",
+                                                    rawName: "v-show",
+                                                    value: _vm.show,
+                                                    expression: "show"
+                                                  }
+                                                ]
+                                              },
+                                              [
+                                                _c("v-divider"),
+                                                _vm._v(" "),
+                                                _c("v-card-text")
+                                              ],
+                                              1
+                                            )
+                                          ])
+                                        ],
+                                        1
                                       )
                                     ],
                                     1

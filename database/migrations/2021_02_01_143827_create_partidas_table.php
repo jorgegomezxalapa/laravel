@@ -15,19 +15,29 @@ class CreatePartidasTable extends Migration
     {
         Schema::create('partidas', function (Blueprint $table) {
             $table->bigIncrements('id');
-              $table->string('partida',250)->nullable();
-                $table->string('descripcion',250)->nullable();
-                  $table->string('unidadmedida',250)->nullable();
-                    $table->string('cantidad',250)->nullable();
-                      $table->string('precioproveedor',250)->nullable();
-                        $table->string('utilidaddefault',250)->nullable();
-                          $table->string('iva',250)->nullable();
-                            $table->string('ieps',250)->nullable();
-                              $table->string('importe1',250)->nullable();
-                                $table->string('utilidadgenerada',250)->nullable();
-                                  $table->string('preciounitario',250)->nullable();
-                                    $table->string('importe2',250)->nullable();
-                                      $table->string('idCotizacion',250)->nullable();
+            $table->string('idCotizacion',250)->nullable();
+
+            $table->string('partida',250)->nullable();
+            $table->text('descripcion',65535)->nullable();
+            $table->string('unidadmedida',250)->nullable();
+            $table->string('cantidad',250)->nullable();
+            $table->string('precioproveedor',250)->nullable();
+
+            $table->string('marca',250)->nullable();
+            $table->string('modelo',250)->nullable();
+            $table->string('numserie',250)->nullable();
+
+            $table->string('ivapartida',250)->nullable();
+            $table->string('iepspartida',250)->nullable();
+            $table->string('utilidadpartida',250)->nullable();
+
+            $table->text('notasproducto',65535)->nullable();
+
+            $table->string('importe1',250)->nullable();
+            $table->string('utilidadgenerada',250)->nullable();
+            $table->string('preciounitario',250)->nullable();
+            $table->string('importe2',250)->nullable();
+
             $table->timestamps();
         });
     }

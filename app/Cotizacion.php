@@ -31,6 +31,10 @@ class Cotizacion extends Model
       function utilidad(){
           return $this->hasOne('App\Utilidad','id','utilidadGlobal');
       }
+      public function partidas()
+    {
+        return $this->hasMany('App\Partida','idCotizacion');
+    }
 
 
 }

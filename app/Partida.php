@@ -11,20 +11,29 @@ class Partida extends Model
       protected $fillable =[
 
 
-      'id',
-          'partida',
-            'descripcion',
-              'unidadmedida',
-                'cantidad',
-                  'precioproveedor',
-                    'utilidaddefault',
-                      'iva',
-                        'ieps',
-                          'importe1',
-                            'utilidadgenerada',
-                              'preciounitario',
-                                'importe2',
-                                  'idCotizacion',
+        'id',
+        'idCotizacion',
+
+        'partida',
+        'descripcion',
+        'unidadmedida',
+        'cantidad',
+        'precioproveedor',
+
+        'marca',
+        'modelo',
+        'numserie',
+
+        'ivapartida',
+        'iepspartida',
+        'utilidadpartida',
+
+        'notasproducto',
+
+        'importe1',
+        'utilidadgenerada',
+        'preciounitario',
+        'importe2',
 
 
 

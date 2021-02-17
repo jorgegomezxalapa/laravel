@@ -30,7 +30,10 @@ class SolicitudController extends Controller
 
           $cotizacion = new Cotizacion();
           $cotizacion->idSolicitud = $solicitud->id;
-            $cotizacion->estatus = 0;
+          $cotizacion->ivaGlobal = 16;
+          $cotizacion->iepsGlobal = 0;
+        
+          $cotizacion->estatus = 0;
           $cotizacion->save();
           DB::commit();
         }

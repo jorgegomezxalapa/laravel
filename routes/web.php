@@ -65,6 +65,8 @@ Route::get('getCotizaciones', 'CotizacionController@getCotizaciones')->name('get
 Route::post('getCotizacion', 'CotizacionController@getCotizacion')->name('getCotizacion');
 Route::post('saveConfigCotizacion', 'CotizacionController@saveConfigCotizacion')->name('saveConfigCotizacion');
 Route::post('savePartida', 'CotizacionController@savePartida')->name('savePartida');
+Route::post('editarPartida', 'CotizacionController@editarPartida')->name('editarPartida');
+Route::post('iniciarCotizacion', 'CotizacionController@iniciarCotizacion')->name('iniciarCotizacion');
 
 //utilidades
 Route::post('createUtilidad', 'UtilidadController@createUtilidad')->name('createUtilidad');
