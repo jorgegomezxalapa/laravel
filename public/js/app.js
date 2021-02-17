@@ -4830,6 +4830,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -4889,6 +4917,40 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
         alert(this.restariva);
       }
+    },
+    precioproveedor: function precioproveedor(newVal, oldVal) {
+      this.utilidadgenerada = 0;
+      this.utilidadgenerada = parseFloat(this.utilidadpartida / 100) * parseFloat(this.precioproveedor);
+      this.utilidadgenerada = this.utilidadgenerada.toFixed(2);
+      this.importe1 = 0;
+      this.importe1 = parseFloat(this.precioproveedor) * parseFloat(this.cantidad);
+      this.importe1 = this.importe1.toFixed(2);
+      this.preciounitario = 0;
+      this.preciounitario = parseFloat(this.precioproveedor) + parseFloat(this.utilidadgenerada);
+      this.preciounitario = this.preciounitario.toFixed(2);
+    },
+    cantidad: function cantidad(newVal, oldVal) {
+      this.importe1 = 0;
+      this.importe1 = parseFloat(this.precioproveedor) * parseFloat(this.cantidad);
+      this.importe1 = this.importe1.toFixed(2);
+      this.importe2 = 0;
+      this.importe2 = parseFloat(this.cantidad) * parseFloat(this.preciounitario);
+      this.importe2 = this.importe2.toFixed(2);
+    },
+    utilidadpartida: function utilidadpartida(newVal, oldVal) {
+      this.utilidadgenerada = 0;
+      this.utilidadgenerada = parseFloat(this.utilidadpartida / 100) * parseFloat(this.precioproveedor);
+      this.utilidadgenerada = this.utilidadgenerada.toFixed(2);
+    },
+    utilidadgenerada: function utilidadgenerada(newVal, oldVal) {
+      this.preciounitario = 0;
+      this.preciounitario = parseFloat(this.precioproveedor) + parseFloat(this.utilidadgenerada);
+      this.preciounitario = this.preciounitario.toFixed(2);
+    },
+    preciounitario: function preciounitario(newVal, oldVal) {
+      this.importe2 = 0;
+      this.importe2 = parseFloat(this.cantidad) * parseFloat(this.preciounitario);
+      this.importe2 = this.importe2.toFixed(2);
     }
   },
   methods: {
@@ -50455,6 +50517,8 @@ var render = function() {
                                     [
                                       _c("v-text-field", {
                                         attrs: {
+                                          outlined: "",
+                                          dense: "",
                                           type: "number",
                                           label: "Número de Partida sugerida  "
                                         },
@@ -50497,7 +50561,11 @@ var render = function() {
                                     { attrs: { cols: "12", sm: "6", md: "4" } },
                                     [
                                       _c("v-text-field", {
-                                        attrs: { label: "Unidad de Medida  " },
+                                        attrs: {
+                                          outlined: "",
+                                          dense: "",
+                                          label: "Unidad de Medida  "
+                                        },
                                         model: {
                                           value: _vm.unidadmedida,
                                           callback: function($$v) {
@@ -50516,6 +50584,8 @@ var render = function() {
                                     [
                                       _c("v-text-field", {
                                         attrs: {
+                                          outlined: "",
+                                          dense: "",
                                           type: "number",
                                           label: "Cantidad "
                                         },
@@ -50537,6 +50607,8 @@ var render = function() {
                                     [
                                       _c("v-text-field", {
                                         attrs: {
+                                          outlined: "",
+                                          dense: "",
                                           type: "number",
                                           label: "Precio del Proveedor "
                                         },
@@ -50572,7 +50644,12 @@ var render = function() {
                                     { attrs: { cols: "12", md: "4" } },
                                     [
                                       _c("v-text-field", {
-                                        attrs: { type: "text", label: "Marca" },
+                                        attrs: {
+                                          type: "text",
+                                          label: "Marca",
+                                          outlined: "",
+                                          dense: ""
+                                        },
                                         model: {
                                           value: _vm.marca,
                                           callback: function($$v) {
@@ -50592,7 +50669,9 @@ var render = function() {
                                       _c("v-text-field", {
                                         attrs: {
                                           type: "text",
-                                          label: "Modelo"
+                                          label: "Modelo",
+                                          outlined: "",
+                                          dense: ""
                                         },
                                         model: {
                                           value: _vm.modelo,
@@ -50613,7 +50692,9 @@ var render = function() {
                                       _c("v-text-field", {
                                         attrs: {
                                           type: "text",
-                                          label: "Número de Serie"
+                                          label: "Número de Serie",
+                                          outlined: "",
+                                          dense: ""
                                         },
                                         model: {
                                           value: _vm.numserie,
@@ -50698,7 +50779,9 @@ var render = function() {
                                         attrs: {
                                           type: "number",
                                           label:
-                                            "Tipo de Venta / Utilidad (En escala del 0 al 100 %)"
+                                            "Tipo de Venta / Utilidad (En escala del 0 al 100 %)",
+                                          outlined: "",
+                                          dense: ""
                                         },
                                         model: {
                                           value: _vm.utilidadpartida,
@@ -50720,7 +50803,9 @@ var render = function() {
                                         attrs: {
                                           type: "number",
                                           label:
-                                            "PORCENTAJE DE IVA(En escala del 0 al 100 %) "
+                                            "PORCENTAJE DE IVA(En escala del 0 al 100 %) ",
+                                          outlined: "",
+                                          dense: ""
                                         },
                                         model: {
                                           value: _vm.ivapartida,
@@ -50742,7 +50827,9 @@ var render = function() {
                                         attrs: {
                                           type: "number",
                                           label:
-                                            "PORCENTAJE DE IEPS(En escala del 0 al 100 %) "
+                                            "PORCENTAJE DE IEPS(En escala del 0 al 100 %) ",
+                                          outlined: "",
+                                          dense: ""
                                         },
                                         model: {
                                           value: _vm.iepspartida,
@@ -50787,8 +50874,10 @@ var render = function() {
                                     [
                                       _c("v-text-field", {
                                         attrs: {
-                                          type: "number",
-                                          label: "Importe(1)  "
+                                          label: "Importe(1)  ",
+                                          outlined: "",
+                                          dense: "",
+                                          readonly: ""
                                         },
                                         model: {
                                           value: _vm.importe1,
@@ -50808,8 +50897,10 @@ var render = function() {
                                     [
                                       _c("v-text-field", {
                                         attrs: {
-                                          type: "number",
-                                          label: "Utilidad  "
+                                          label: "Utilidad  ",
+                                          outlined: "",
+                                          dense: "",
+                                          readonly: ""
                                         },
                                         model: {
                                           value: _vm.utilidadgenerada,
@@ -50829,8 +50920,10 @@ var render = function() {
                                     [
                                       _c("v-text-field", {
                                         attrs: {
-                                          type: "number",
-                                          label: "Precio Unitario  "
+                                          label: "Precio Unitario  ",
+                                          outlined: "",
+                                          dense: "",
+                                          readonly: ""
                                         },
                                         model: {
                                           value: _vm.preciounitario,
@@ -50850,8 +50943,10 @@ var render = function() {
                                     [
                                       _c("v-text-field", {
                                         attrs: {
-                                          type: "number",
-                                          label: "Importe(2)  "
+                                          label: "Importe(2)  ",
+                                          outlined: "",
+                                          dense: "",
+                                          readonly: ""
                                         },
                                         model: {
                                           value: _vm.importe2,

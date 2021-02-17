@@ -242,6 +242,8 @@
                        md="4"
                      >
                      <v-text-field
+                     outlined
+                     dense
                        v-model="partida"
                        type="number"
                        label="Número de Partida sugerida  "
@@ -254,6 +256,7 @@
                            md="8"
                          >
                          <v-textarea
+
                          solo
                            v-model="descripcion"
                          label="Descripción"
@@ -267,6 +270,8 @@
                                md="4"
                              >
                              <v-text-field
+                             outlined
+                             dense
                                v-model="unidadmedida"
 
                                label="Unidad de Medida  "
@@ -280,6 +285,8 @@
                                    md="4"
                                  >
                                  <v-text-field
+                                 outlined
+                                 dense
                                    v-model="cantidad"
                                    type="number"
                                    label="Cantidad "
@@ -293,6 +300,8 @@
                                        md="4"
                                      >
                                      <v-text-field
+                                     outlined
+                                     dense
                                        v-model="precioproveedor"
                                        type="number"
                                        label="Precio del Proveedor "
@@ -314,7 +323,8 @@
                                                v-model="marca"
                                                type="text"
                                                label="Marca"
-
+                                               outlined
+                                               dense
                                              ></v-text-field>
 
                                            </v-col>
@@ -326,7 +336,8 @@
                                                    v-model="modelo"
                                                    type="text"
                                                    label="Modelo"
-
+                                                   outlined
+                                                   dense
                                                  ></v-text-field>
 
                                                </v-col>
@@ -338,7 +349,8 @@
                                                        v-model="numserie"
                                                        type="text"
                                                        label="Número de Serie"
-
+                                                       outlined
+                                                       dense
                                                      ></v-text-field>
 
                                                    </v-col>
@@ -351,6 +363,7 @@
                                                          solo
                                                            v-model="notasproducto"
                                                          label="Notas para esta partida"
+
                                                          ></v-textarea>
                                                        </v-col>
              </v-row>
@@ -377,7 +390,8 @@
                        v-model="utilidadpartida"
                        type="number"
                        label="Tipo de Venta / Utilidad (En escala del 0 al 100 %)"
-
+                       outlined
+                       dense
                      ></v-text-field>
                    </v-col>
                <v-col
@@ -389,7 +403,8 @@
                        v-model="ivapartida"
                        type="number"
                        label="PORCENTAJE DE IVA(En escala del 0 al 100 %) "
-
+                       outlined
+                       dense
                      ></v-text-field>
                    </v-col>
                    <v-col
@@ -401,7 +416,8 @@
                            v-model="iepspartida"
                            type="number"
                            label="PORCENTAJE DE IEPS(En escala del 0 al 100 %) "
-
+                           outlined
+                           dense
                          ></v-text-field>
                        </v-col>
 
@@ -422,8 +438,11 @@
                      >
                      <v-text-field
                        v-model="importe1"
-                       type="number"
+
                        label="Importe(1)  "
+                       outlined
+           dense
+           readonly
 
                      ></v-text-field>
                    </v-col>
@@ -434,8 +453,11 @@
                          >
                          <v-text-field
                            v-model="utilidadgenerada"
-                           type="number"
+
                            label="Utilidad  "
+                           outlined
+           dense
+           readonly
 
                          ></v-text-field>
                        </v-col>
@@ -446,8 +468,11 @@
                              >
                              <v-text-field
                                v-model="preciounitario"
-                               type="number"
+
                                label="Precio Unitario  "
+                               outlined
+           dense
+           readonly
 
                              ></v-text-field>
                            </v-col>
@@ -458,8 +483,11 @@
                                  >
                                  <v-text-field
                                    v-model="importe2"
-                                   type="number"
+
                                    label="Importe(2)  "
+                                   outlined
+                                   dense
+                                   readonly
 
                                  ></v-text-field>
                                </v-col>
@@ -554,7 +582,53 @@ import swal from 'sweetalert';
                }
                alert(this.restariva)
              }
-           }
+           },
+
+           precioproveedor :function(newVal,oldVal){
+            this.utilidadgenerada = 0
+            this.utilidadgenerada = parseFloat(this.utilidadpartida/100)*parseFloat(this.precioproveedor)
+            this.utilidadgenerada = this.utilidadgenerada.toFixed(2)
+
+            this.importe1 = 0
+            this.importe1 = parseFloat(this.precioproveedor) * parseFloat(this.cantidad)
+            this.importe1 = this.importe1.toFixed(2)
+
+            this.preciounitario = 0
+            this.preciounitario = parseFloat(this.precioproveedor) + parseFloat(this.utilidadgenerada)
+            this.preciounitario = this.preciounitario.toFixed(2)
+
+           },
+
+           cantidad :function(newVal,oldVal){
+             this.importe1 = 0
+             this.importe1 = parseFloat(this.precioproveedor) * parseFloat(this.cantidad)
+             this.importe1 = this.importe1.toFixed(2)
+
+             this.importe2 = 0
+             this.importe2 = parseFloat(this.cantidad) * parseFloat(this.preciounitario)
+             this.importe2 = this.importe2.toFixed(2)
+           },
+
+
+           utilidadpartida :function(newVal,oldVal){
+            this.utilidadgenerada = 0
+            this.utilidadgenerada = parseFloat(this.utilidadpartida/100)*parseFloat(this.precioproveedor)
+             this.utilidadgenerada = this.utilidadgenerada.toFixed(2)
+           },
+
+           utilidadgenerada :function(newVal,oldVal){
+             this.preciounitario = 0
+             this.preciounitario = parseFloat(this.precioproveedor) + parseFloat(this.utilidadgenerada)
+             this.preciounitario = this.preciounitario.toFixed(2)
+           },
+
+           preciounitario :function(newVal,oldVal){
+             this.importe2 = 0
+             this.importe2 = parseFloat(this.cantidad) * parseFloat(this.preciounitario)
+             this.importe2 = this.importe2.toFixed(2)
+           },
+
+
          },
           methods:{
             async guardarPartida(){
