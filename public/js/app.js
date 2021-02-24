@@ -1911,6 +1911,642 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DashBoardTablesComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DashBoardTablesComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      tab: null,
+      items: ['web', 'shopping', 'videos', 'images', 'news'],
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      search: '',
+      solicitudesH: [{
+        text: 'Fecha',
+        align: 'start',
+        filterable: false,
+        value: 'name'
+      }, {
+        text: 'Folio',
+        value: 'calories'
+      }, {
+        text: 'Responsable',
+        value: 'fat'
+      }, {
+        text: 'Agente de Ventas',
+        value: 'carbs'
+      }, {
+        text: 'Con Atención A',
+        value: 'protein'
+      }, {
+        text: 'Solicitante',
+        value: 'iron'
+      }],
+      desserts: []
+    };
+  },
+  computed: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DashboardCardsComponent.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DashboardCardsComponent.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      tabs: 0
+    };
+  },
+  computed: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DashboardComponent.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DashboardComponent.vue?vue&type=script&lang=js& ***!
@@ -3022,68 +3658,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.getClientes();
@@ -3092,11 +3666,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       search: '',
       headers: [{
-        text: 'Razón Social(Empresa)',
+        text: 'Razón Social',
         align: 'center',
         value: 'razonSocial'
       }, {
-        text: 'Representante',
+        text: 'Dirigido A',
         align: 'center',
         value: 'representante'
       }, {
@@ -3104,25 +3678,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         align: 'center',
         value: 'conatencion'
       }, {
-        text: 'RFC(Empresa)',
+        text: 'RFC',
         align: 'center',
         value: 'rfc'
       }, {
-        text: 'Email(Empresa)',
+        text: 'Email',
         align: 'center',
         value: 'email'
       }, {
-        text: 'Teléfono(Empresa)',
+        text: 'Teléfono',
         align: 'center',
         value: 'telefono'
-      }, {
-        text: 'Cotizaciones',
-        align: 'center',
-        value: 'cotizaciones'
-      }, {
-        text: 'Ventas',
-        align: 'center',
-        value: 'ventas'
       }, {
         text: 'Acciones',
         align: 'center',
@@ -3412,6 +3978,208 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -3625,48 +4393,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -3687,10 +4413,6 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         text: 'Rol',
         align: 'center',
         value: 'rol'
-      }, {
-        text: 'Cotizaciones',
-        align: 'center',
-        value: 'cotizaciones'
       }, {
         text: 'Acciones',
         align: 'center',
@@ -7775,67 +8497,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.getsolicitantes();
@@ -7855,14 +8516,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         text: 'Teléfono',
         align: 'center',
         value: 'telefono'
-      }, {
-        text: 'Cotizaciones',
-        align: 'center',
-        value: 'cotizaciones'
-      }, {
-        text: 'Ventas',
-        align: 'center',
-        value: 'ventas'
       }, {
         text: 'Acciones',
         align: 'center',
@@ -48108,6 +48761,1035 @@ var version = '3.4.5';
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DashBoardTablesComponent.vue?vue&type=template&id=23fb546f&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DashBoardTablesComponent.vue?vue&type=template&id=23fb546f& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-container",
+    { attrs: { id: "dashboard-view1", fluid: "", tag: "section" } },
+    [
+      _c(
+        "v-row",
+        [
+          _c(
+            "v-col",
+            { attrs: { cols: "12", md: "6" } },
+            [
+              _c(
+                "v-card",
+                [
+                  _c(
+                    "v-toolbar",
+                    {
+                      attrs: { color: "primary", dark: "", flat: "" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "extension",
+                          fn: function() {
+                            return [
+                              _c(
+                                "v-tabs",
+                                {
+                                  attrs: { "align-with-title": "" },
+                                  model: {
+                                    value: _vm.tab,
+                                    callback: function($$v) {
+                                      _vm.tab = $$v
+                                    },
+                                    expression: "tab"
+                                  }
+                                },
+                                [
+                                  _c("v-tabs-slider", {
+                                    attrs: { color: "yellow" }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("v-tab", { attrs: { href: "#tab-0" } }, [
+                                    _vm._v(
+                                      "\n          Registradas\n          "
+                                    )
+                                  ])
+                                ],
+                                1
+                              )
+                            ]
+                          },
+                          proxy: true
+                        }
+                      ])
+                    },
+                    [_c("v-toolbar-title", [_vm._v("Solicitudes")])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-tabs-items",
+                    {
+                      model: {
+                        value: _vm.tab,
+                        callback: function($$v) {
+                          _vm.tab = $$v
+                        },
+                        expression: "tab"
+                      }
+                    },
+                    [
+                      _c(
+                        "v-tab-item",
+                        { attrs: { value: "tab-0" } },
+                        [
+                          _c(
+                            "v-card",
+                            { attrs: { flat: "" } },
+                            [
+                              _c(
+                                "v-card-text",
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      "append-icon": "mdi-magnify",
+                                      label: "Buscar por parámetro",
+                                      "single-line": "",
+                                      "hide-details": ""
+                                    },
+                                    model: {
+                                      value: _vm.search,
+                                      callback: function($$v) {
+                                        _vm.search = $$v
+                                      },
+                                      expression: "search"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("v-data-table", {
+                                    attrs: {
+                                      headers: _vm.solicitudesH,
+                                      items: _vm.desserts,
+                                      search: _vm.search
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DashboardCardsComponent.vue?vue&type=template&id=51e990f3&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DashboardCardsComponent.vue?vue&type=template&id=51e990f3& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-container",
+    { attrs: { id: "dashboard-view1", fluid: "", tag: "section" } },
+    [
+      _c(
+        "v-row",
+        [
+          _c(
+            "v-col",
+            { attrs: { cols: "12" } },
+            [
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12", md: "6", lg: "3" } },
+                    [
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "mx-auto",
+                          attrs: { "max-width": "374" }
+                        },
+                        [
+                          _c(
+                            "v-row",
+                            {
+                              attrs: {
+                                align: "center",
+                                justify: "space-around"
+                              }
+                            },
+                            [
+                              _c("v-icon", { attrs: { "x-large": "" } }, [
+                                _vm._v("mdi-import")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            {
+                              staticClass: "ml-0 mr-0",
+                              attrs: {
+                                align: "center",
+                                justify: "space-around"
+                              }
+                            },
+                            [
+                              _c(
+                                "v-card-title",
+                                { staticClass: "font-weight-black" },
+                                [_vm._v("0 Solicitudes")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-expansion-panels",
+                                [
+                                  _c(
+                                    "v-expansion-panel",
+                                    [
+                                      _c("v-expansion-panel-header", [
+                                        _c("strong", [_vm._v("Ver Detalle")])
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-expansion-panel-content",
+                                        [
+                                          _c(
+                                            "v-row",
+                                            {
+                                              staticClass: "ml-0 mr-0",
+                                              attrs: {
+                                                align: "center",
+                                                justify: "space-around"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n\n      Sin Información\n    "
+                                              )
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12", md: "6", lg: "3" } },
+                    [
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "mx-auto",
+                          attrs: { "max-width": "374" }
+                        },
+                        [
+                          _c(
+                            "v-row",
+                            {
+                              attrs: {
+                                align: "center",
+                                justify: "space-around"
+                              }
+                            },
+                            [
+                              _c("v-icon", { attrs: { "x-large": "" } }, [
+                                _vm._v("mdi-file-send-outline")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            {
+                              staticClass: "ml-0 mr-0",
+                              attrs: {
+                                align: "center",
+                                justify: "space-around"
+                              }
+                            },
+                            [
+                              _c(
+                                "v-card-title",
+                                { staticClass: "font-weight-black" },
+                                [_vm._v("0 Cotizaciones")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-expansion-panels",
+                                [
+                                  _c(
+                                    "v-expansion-panel",
+                                    [
+                                      _c("v-expansion-panel-header", [
+                                        _c("strong", [_vm._v("Ver Detalle")])
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-expansion-panel-content",
+                                        [
+                                          _c(
+                                            "v-row",
+                                            {
+                                              staticClass: "ml-0 mr-0",
+                                              attrs: {
+                                                align: "center",
+                                                justify: "space-around"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-col",
+                                                { attrs: { cols: "12" } },
+                                                [
+                                                  _c(
+                                                    "span",
+                                                    [
+                                                      _c(
+                                                        "v-btn",
+                                                        {
+                                                          attrs: {
+                                                            small: "",
+                                                            block: "",
+                                                            color: "primary",
+                                                            dark: ""
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n     0 En proceso\n   "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-col",
+                                                { attrs: { cols: "12" } },
+                                                [
+                                                  _c(
+                                                    "span",
+                                                    [
+                                                      _c(
+                                                        "v-btn",
+                                                        {
+                                                          attrs: {
+                                                            small: "",
+                                                            block: "",
+                                                            color: "primary",
+                                                            dark: ""
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n     0 Pendientes\n   "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-col",
+                                                { attrs: { cols: "12" } },
+                                                [
+                                                  _c(
+                                                    "span",
+                                                    [
+                                                      _c(
+                                                        "v-btn",
+                                                        {
+                                                          attrs: {
+                                                            small: "",
+                                                            block: "",
+                                                            color: "primary",
+                                                            dark: ""
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n    0 Cotizadas\n   "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12", md: "6", lg: "3" } },
+                    [
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "mx-auto",
+                          attrs: { "max-width": "374" }
+                        },
+                        [
+                          _c(
+                            "v-row",
+                            {
+                              attrs: {
+                                align: "center",
+                                justify: "space-around"
+                              }
+                            },
+                            [
+                              _c("v-icon", { attrs: { "x-large": "" } }, [
+                                _vm._v("mdi-account-cash-outline")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            {
+                              staticClass: "ml-0 mr-0",
+                              attrs: {
+                                align: "center",
+                                justify: "space-around"
+                              }
+                            },
+                            [
+                              _c(
+                                "v-card-title",
+                                { staticClass: "font-weight-black" },
+                                [_vm._v("0 Ventas")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-expansion-panels",
+                                [
+                                  _c(
+                                    "v-expansion-panel",
+                                    [
+                                      _c("v-expansion-panel-header", [
+                                        _c("strong", [_vm._v("Ver Detalle")])
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-expansion-panel-content",
+                                        [
+                                          _c(
+                                            "v-row",
+                                            {
+                                              attrs: {
+                                                align: "center",
+                                                justify: "space-around"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-col",
+                                                { attrs: { cols: "12" } },
+                                                [
+                                                  _c(
+                                                    "span",
+                                                    [
+                                                      _c(
+                                                        "v-btn",
+                                                        {
+                                                          attrs: {
+                                                            small: "",
+                                                            block: "",
+                                                            color: "primary",
+                                                            dark: ""
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n     0 Pagadas\n   "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-col",
+                                                { attrs: { cols: "12" } },
+                                                [
+                                                  _c(
+                                                    "span",
+                                                    [
+                                                      _c(
+                                                        "v-btn",
+                                                        {
+                                                          attrs: {
+                                                            small: "",
+                                                            block: "",
+                                                            color: "primary",
+                                                            dark: ""
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n     0 Hojas de Entrega SF\n   "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-col",
+                                                { attrs: { cols: "12" } },
+                                                [
+                                                  _c(
+                                                    "span",
+                                                    [
+                                                      _c(
+                                                        "v-btn",
+                                                        {
+                                                          attrs: {
+                                                            small: "",
+                                                            block: "",
+                                                            color: "primary",
+                                                            dark: ""
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n    0 Facturas "
+                                                          ),
+                                                          _c("br"),
+                                                          _vm._v(
+                                                            " Pendiente de Pago\n   "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12", md: "6", lg: "3" } },
+                    [
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "mx-auto",
+                          attrs: { "max-width": "374" }
+                        },
+                        [
+                          _c(
+                            "v-row",
+                            {
+                              attrs: {
+                                align: "center",
+                                justify: "space-around"
+                              }
+                            },
+                            [
+                              _c("v-icon", { attrs: { "x-large": "" } }, [
+                                _vm._v("mdi-account-convert")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            {
+                              staticClass: "ml-0 mr-0",
+                              attrs: {
+                                align: "center",
+                                justify: "space-around"
+                              }
+                            },
+                            [
+                              _c(
+                                "v-card-title",
+                                { staticClass: "font-weight-black" },
+                                [_vm._v("Participantes")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-expansion-panels",
+                                [
+                                  _c(
+                                    "v-expansion-panel",
+                                    [
+                                      _c("v-expansion-panel-header", [
+                                        _c("strong", [_vm._v("Ver Detalle")])
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-expansion-panel-content",
+                                        [
+                                          _c(
+                                            "v-row",
+                                            {
+                                              staticClass: "ml-0 mr-0",
+                                              attrs: {
+                                                align: "center",
+                                                justify: "space-around"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-col",
+                                                { attrs: { cols: "12" } },
+                                                [
+                                                  _c(
+                                                    "span",
+                                                    [
+                                                      _c(
+                                                        "v-btn",
+                                                        {
+                                                          attrs: {
+                                                            small: "",
+                                                            block: "",
+                                                            color: "primary",
+                                                            dark: ""
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n     0 Clientes\n   "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-col",
+                                                { attrs: { cols: "12" } },
+                                                [
+                                                  _c(
+                                                    "span",
+                                                    [
+                                                      _c(
+                                                        "v-btn",
+                                                        {
+                                                          attrs: {
+                                                            small: "",
+                                                            block: "",
+                                                            color: "primary",
+                                                            dark: ""
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n     0 Solicitantes\n   "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-col",
+                                                { attrs: { cols: "12" } },
+                                                [
+                                                  _c(
+                                                    "span",
+                                                    [
+                                                      _c(
+                                                        "v-btn",
+                                                        {
+                                                          attrs: {
+                                                            small: "",
+                                                            block: "",
+                                                            color: "primary",
+                                                            dark: ""
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n    0 Usuarios\n   "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12", md: "6", lg: "3" } },
+                    [
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "mx-auto",
+                          attrs: { "max-width": "374" }
+                        },
+                        [
+                          _c(
+                            "v-row",
+                            {
+                              attrs: {
+                                align: "center",
+                                justify: "space-around"
+                              }
+                            },
+                            [
+                              _c("v-icon", { attrs: { "x-large": "" } }, [
+                                _vm._v("mdi-account-convert")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            {
+                              staticClass: "ml-0 mr-0",
+                              attrs: {
+                                align: "center",
+                                justify: "space-around"
+                              }
+                            },
+                            [
+                              _c(
+                                "v-card-title",
+                                { staticClass: "font-weight-black" },
+                                [_vm._v("Tipos de Venta")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-expansion-panels",
+                                [
+                                  _c(
+                                    "v-expansion-panel",
+                                    [
+                                      _c("v-expansion-panel-header", [
+                                        _c("strong", [_vm._v("Ver Detalle")])
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-expansion-panel-content",
+                                        [
+                                          _c(
+                                            "v-row",
+                                            {
+                                              staticClass: "ml-0 mr-0",
+                                              attrs: {
+                                                align: "center",
+                                                justify: "space-around"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-col",
+                                                { attrs: { cols: "12" } },
+                                                [
+                                                  _c(
+                                                    "p",
+                                                    {
+                                                      staticClass:
+                                                        "font-weight-black"
+                                                    },
+                                                    [_vm._v("0%  Nombre")]
+                                                  )
+                                                ]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12", md: "6", lg: "3" } },
+                    [
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "mx-auto",
+                          attrs: { "max-width": "374" }
+                        },
+                        [
+                          _c(
+                            "v-row",
+                            {
+                              attrs: {
+                                align: "center",
+                                justify: "space-around"
+                              }
+                            },
+                            [
+                              _c("v-icon", { attrs: { "x-large": "" } }, [
+                                _vm._v("mdi-account-convert")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            {
+                              staticClass: "ml-0 mr-0",
+                              attrs: {
+                                align: "center",
+                                justify: "space-around"
+                              }
+                            },
+                            [
+                              _c(
+                                "v-card-title",
+                                { staticClass: "font-weight-black" },
+                                [_vm._v("Formatos")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-expansion-panels",
+                                [
+                                  _c(
+                                    "v-expansion-panel",
+                                    [
+                                      _c("v-expansion-panel-header", [
+                                        _c("strong", [_vm._v("Ver Detalle")])
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-expansion-panel-content",
+                                        [
+                                          _c(
+                                            "v-row",
+                                            {
+                                              staticClass: "ml-0 mr-0",
+                                              attrs: {
+                                                align: "center",
+                                                justify: "space-around"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-col",
+                                                { attrs: { cols: "12" } },
+                                                [
+                                                  _c(
+                                                    "v-col",
+                                                    { attrs: { cols: "12" } },
+                                                    [
+                                                      _c(
+                                                        "p",
+                                                        {
+                                                          staticClass:
+                                                            "font-weight-black"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "Nombre del Formato"
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DashboardComponent.vue?vue&type=template&id=01ab55f4&":
 /*!*********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DashboardComponent.vue?vue&type=template&id=01ab55f4& ***!
@@ -49078,226 +50760,6 @@ var render = function() {
                         },
                         scopedSlots: _vm._u([
                           {
-                            key: "item.cotizaciones",
-                            fn: function(ref) {
-                              var item = ref.item
-                              return [
-                                _c(
-                                  "v-tooltip",
-                                  {
-                                    attrs: { top: "" },
-                                    scopedSlots: _vm._u(
-                                      [
-                                        {
-                                          key: "activator",
-                                          fn: function(ref) {
-                                            var on = ref.on
-                                            var attrs = ref.attrs
-                                            return [
-                                              _c(
-                                                "v-chip",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      attrs: {
-                                                        color: "grey",
-                                                        dark: ""
-                                                      }
-                                                    },
-                                                    "v-chip",
-                                                    attrs,
-                                                    false
-                                                  ),
-                                                  on
-                                                ),
-                                                [
-                                                  _vm._v(
-                                                    "\n        " +
-                                                      _vm._s(
-                                                        item.cotizaciones
-                                                      ) +
-                                                      "\n      "
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          }
-                                        }
-                                      ],
-                                      null,
-                                      true
-                                    )
-                                  },
-                                  [
-                                    _vm._v(" "),
-                                    _c("span", [_vm._v("Pendientes")])
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-tooltip",
-                                  {
-                                    attrs: { top: "" },
-                                    scopedSlots: _vm._u(
-                                      [
-                                        {
-                                          key: "activator",
-                                          fn: function(ref) {
-                                            var on = ref.on
-                                            var attrs = ref.attrs
-                                            return [
-                                              _c(
-                                                "v-chip",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      attrs: {
-                                                        color: "orange",
-                                                        dark: ""
-                                                      }
-                                                    },
-                                                    "v-chip",
-                                                    attrs,
-                                                    false
-                                                  ),
-                                                  on
-                                                ),
-                                                [
-                                                  _vm._v(
-                                                    "\n        " +
-                                                      _vm._s(
-                                                        item.cotizaciones2
-                                                      ) +
-                                                      "\n      "
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          }
-                                        }
-                                      ],
-                                      null,
-                                      true
-                                    )
-                                  },
-                                  [
-                                    _vm._v(" "),
-                                    _c("span", [_vm._v("En Proceso")])
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-tooltip",
-                                  {
-                                    attrs: { top: "" },
-                                    scopedSlots: _vm._u(
-                                      [
-                                        {
-                                          key: "activator",
-                                          fn: function(ref) {
-                                            var on = ref.on
-                                            var attrs = ref.attrs
-                                            return [
-                                              _c(
-                                                "v-chip",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      attrs: {
-                                                        color: "green",
-                                                        dark: ""
-                                                      }
-                                                    },
-                                                    "v-chip",
-                                                    attrs,
-                                                    false
-                                                  ),
-                                                  on
-                                                ),
-                                                [
-                                                  _vm._v(
-                                                    "\n        " +
-                                                      _vm._s(
-                                                        item.cotizaciones3
-                                                      ) +
-                                                      "\n      "
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          }
-                                        }
-                                      ],
-                                      null,
-                                      true
-                                    )
-                                  },
-                                  [
-                                    _vm._v(" "),
-                                    _c("span", [_vm._v("Cotizadas")])
-                                  ]
-                                )
-                              ]
-                            }
-                          },
-                          {
-                            key: "item.ventas",
-                            fn: function(ref) {
-                              var item = ref.item
-                              return [
-                                _c(
-                                  "v-tooltip",
-                                  {
-                                    attrs: { top: "" },
-                                    scopedSlots: _vm._u(
-                                      [
-                                        {
-                                          key: "activator",
-                                          fn: function(ref) {
-                                            var on = ref.on
-                                            var attrs = ref.attrs
-                                            return [
-                                              _c(
-                                                "v-chip",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      attrs: {
-                                                        color: "green",
-                                                        dark: ""
-                                                      }
-                                                    },
-                                                    "v-chip",
-                                                    attrs,
-                                                    false
-                                                  ),
-                                                  on
-                                                ),
-                                                [
-                                                  _vm._v(
-                                                    "\n        " +
-                                                      _vm._s(item.ventas) +
-                                                      "\n      "
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          }
-                                        }
-                                      ],
-                                      null,
-                                      true
-                                    )
-                                  },
-                                  [
-                                    _vm._v(" "),
-                                    _c("span", [_vm._v("Realizadas")])
-                                  ]
-                                )
-                              ]
-                            }
-                          },
-                          {
                             key: "item.acciones",
                             fn: function(ref) {
                               var item = ref.item
@@ -49656,32 +51118,20 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c("cards-dashboard"),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("tables-dashboard")
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Hola soy el componente Dashboard")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    Hola soy el componente Dashboard Ejemplo\n                "
-              )
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -49839,169 +51289,6 @@ var render = function() {
                           search: _vm.search
                         },
                         scopedSlots: _vm._u([
-                          {
-                            key: "item.cotizaciones",
-                            fn: function(ref) {
-                              var item = ref.item
-                              return [
-                                _c(
-                                  "v-tooltip",
-                                  {
-                                    attrs: { top: "" },
-                                    scopedSlots: _vm._u(
-                                      [
-                                        {
-                                          key: "activator",
-                                          fn: function(ref) {
-                                            var on = ref.on
-                                            var attrs = ref.attrs
-                                            return [
-                                              _c(
-                                                "v-chip",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      attrs: {
-                                                        color: "grey",
-                                                        dark: ""
-                                                      }
-                                                    },
-                                                    "v-chip",
-                                                    attrs,
-                                                    false
-                                                  ),
-                                                  on
-                                                ),
-                                                [
-                                                  _vm._v(
-                                                    "\n        " +
-                                                      _vm._s(
-                                                        item.cotizaciones
-                                                      ) +
-                                                      "\n      "
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          }
-                                        }
-                                      ],
-                                      null,
-                                      true
-                                    )
-                                  },
-                                  [
-                                    _vm._v(" "),
-                                    _c("span", [_vm._v("Pendientes")])
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-tooltip",
-                                  {
-                                    attrs: { top: "" },
-                                    scopedSlots: _vm._u(
-                                      [
-                                        {
-                                          key: "activator",
-                                          fn: function(ref) {
-                                            var on = ref.on
-                                            var attrs = ref.attrs
-                                            return [
-                                              _c(
-                                                "v-chip",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      attrs: {
-                                                        color: "orange",
-                                                        dark: ""
-                                                      }
-                                                    },
-                                                    "v-chip",
-                                                    attrs,
-                                                    false
-                                                  ),
-                                                  on
-                                                ),
-                                                [
-                                                  _vm._v(
-                                                    "\n        " +
-                                                      _vm._s(
-                                                        item.cotizaciones2
-                                                      ) +
-                                                      "\n      "
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          }
-                                        }
-                                      ],
-                                      null,
-                                      true
-                                    )
-                                  },
-                                  [
-                                    _vm._v(" "),
-                                    _c("span", [_vm._v("En Proceso")])
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-tooltip",
-                                  {
-                                    attrs: { top: "" },
-                                    scopedSlots: _vm._u(
-                                      [
-                                        {
-                                          key: "activator",
-                                          fn: function(ref) {
-                                            var on = ref.on
-                                            var attrs = ref.attrs
-                                            return [
-                                              _c(
-                                                "v-chip",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      attrs: {
-                                                        color: "green",
-                                                        dark: ""
-                                                      }
-                                                    },
-                                                    "v-chip",
-                                                    attrs,
-                                                    false
-                                                  ),
-                                                  on
-                                                ),
-                                                [
-                                                  _vm._v(
-                                                    "\n        " +
-                                                      _vm._s(
-                                                        item.cotizaciones3
-                                                      ) +
-                                                      "\n      "
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          }
-                                        }
-                                      ],
-                                      null,
-                                      true
-                                    )
-                                  },
-                                  [
-                                    _vm._v(" "),
-                                    _c("span", [_vm._v("Cotizadas")])
-                                  ]
-                                )
-                              ]
-                            }
-                          },
                           {
                             key: "item.acciones",
                             fn: function(ref) {
@@ -54145,226 +55432,6 @@ var render = function() {
                           search: _vm.search
                         },
                         scopedSlots: _vm._u([
-                          {
-                            key: "item.cotizaciones",
-                            fn: function(ref) {
-                              var item = ref.item
-                              return [
-                                _c(
-                                  "v-tooltip",
-                                  {
-                                    attrs: { top: "" },
-                                    scopedSlots: _vm._u(
-                                      [
-                                        {
-                                          key: "activator",
-                                          fn: function(ref) {
-                                            var on = ref.on
-                                            var attrs = ref.attrs
-                                            return [
-                                              _c(
-                                                "v-chip",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      attrs: {
-                                                        color: "grey",
-                                                        dark: ""
-                                                      }
-                                                    },
-                                                    "v-chip",
-                                                    attrs,
-                                                    false
-                                                  ),
-                                                  on
-                                                ),
-                                                [
-                                                  _vm._v(
-                                                    "\n        " +
-                                                      _vm._s(
-                                                        item.cotizaciones
-                                                      ) +
-                                                      "\n      "
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          }
-                                        }
-                                      ],
-                                      null,
-                                      true
-                                    )
-                                  },
-                                  [
-                                    _vm._v(" "),
-                                    _c("span", [_vm._v("Pendientes")])
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-tooltip",
-                                  {
-                                    attrs: { top: "" },
-                                    scopedSlots: _vm._u(
-                                      [
-                                        {
-                                          key: "activator",
-                                          fn: function(ref) {
-                                            var on = ref.on
-                                            var attrs = ref.attrs
-                                            return [
-                                              _c(
-                                                "v-chip",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      attrs: {
-                                                        color: "orange",
-                                                        dark: ""
-                                                      }
-                                                    },
-                                                    "v-chip",
-                                                    attrs,
-                                                    false
-                                                  ),
-                                                  on
-                                                ),
-                                                [
-                                                  _vm._v(
-                                                    "\n        " +
-                                                      _vm._s(
-                                                        item.cotizaciones2
-                                                      ) +
-                                                      "\n      "
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          }
-                                        }
-                                      ],
-                                      null,
-                                      true
-                                    )
-                                  },
-                                  [
-                                    _vm._v(" "),
-                                    _c("span", [_vm._v("En Proceso")])
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-tooltip",
-                                  {
-                                    attrs: { top: "" },
-                                    scopedSlots: _vm._u(
-                                      [
-                                        {
-                                          key: "activator",
-                                          fn: function(ref) {
-                                            var on = ref.on
-                                            var attrs = ref.attrs
-                                            return [
-                                              _c(
-                                                "v-chip",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      attrs: {
-                                                        color: "green",
-                                                        dark: ""
-                                                      }
-                                                    },
-                                                    "v-chip",
-                                                    attrs,
-                                                    false
-                                                  ),
-                                                  on
-                                                ),
-                                                [
-                                                  _vm._v(
-                                                    "\n        " +
-                                                      _vm._s(
-                                                        item.cotizaciones3
-                                                      ) +
-                                                      "\n      "
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          }
-                                        }
-                                      ],
-                                      null,
-                                      true
-                                    )
-                                  },
-                                  [
-                                    _vm._v(" "),
-                                    _c("span", [_vm._v("Cotizadas")])
-                                  ]
-                                )
-                              ]
-                            }
-                          },
-                          {
-                            key: "item.ventas",
-                            fn: function(ref) {
-                              var item = ref.item
-                              return [
-                                _c(
-                                  "v-tooltip",
-                                  {
-                                    attrs: { top: "" },
-                                    scopedSlots: _vm._u(
-                                      [
-                                        {
-                                          key: "activator",
-                                          fn: function(ref) {
-                                            var on = ref.on
-                                            var attrs = ref.attrs
-                                            return [
-                                              _c(
-                                                "v-chip",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      attrs: {
-                                                        color: "green",
-                                                        dark: ""
-                                                      }
-                                                    },
-                                                    "v-chip",
-                                                    attrs,
-                                                    false
-                                                  ),
-                                                  on
-                                                ),
-                                                [
-                                                  _vm._v(
-                                                    "\n        " +
-                                                      _vm._s(item.ventas) +
-                                                      "\n      "
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          }
-                                        }
-                                      ],
-                                      null,
-                                      true
-                                    )
-                                  },
-                                  [
-                                    _vm._v(" "),
-                                    _c("span", [_vm._v("Realizadas")])
-                                  ]
-                                )
-                              ]
-                            }
-                          },
                           {
                             key: "item.acciones",
                             fn: function(ref) {
@@ -114243,6 +115310,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.use(vuetify__WEBPACK_IMPORTED_MODULE_0___default.a);
 Vue.component('login-component', __webpack_require__(/*! ./components/LoginComponent.vue */ "./resources/js/components/LoginComponent.vue")["default"]);
 Vue.component('dashboard-component', __webpack_require__(/*! ./components/DashboardComponent.vue */ "./resources/js/components/DashboardComponent.vue")["default"]);
+Vue.component('cards-dashboard', __webpack_require__(/*! ./components/DashboardCardsComponent.vue */ "./resources/js/components/DashboardCardsComponent.vue")["default"]);
+Vue.component('tables-dashboard', __webpack_require__(/*! ./components/DashBoardTablesComponent.vue */ "./resources/js/components/DashBoardTablesComponent.vue")["default"]);
 Vue.component('componente-clientes', __webpack_require__(/*! ./views/ClientesComponent.vue */ "./resources/js/views/ClientesComponent.vue")["default"]);
 Vue.component('componente-solicitantes', __webpack_require__(/*! ./views/SolicitantesComponent.vue */ "./resources/js/views/SolicitantesComponent.vue")["default"]);
 Vue.component('componente-solicitudes', __webpack_require__(/*! ./views/SolicitudesComponent.vue */ "./resources/js/views/SolicitudesComponent.vue")["default"]);
@@ -114297,6 +115366,144 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/DashBoardTablesComponent.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/DashBoardTablesComponent.vue ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DashBoardTablesComponent_vue_vue_type_template_id_23fb546f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DashBoardTablesComponent.vue?vue&type=template&id=23fb546f& */ "./resources/js/components/DashBoardTablesComponent.vue?vue&type=template&id=23fb546f&");
+/* harmony import */ var _DashBoardTablesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DashBoardTablesComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/DashBoardTablesComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DashBoardTablesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DashBoardTablesComponent_vue_vue_type_template_id_23fb546f___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DashBoardTablesComponent_vue_vue_type_template_id_23fb546f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/DashBoardTablesComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/DashBoardTablesComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/DashBoardTablesComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBoardTablesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./DashBoardTablesComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DashBoardTablesComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBoardTablesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/DashBoardTablesComponent.vue?vue&type=template&id=23fb546f&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/DashBoardTablesComponent.vue?vue&type=template&id=23fb546f& ***!
+  \*********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBoardTablesComponent_vue_vue_type_template_id_23fb546f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./DashBoardTablesComponent.vue?vue&type=template&id=23fb546f& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DashBoardTablesComponent.vue?vue&type=template&id=23fb546f&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBoardTablesComponent_vue_vue_type_template_id_23fb546f___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBoardTablesComponent_vue_vue_type_template_id_23fb546f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/DashboardCardsComponent.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/DashboardCardsComponent.vue ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DashboardCardsComponent_vue_vue_type_template_id_51e990f3___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DashboardCardsComponent.vue?vue&type=template&id=51e990f3& */ "./resources/js/components/DashboardCardsComponent.vue?vue&type=template&id=51e990f3&");
+/* harmony import */ var _DashboardCardsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DashboardCardsComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/DashboardCardsComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DashboardCardsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DashboardCardsComponent_vue_vue_type_template_id_51e990f3___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DashboardCardsComponent_vue_vue_type_template_id_51e990f3___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/DashboardCardsComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/DashboardCardsComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/DashboardCardsComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DashboardCardsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./DashboardCardsComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DashboardCardsComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DashboardCardsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/DashboardCardsComponent.vue?vue&type=template&id=51e990f3&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/DashboardCardsComponent.vue?vue&type=template&id=51e990f3& ***!
+  \********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DashboardCardsComponent_vue_vue_type_template_id_51e990f3___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./DashboardCardsComponent.vue?vue&type=template&id=51e990f3& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DashboardCardsComponent.vue?vue&type=template&id=51e990f3&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DashboardCardsComponent_vue_vue_type_template_id_51e990f3___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DashboardCardsComponent_vue_vue_type_template_id_51e990f3___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

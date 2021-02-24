@@ -41,69 +41,7 @@
       :search="search"
     >
 
-    <template v-slot:item.cotizaciones="{ item }">
-     <v-tooltip top>
-      <template v-slot:activator="{ on, attrs }">
-      <v-chip
-       v-bind="attrs"
-          v-on="on"
-        :color="'grey'"
-        dark
-      >
-        {{ item.cotizaciones }}
-      </v-chip>
-      </template>
-       <span>Pendientes</span>
-  </v-tooltip>
-      <v-tooltip top>
-        <template v-slot:activator="{ on, attrs }">
-        <v-chip
-         v-bind="attrs"
-          v-on="on"
-        :color="'orange'"
-        dark
-      >
-        {{ item.cotizaciones2 }}
-      </v-chip>
-      </template>
-       <span>En Proceso</span>
-  </v-tooltip>
-       <v-tooltip top>
-        <template v-slot:activator="{ on, attrs }">
-        <v-chip
-         v-bind="attrs"
-          v-on="on"
-        :color="'green'"
-        dark
-      >
-        {{ item.cotizaciones3 }}
-      </v-chip>
-      </template>
-       <span>Cotizadas</span>
-  </v-tooltip>
 
-
-    </template>
-
-    <template v-slot:item.ventas="{ item }">
-     <v-tooltip top>
-      <template v-slot:activator="{ on, attrs }">
-      <v-chip
-       v-bind="attrs"
-          v-on="on"
-        :color="'green'"
-        dark
-      >
-        {{ item.ventas }}
-      </v-chip>
-      </template>
-       <span>Realizadas</span>
-  </v-tooltip>
-
-
-
-
-    </template>
     <template v-slot:item.acciones="{ item }">
       <v-tooltip top>
         <template v-slot:activator="{ on, attrs }">
@@ -153,18 +91,18 @@
         search: '',
         headers: [
           {
-            text: 'Razón Social(Empresa)',
+            text: 'Razón Social',
             align: 'center',
 
             value: 'razonSocial',
           },
-          { text: 'Representante', align: 'center', value: 'representante' },
+          { text: 'Dirigido A', align: 'center', value: 'representante' },
             { text: 'Con Atención A', align: 'center', value: 'conatencion' },
-          { text: 'RFC(Empresa)', align: 'center', value: 'rfc' },
-          { text: 'Email(Empresa)', align: 'center', value: 'email' },
-            { text: 'Teléfono(Empresa)', align: 'center', value: 'telefono' },
-          { text: 'Cotizaciones', align: 'center', value: 'cotizaciones' },
-          { text: 'Ventas', align: 'center', value: 'ventas' },
+          { text: 'RFC', align: 'center', value: 'rfc' },
+          { text: 'Email', align: 'center', value: 'email' },
+            { text: 'Teléfono', align: 'center', value: 'telefono' },
+
+
           { text: 'Acciones', align: 'center', value: 'acciones' },
         ],
         clientes: [],

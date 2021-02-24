@@ -41,69 +41,8 @@
       :search="search"
     >
 
-    <template v-slot:item.cotizaciones="{ item }">
-     <v-tooltip top>
-      <template v-slot:activator="{ on, attrs }">
-      <v-chip
-       v-bind="attrs"
-          v-on="on"
-        :color="'grey'"
-        dark
-      >
-        {{ item.cotizaciones }}
-      </v-chip>
-      </template>
-       <span>Pendientes</span>
-  </v-tooltip>
-      <v-tooltip top>
-        <template v-slot:activator="{ on, attrs }">
-        <v-chip
-         v-bind="attrs"
-          v-on="on"
-        :color="'orange'"
-        dark
-      >
-        {{ item.cotizaciones2 }}
-      </v-chip>
-      </template>
-       <span>En Proceso</span>
-  </v-tooltip>
-       <v-tooltip top>
-        <template v-slot:activator="{ on, attrs }">
-        <v-chip
-         v-bind="attrs"
-          v-on="on"
-        :color="'green'"
-        dark
-      >
-        {{ item.cotizaciones3 }}
-      </v-chip>
-      </template>
-       <span>Cotizadas</span>
-  </v-tooltip>
 
 
-    </template>
-
-    <template v-slot:item.ventas="{ item }">
-     <v-tooltip top>
-      <template v-slot:activator="{ on, attrs }">
-      <v-chip
-       v-bind="attrs"
-          v-on="on"
-        :color="'green'"
-        dark
-      >
-        {{ item.ventas }}
-      </v-chip>
-      </template>
-       <span>Realizadas</span>
-  </v-tooltip>
-
-
-
-
-    </template>
     <template v-slot:item.acciones="{ item }">
       <v-tooltip top>
       <template v-slot:activator="{ on, attrs }">
@@ -161,8 +100,8 @@
           { text: 'Email', align: 'center', value: 'email' },
           { text: 'Teléfono', align: 'center', value: 'telefono' },
 
-          { text: 'Cotizaciones', align: 'center', value: 'cotizaciones' },
-          { text: 'Ventas', align: 'center', value: 'ventas' },
+
+
           { text: 'Acciones', align: 'center', value: 'acciones' },
         ],
         solicitantes: [],

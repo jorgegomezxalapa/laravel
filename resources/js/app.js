@@ -10,6 +10,8 @@ Vue.use(Vuetify);
 
 Vue.component('login-component', require('./components/LoginComponent.vue').default);
 Vue.component('dashboard-component', require('./components/DashboardComponent.vue').default);
+Vue.component('cards-dashboard', require('./components/DashboardCardsComponent.vue').default);
+Vue.component('tables-dashboard', require('./components/DashBoardTablesComponent.vue').default);
 
 Vue.component('componente-clientes', require('./views/ClientesComponent.vue').default);
 Vue.component('componente-solicitantes', require('./views/SolicitantesComponent.vue').default);

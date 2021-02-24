@@ -41,49 +41,7 @@
       :search="search"
     >
 
-    <template v-slot:item.cotizaciones="{ item }">
-     <v-tooltip top>
-      <template v-slot:activator="{ on, attrs }">
-      <v-chip
-       v-bind="attrs"
-          v-on="on"
-        :color="'grey'"
-        dark
-      >
-        {{ item.cotizaciones }}
-      </v-chip>
-      </template>
-       <span>Pendientes</span>
-  </v-tooltip>
-      <v-tooltip top>
-        <template v-slot:activator="{ on, attrs }">
-        <v-chip
-         v-bind="attrs"
-          v-on="on"
-        :color="'orange'"
-        dark
-      >
-        {{ item.cotizaciones2 }}
-      </v-chip>
-      </template>
-       <span>En Proceso</span>
-  </v-tooltip>
-       <v-tooltip top>
-        <template v-slot:activator="{ on, attrs }">
-        <v-chip
-         v-bind="attrs"
-          v-on="on"
-        :color="'green'"
-        dark
-      >
-        {{ item.cotizaciones3 }}
-      </v-chip>
-      </template>
-       <span>Cotizadas</span>
-  </v-tooltip>
 
-
-    </template>
     <template v-slot:item.acciones="{ item }">
         <v-tooltip top>
         <template v-slot:activator="{ on, attrs }">
@@ -173,7 +131,7 @@
           { text: 'Usuario', align: 'center', value: 'userName' },
           { text: 'Rol', align: 'center', value: 'rol' },
 
-          { text: 'Cotizaciones', align: 'center', value: 'cotizaciones' },
+        
           { text: 'Acciones', align: 'center', value: 'acciones' },
         ],
         usuarios: [],
