@@ -2055,35 +2055,278 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      toggle_exclusive: 0,
+      toggle_exclusive2: 0,
+      toggle_exclusive3: 0,
+      toggle_exclusive4: 0,
+      toggle_exclusive5: 0,
       tab: null,
-      items: ['web', 'shopping', 'videos', 'images', 'news'],
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      tab2: null,
       search: '',
-      solicitudesH: [{
-        text: 'Fecha',
-        align: 'start',
-        filterable: false,
-        value: 'name'
+      search1: '',
+      search2: '',
+      search3: '',
+      search4: '',
+      search5: '',
+      hsolicitudes: [{
+        text: 'Fecha de recepción',
+        align: 'center',
+        value: 'fecha'
       }, {
-        text: 'Folio',
-        value: 'calories'
+        text: 'Folio asignado',
+        align: 'center',
+        value: 'folio'
       }, {
         text: 'Responsable',
-        value: 'fat'
+        align: 'center',
+        value: 'responsable.name'
       }, {
-        text: 'Agente de Ventas',
-        value: 'carbs'
+        text: 'Agente de Venta',
+        align: 'center',
+        value: 'agente.name'
       }, {
-        text: 'Con Atención A',
-        value: 'protein'
+        text: 'Con Atención a',
+        align: 'center',
+        value: 'cliente.razonSocial'
       }, {
         text: 'Solicitante',
-        value: 'iron'
+        align: 'center',
+        value: 'solicitante.nombre'
+      }, {
+        text: 'Acciones',
+        align: 'center',
+        value: 'acciones'
       }],
-      desserts: []
+      solicitudes: [],
+      hcotizaciones: [{
+        text: 'Folio',
+        align: 'center',
+        value: 'solicitud.folio'
+      }, {
+        text: 'Fecha de Solicitud',
+        align: 'center',
+        value: 'solicitud.fecha'
+      }, {
+        text: 'Fecha de Finalizado',
+        align: 'center',
+        value: 'fechafinalizado'
+      }, {
+        text: 'Dirigido A(Cliente)',
+        align: 'center',
+        value: 'solicitud.cliente.razonSocial'
+      }, {
+        text: 'Solicitante',
+        align: 'center',
+        value: 'solicitud.solicitante.nombre'
+      }, {
+        text: 'Responsable',
+        align: 'center',
+        value: 'solicitud.responsable.name'
+      }, {
+        text: 'Agente de venta',
+        align: 'center',
+        value: 'solicitud.agente.name'
+      }, {
+        text: 'Acciones',
+        align: 'center',
+        value: 'acciones'
+      }],
+      cotizaciones: [],
+      hventas: [{
+        text: 'Folio',
+        align: 'center',
+        value: 'solicitud.folio'
+      }, {
+        text: 'Fecha de Solicitud',
+        align: 'center',
+        value: 'solicitud.fecha'
+      }, {
+        text: 'Fecha de Finalizado',
+        align: 'center',
+        value: 'fechafinalizado'
+      }, {
+        text: 'Dirigido A(Cliente)',
+        align: 'center',
+        value: 'solicitud.cliente.razonSocial'
+      }, {
+        text: 'Solicitante',
+        align: 'center',
+        value: 'solicitud.solicitante.nombre'
+      }, {
+        text: 'Responsable',
+        align: 'center',
+        value: 'solicitud.responsable.name'
+      }, {
+        text: 'Agente de venta',
+        align: 'center',
+        value: 'solicitud.agente.name'
+      }, {
+        text: 'Acciones',
+        align: 'center',
+        value: 'acciones'
+      }],
+      ventas: [],
+      htiposventa: [{
+        text: 'Fecha de registro',
+        align: 'center',
+        value: 'created_at'
+      }, {
+        text: 'Descripción',
+        align: 'center',
+        value: 'descripcion'
+      }, {
+        text: 'Porcentaje %',
+        align: 'center',
+        value: 'porcentaje'
+      }, {
+        text: 'Acciones',
+        align: 'center',
+        value: 'acciones'
+      }],
+      tiposventa: [],
+      hformatos: [],
+      formatos: []
     };
   },
   computed: {}
@@ -48793,105 +49036,348 @@ var render = function() {
                   _c(
                     "v-toolbar",
                     {
-                      attrs: { color: "primary", dark: "", flat: "" },
-                      scopedSlots: _vm._u([
-                        {
-                          key: "extension",
-                          fn: function() {
-                            return [
-                              _c(
-                                "v-tabs",
-                                {
-                                  attrs: { "align-with-title": "" },
-                                  model: {
-                                    value: _vm.tab,
-                                    callback: function($$v) {
-                                      _vm.tab = $$v
-                                    },
-                                    expression: "tab"
-                                  }
-                                },
-                                [
-                                  _c("v-tabs-slider", {
-                                    attrs: { color: "yellow" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("v-tab", { attrs: { href: "#tab-0" } }, [
-                                    _vm._v(
-                                      "\n          Registradas\n          "
-                                    )
-                                  ])
-                                ],
-                                1
-                              )
-                            ]
-                          },
-                          proxy: true
-                        }
-                      ])
+                      staticClass: "mb-2",
+                      attrs: { color: "primary darken-5", dark: "", flat: "" }
                     },
-                    [_c("v-toolbar-title", [_vm._v("Solicitudes")])],
+                    [
+                      _c("v-toolbar-title", [
+                        _vm._v(
+                          "\n            Detalle de Solicitudes\n          "
+                        )
+                      ])
+                    ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
-                    "v-tabs-items",
+                    "v-btn-toggle",
                     {
+                      attrs: { color: "primary darken-5" },
                       model: {
-                        value: _vm.tab,
+                        value: _vm.toggle_exclusive2,
                         callback: function($$v) {
-                          _vm.tab = $$v
+                          _vm.toggle_exclusive2 = $$v
                         },
-                        expression: "tab"
+                        expression: "toggle_exclusive2"
                       }
                     },
                     [
-                      _c(
-                        "v-tab-item",
-                        { attrs: { value: "tab-0" } },
-                        [
-                          _c(
-                            "v-card",
-                            { attrs: { flat: "" } },
-                            [
-                              _c(
-                                "v-card-text",
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      "append-icon": "mdi-magnify",
-                                      label: "Buscar por parámetro",
-                                      "single-line": "",
-                                      "hide-details": ""
-                                    },
-                                    model: {
-                                      value: _vm.search,
-                                      callback: function($$v) {
-                                        _vm.search = $$v
-                                      },
-                                      expression: "search"
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("v-data-table", {
-                                    attrs: {
-                                      headers: _vm.solicitudesH,
-                                      items: _vm.desserts,
-                                      search: _vm.search
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
+                      _c("v-btn", [_vm._v("\n          Registradas\n        ")])
                     ],
                     1
-                  )
+                  ),
+                  _vm._v(" "),
+                  _c("v-text-field", {
+                    staticClass: "mb-5 pl-1 pr-1",
+                    attrs: {
+                      "append-icon": "mdi-magnify",
+                      label: "Buscar",
+                      "single-line": "",
+                      "hide-details": ""
+                    },
+                    model: {
+                      value: _vm.search1,
+                      callback: function($$v) {
+                        _vm.search1 = $$v
+                      },
+                      expression: "search1"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("v-data-table", {
+                    attrs: {
+                      "items-per-page": 1,
+                      headers: _vm.hsolicitudes,
+                      items: _vm.solicitudes,
+                      search: _vm.search1
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { attrs: { cols: "12", md: "6" } },
+            [
+              _c(
+                "v-card",
+                [
+                  _c(
+                    "v-toolbar",
+                    {
+                      staticClass: "mb-2",
+                      attrs: { color: "primary darken-5", dark: "", flat: "" }
+                    },
+                    [
+                      _c("v-toolbar-title", [
+                        _vm._v("\n          Detalle de Cotizaciones\n        ")
+                      ])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn-toggle",
+                    {
+                      attrs: { color: "primary darken-5" },
+                      model: {
+                        value: _vm.toggle_exclusive3,
+                        callback: function($$v) {
+                          _vm.toggle_exclusive3 = $$v
+                        },
+                        expression: "toggle_exclusive3"
+                      }
+                    },
+                    [
+                      _c("v-btn", [_vm._v("\n        Pendientes\n      ")]),
+                      _vm._v(" "),
+                      _c("v-btn", [_vm._v("\n        En Proces\n      ")]),
+                      _vm._v(" "),
+                      _c("v-btn", [_vm._v("\n        Cotizadas\n      ")])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-text-field", {
+                    staticClass: "mb-5 pl-1 pr-1",
+                    attrs: {
+                      "append-icon": "mdi-magnify",
+                      label: "Buscar",
+                      "single-line": "",
+                      "hide-details": ""
+                    },
+                    model: {
+                      value: _vm.search2,
+                      callback: function($$v) {
+                        _vm.search2 = $$v
+                      },
+                      expression: "search2"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("v-data-table", {
+                    attrs: {
+                      "items-per-page": 1,
+                      headers: _vm.hcotizaciones,
+                      items: _vm.cotizaciones,
+                      search: _vm.search2
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { attrs: { cols: "12", md: "6" } },
+            [
+              _c(
+                "v-card",
+                [
+                  _c(
+                    "v-toolbar",
+                    {
+                      staticClass: "mb-2",
+                      attrs: { color: "primary darken-5", dark: "", flat: "" }
+                    },
+                    [
+                      _c("v-toolbar-title", [
+                        _vm._v("\n        Detalle de Ventas\n      ")
+                      ])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn-toggle",
+                    {
+                      attrs: { color: "primary darken-5" },
+                      model: {
+                        value: _vm.toggle_exclusive4,
+                        callback: function($$v) {
+                          _vm.toggle_exclusive4 = $$v
+                        },
+                        expression: "toggle_exclusive4"
+                      }
+                    },
+                    [
+                      _c("v-btn", [_vm._v("\n      Pagadas\n    ")]),
+                      _vm._v(" "),
+                      _c("v-btn", [
+                        _vm._v("\n      Hojas de Entrega SF\n    ")
+                      ]),
+                      _vm._v(" "),
+                      _c("v-btn", [_vm._v("\n      Facturas PDP\n    ")])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-text-field", {
+                    staticClass: "mb-5 pl-1 pr-1",
+                    attrs: {
+                      "append-icon": "mdi-magnify",
+                      label: "Buscar",
+                      "single-line": "",
+                      "hide-details": ""
+                    },
+                    model: {
+                      value: _vm.search3,
+                      callback: function($$v) {
+                        _vm.search3 = $$v
+                      },
+                      expression: "search3"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("v-data-table", {
+                    attrs: {
+                      "items-per-page": 1,
+                      headers: _vm.hventas,
+                      items: _vm.ventas,
+                      search: _vm.search3
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { attrs: { cols: "12", md: "6" } },
+            [
+              _c(
+                "v-card",
+                [
+                  _c(
+                    "v-toolbar",
+                    {
+                      staticClass: "mb-2",
+                      attrs: { color: "primary darken-5", dark: "", flat: "" }
+                    },
+                    [
+                      _c("v-toolbar-title", [
+                        _vm._v("\n      Tipos de Venta\n    ")
+                      ])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn-toggle",
+                    {
+                      attrs: { color: "primary darken-5" },
+                      model: {
+                        value: _vm.toggle_exclusive5,
+                        callback: function($$v) {
+                          _vm.toggle_exclusive5 = $$v
+                        },
+                        expression: "toggle_exclusive5"
+                      }
+                    },
+                    [_c("v-btn", [_vm._v("\n    Registrados\n  ")])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-text-field", {
+                    staticClass: "mb-5 pl-1 pr-1",
+                    attrs: {
+                      "append-icon": "mdi-magnify",
+                      label: "Buscar",
+                      "single-line": "",
+                      "hide-details": ""
+                    },
+                    model: {
+                      value: _vm.search4,
+                      callback: function($$v) {
+                        _vm.search4 = $$v
+                      },
+                      expression: "search4"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("v-data-table", {
+                    attrs: {
+                      "items-per-page": 1,
+                      headers: _vm.htiposventa,
+                      items: _vm.tiposventa,
+                      search: _vm.search4
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { attrs: { cols: "12", md: "6" } },
+            [
+              _c(
+                "v-card",
+                [
+                  _c(
+                    "v-toolbar",
+                    {
+                      staticClass: "mb-2",
+                      attrs: { color: "primary darken-5", dark: "", flat: "" }
+                    },
+                    [_c("v-toolbar-title", [_vm._v("\n    Formatos PDF\n  ")])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn-toggle",
+                    {
+                      attrs: { color: "primary darken-5" },
+                      model: {
+                        value: _vm.toggle_exclusive,
+                        callback: function($$v) {
+                          _vm.toggle_exclusive = $$v
+                        },
+                        expression: "toggle_exclusive"
+                      }
+                    },
+                    [_c("v-btn", [_vm._v("\n  Registrados\n")])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-text-field", {
+                    staticClass: "mb-5 pl-1 pr-1",
+                    attrs: {
+                      "append-icon": "mdi-magnify",
+                      label: "Buscar",
+                      "single-line": "",
+                      "hide-details": ""
+                    },
+                    model: {
+                      value: _vm.search5,
+                      callback: function($$v) {
+                        _vm.search5 = $$v
+                      },
+                      expression: "search5"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("v-data-table", {
+                    attrs: {
+                      "items-per-page": 1,
+                      headers: _vm.hformatos,
+                      items: _vm.formatos,
+                      search: _vm.search5
+                    }
+                  })
                 ],
                 1
               )
