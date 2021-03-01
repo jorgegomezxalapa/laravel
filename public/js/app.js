@@ -6166,6 +6166,210 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -6180,6 +6384,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   },
   data: function data() {
     return {
+      panel: [0, 1],
+      disablednew: false,
+      readonlynew: false,
       oivapartida: null,
       oiepspartida: null,
       tipoventapartida: null,
@@ -6187,6 +6394,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       esEdicion: false,
       switchVariables: false,
       switch1: false,
+      switch5: false,
+      files: [],
       tab: null,
       utilidadGlobal: null,
       ivaGlobal: 16,
@@ -52506,1336 +52715,1970 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "v-container",
-    { attrs: { fluid: "" } },
-    [
-      _c(
-        "v-card",
-        {
-          staticClass: "mx-auto rounded-lg py-5 px-2 mt-5 mb-5",
-          attrs: { width: "100%", align: "center", justify: "space-around" }
-        },
-        [
-          _c(
-            "v-toolbar",
-            { attrs: { flat: "", color: "secondary", dark: "" } },
-            [
-              _c(
-                "v-toolbar-title",
-                [
-                  _vm.btniniciar
-                    ? _c(
-                        "v-btn",
-                        {
-                          attrs: { color: "primary", dark: "" },
-                          on: { click: _vm.iniciar }
-                        },
-                        [
+  return _c("v-container", { attrs: { fluid: "" } }, [
+    _c(
+      "div",
+      [
+        _c(
+          "v-expansion-panels",
+          {
+            attrs: { disabled: _vm.disablednew, multiple: "" },
+            model: {
+              value: _vm.panel,
+              callback: function($$v) {
+                _vm.panel = $$v
+              },
+              expression: "panel"
+            }
+          },
+          [
+            _c(
+              "v-expansion-panel",
+              [
+                _c("v-expansion-panel-header", [
+                  _vm._v("Acciones disponibles para esta cotización")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "v-expansion-panel-content",
+                  [
+                    _c(
+                      "v-card",
+                      {
+                        staticClass: "mx-auto rounded-lg py-5 px-2 mt-5 mb-5",
+                        attrs: {
+                          width: "100%",
+                          align: "center",
+                          justify: "space-around"
+                        }
+                      },
+                      [
+                        _c("v-card-title", [
                           _vm._v(
-                            "\n              Iniciar Cotización\n            "
+                            "\n          Acciones disponibles para esta cotización\n        "
                           )
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  !_vm.btniniciar
-                    ? _c("v-btn", { attrs: { color: "warning", dark: "" } }, [
-                        _vm._v(
-                          "\n                Cotización en Proceso\n                "
-                        )
-                      ])
-                    : _vm._e()
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-card",
-            [
-              _c(
-                "v-tabs",
-                {
-                  attrs: { centered: "", "icons-and-text": "" },
-                  model: {
-                    value: _vm.tab,
-                    callback: function($$v) {
-                      _vm.tab = $$v
-                    },
-                    expression: "tab"
-                  }
-                },
-                [
-                  _c("v-tabs-slider"),
-                  _vm._v(" "),
-                  _c(
-                    "v-tab",
-                    { attrs: { href: "#tab-a" } },
-                    [
-                      _vm._v("\n       Detalle de la solicitud\n       "),
-                      _c("v-icon", [_vm._v("mdi-import")])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-tab",
-                    { attrs: { href: "#tab-2" } },
-                    [
-                      _vm._v("\n       Configuración de Parámetros\n       "),
-                      _c("v-icon", [_vm._v("mdi-settings-box")])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-tab",
-                    { attrs: { href: "#tab-3" } },
-                    [
-                      _vm._v("\n       Registro de Partida\n       "),
-                      _c("v-icon", [_vm._v("mdi-file-document")])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-tab",
-                    { attrs: { href: "#tab-4" } },
-                    [
-                      _vm._v("\n       Partidas Registradas\n       "),
-                      _c("v-icon", [_vm._v("mdi-clipboard-text")])
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-tabs-items",
-                {
-                  model: {
-                    value: _vm.tab,
-                    callback: function($$v) {
-                      _vm.tab = $$v
-                    },
-                    expression: "tab"
-                  }
-                },
-                [
-                  _c(
-                    "v-tab-item",
-                    { attrs: { value: "tab-a" } },
-                    [
-                      _c(
-                        "v-container",
-                        [
-                          _c(
-                            "v-row",
-                            [
-                              _c("br"),
-                              _vm._v(" "),
-                              this.solicitud.urgente == 1
-                                ? _c(
-                                    "v-col",
-                                    [
-                                      _c(
-                                        "v-alert",
-                                        {
-                                          attrs: {
-                                            dense: "",
-                                            outlined: "",
-                                            type: "error"
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n      Solicitud marcada como urgente\n     "
-                                          )
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                : _vm._e()
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-row",
-                            [
-                              _c(
-                                "v-col",
-                                { attrs: { cols: "12", md: "6" } },
-                                [
-                                  _c(
-                                    "v-card",
-                                    { staticClass: "mx-auto" },
-                                    [
-                                      _c("v-card-text", [
-                                        _c(
-                                          "p",
-                                          { staticClass: "font-weight-black" },
-                                          [
-                                            _vm._v("Folio de la Solicitud "),
-                                            _c("br"),
-                                            _c("br"),
-                                            _vm._v(
-                                              _vm._s(this.solicitud.folio) + " "
-                                            )
-                                          ]
-                                        )
-                                      ])
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                { attrs: { cols: "12", md: "6" } },
-                                [
-                                  _c(
-                                    "v-card",
-                                    { staticClass: "mx-auto" },
-                                    [
-                                      _c("v-card-text", [
-                                        _c(
-                                          "p",
-                                          { staticClass: "font-weight-black" },
-                                          [
-                                            _vm._v("Persona Solicitante "),
-                                            _c("br"),
-                                            _c("br"),
-                                            _vm._v(
-                                              _vm._s(this.solicitante.nombre) +
-                                                " "
-                                            )
-                                          ]
-                                        )
-                                      ])
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                { attrs: { cols: "12" } },
-                                [
-                                  _c(
-                                    "v-card",
-                                    { staticClass: "mx-auto" },
-                                    [
-                                      _c("v-card-text", [
-                                        _c(
-                                          "p",
-                                          { staticClass: "font-weight-black" },
-                                          [
-                                            _vm._v(
-                                              "Persona/Empresa a quien se dirige esta cotización"
-                                            ),
-                                            _c("br"),
-                                            _c("br"),
-                                            _vm._v(
-                                              _vm._s(this.cliente.razonSocial) +
-                                                " "
-                                            )
-                                          ]
-                                        )
-                                      ])
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                { attrs: { cols: "12", md: "12" } },
-                                [
-                                  _c(
-                                    "v-card",
-                                    { staticClass: "mx-auto" },
-                                    [
-                                      _c("v-card-text", [
-                                        _c(
-                                          "p",
-                                          { staticClass: "font-weight-black" },
-                                          [
-                                            _vm._v("Comentarios: "),
-                                            _c("br"),
-                                            _vm._v(
-                                              _vm._s(
-                                                this.solicitud.comentario
-                                              ) + " "
-                                            )
-                                          ]
-                                        )
-                                      ])
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-tab-item",
-                    { attrs: { value: "tab-2" } },
-                    [
-                      _c(
-                        "v-card",
-                        { attrs: { flat: "" } },
-                        [
-                          _c(
-                            "v-card-text",
-                            [
-                              _c(
-                                "v-row",
-                                [
-                                  _c("v-col", { attrs: { cols: "12" } }, [
-                                    _c("p", [
-                                      _vm._v(
-                                        "Todos los porcentajes se definen en escala del 0 al 100 %, ingresando únicamente el valor numérico."
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("p", [
-                                      _vm._v(
-                                        "No está permitido el ingreso de símbolo de pesos($), símbolo de porcentaje($) y símbolo de coma (,)."
-                                      )
-                                    ])
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "4" } },
-                                    [
-                                      _c("v-select", {
-                                        attrs: {
-                                          items: _vm.utilidades,
-                                          "item-text": "descripcion",
-                                          "item-value": "id",
-                                          label: "Tipo de Venta"
-                                        },
-                                        model: {
-                                          value: _vm.utilidadGlobal,
-                                          callback: function($$v) {
-                                            _vm.utilidadGlobal = $$v
-                                          },
-                                          expression: "utilidadGlobal"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "4" } },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          type: "number",
-                                          label: "PORCENTAJE DE IVA"
-                                        },
-                                        model: {
-                                          value: _vm.ivaGlobal,
-                                          callback: function($$v) {
-                                            _vm.ivaGlobal = $$v
-                                          },
-                                          expression: "ivaGlobal"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "4" } },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          type: "number",
-                                          label: "PORCENTAJE DE IEPS"
-                                        },
-                                        model: {
-                                          value: _vm.iepsGlobal,
-                                          callback: function($$v) {
-                                            _vm.iepsGlobal = $$v
-                                          },
-                                          expression: "iepsGlobal"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12" } },
-                                    [
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            block: "",
-                                            color: "primary"
-                                          },
-                                          on: {
-                                            click: _vm.guardarConfiguracion
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                           Guardar Configuración\n                           "
-                                          )
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-tab-item",
-                    { attrs: { value: "tab-3" } },
-                    [
-                      _c(
-                        "v-card",
-                        { attrs: { flat: "" } },
-                        [
-                          _c(
-                            "v-card-text",
-                            [
-                              _c("br"),
-                              _vm._v(" "),
-                              _c(
-                                "p",
-                                {
-                                  staticClass: "font-weight-black mb-3",
-                                  attrs: { align: "center" }
-                                },
-                                [
-                                  _vm._v(
-                                    "Llena el Formulario para registrar una nueva Partida"
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("p", [
-                                _vm._v(
-                                  "El ingreso de los símbolos(Peso $ | Coma , | Porcentaje %) en campos numérico(EJ: Precio) no están permitidos"
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("br"),
-                              _vm._v(" "),
-                              _c(
-                                "v-row",
-                                [
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "4" } },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          outlined: "",
-                                          dense: "",
-                                          type: "number",
-                                          label: "Número de Partida sugerida  ",
-                                          disabled: _vm.esMejorada
-                                        },
-                                        model: {
-                                          value: _vm.partida,
-                                          callback: function($$v) {
-                                            _vm.partida = $$v
-                                          },
-                                          expression: "partida"
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _vm.esMejorada
-                                        ? _c("strong", [
-                                            _vm._v("Mejora de Partida")
-                                          ])
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      _vm.esEdicion
-                                        ? _c("strong", [
-                                            _vm._v("Edición de Partida")
-                                          ])
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      _vm.esMejorada == false &&
-                                      _vm.esEdicion == false
-                                        ? _c("strong", [
-                                            _vm._v("Registro Normal")
-                                          ])
-                                        : _vm._e()
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "8" } },
-                                    [
-                                      _c("v-textarea", {
-                                        attrs: {
-                                          solo: "",
-                                          label: "Descripción",
-                                          counter: 65535
-                                        },
-                                        model: {
-                                          value: _vm.descripcion,
-                                          callback: function($$v) {
-                                            _vm.descripcion = $$v
-                                          },
-                                          expression: "descripcion"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", sm: "6", md: "4" } },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          outlined: "",
-                                          dense: "",
-                                          label: "Unidad de Medida  "
-                                        },
-                                        model: {
-                                          value: _vm.unidadmedida,
-                                          callback: function($$v) {
-                                            _vm.unidadmedida = $$v
-                                          },
-                                          expression: "unidadmedida"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", sm: "6", md: "4" } },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          outlined: "",
-                                          dense: "",
-                                          type: "number",
-                                          label: "Cantidad "
-                                        },
-                                        model: {
-                                          value: _vm.cantidad,
-                                          callback: function($$v) {
-                                            _vm.cantidad = $$v
-                                          },
-                                          expression: "cantidad"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", sm: "6", md: "4" } },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          outlined: "",
-                                          dense: "",
-                                          type: "number",
-                                          label: "Precio del Proveedor "
-                                        },
-                                        model: {
-                                          value: _vm.precioproveedor,
-                                          callback: function($$v) {
-                                            _vm.precioproveedor = $$v
-                                          },
-                                          expression: "precioproveedor"
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("v-switch", {
-                                        attrs: {
-                                          label:
-                                            "¿Desea restar el valor del IVA al Precio del Proveedor?",
-                                          color: "warning"
-                                        },
-                                        model: {
-                                          value: _vm.switch1,
-                                          callback: function($$v) {
-                                            _vm.switch1 = $$v
-                                          },
-                                          expression: "switch1"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "4" } },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          type: "text",
-                                          label: "Marca",
-                                          outlined: "",
-                                          dense: ""
-                                        },
-                                        model: {
-                                          value: _vm.marca,
-                                          callback: function($$v) {
-                                            _vm.marca = $$v
-                                          },
-                                          expression: "marca"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "4" } },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          type: "text",
-                                          label: "Modelo",
-                                          outlined: "",
-                                          dense: ""
-                                        },
-                                        model: {
-                                          value: _vm.modelo,
-                                          callback: function($$v) {
-                                            _vm.modelo = $$v
-                                          },
-                                          expression: "modelo"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "4" } },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          type: "text",
-                                          label: "Número de Serie",
-                                          outlined: "",
-                                          dense: ""
-                                        },
-                                        model: {
-                                          value: _vm.numserie,
-                                          callback: function($$v) {
-                                            _vm.numserie = $$v
-                                          },
-                                          expression: "numserie"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12" } },
-                                    [
-                                      _c("v-textarea", {
-                                        attrs: {
-                                          solo: "",
-                                          label: "Notas para esta partida"
-                                        },
-                                        model: {
-                                          value: _vm.notasproducto,
-                                          callback: function($$v) {
-                                            _vm.notasproducto = $$v
-                                          },
-                                          expression: "notasproducto"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c("v-row", [_c("v-divider")], 1),
-                              _vm._v(" "),
-                              _c(
-                                "v-row",
-                                [
-                                  _c("v-switch", {
-                                    attrs: {
-                                      label:
-                                        "¿Desea personalizar los parámetros de TIPO DE VENTA, IVA, IEPS?",
-                                      color: "warning",
-                                      "hide-details": ""
-                                    },
-                                    model: {
-                                      value: _vm.switchVariables,
-                                      callback: function($$v) {
-                                        _vm.switchVariables = $$v
-                                      },
-                                      expression: "switchVariables"
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("br")
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-row",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: _vm.switchVariables,
-                                      expression: "switchVariables"
-                                    }
-                                  ]
-                                },
-                                [
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "4" } },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          type: "number",
-                                          label:
-                                            "Tipo de Venta / Utilidad (En escala del 0 al 100 %)",
-                                          outlined: "",
-                                          dense: ""
-                                        },
-                                        model: {
-                                          value: _vm.utilidadpartida,
-                                          callback: function($$v) {
-                                            _vm.utilidadpartida = $$v
-                                          },
-                                          expression: "utilidadpartida"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "4" } },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          type: "number",
-                                          label:
-                                            "PORCENTAJE DE IVA(En escala del 0 al 100 %) ",
-                                          outlined: "",
-                                          dense: ""
-                                        },
-                                        model: {
-                                          value: _vm.ivapartida,
-                                          callback: function($$v) {
-                                            _vm.ivapartida = $$v
-                                          },
-                                          expression: "ivapartida"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "4" } },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          type: "number",
-                                          label:
-                                            "PORCENTAJE DE IEPS(En escala del 0 al 100 %) ",
-                                          outlined: "",
-                                          dense: ""
-                                        },
-                                        model: {
-                                          value: _vm.iepspartida,
-                                          callback: function($$v) {
-                                            _vm.iepspartida = $$v
-                                          },
-                                          expression: "iepspartida"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c("v-row", [_c("v-divider")], 1),
-                              _vm._v(" "),
-                              _c("v-row", [
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-row",
+                          [
+                            _c(
+                              "v-col",
+                              { attrs: { cols: "12", sm: "12", md: "4" } },
+                              [
                                 _c(
-                                  "p",
+                                  "v-btn",
                                   {
-                                    staticClass: "font-weight-black mb-3",
-                                    attrs: { align: "center" }
+                                    staticClass: "ma-2 white--text",
+                                    attrs: {
+                                      block: "",
+                                      loading: _vm.loading3,
+                                      disabled: _vm.loading3,
+                                      color: "blue-grey"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.loader = "loading3"
+                                      }
+                                    }
                                   },
                                   [
                                     _vm._v(
-                                      "Cálculo automático a partir de los datos capturados"
+                                      "\n        Disponible Para Compra\n        "
+                                    ),
+                                    _c("v-icon", { attrs: { dark: "" } }, [
+                                      _vm._v(
+                                        "\n          mdi-checkbox-marked-outline\n        "
+                                      )
+                                    ])
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              { attrs: { cols: "12", sm: "12", md: "4" } },
+                              [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    staticClass: "ma-2 white--text",
+                                    attrs: {
+                                      block: "",
+                                      loading: _vm.loading3,
+                                      disabled: _vm.loading3,
+                                      color: "blue-grey"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.loader = "loading3"
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n        Disponible Para Facturar\n        "
+                                    ),
+                                    _c("v-icon", { attrs: { dark: "" } }, [
+                                      _vm._v(
+                                        "\n          mdi-checkbox-marked-outline\n        "
+                                      )
+                                    ])
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              { attrs: { cols: "12", sm: "12", md: "4" } },
+                              [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    staticClass: "ma-2 white--text",
+                                    attrs: {
+                                      block: "",
+                                      loading: _vm.loading3,
+                                      disabled: _vm.loading3,
+                                      color: "blue-grey"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.loader = "loading3"
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v("\n        Comprada\n        "),
+                                    _c("v-icon", { attrs: { dark: "" } }, [
+                                      _vm._v(
+                                        "\n          mdi-checkbox-marked-outline\n        "
+                                      )
+                                    ])
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              { attrs: { cols: "12", sm: "12", md: "4" } },
+                              [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    staticClass: "ma-2 white--text",
+                                    attrs: {
+                                      block: "",
+                                      loading: _vm.loading3,
+                                      disabled: _vm.loading3,
+                                      color: "blue-grey"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.loader = "loading3"
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n        Disponible para Entrega\n        "
+                                    ),
+                                    _c("v-icon", { attrs: { dark: "" } }, [
+                                      _vm._v(
+                                        "\n          mdi-checkbox-marked-outline\n        "
+                                      )
+                                    ])
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              { attrs: { cols: "12", sm: "12", md: "4" } },
+                              [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    staticClass: "ma-2 white--text",
+                                    attrs: {
+                                      block: "",
+                                      loading: _vm.loading3,
+                                      disabled: _vm.loading3,
+                                      color: "blue-grey"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.loader = "loading3"
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v("\n        Entregada\n        "),
+                                    _c("v-icon", { attrs: { dark: "" } }, [
+                                      _vm._v(
+                                        "\n          mdi-checkbox-marked-outline\n        "
+                                      )
+                                    ])
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              { attrs: { cols: "12", sm: "12", md: "4" } },
+                              [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    staticClass: "ma-2 white--text",
+                                    attrs: {
+                                      block: "",
+                                      loading: _vm.loading3,
+                                      disabled: _vm.loading3,
+                                      color: "blue-grey"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.loader = "loading3"
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v("\n        Cobrada\n        "),
+                                    _c("v-icon", { attrs: { dark: "" } }, [
+                                      _vm._v(
+                                        "\n          mdi-checkbox-marked-outline\n        "
+                                      )
+                                    ])
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-expansion-panel",
+              [
+                _c("v-expansion-panel-header", [
+                  _vm._v("Datos de la Cotización")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "v-expansion-panel-content",
+                  [
+                    _c(
+                      "v-card",
+                      {
+                        staticClass: "mx-auto rounded-lg py-5 px-2 mt-5 mb-5",
+                        attrs: {
+                          width: "100%",
+                          align: "center",
+                          justify: "space-around"
+                        }
+                      },
+                      [
+                        _c(
+                          "v-toolbar",
+                          { attrs: { flat: "", color: "secondary", dark: "" } },
+                          [
+                            _c(
+                              "v-toolbar-title",
+                              [
+                                _vm.btniniciar
+                                  ? _c(
+                                      "v-btn",
+                                      {
+                                        attrs: { color: "primary", dark: "" },
+                                        on: { click: _vm.iniciar }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                Iniciar Cotización\n              "
+                                        )
+                                      ]
                                     )
-                                  ]
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                !_vm.btniniciar
+                                  ? _c(
+                                      "v-btn",
+                                      { attrs: { color: "warning", dark: "" } },
+                                      [
+                                        _vm._v(
+                                          "\n                  Cotización en Proceso\n                  "
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e()
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-card",
+                          [
+                            _c(
+                              "v-tabs",
+                              {
+                                attrs: { centered: "", "icons-and-text": "" },
+                                model: {
+                                  value: _vm.tab,
+                                  callback: function($$v) {
+                                    _vm.tab = $$v
+                                  },
+                                  expression: "tab"
+                                }
+                              },
+                              [
+                                _c("v-tabs-slider"),
+                                _vm._v(" "),
+                                _c(
+                                  "v-tab",
+                                  { attrs: { href: "#tab-a" } },
+                                  [
+                                    _vm._v(
+                                      "\n         Detalle de la solicitud\n         "
+                                    ),
+                                    _c("v-icon", [_vm._v("mdi-import")])
+                                  ],
+                                  1
                                 ),
                                 _vm._v(" "),
-                                _c("br")
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "v-row",
-                                [
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "3" } },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          label: "Importe(1)  ",
-                                          outlined: "",
-                                          dense: "",
-                                          readonly: ""
-                                        },
-                                        model: {
-                                          value: _vm.importe1,
-                                          callback: function($$v) {
-                                            _vm.importe1 = $$v
-                                          },
-                                          expression: "importe1"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "3" } },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          label: "Utilidad  ",
-                                          outlined: "",
-                                          dense: "",
-                                          readonly: ""
-                                        },
-                                        model: {
-                                          value: _vm.utilidadgenerada,
-                                          callback: function($$v) {
-                                            _vm.utilidadgenerada = $$v
-                                          },
-                                          expression: "utilidadgenerada"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "3" } },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          label: "Precio Unitario  ",
-                                          outlined: "",
-                                          dense: "",
-                                          readonly: ""
-                                        },
-                                        model: {
-                                          value: _vm.preciounitario,
-                                          callback: function($$v) {
-                                            _vm.preciounitario = $$v
-                                          },
-                                          expression: "preciounitario"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "3" } },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          label: "Importe(2)  ",
-                                          outlined: "",
-                                          dense: "",
-                                          readonly: ""
-                                        },
-                                        model: {
-                                          value: _vm.importe2,
-                                          callback: function($$v) {
-                                            _vm.importe2 = $$v
-                                          },
-                                          expression: "importe2"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12" } },
-                                    [
-                                      _vm.esEdicion == false &&
-                                      _vm.esMejorada == false
-                                        ? _c(
-                                            "v-btn",
-                                            {
-                                              attrs: {
-                                                block: "",
-                                                color: "primary"
-                                              },
-                                              on: { click: _vm.guardarPartida }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                     Guardar Partida\n                                     "
-                                              )
-                                            ]
-                                          )
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      _vm.esEdicion
-                                        ? _c(
-                                            "v-btn",
-                                            {
-                                              attrs: {
-                                                block: "",
-                                                color: "warning"
-                                              },
-                                              on: { click: _vm.editarPartida }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                     Editar Partida\n                                     "
-                                              )
-                                            ]
-                                          )
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      _vm.esMejorada
-                                        ? _c(
-                                            "v-btn",
-                                            {
-                                              attrs: {
-                                                block: "",
-                                                color: "warning"
-                                              },
-                                              on: { click: _vm.mejorarPartida }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                     Mejorar Partida\n                                     "
-                                              )
-                                            ]
-                                          )
-                                        : _vm._e()
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-tab-item",
-                    { attrs: { value: "tab-4" } },
-                    [
-                      _c(
-                        "v-card",
-                        { attrs: { flat: "" } },
-                        [
-                          _c(
-                            "v-card-text",
-                            [
-                              _c(
-                                "v-row",
-                                [
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "4" } },
-                                    [
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            block: "",
-                                            depressed: "",
-                                            color: "primary"
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n    SUBTOTAL:  " +
-                                              _vm._s(_vm.subtotalCotizacion) +
-                                              "\n   "
-                                          )
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "4" } },
-                                    [
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            block: "",
-                                            depressed: "",
-                                            color: "primary"
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n     IVA: " +
-                                              _vm._s(_vm.ivaCotizacion) +
-                                              "\n   "
-                                          )
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "4" } },
-                                    [
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            block: "",
-                                            depressed: "",
-                                            color: "primary"
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n    IEPS:   " +
-                                              _vm._s(_vm.iepsCotizacion) +
-                                              "\n   "
-                                          )
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12" } },
-                                    [
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            block: "",
-                                            depressed: "",
-                                            color: "primary"
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n        TOTAL:   " +
-                                              _vm._s(_vm.totalCotizacion) +
-                                              "\n       "
-                                          )
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c("br")
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-row",
-                                [
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12" } },
-                                    [
-                                      _c("v-data-table", {
-                                        staticClass: "elevation-1",
-                                        attrs: {
-                                          headers: _vm.headers,
-                                          items: _vm.partidas,
-                                          search: _vm.search,
-                                          "single-select": _vm.singleSelect,
-                                          "item-key": "id",
-                                          "show-select": "",
-                                          "items-per-page": 5
-                                        },
-                                        scopedSlots: _vm._u(
+                                _c(
+                                  "v-tab",
+                                  { attrs: { href: "#tab-2" } },
+                                  [
+                                    _vm._v(
+                                      "\n         Configuración de Parámetros\n         "
+                                    ),
+                                    _c("v-icon", [_vm._v("mdi-settings-box")])
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-tab",
+                                  { attrs: { href: "#tab-3" } },
+                                  [
+                                    _vm._v(
+                                      "\n         Registro de Partida\n         "
+                                    ),
+                                    _c("v-icon", [_vm._v("mdi-file-document")])
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-tab",
+                                  { attrs: { href: "#tab-4" } },
+                                  [
+                                    _vm._v(
+                                      "\n         Partidas Registradas\n         "
+                                    ),
+                                    _c("v-icon", [_vm._v("mdi-clipboard-text")])
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-tabs-items",
+                              {
+                                model: {
+                                  value: _vm.tab,
+                                  callback: function($$v) {
+                                    _vm.tab = $$v
+                                  },
+                                  expression: "tab"
+                                }
+                              },
+                              [
+                                _c(
+                                  "v-tab-item",
+                                  { attrs: { value: "tab-a" } },
+                                  [
+                                    _c(
+                                      "v-container",
+                                      [
+                                        _c(
+                                          "v-row",
                                           [
-                                            {
-                                              key: "item.actions",
-                                              fn: function(ref) {
-                                                var item = ref.item
-                                                return [
-                                                  _c(
-                                                    "v-tooltip",
-                                                    {
-                                                      attrs: { bottom: "" },
-                                                      scopedSlots: _vm._u(
-                                                        [
-                                                          {
-                                                            key: "activator",
-                                                            fn: function(ref) {
-                                                              var on = ref.on
-                                                              var attrs =
-                                                                ref.attrs
-                                                              return [
-                                                                _c(
-                                                                  "v-btn",
-                                                                  _vm._g(
-                                                                    _vm._b(
-                                                                      {
-                                                                        staticClass:
-                                                                          "mx-2",
-                                                                        attrs: {
-                                                                          fab:
-                                                                            "",
-                                                                          small:
-                                                                            "",
-                                                                          width:
-                                                                            "32",
-                                                                          height:
-                                                                            "30"
-                                                                        },
-                                                                        on: {
-                                                                          click: function(
-                                                                            $event
-                                                                          ) {
-                                                                            return _vm.cargarEdicion(
-                                                                              item
-                                                                            )
-                                                                          }
-                                                                        }
-                                                                      },
-                                                                      "v-btn",
-                                                                      attrs,
-                                                                      false
-                                                                    ),
-                                                                    on
-                                                                  ),
-                                                                  [
-                                                                    _c(
-                                                                      "v-icon",
-                                                                      [
-                                                                        _vm._v(
-                                                                          "mdi-pencil"
-                                                                        )
-                                                                      ]
-                                                                    )
-                                                                  ],
-                                                                  1
-                                                                )
-                                                              ]
-                                                            }
-                                                          }
-                                                        ],
-                                                        null,
-                                                        true
-                                                      )
-                                                    },
-                                                    [
-                                                      _vm._v(" "),
-                                                      _c("span", [
-                                                        _vm._v("Editar Partida")
-                                                      ])
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "v-tooltip",
-                                                    {
-                                                      attrs: { bottom: "" },
-                                                      scopedSlots: _vm._u(
-                                                        [
-                                                          {
-                                                            key: "activator",
-                                                            fn: function(ref) {
-                                                              var on = ref.on
-                                                              var attrs =
-                                                                ref.attrs
-                                                              return [
-                                                                _c(
-                                                                  "v-btn",
-                                                                  _vm._g(
-                                                                    _vm._b(
-                                                                      {
-                                                                        staticClass:
-                                                                          "mx-2",
-                                                                        attrs: {
-                                                                          fab:
-                                                                            "",
-                                                                          small:
-                                                                            "",
-                                                                          width:
-                                                                            "32",
-                                                                          height:
-                                                                            "30"
-                                                                        },
-                                                                        on: {
-                                                                          click: function(
-                                                                            $event
-                                                                          ) {
-                                                                            return _vm.cargarEdicionMejorada(
-                                                                              item
-                                                                            )
-                                                                          }
-                                                                        }
-                                                                      },
-                                                                      "v-btn",
-                                                                      attrs,
-                                                                      false
-                                                                    ),
-                                                                    on
-                                                                  ),
-                                                                  [
-                                                                    _c(
-                                                                      "v-icon",
-                                                                      [
-                                                                        _vm._v(
-                                                                          "mdi-checkbox-multiple-marked-circle-outline"
-                                                                        )
-                                                                      ]
-                                                                    )
-                                                                  ],
-                                                                  1
-                                                                )
-                                                              ]
-                                                            }
-                                                          }
-                                                        ],
-                                                        null,
-                                                        true
-                                                      )
-                                                    },
-                                                    [
-                                                      _vm._v(" "),
-                                                      _c("span", [
+                                            _c("br"),
+                                            _vm._v(" "),
+                                            this.solicitud.urgente == 1
+                                              ? _c(
+                                                  "v-col",
+                                                  [
+                                                    _c(
+                                                      "v-alert",
+                                                      {
+                                                        attrs: {
+                                                          dense: "",
+                                                          outlined: "",
+                                                          type: "error"
+                                                        }
+                                                      },
+                                                      [
                                                         _vm._v(
-                                                          "Mejorar Partida"
+                                                          "\n        Solicitud marcada como urgente\n       "
                                                         )
-                                                      ])
-                                                    ]
+                                                      ]
+                                                    )
+                                                  ],
+                                                  1
+                                                )
+                                              : _vm._e()
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-row",
+                                          [
+                                            _c(
+                                              "v-col",
+                                              {
+                                                attrs: { cols: "12", md: "6" }
+                                              },
+                                              [
+                                                _c(
+                                                  "v-card",
+                                                  { staticClass: "mx-auto" },
+                                                  [
+                                                    _c("v-card-text", [
+                                                      _c(
+                                                        "p",
+                                                        {
+                                                          staticClass:
+                                                            "font-weight-black"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "Folio de la Solicitud "
+                                                          ),
+                                                          _c("br"),
+                                                          _c("br"),
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              this.solicitud
+                                                                .folio
+                                                            ) + " "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ])
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-col",
+                                              {
+                                                attrs: { cols: "12", md: "6" }
+                                              },
+                                              [
+                                                _c(
+                                                  "v-card",
+                                                  { staticClass: "mx-auto" },
+                                                  [
+                                                    _c("v-card-text", [
+                                                      _c(
+                                                        "p",
+                                                        {
+                                                          staticClass:
+                                                            "font-weight-black"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "Persona Solicitante "
+                                                          ),
+                                                          _c("br"),
+                                                          _c("br"),
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              this.solicitante
+                                                                .nombre
+                                                            ) + " "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ])
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-col",
+                                              { attrs: { cols: "12" } },
+                                              [
+                                                _c(
+                                                  "v-card",
+                                                  { staticClass: "mx-auto" },
+                                                  [
+                                                    _c("v-card-text", [
+                                                      _c(
+                                                        "p",
+                                                        {
+                                                          staticClass:
+                                                            "font-weight-black"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "Persona/Empresa a quien se dirige esta cotización"
+                                                          ),
+                                                          _c("br"),
+                                                          _c("br"),
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              this.cliente
+                                                                .razonSocial
+                                                            ) + " "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ])
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-col",
+                                              {
+                                                attrs: { cols: "12", md: "12" }
+                                              },
+                                              [
+                                                _c(
+                                                  "v-card",
+                                                  { staticClass: "mx-auto" },
+                                                  [
+                                                    _c("v-card-text", [
+                                                      _c(
+                                                        "p",
+                                                        {
+                                                          staticClass:
+                                                            "font-weight-black"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "Comentarios: "
+                                                          ),
+                                                          _c("br"),
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              this.solicitud
+                                                                .comentario
+                                                            ) + " "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ])
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-tab-item",
+                                  { attrs: { value: "tab-2" } },
+                                  [
+                                    _c(
+                                      "v-card",
+                                      { attrs: { flat: "" } },
+                                      [
+                                        _c(
+                                          "v-card-text",
+                                          [
+                                            _c(
+                                              "v-row",
+                                              [
+                                                _c(
+                                                  "v-col",
+                                                  { attrs: { cols: "12" } },
+                                                  [
+                                                    _c("p", [
+                                                      _vm._v(
+                                                        "Todos los porcentajes se definen en escala del 0 al 100 %, ingresando únicamente el valor numérico."
+                                                      )
+                                                    ]),
+                                                    _vm._v(" "),
+                                                    _c("p", [
+                                                      _vm._v(
+                                                        "No está permitido el ingreso de símbolo de pesos($), símbolo de porcentaje($) y símbolo de coma (,)."
+                                                      )
+                                                    ])
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  {
+                                                    attrs: {
+                                                      cols: "12",
+                                                      md: "4"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("v-select", {
+                                                      attrs: {
+                                                        items: _vm.utilidades,
+                                                        "item-text":
+                                                          "descripcion",
+                                                        "item-value": "id",
+                                                        label: "Tipo de Venta"
+                                                      },
+                                                      model: {
+                                                        value:
+                                                          _vm.utilidadGlobal,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.utilidadGlobal = $$v
+                                                        },
+                                                        expression:
+                                                          "utilidadGlobal"
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  {
+                                                    attrs: {
+                                                      cols: "12",
+                                                      md: "4"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        type: "number",
+                                                        label:
+                                                          "PORCENTAJE DE IVA"
+                                                      },
+                                                      model: {
+                                                        value: _vm.ivaGlobal,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.ivaGlobal = $$v
+                                                        },
+                                                        expression: "ivaGlobal"
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  {
+                                                    attrs: {
+                                                      cols: "12",
+                                                      md: "4"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        type: "number",
+                                                        label:
+                                                          "PORCENTAJE DE IEPS"
+                                                      },
+                                                      model: {
+                                                        value: _vm.iepsGlobal,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.iepsGlobal = $$v
+                                                        },
+                                                        expression: "iepsGlobal"
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  { attrs: { cols: "12" } },
+                                                  [
+                                                    _c(
+                                                      "v-btn",
+                                                      {
+                                                        attrs: {
+                                                          block: "",
+                                                          color: "primary"
+                                                        },
+                                                        on: {
+                                                          click:
+                                                            _vm.guardarConfiguracion
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "\n                             Guardar Configuración\n                             "
+                                                        )
+                                                      ]
+                                                    )
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-tab-item",
+                                  { attrs: { value: "tab-3" } },
+                                  [
+                                    _c(
+                                      "v-card",
+                                      { attrs: { flat: "" } },
+                                      [
+                                        _c(
+                                          "v-card-text",
+                                          [
+                                            _c("br"),
+                                            _vm._v(" "),
+                                            _c(
+                                              "p",
+                                              {
+                                                staticClass:
+                                                  "font-weight-black mb-3",
+                                                attrs: { align: "center" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "Llena el Formulario para registrar una nueva Partida"
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c("p", [
+                                              _vm._v(
+                                                "El ingreso de los símbolos(Peso $ | Coma , | Porcentaje %) en campos numérico(EJ: Precio) no están permitidos"
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("br"),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-row",
+                                              [
+                                                _c(
+                                                  "v-col",
+                                                  {
+                                                    attrs: {
+                                                      cols: "12",
+                                                      md: "4"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        outlined: "",
+                                                        dense: "",
+                                                        type: "number",
+                                                        label:
+                                                          "Número de Partida sugerida  ",
+                                                        disabled: _vm.esMejorada
+                                                      },
+                                                      model: {
+                                                        value: _vm.partida,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.partida = $$v
+                                                        },
+                                                        expression: "partida"
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _vm.esMejorada
+                                                      ? _c("strong", [
+                                                          _vm._v(
+                                                            "Mejora de Partida"
+                                                          )
+                                                        ])
+                                                      : _vm._e(),
+                                                    _vm._v(" "),
+                                                    _vm.esEdicion
+                                                      ? _c("strong", [
+                                                          _vm._v(
+                                                            "Edición de Partida"
+                                                          )
+                                                        ])
+                                                      : _vm._e(),
+                                                    _vm._v(" "),
+                                                    _vm.esMejorada == false &&
+                                                    _vm.esEdicion == false
+                                                      ? _c("strong", [
+                                                          _vm._v(
+                                                            "Registro Normal"
+                                                          )
+                                                        ])
+                                                      : _vm._e(),
+                                                    _vm._v(" "),
+                                                    _c("v-switch", {
+                                                      attrs: {
+                                                        inset: "",
+                                                        label:
+                                                          "¿Aplica Políticas de Garantía?"
+                                                      },
+                                                      model: {
+                                                        value: _vm.switch5,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.switch5 = $$v
+                                                        },
+                                                        expression: "switch5"
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  {
+                                                    attrs: {
+                                                      cols: "12",
+                                                      md: "8"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("v-textarea", {
+                                                      attrs: {
+                                                        solo: "",
+                                                        label: "Descripción",
+                                                        counter: 65535
+                                                      },
+                                                      model: {
+                                                        value: _vm.descripcion,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.descripcion = $$v
+                                                        },
+                                                        expression:
+                                                          "descripcion"
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  {
+                                                    attrs: {
+                                                      cols: "12",
+                                                      sm: "6",
+                                                      md: "4"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        outlined: "",
+                                                        dense: "",
+                                                        label:
+                                                          "Unidad de Medida  "
+                                                      },
+                                                      model: {
+                                                        value: _vm.unidadmedida,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.unidadmedida = $$v
+                                                        },
+                                                        expression:
+                                                          "unidadmedida"
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  {
+                                                    attrs: {
+                                                      cols: "12",
+                                                      sm: "6",
+                                                      md: "4"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        outlined: "",
+                                                        dense: "",
+                                                        type: "number",
+                                                        label: "Cantidad "
+                                                      },
+                                                      model: {
+                                                        value: _vm.cantidad,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.cantidad = $$v
+                                                        },
+                                                        expression: "cantidad"
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  {
+                                                    attrs: {
+                                                      cols: "12",
+                                                      sm: "6",
+                                                      md: "4"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        outlined: "",
+                                                        dense: "",
+                                                        type: "number",
+                                                        label:
+                                                          "Precio del Proveedor "
+                                                      },
+                                                      model: {
+                                                        value:
+                                                          _vm.precioproveedor,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.precioproveedor = $$v
+                                                        },
+                                                        expression:
+                                                          "precioproveedor"
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c("v-switch", {
+                                                      attrs: {
+                                                        label:
+                                                          "¿Desea restar el valor del IVA al Precio del Proveedor?",
+                                                        color: "warning"
+                                                      },
+                                                      model: {
+                                                        value: _vm.switch1,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.switch1 = $$v
+                                                        },
+                                                        expression: "switch1"
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  {
+                                                    attrs: {
+                                                      cols: "12",
+                                                      md: "4"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        type: "text",
+                                                        label: "Marca",
+                                                        outlined: "",
+                                                        dense: ""
+                                                      },
+                                                      model: {
+                                                        value: _vm.marca,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.marca = $$v
+                                                        },
+                                                        expression: "marca"
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  {
+                                                    attrs: {
+                                                      cols: "12",
+                                                      md: "4"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        type: "text",
+                                                        label: "Modelo",
+                                                        outlined: "",
+                                                        dense: ""
+                                                      },
+                                                      model: {
+                                                        value: _vm.modelo,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.modelo = $$v
+                                                        },
+                                                        expression: "modelo"
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  {
+                                                    attrs: {
+                                                      cols: "12",
+                                                      md: "4"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        type: "text",
+                                                        label:
+                                                          "Número de Serie",
+                                                        outlined: "",
+                                                        dense: ""
+                                                      },
+                                                      model: {
+                                                        value: _vm.numserie,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.numserie = $$v
+                                                        },
+                                                        expression: "numserie"
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  { attrs: { cols: "12" } },
+                                                  [
+                                                    _c("v-textarea", {
+                                                      attrs: {
+                                                        solo: "",
+                                                        label:
+                                                          "Notas para esta partida"
+                                                      },
+                                                      model: {
+                                                        value:
+                                                          _vm.notasproducto,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.notasproducto = $$v
+                                                        },
+                                                        expression:
+                                                          "notasproducto"
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c("v-file-input", {
+                                                      attrs: {
+                                                        placeholder:
+                                                          "Documentación soporte",
+                                                        label:
+                                                          "Ingresa tus archivos",
+                                                        multiple: "",
+                                                        "prepend-icon":
+                                                          "mdi-paperclip"
+                                                      },
+                                                      scopedSlots: _vm._u([
+                                                        {
+                                                          key: "selection",
+                                                          fn: function(ref) {
+                                                            var text = ref.text
+                                                            return [
+                                                              _c(
+                                                                "v-chip",
+                                                                {
+                                                                  attrs: {
+                                                                    small: "",
+                                                                    label: "",
+                                                                    color:
+                                                                      "primary"
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "\n          " +
+                                                                      _vm._s(
+                                                                        text
+                                                                      ) +
+                                                                      "\n        "
+                                                                  )
+                                                                ]
+                                                              )
+                                                            ]
+                                                          }
+                                                        }
+                                                      ]),
+                                                      model: {
+                                                        value: _vm.files,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.files = $$v
+                                                        },
+                                                        expression: "files"
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c("v-row", [_c("v-divider")], 1),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-row",
+                                              [
+                                                _c("v-switch", {
+                                                  attrs: {
+                                                    label:
+                                                      "¿Desea personalizar los parámetros de TIPO DE VENTA, IVA, IEPS?",
+                                                    color: "warning",
+                                                    "hide-details": ""
+                                                  },
+                                                  model: {
+                                                    value: _vm.switchVariables,
+                                                    callback: function($$v) {
+                                                      _vm.switchVariables = $$v
+                                                    },
+                                                    expression:
+                                                      "switchVariables"
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c("br")
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-row",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "show",
+                                                    rawName: "v-show",
+                                                    value: _vm.switchVariables,
+                                                    expression:
+                                                      "switchVariables"
+                                                  }
+                                                ]
+                                              },
+                                              [
+                                                _c(
+                                                  "v-col",
+                                                  {
+                                                    attrs: {
+                                                      cols: "12",
+                                                      md: "4"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        type: "number",
+                                                        label:
+                                                          "Tipo de Venta / Utilidad (En escala del 0 al 100 %)",
+                                                        outlined: "",
+                                                        dense: ""
+                                                      },
+                                                      model: {
+                                                        value:
+                                                          _vm.utilidadpartida,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.utilidadpartida = $$v
+                                                        },
+                                                        expression:
+                                                          "utilidadpartida"
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  {
+                                                    attrs: {
+                                                      cols: "12",
+                                                      md: "4"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        type: "number",
+                                                        label:
+                                                          "PORCENTAJE DE IVA(En escala del 0 al 100 %) ",
+                                                        outlined: "",
+                                                        dense: ""
+                                                      },
+                                                      model: {
+                                                        value: _vm.ivapartida,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.ivapartida = $$v
+                                                        },
+                                                        expression: "ivapartida"
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  {
+                                                    attrs: {
+                                                      cols: "12",
+                                                      md: "4"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        type: "number",
+                                                        label:
+                                                          "PORCENTAJE DE IEPS(En escala del 0 al 100 %) ",
+                                                        outlined: "",
+                                                        dense: ""
+                                                      },
+                                                      model: {
+                                                        value: _vm.iepspartida,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.iepspartida = $$v
+                                                        },
+                                                        expression:
+                                                          "iepspartida"
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c("v-row", [_c("v-divider")], 1),
+                                            _vm._v(" "),
+                                            _c("v-row", [
+                                              _c(
+                                                "p",
+                                                {
+                                                  staticClass:
+                                                    "font-weight-black mb-3",
+                                                  attrs: { align: "center" }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "Cálculo automático a partir de los datos capturados"
                                                   )
                                                 ]
-                                              }
-                                            }
+                                              ),
+                                              _vm._v(" "),
+                                              _c("br")
+                                            ]),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-row",
+                                              [
+                                                _c(
+                                                  "v-col",
+                                                  {
+                                                    attrs: {
+                                                      cols: "12",
+                                                      md: "3"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        label: "Importe(1)  ",
+                                                        outlined: "",
+                                                        dense: "",
+                                                        readonly: ""
+                                                      },
+                                                      model: {
+                                                        value: _vm.importe1,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.importe1 = $$v
+                                                        },
+                                                        expression: "importe1"
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  {
+                                                    attrs: {
+                                                      cols: "12",
+                                                      md: "3"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        label: "Utilidad  ",
+                                                        outlined: "",
+                                                        dense: "",
+                                                        readonly: ""
+                                                      },
+                                                      model: {
+                                                        value:
+                                                          _vm.utilidadgenerada,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.utilidadgenerada = $$v
+                                                        },
+                                                        expression:
+                                                          "utilidadgenerada"
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  {
+                                                    attrs: {
+                                                      cols: "12",
+                                                      md: "3"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        label:
+                                                          "Precio Unitario  ",
+                                                        outlined: "",
+                                                        dense: "",
+                                                        readonly: ""
+                                                      },
+                                                      model: {
+                                                        value:
+                                                          _vm.preciounitario,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.preciounitario = $$v
+                                                        },
+                                                        expression:
+                                                          "preciounitario"
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  {
+                                                    attrs: {
+                                                      cols: "12",
+                                                      md: "3"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        label: "Importe(2)  ",
+                                                        outlined: "",
+                                                        dense: "",
+                                                        readonly: ""
+                                                      },
+                                                      model: {
+                                                        value: _vm.importe2,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.importe2 = $$v
+                                                        },
+                                                        expression: "importe2"
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  { attrs: { cols: "12" } },
+                                                  [
+                                                    _vm.esEdicion == false &&
+                                                    _vm.esMejorada == false
+                                                      ? _c(
+                                                          "v-btn",
+                                                          {
+                                                            attrs: {
+                                                              block: "",
+                                                              color: "primary"
+                                                            },
+                                                            on: {
+                                                              click:
+                                                                _vm.guardarPartida
+                                                            }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                                       Guardar Partida\n                                       "
+                                                            )
+                                                          ]
+                                                        )
+                                                      : _vm._e(),
+                                                    _vm._v(" "),
+                                                    _vm.esEdicion
+                                                      ? _c(
+                                                          "v-btn",
+                                                          {
+                                                            attrs: {
+                                                              block: "",
+                                                              color: "warning"
+                                                            },
+                                                            on: {
+                                                              click:
+                                                                _vm.editarPartida
+                                                            }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                                       Editar Partida\n                                       "
+                                                            )
+                                                          ]
+                                                        )
+                                                      : _vm._e(),
+                                                    _vm._v(" "),
+                                                    _vm.esMejorada
+                                                      ? _c(
+                                                          "v-btn",
+                                                          {
+                                                            attrs: {
+                                                              block: "",
+                                                              color: "warning"
+                                                            },
+                                                            on: {
+                                                              click:
+                                                                _vm.mejorarPartida
+                                                            }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                                       Mejorar Partida\n                                       "
+                                                            )
+                                                          ]
+                                                        )
+                                                      : _vm._e()
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            )
                                           ],
-                                          null,
-                                          true
+                                          1
                                         )
-                                      })
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-tab-item",
+                                  { attrs: { value: "tab-4" } },
+                                  [
+                                    _c(
+                                      "v-card",
+                                      { attrs: { flat: "" } },
+                                      [
+                                        _c(
+                                          "v-card-text",
+                                          [
+                                            _c(
+                                              "v-row",
+                                              [
+                                                _c(
+                                                  "v-col",
+                                                  {
+                                                    attrs: {
+                                                      cols: "12",
+                                                      md: "4"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "v-btn",
+                                                      {
+                                                        attrs: {
+                                                          block: "",
+                                                          depressed: "",
+                                                          color: "primary"
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "\n      SUBTOTAL:  " +
+                                                            _vm._s(
+                                                              _vm.subtotalCotizacion
+                                                            ) +
+                                                            "\n     "
+                                                        )
+                                                      ]
+                                                    )
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  {
+                                                    attrs: {
+                                                      cols: "12",
+                                                      md: "4"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "v-btn",
+                                                      {
+                                                        attrs: {
+                                                          block: "",
+                                                          depressed: "",
+                                                          color: "primary"
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "\n       IVA: " +
+                                                            _vm._s(
+                                                              _vm.ivaCotizacion
+                                                            ) +
+                                                            "\n     "
+                                                        )
+                                                      ]
+                                                    )
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  {
+                                                    attrs: {
+                                                      cols: "12",
+                                                      md: "4"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "v-btn",
+                                                      {
+                                                        attrs: {
+                                                          block: "",
+                                                          depressed: "",
+                                                          color: "primary"
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "\n      IEPS:   " +
+                                                            _vm._s(
+                                                              _vm.iepsCotizacion
+                                                            ) +
+                                                            "\n     "
+                                                        )
+                                                      ]
+                                                    )
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  { attrs: { cols: "12" } },
+                                                  [
+                                                    _c(
+                                                      "v-btn",
+                                                      {
+                                                        attrs: {
+                                                          block: "",
+                                                          depressed: "",
+                                                          color: "primary"
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "\n          TOTAL:   " +
+                                                            _vm._s(
+                                                              _vm.totalCotizacion
+                                                            ) +
+                                                            "\n         "
+                                                        )
+                                                      ]
+                                                    )
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c("br")
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-row",
+                                              [
+                                                _c(
+                                                  "v-col",
+                                                  { attrs: { cols: "12" } },
+                                                  [
+                                                    _c("v-data-table", {
+                                                      staticClass:
+                                                        "elevation-1",
+                                                      attrs: {
+                                                        headers: _vm.headers,
+                                                        items: _vm.partidas,
+                                                        search: _vm.search,
+                                                        "single-select":
+                                                          _vm.singleSelect,
+                                                        "item-key": "id",
+                                                        "show-select": "",
+                                                        "items-per-page": 5
+                                                      },
+                                                      scopedSlots: _vm._u(
+                                                        [
+                                                          {
+                                                            key: "item.actions",
+                                                            fn: function(ref) {
+                                                              var item =
+                                                                ref.item
+                                                              return [
+                                                                _c(
+                                                                  "v-tooltip",
+                                                                  {
+                                                                    attrs: {
+                                                                      bottom: ""
+                                                                    },
+                                                                    scopedSlots: _vm._u(
+                                                                      [
+                                                                        {
+                                                                          key:
+                                                                            "activator",
+                                                                          fn: function(
+                                                                            ref
+                                                                          ) {
+                                                                            var on =
+                                                                              ref.on
+                                                                            var attrs =
+                                                                              ref.attrs
+                                                                            return [
+                                                                              _c(
+                                                                                "v-btn",
+                                                                                _vm._g(
+                                                                                  _vm._b(
+                                                                                    {
+                                                                                      staticClass:
+                                                                                        "mx-2",
+                                                                                      attrs: {
+                                                                                        fab:
+                                                                                          "",
+                                                                                        small:
+                                                                                          "",
+                                                                                        width:
+                                                                                          "32",
+                                                                                        height:
+                                                                                          "30"
+                                                                                      },
+                                                                                      on: {
+                                                                                        click: function(
+                                                                                          $event
+                                                                                        ) {
+                                                                                          return _vm.cargarEdicion(
+                                                                                            item
+                                                                                          )
+                                                                                        }
+                                                                                      }
+                                                                                    },
+                                                                                    "v-btn",
+                                                                                    attrs,
+                                                                                    false
+                                                                                  ),
+                                                                                  on
+                                                                                ),
+                                                                                [
+                                                                                  _c(
+                                                                                    "v-icon",
+                                                                                    [
+                                                                                      _vm._v(
+                                                                                        "mdi-pencil"
+                                                                                      )
+                                                                                    ]
+                                                                                  )
+                                                                                ],
+                                                                                1
+                                                                              )
+                                                                            ]
+                                                                          }
+                                                                        }
+                                                                      ],
+                                                                      null,
+                                                                      true
+                                                                    )
+                                                                  },
+                                                                  [
+                                                                    _vm._v(" "),
+                                                                    _c("span", [
+                                                                      _vm._v(
+                                                                        "Editar Partida"
+                                                                      )
+                                                                    ])
+                                                                  ]
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "v-tooltip",
+                                                                  {
+                                                                    attrs: {
+                                                                      bottom: ""
+                                                                    },
+                                                                    scopedSlots: _vm._u(
+                                                                      [
+                                                                        {
+                                                                          key:
+                                                                            "activator",
+                                                                          fn: function(
+                                                                            ref
+                                                                          ) {
+                                                                            var on =
+                                                                              ref.on
+                                                                            var attrs =
+                                                                              ref.attrs
+                                                                            return [
+                                                                              _c(
+                                                                                "v-btn",
+                                                                                _vm._g(
+                                                                                  _vm._b(
+                                                                                    {
+                                                                                      staticClass:
+                                                                                        "mx-2",
+                                                                                      attrs: {
+                                                                                        fab:
+                                                                                          "",
+                                                                                        small:
+                                                                                          "",
+                                                                                        width:
+                                                                                          "32",
+                                                                                        height:
+                                                                                          "30"
+                                                                                      },
+                                                                                      on: {
+                                                                                        click: function(
+                                                                                          $event
+                                                                                        ) {
+                                                                                          return _vm.cargarEdicionMejorada(
+                                                                                            item
+                                                                                          )
+                                                                                        }
+                                                                                      }
+                                                                                    },
+                                                                                    "v-btn",
+                                                                                    attrs,
+                                                                                    false
+                                                                                  ),
+                                                                                  on
+                                                                                ),
+                                                                                [
+                                                                                  _c(
+                                                                                    "v-icon",
+                                                                                    [
+                                                                                      _vm._v(
+                                                                                        "mdi-checkbox-multiple-marked-circle-outline"
+                                                                                      )
+                                                                                    ]
+                                                                                  )
+                                                                                ],
+                                                                                1
+                                                                              )
+                                                                            ]
+                                                                          }
+                                                                        }
+                                                                      ],
+                                                                      null,
+                                                                      true
+                                                                    )
+                                                                  },
+                                                                  [
+                                                                    _vm._v(" "),
+                                                                    _c("span", [
+                                                                      _vm._v(
+                                                                        "Mejorar Partida"
+                                                                      )
+                                                                    ])
+                                                                  ]
+                                                                )
+                                                              ]
+                                                            }
+                                                          }
+                                                        ],
+                                                        null,
+                                                        true
+                                                      )
+                                                    })
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-expansion-panel",
+              [
+                _c("v-expansion-panel-header", [_vm._v("Opción extra")]),
+                _vm._v(" "),
+                _c("v-expansion-panel-content", [
+                  _vm._v("\n        Espacio Extra\n      ")
+                ])
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -1,301 +1,458 @@
 <template>
     <v-container fluid>
-      <v-card
-        class="mx-auto rounded-lg py-5 px-2 mt-5 mb-5"
-        width="100%"
-        align="center"
-        justify="space-around"
+
+      <div>
 
 
-      >
-
-      <v-toolbar
-      flat
-      color="secondary"
-      dark
+    <v-expansion-panels
+      v-model="panel"
+      :disabled="disablednew"
+      multiple
     >
-      <v-toolbar-title>
-        <v-btn
-              color="primary"
-              dark
-              @click="iniciar"
-              v-if="btniniciar"
-            >
-              Iniciar Cotización
-            </v-btn>
+      <v-expansion-panel>
+        <v-expansion-panel-header>Acciones disponibles para esta cotización</v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <v-card
+            class="mx-auto rounded-lg py-5 px-2 mt-5 mb-5"
+            width="100%"
+            align="center"
+            justify="space-around"
+          >
+
+          <v-card-title>
+            Acciones disponibles para esta cotización
+          </v-card-title>
+          <v-row>
+         <v-col
+           cols="12"
+           sm="12"
+           md="4"
+         >
+         <v-btn
+         block
+          :loading="loading3"
+          :disabled="loading3"
+          color="blue-grey"
+          class="ma-2 white--text"
+          @click="loader = 'loading3'"
+        >
+          Disponible Para Compra
+          <v-icon
+
+            dark
+          >
+            mdi-checkbox-marked-outline
+          </v-icon>
+        </v-btn>
+         </v-col>
+         <v-col
+           cols="12"
+           sm="12"
+           md="4"
+         >
+         <v-btn
+         block
+          :loading="loading3"
+          :disabled="loading3"
+          color="blue-grey"
+          class="ma-2 white--text"
+          @click="loader = 'loading3'"
+        >
+          Disponible Para Facturar
+          <v-icon
+
+            dark
+          >
+            mdi-checkbox-marked-outline
+          </v-icon>
+        </v-btn>
+         </v-col>
+         <v-col
+           cols="12"
+           sm="12"
+           md="4"
+         >
+         <v-btn
+         block
+          :loading="loading3"
+          :disabled="loading3"
+          color="blue-grey"
+          class="ma-2 white--text"
+          @click="loader = 'loading3'"
+        >
+          Comprada
+          <v-icon
+
+            dark
+
+          >
+            mdi-checkbox-marked-outline
+          </v-icon>
+        </v-btn>
+         </v-col>
+         <v-col
+           cols="12"
+           sm="12"
+           md="4"
+         >
+         <v-btn
+         block
+          :loading="loading3"
+          :disabled="loading3"
+          color="blue-grey"
+          class="ma-2 white--text"
+          @click="loader = 'loading3'"
+        >
+          Disponible para Entrega
+          <v-icon
+
+            dark
+
+          >
+            mdi-checkbox-marked-outline
+          </v-icon>
+        </v-btn>
+         </v-col>
+
+         <v-col
+           cols="12"
+           sm="12"
+           md="4"
+         >
+         <v-btn
+         block
+          :loading="loading3"
+          :disabled="loading3"
+          color="blue-grey"
+          class="ma-2 white--text"
+          @click="loader = 'loading3'"
+        >
+          Entregada
+          <v-icon
+
+            dark
+
+          >
+            mdi-checkbox-marked-outline
+          </v-icon>
+        </v-btn>
+         </v-col>
+         <v-col
+           cols="12"
+           sm="12"
+           md="4"
+         >
+         <v-btn
+         block
+          :loading="loading3"
+          :disabled="loading3"
+          color="blue-grey"
+          class="ma-2 white--text"
+          @click="loader = 'loading3'"
+        >
+          Cobrada
+          <v-icon
+
+            dark
+
+          >
+            mdi-checkbox-marked-outline
+          </v-icon>
+        </v-btn>
+         </v-col>
+
+       </v-row>
+        </v-card>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+
+      <v-expansion-panel>
+        <v-expansion-panel-header>Datos de la Cotización</v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <v-card
+            class="mx-auto rounded-lg py-5 px-2 mt-5 mb-5"
+            width="100%"
+            align="center"
+            justify="space-around"
+          >
+
+          <v-toolbar
+          flat
+          color="secondary"
+          dark
+        >
+          <v-toolbar-title>
             <v-btn
-                  color="warning"
+                  color="primary"
                   dark
-                  v-if="!btniniciar"
+                  @click="iniciar"
+                  v-if="btniniciar"
                 >
-                Cotización en Proceso
+                  Iniciar Cotización
                 </v-btn>
-      </v-toolbar-title>
-    </v-toolbar>
-    <v-card>
-   <v-tabs
-     v-model="tab"
+                <v-btn
+                      color="warning"
+                      dark
+                      v-if="!btniniciar"
+                    >
+                    Cotización en Proceso
+                    </v-btn>
+          </v-toolbar-title>
+        </v-toolbar>
+        <v-card>
+       <v-tabs
+         v-model="tab"
 
-     centered
+         centered
 
-     icons-and-text
-   >
-     <v-tabs-slider></v-tabs-slider>
+         icons-and-text
+       >
+         <v-tabs-slider></v-tabs-slider>
 
-     <v-tab href="#tab-a">
-       Detalle de la solicitud
-       <v-icon>mdi-import</v-icon>
-     </v-tab>
+         <v-tab href="#tab-a">
+           Detalle de la solicitud
+           <v-icon>mdi-import</v-icon>
+         </v-tab>
 
-     <v-tab href="#tab-2">
-       Configuración de Parámetros
-       <v-icon>mdi-settings-box</v-icon>
-     </v-tab>
+         <v-tab href="#tab-2">
+           Configuración de Parámetros
+           <v-icon>mdi-settings-box</v-icon>
+         </v-tab>
 
-     <v-tab href="#tab-3">
-       Registro de Partida
-       <v-icon>mdi-file-document</v-icon>
-     </v-tab>
+         <v-tab href="#tab-3">
+           Registro de Partida
+           <v-icon>mdi-file-document</v-icon>
+         </v-tab>
 
-     <v-tab href="#tab-4">
-       Partidas Registradas
-       <v-icon>mdi-clipboard-text</v-icon>
-     </v-tab>
+         <v-tab href="#tab-4">
+           Partidas Registradas
+           <v-icon>mdi-clipboard-text</v-icon>
+         </v-tab>
 
-     <!-- <v-tab href="#tab-5">
-      Generar Oficio
-       <v-icon>mdi-auto-fix</v-icon>
-     </v-tab> -->
-   </v-tabs>
+         <!-- <v-tab href="#tab-5">
+          Generar Oficio
+           <v-icon>mdi-auto-fix</v-icon>
+         </v-tab> -->
+       </v-tabs>
 
-   <v-tabs-items v-model="tab">
-     <v-tab-item
+       <v-tabs-items v-model="tab">
+         <v-tab-item
 
-       value="tab-a"
-     >
-     <v-container>
-       <v-row>
+           value="tab-a"
+         >
+         <v-container>
+           <v-row>
 
-       <br>
-       <v-col v-if ="this.solicitud.urgente == 1">
-         <v-alert
-       dense
-       outlined
-       type="error"
-     >
-      Solicitud marcada como urgente
-     </v-alert>
-       </v-col>
+           <br>
+           <v-col v-if ="this.solicitud.urgente == 1">
+             <v-alert
+           dense
+           outlined
+           type="error"
+         >
+          Solicitud marcada como urgente
+         </v-alert>
+           </v-col>
 
 
-      </v-row>
+          </v-row>
 
-       <v-row>
+           <v-row>
+
+               <v-col
+                 cols="12"
+                 md="6"
+               >
+               <v-card
+         class="mx-auto"
+
+       >
+         <v-card-text>
+           <p class="font-weight-black">Folio de la Solicitud <br><br>{{this.solicitud.folio}} </p>
+         </v-card-text>
+
+       </v-card>
+
+
+             </v-col>
+
+             <v-col
+               cols="12"
+               md="6"
+             >
+             <v-card
+                 class="mx-auto"
+
+               >
+                 <v-card-text>
+                   <p class="font-weight-black">Persona Solicitante <br><br>{{this.solicitante.nombre}} </p>
+                 </v-card-text>
+
+               </v-card>
+
+
+           </v-col>
 
            <v-col
              cols="12"
-             md="6"
+
            >
            <v-card
-     class="mx-auto"
+               class="mx-auto"
 
-   >
-     <v-card-text>
-       <p class="font-weight-black">Folio de la Solicitud <br><br>{{this.solicitud.folio}} </p>
-     </v-card-text>
+             >
+               <v-card-text>
+                 <p class="font-weight-black">Persona/Empresa a quien se dirige esta cotización<br><br>{{this.cliente.razonSocial}} </p>
+               </v-card-text>
 
-   </v-card>
+             </v-card>
 
 
          </v-col>
 
          <v-col
            cols="12"
-           md="6"
+           md="12"
          >
          <v-card
              class="mx-auto"
 
            >
              <v-card-text>
-               <p class="font-weight-black">Persona Solicitante <br><br>{{this.solicitante.nombre}} </p>
+               <p class="font-weight-black">Comentarios: <br>{{this.solicitud.comentario}} </p>
              </v-card-text>
 
            </v-card>
 
-
        </v-col>
 
-       <v-col
-         cols="12"
 
-       >
-       <v-card
-           class="mx-auto"
+           </v-row>
 
+
+         </v-container>
+         </v-tab-item>
+
+         <v-tab-item
+
+           value="tab-2"
          >
-           <v-card-text>
-             <p class="font-weight-black">Persona/Empresa a quien se dirige esta cotización<br><br>{{this.cliente.razonSocial}} </p>
-           </v-card-text>
+           <v-card flat>
+             <v-card-text>
 
-         </v-card>
+               <v-row>
+                 <v-col
+                         cols="12"
 
+                       >
+                       <p>Todos los porcentajes se definen en escala del 0 al 100 %, ingresando únicamente el valor numérico.</p>
+                       <p>No está permitido el ingreso de símbolo de pesos($), símbolo de porcentaje($) y símbolo de coma (,).</p>
+                     </v-col>
 
-     </v-col>
+                 <v-col
+                         cols="12"
 
-     <v-col
-       cols="12"
-       md="12"
-     >
-     <v-card
-         class="mx-auto"
+                         md="4"
+                       >
+                       <v-select
+                       v-model="utilidadGlobal"
+                       :items="utilidades"
 
-       >
-         <v-card-text>
-           <p class="font-weight-black">Comentarios: <br>{{this.solicitud.comentario}} </p>
-         </v-card-text>
+                       item-text="descripcion"
+                       item-value="id"
+                       label="Tipo de Venta"
 
-       </v-card>
-
-   </v-col>
-
-
-       </v-row>
-
-
-     </v-container>
-     </v-tab-item>
-
-     <v-tab-item
-
-       value="tab-2"
-     >
-       <v-card flat>
-         <v-card-text>
-
-           <v-row>
-             <v-col
-                     cols="12"
-
-                   >
-                   <p>Todos los porcentajes se definen en escala del 0 al 100 %, ingresando únicamente el valor numérico.</p>
-                   <p>No está permitido el ingreso de símbolo de pesos($), símbolo de porcentaje($) y símbolo de coma (,).</p>
-                 </v-col>
-
-             <v-col
-                     cols="12"
-
-                     md="4"
-                   >
-                   <v-select
-                   v-model="utilidadGlobal"
-                   :items="utilidades"
-
-                   item-text="descripcion"
-                   item-value="id"
-                   label="Tipo de Venta"
-
-                   ></v-select>
-                 </v-col>
-             <v-col
-                     cols="12"
-
-                     md="4"
-                   >
-                   <v-text-field
-                     v-model="ivaGlobal"
-                     type="number"
-                     label="PORCENTAJE DE IVA"
-
-                   ></v-text-field>
-                 </v-col>
+                       ></v-select>
+                     </v-col>
                  <v-col
                          cols="12"
 
                          md="4"
                        >
                        <v-text-field
-                         v-model="iepsGlobal"
+                         v-model="ivaGlobal"
                          type="number"
-                         label="PORCENTAJE DE IEPS"
+                         label="PORCENTAJE DE IVA"
 
                        ></v-text-field>
                      </v-col>
                      <v-col
                              cols="12"
 
+                             md="4"
                            >
-                           <v-btn
-                           block
-                           color="primary"
-                           @click="guardarConfiguracion"
-                           >
-                           Guardar Configuración
-                           </v-btn>
+                           <v-text-field
+                             v-model="iepsGlobal"
+                             type="number"
+                             label="PORCENTAJE DE IEPS"
+
+                           ></v-text-field>
                          </v-col>
+                         <v-col
+                                 cols="12"
+
+                               >
+                               <v-btn
+                               block
+                               color="primary"
+                               @click="guardarConfiguracion"
+                               >
+                               Guardar Configuración
+                               </v-btn>
+                             </v-col>
 
 
-           </v-row>
+               </v-row>
 
-         </v-card-text>
-       </v-card>
-     </v-tab-item>
+             </v-card-text>
+           </v-card>
+         </v-tab-item>
 
-     <v-tab-item
+         <v-tab-item
 
-       value="tab-3"
-     >
-       <v-card flat>
-         <v-card-text>
-<br>
-             <p class="font-weight-black mb-3"  align="center">Llena el Formulario para registrar una nueva Partida</p>
-             <p>El ingreso de los símbolos(Peso $ | Coma , | Porcentaje %) en campos numérico(EJ: Precio) no están permitidos</p>
-             <br>
-             <v-row>
-               <v-col
-                       cols="12"
-
-                       md="4"
-                     >
-                     <v-text-field
-                     outlined
-                     dense
-                       v-model="partida"
-                       type="number"
-                       label="Número de Partida sugerida  "
-                       :disabled="esMejorada"
-                     ></v-text-field>
-                     <strong v-if="esMejorada">Mejora de Partida</strong>
-                     <strong v-if="esEdicion">Edición de Partida</strong>
-                      <strong v-if="esMejorada == false && esEdicion == false">Registro Normal</strong>
-                   </v-col>
+           value="tab-3"
+         >
+           <v-card flat>
+             <v-card-text>
+    <br>
+                 <p class="font-weight-black mb-3"  align="center">Llena el Formulario para registrar una nueva Partida</p>
+                 <p>El ingreso de los símbolos(Peso $ | Coma , | Porcentaje %) en campos numérico(EJ: Precio) no están permitidos</p>
+                 <br>
+                 <v-row>
                    <v-col
                            cols="12"
 
-                           md="8"
+                           md="4"
                          >
-                         <v-textarea
-
-                         solo
-                           v-model="descripcion"
-                         label="Descripción"
-                         :counter="65535"
-                         ></v-textarea>
+                         <v-text-field
+                         outlined
+                         dense
+                           v-model="partida"
+                           type="number"
+                           label="Número de Partida sugerida  "
+                           :disabled="esMejorada"
+                         ></v-text-field>
+                         <strong v-if="esMejorada">Mejora de Partida</strong>
+                         <strong v-if="esEdicion">Edición de Partida</strong>
+                          <strong v-if="esMejorada == false && esEdicion == false">Registro Normal</strong>
+                          <v-switch
+          v-model="switch5"
+          inset
+          label="¿Aplica Políticas de Garantía?"
+        ></v-switch>
                        </v-col>
-
                        <v-col
                                cols="12"
-                               sm="6"
-                               md="4"
+
+                               md="8"
                              >
-                             <v-text-field
-                             outlined
-                             dense
-                               v-model="unidadmedida"
+                             <v-textarea
 
-                               label="Unidad de Medida  "
-
-                             ></v-text-field>
+                             solo
+                               v-model="descripcion"
+                             label="Descripción"
+                             :counter="65535"
+                             ></v-textarea>
                            </v-col>
 
                            <v-col
@@ -306,9 +463,9 @@
                                  <v-text-field
                                  outlined
                                  dense
-                                   v-model="cantidad"
-                                   type="number"
-                                   label="Cantidad "
+                                   v-model="unidadmedida"
+
+                                   label="Unidad de Medida  "
 
                                  ></v-text-field>
                                </v-col>
@@ -321,40 +478,42 @@
                                      <v-text-field
                                      outlined
                                      dense
-                                       v-model="precioproveedor"
+                                       v-model="cantidad"
                                        type="number"
-                                       label="Precio del Proveedor "
+                                       label="Cantidad "
 
                                      ></v-text-field>
-                                     <v-switch
-                   v-model="switch1"
-                   label="¿Desea restar el valor del IVA al Precio del Proveedor?"
-                      color="warning"
-                 ></v-switch>
                                    </v-col>
 
+                                   <v-col
+                                           cols="12"
+                                           sm="6"
+                                           md="4"
+                                         >
+                                         <v-text-field
+                                         outlined
+                                         dense
+                                           v-model="precioproveedor"
+                                           type="number"
+                                           label="Precio del Proveedor "
 
-                                       <v-col
-                                               cols="12"
-                                               md="4"
-                                             >
-                                             <v-text-field
-                                               v-model="marca"
-                                               type="text"
-                                               label="Marca"
-                                               outlined
-                                               dense
-                                             ></v-text-field>
+                                         ></v-text-field>
+                                         <v-switch
+                       v-model="switch1"
+                       label="¿Desea restar el valor del IVA al Precio del Proveedor?"
+                          color="warning"
+                     ></v-switch>
+                                       </v-col>
 
-                                           </v-col>
+
                                            <v-col
                                                    cols="12"
                                                    md="4"
                                                  >
                                                  <v-text-field
-                                                   v-model="modelo"
+                                                   v-model="marca"
                                                    type="text"
-                                                   label="Modelo"
+                                                   label="Marca"
                                                    outlined
                                                    dense
                                                  ></v-text-field>
@@ -365,9 +524,9 @@
                                                        md="4"
                                                      >
                                                      <v-text-field
-                                                       v-model="numserie"
+                                                       v-model="modelo"
                                                        type="text"
-                                                       label="Número de Serie"
+                                                       label="Modelo"
                                                        outlined
                                                        dense
                                                      ></v-text-field>
@@ -375,108 +534,123 @@
                                                    </v-col>
                                                    <v-col
                                                            cols="12"
-
-
+                                                           md="4"
                                                          >
-                                                         <v-textarea
-                                                         solo
-                                                           v-model="notasproducto"
-                                                         label="Notas para esta partida"
+                                                         <v-text-field
+                                                           v-model="numserie"
+                                                           type="text"
+                                                           label="Número de Serie"
+                                                           outlined
+                                                           dense
+                                                         ></v-text-field>
 
-                                                         ></v-textarea>
                                                        </v-col>
-             </v-row>
-             <v-row>
-                 <v-divider></v-divider>
-             </v-row>
-             <v-row>
-               <v-switch
-               v-model="switchVariables"
-               label="¿Desea personalizar los parámetros de TIPO DE VENTA, IVA, IEPS?"
-               color="warning"
+                                                       <v-col
+                                                               cols="12"
 
-               hide-details
-             ></v-switch>
-               <br>
-             </v-row>
-             <v-row v-show="switchVariables">
-               <v-col
-                       cols="12"
 
-                       md="4"
-                     >
-                     <v-text-field
-                       v-model="utilidadpartida"
-                       type="number"
-                       label="Tipo de Venta / Utilidad (En escala del 0 al 100 %)"
-                       outlined
-                       dense
-                     ></v-text-field>
-                   </v-col>
-               <v-col
-                       cols="12"
+                                                             >
+                                                             <v-textarea
+                                                             solo
+                                                               v-model="notasproducto"
+                                                             label="Notas para esta partida"
 
-                       md="4"
-                     >
-                     <v-text-field
-                       v-model="ivapartida"
-                       type="number"
-                       label="PORCENTAJE DE IVA(En escala del 0 al 100 %) "
-                       outlined
-                       dense
-                     ></v-text-field>
-                   </v-col>
+                                                             ></v-textarea>
+                                                             <v-file-input
+        v-model="files"
+        placeholder="Documentación soporte"
+        label="Ingresa tus archivos"
+        multiple
+        prepend-icon="mdi-paperclip"
+      >
+        <template v-slot:selection="{ text }">
+          <v-chip
+            small
+            label
+            color="primary"
+          >
+            {{ text }}
+          </v-chip>
+        </template>
+      </v-file-input>
+                                                           </v-col>
+                 </v-row>
+                 <v-row>
+                     <v-divider></v-divider>
+                 </v-row>
+                 <v-row>
+                   <v-switch
+                   v-model="switchVariables"
+                   label="¿Desea personalizar los parámetros de TIPO DE VENTA, IVA, IEPS?"
+                   color="warning"
+
+                   hide-details
+                 ></v-switch>
+                   <br>
+                 </v-row>
+                 <v-row v-show="switchVariables">
                    <v-col
                            cols="12"
 
                            md="4"
                          >
                          <v-text-field
-                           v-model="iepspartida"
+                           v-model="utilidadpartida"
                            type="number"
-                           label="PORCENTAJE DE IEPS(En escala del 0 al 100 %) "
+                           label="Tipo de Venta / Utilidad (En escala del 0 al 100 %)"
                            outlined
                            dense
                          ></v-text-field>
                        </v-col>
+                   <v-col
+                           cols="12"
+
+                           md="4"
+                         >
+                         <v-text-field
+                           v-model="ivapartida"
+                           type="number"
+                           label="PORCENTAJE DE IVA(En escala del 0 al 100 %) "
+                           outlined
+                           dense
+                         ></v-text-field>
+                       </v-col>
+                       <v-col
+                               cols="12"
+
+                               md="4"
+                             >
+                             <v-text-field
+                               v-model="iepspartida"
+                               type="number"
+                               label="PORCENTAJE DE IEPS(En escala del 0 al 100 %) "
+                               outlined
+                               dense
+                             ></v-text-field>
+                           </v-col>
 
 
-             </v-row>
-             <v-row>
-                 <v-divider></v-divider>
-             </v-row>
-             <v-row>
-               <p class="font-weight-black mb-3"  align="center">Cálculo automático a partir de los datos capturados</p>
-               <br>
-             </v-row>
-             <v-row>
-               <v-col
-                       cols="12"
-
-                       md="3"
-                     >
-                     <v-text-field
-                       v-model="importe1"
-
-                       label="Importe(1)  "
-                       outlined
-           dense
-           readonly
-
-                     ></v-text-field>
-                   </v-col>
+                 </v-row>
+                 <v-row>
+                     <v-divider></v-divider>
+                 </v-row>
+                 <v-row>
+                   <p class="font-weight-black mb-3"  align="center">Cálculo automático a partir de los datos capturados</p>
+                   <br>
+                 </v-row>
+                 <v-row>
                    <v-col
                            cols="12"
 
                            md="3"
                          >
                          <v-text-field
-                           v-model="utilidadgenerada"
+                           v-model="importe1"
 
-                           label="Utilidad  "
+                           label="Importe(1)  "
                            outlined
-           dense
-           readonly
+               dense
+               readonly
 
                          ></v-text-field>
                        </v-col>
@@ -486,12 +660,12 @@
                                md="3"
                              >
                              <v-text-field
-                               v-model="preciounitario"
+                               v-model="utilidadgenerada"
 
-                               label="Precio Unitario  "
+                               label="Utilidad  "
                                outlined
-           dense
-           readonly
+               dense
+               readonly
 
                              ></v-text-field>
                            </v-col>
@@ -501,83 +675,85 @@
                                    md="3"
                                  >
                                  <v-text-field
-                                   v-model="importe2"
+                                   v-model="preciounitario"
 
-                                   label="Importe(2)  "
+                                   label="Precio Unitario  "
                                    outlined
-                                   dense
-                                   readonly
+               dense
+               readonly
 
                                  ></v-text-field>
                                </v-col>
                                <v-col
                                        cols="12"
 
+                                       md="3"
+                                     >
+                                     <v-text-field
+                                       v-model="importe2"
 
-                                     >
-                                     <v-btn
-                                     block
-                                     color="primary"
-                                     @click="guardarPartida"
-                                     v-if="esEdicion == false && esMejorada == false"
-                                     >
-                                     Guardar Partida
-                                     </v-btn>
-                                     <v-btn
-                                     block
-                                     color="warning"
-                                     @click="editarPartida"
-                                     v-if="esEdicion"
-                                     >
-                                     Editar Partida
-                                     </v-btn>
-                                     <v-btn
-                                     block
-                                     color="warning"
-                                     @click="mejorarPartida"
-                                     v-if="esMejorada"
-                                     >
-                                     Mejorar Partida
-                                     </v-btn>
+                                       label="Importe(2)  "
+                                       outlined
+                                       dense
+                                       readonly
+
+                                     ></v-text-field>
                                    </v-col>
-             </v-row>
+                                   <v-col
+                                           cols="12"
 
 
-         </v-card-text>
-       </v-card>
-     </v-tab-item>
+                                         >
+                                         <v-btn
+                                         block
+                                         color="primary"
+                                         @click="guardarPartida"
+                                         v-if="esEdicion == false && esMejorada == false"
+                                         >
+                                         Guardar Partida
+                                         </v-btn>
+                                         <v-btn
+                                         block
+                                         color="warning"
+                                         @click="editarPartida"
+                                         v-if="esEdicion"
+                                         >
+                                         Editar Partida
+                                         </v-btn>
+                                         <v-btn
+                                         block
+                                         color="warning"
+                                         @click="mejorarPartida"
+                                         v-if="esMejorada"
+                                         >
+                                         Mejorar Partida
+                                         </v-btn>
+                                       </v-col>
+                 </v-row>
 
-     <v-tab-item
 
-       value="tab-4"
-     >
-       <v-card flat>
-         <v-card-text>
-              <v-row>
-                <v-col
-                        cols="12"
-                        md="4"
-                      >
-                      <v-btn
-                      block
-     depressed
-     color="primary"
-   >
-    SUBTOTAL:  {{subtotalCotizacion}}
-   </v-btn>
-                    </v-col>
+             </v-card-text>
+           </v-card>
+         </v-tab-item>
 
+         <v-tab-item
+
+           value="tab-4"
+         >
+           <v-card flat>
+             <v-card-text>
+                  <v-row>
                     <v-col
                             cols="12"
                             md="4"
                           >
                           <v-btn
                           block
-     depressed
-     color="primary"
-   >
-     IVA: {{ivaCotizacion}}
-   </v-btn>
+         depressed
+         color="primary"
+       >
+        SUBTOTAL:  {{subtotalCotizacion}}
+       </v-btn>
                         </v-col>
 
                         <v-col
@@ -586,280 +762,308 @@
                               >
                               <v-btn
                               block
-     depressed
-     color="primary"
-   >
-    IEPS:   {{iepsCotizacion}}
-   </v-btn>
+         depressed
+         color="primary"
+       >
+         IVA: {{ivaCotizacion}}
+       </v-btn>
                             </v-col>
+
                             <v-col
                                     cols="12"
-
+                                    md="4"
                                   >
                                   <v-btn
                                   block
          depressed
          color="primary"
        >
-        TOTAL:   {{totalCotizacion}}
+        IEPS:   {{iepsCotizacion}}
        </v-btn>
                                 </v-col>
-                <br>
-              </v-row>
-           <v-row>
+                                <v-col
+                                        cols="12"
+
+                                      >
+                                      <v-btn
+                                      block
+             depressed
+             color="primary"
+           >
+            TOTAL:   {{totalCotizacion}}
+           </v-btn>
+                                    </v-col>
+                    <br>
+                  </v-row>
+               <v-row>
 
 
-             <v-col
-                     cols="12"
-                   >
+                 <v-col
+                         cols="12"
+                       >
 
-             <v-data-table
-             :headers="headers"
-             :items="partidas"
-             :search="search"
-             :single-select="singleSelect"
-    item-key="id"
-    show-select
-    class="elevation-1"
-               :items-per-page="5"
-             >
-             <template v-slot:[`item.actions`]="{ item }">
+                 <v-data-table
+                 :headers="headers"
+                 :items="partidas"
+                 :search="search"
+                 :single-select="singleSelect"
+        item-key="id"
+        show-select
+        class="elevation-1"
+                   :items-per-page="5"
+                 >
+                 <template v-slot:[`item.actions`]="{ item }">
 
-            <v-tooltip bottom>
-                  <template v-slot:activator="{ on, attrs }">
-                      <v-btn class="mx-2" fab small width="32" height="30" v-bind="attrs" v-on="on" @click="cargarEdicion(item)">
-                        <v-icon >mdi-pencil</v-icon>
-                      </v-btn>
-                  </template>
-                  <span>Editar Partida</span>
-              </v-tooltip>
-              <v-tooltip bottom>
-                    <template v-slot:activator="{ on, attrs }">
-                        <v-btn class="mx-2" fab small width="32" height="30" v-bind="attrs" v-on="on" @click="cargarEdicionMejorada(item)">
-                          <v-icon >mdi-checkbox-multiple-marked-circle-outline</v-icon>
+                <v-tooltip bottom>
+                      <template v-slot:activator="{ on, attrs }">
+                          <v-btn class="mx-2" fab small width="32" height="30" v-bind="attrs" v-on="on" @click="cargarEdicion(item)">
+                            <v-icon >mdi-pencil</v-icon>
+                          </v-btn>
+                      </template>
+                      <span>Editar Partida</span>
+                  </v-tooltip>
+                  <v-tooltip bottom>
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn class="mx-2" fab small width="32" height="30" v-bind="attrs" v-on="on" @click="cargarEdicionMejorada(item)">
+                              <v-icon >mdi-checkbox-multiple-marked-circle-outline</v-icon>
+                            </v-btn>
+                        </template>
+                        <span>Mejorar Partida</span>
+                    </v-tooltip>
+
+
+          </template>
+               </v-data-table>
+               </v-col>
+
+
+               </v-row>
+
+             </v-card-text>
+           </v-card>
+         </v-tab-item>
+
+         <!-- <v-tab-item
+
+           value="tab-5"
+         >
+           <v-card flat>
+             <v-card-text>
+
+               <v-row>
+
+
+                <v-col  cols="12" md="3">
+                  <v-card
+                      class="mx-auto"
+                      max-width="344"
+                    >
+                      <v-img
+                        src="https://banner2.cleanpng.com/20190423/hzg/kisspng-scalable-vector-graphics-computer-icons-computer-f-documents-files-and-folders-png-icons-and-graphics-5cbed2f5cceb05.4165270515560097178394.jpg"
+                        height="150px"
+                      ></v-img>
+
+                      <v-card-title>
+                        Oficio de Cotización
+                      </v-card-title>
+
+
+
+                      <v-card-actions>
+                        <v-btn
+                          color="orange lighten-2"
+                          text
+                        >
+                          Generar Oficio
                         </v-btn>
-                    </template>
-                    <span>Mejorar Partida</span>
-                </v-tooltip>
 
+                        <v-spacer></v-spacer>
 
-      </template>
-           </v-data-table>
-           </v-col>
+                        <v-btn
+                          icon
+                          @click="show = !show"
+                        >
+                          <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                        </v-btn>
+                      </v-card-actions>
 
+                      <v-expand-transition>
+                        <div v-show="show">
+                          <v-divider></v-divider>
 
-           </v-row>
+                          <v-card-text>
 
-         </v-card-text>
-       </v-card>
-     </v-tab-item>
+                          </v-card-text>
+                        </div>
+                      </v-expand-transition>
+                    </v-card>
+                </v-col>
 
-     <!-- <v-tab-item
-
-       value="tab-5"
-     >
-       <v-card flat>
-         <v-card-text>
-
-           <v-row>
-
-
-            <v-col  cols="12" md="3">
-              <v-card
-                  class="mx-auto"
-                  max-width="344"
-                >
-                  <v-img
-                    src="https://banner2.cleanpng.com/20190423/hzg/kisspng-scalable-vector-graphics-computer-icons-computer-f-documents-files-and-folders-png-icons-and-graphics-5cbed2f5cceb05.4165270515560097178394.jpg"
-                    height="150px"
-                  ></v-img>
-
-                  <v-card-title>
-                    Oficio de Cotización
-                  </v-card-title>
-
-
-
-                  <v-card-actions>
-                    <v-btn
-                      color="orange lighten-2"
-                      text
+                <v-col  cols="12" md="3">
+                  <v-card
+                      class="mx-auto"
+                      max-width="344"
                     >
-                      Generar Oficio
-                    </v-btn>
+                      <v-img
+                        src="https://banner2.cleanpng.com/20190423/hzg/kisspng-scalable-vector-graphics-computer-icons-computer-f-documents-files-and-folders-png-icons-and-graphics-5cbed2f5cceb05.4165270515560097178394.jpg"
+                        height="150px"
+                      ></v-img>
 
-                    <v-spacer></v-spacer>
+                      <v-card-title>
+                        Segundo Oficio
+                      </v-card-title>
 
-                    <v-btn
-                      icon
-                      @click="show = !show"
+
+
+                      <v-card-actions>
+                        <v-btn
+                          color="orange lighten-2"
+                          text
+                        >
+                          Generar Oficio
+                        </v-btn>
+
+                        <v-spacer></v-spacer>
+
+                        <v-btn
+                          icon
+                          @click="show = !show"
+                        >
+                          <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                        </v-btn>
+                      </v-card-actions>
+
+                      <v-expand-transition>
+                        <div v-show="show">
+                          <v-divider></v-divider>
+
+                          <v-card-text>
+
+                          </v-card-text>
+                        </div>
+                      </v-expand-transition>
+                    </v-card>
+                </v-col>
+
+                <v-col  cols="12" md="3">
+                  <v-card
+                      class="mx-auto"
+                      max-width="344"
                     >
-                      <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-                    </v-btn>
-                  </v-card-actions>
+                      <v-img
+                        src="https://banner2.cleanpng.com/20190423/hzg/kisspng-scalable-vector-graphics-computer-icons-computer-f-documents-files-and-folders-png-icons-and-graphics-5cbed2f5cceb05.4165270515560097178394.jpg"
+                        height="150px"
+                      ></v-img>
 
-                  <v-expand-transition>
-                    <div v-show="show">
-                      <v-divider></v-divider>
-
-                      <v-card-text>
-
-                      </v-card-text>
-                    </div>
-                  </v-expand-transition>
-                </v-card>
-            </v-col>
-
-            <v-col  cols="12" md="3">
-              <v-card
-                  class="mx-auto"
-                  max-width="344"
-                >
-                  <v-img
-                    src="https://banner2.cleanpng.com/20190423/hzg/kisspng-scalable-vector-graphics-computer-icons-computer-f-documents-files-and-folders-png-icons-and-graphics-5cbed2f5cceb05.4165270515560097178394.jpg"
-                    height="150px"
-                  ></v-img>
-
-                  <v-card-title>
-                    Segundo Oficio
-                  </v-card-title>
+                      <v-card-title>
+                        Tercer Oficio
+                      </v-card-title>
 
 
 
-                  <v-card-actions>
-                    <v-btn
-                      color="orange lighten-2"
-                      text
+                      <v-card-actions>
+                        <v-btn
+                          color="orange lighten-2"
+                          text
+                        >
+                          Generar Oficio
+                        </v-btn>
+
+                        <v-spacer></v-spacer>
+
+                        <v-btn
+                          icon
+                          @click="show = !show"
+                        >
+                          <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                        </v-btn>
+                      </v-card-actions>
+
+                      <v-expand-transition>
+                        <div v-show="show">
+                          <v-divider></v-divider>
+
+                          <v-card-text>
+
+                          </v-card-text>
+                        </div>
+                      </v-expand-transition>
+                    </v-card>
+                </v-col>
+
+                <v-col  cols="12" md="3">
+                  <v-card
+                      class="mx-auto"
+                      max-width="344"
                     >
-                      Generar Oficio
-                    </v-btn>
+                      <v-img
+                        src="https://banner2.cleanpng.com/20190423/hzg/kisspng-scalable-vector-graphics-computer-icons-computer-f-documents-files-and-folders-png-icons-and-graphics-5cbed2f5cceb05.4165270515560097178394.jpg"
+                        height="150px"
+                      ></v-img>
 
-                    <v-spacer></v-spacer>
-
-                    <v-btn
-                      icon
-                      @click="show = !show"
-                    >
-                      <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-                    </v-btn>
-                  </v-card-actions>
-
-                  <v-expand-transition>
-                    <div v-show="show">
-                      <v-divider></v-divider>
-
-                      <v-card-text>
-
-                      </v-card-text>
-                    </div>
-                  </v-expand-transition>
-                </v-card>
-            </v-col>
-
-            <v-col  cols="12" md="3">
-              <v-card
-                  class="mx-auto"
-                  max-width="344"
-                >
-                  <v-img
-                    src="https://banner2.cleanpng.com/20190423/hzg/kisspng-scalable-vector-graphics-computer-icons-computer-f-documents-files-and-folders-png-icons-and-graphics-5cbed2f5cceb05.4165270515560097178394.jpg"
-                    height="150px"
-                  ></v-img>
-
-                  <v-card-title>
-                    Tercer Oficio
-                  </v-card-title>
+                      <v-card-title>
+                        Cuarto Oficio
+                      </v-card-title>
 
 
 
-                  <v-card-actions>
-                    <v-btn
-                      color="orange lighten-2"
-                      text
-                    >
-                      Generar Oficio
-                    </v-btn>
+                      <v-card-actions>
+                        <v-btn
+                          color="orange lighten-2"
+                          text
+                        >
+                          Generar Oficio
+                        </v-btn>
 
-                    <v-spacer></v-spacer>
+                        <v-spacer></v-spacer>
 
-                    <v-btn
-                      icon
-                      @click="show = !show"
-                    >
-                      <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-                    </v-btn>
-                  </v-card-actions>
+                        <v-btn
+                          icon
+                          @click="show = !show"
+                        >
+                          <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                        </v-btn>
+                      </v-card-actions>
 
-                  <v-expand-transition>
-                    <div v-show="show">
-                      <v-divider></v-divider>
+                      <v-expand-transition>
+                        <div v-show="show">
+                          <v-divider></v-divider>
 
-                      <v-card-text>
+                          <v-card-text>
 
-                      </v-card-text>
-                    </div>
-                  </v-expand-transition>
-                </v-card>
-            </v-col>
+                          </v-card-text>
+                        </div>
+                      </v-expand-transition>
+                    </v-card>
+                </v-col>
+              </v-row>
 
-            <v-col  cols="12" md="3">
-              <v-card
-                  class="mx-auto"
-                  max-width="344"
-                >
-                  <v-img
-                    src="https://banner2.cleanpng.com/20190423/hzg/kisspng-scalable-vector-graphics-computer-icons-computer-f-documents-files-and-folders-png-icons-and-graphics-5cbed2f5cceb05.4165270515560097178394.jpg"
-                    height="150px"
-                  ></v-img>
-
-                  <v-card-title>
-                    Cuarto Oficio
-                  </v-card-title>
+             </v-card-text>
+           </v-card>
+         </v-tab-item> -->
 
 
 
-                  <v-card-actions>
-                    <v-btn
-                      color="orange lighten-2"
-                      text
-                    >
-                      Generar Oficio
-                    </v-btn>
+       </v-tabs-items>
+     </v-card>
 
-                    <v-spacer></v-spacer>
 
-                    <v-btn
-                      icon
-                      @click="show = !show"
-                    >
-                      <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-                    </v-btn>
-                  </v-card-actions>
+      </v-card>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
 
-                  <v-expand-transition>
-                    <div v-show="show">
-                      <v-divider></v-divider>
-
-                      <v-card-text>
-
-                      </v-card-text>
-                    </div>
-                  </v-expand-transition>
-                </v-card>
-            </v-col>
-          </v-row>
-
-         </v-card-text>
-       </v-card>
-     </v-tab-item> -->
+      <v-expansion-panel>
+        <v-expansion-panel-header>Opción extra</v-expansion-panel-header>
+        <v-expansion-panel-content>
+          Espacio Extra
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-expansion-panels>
+  </div>
 
 
 
-   </v-tabs-items>
- </v-card>
 
-
-  </v-card>
     </v-container>
 </template>
 
@@ -877,6 +1081,9 @@ import swal from 'sweetalert';
           this.iepsGlobal = 0
         },
         data: () => ({
+          panel: [0, 1],
+     disablednew: false,
+     readonlynew: false,
           oivapartida:null,
           oiepspartida:null,
           tipoventapartida:null,
@@ -884,6 +1091,8 @@ import swal from 'sweetalert';
           esEdicion:false,
             switchVariables:false,
             switch1:false,
+            switch5:false,
+            files:[],
             tab:null,
             utilidadGlobal:null,
             ivaGlobal:16,
