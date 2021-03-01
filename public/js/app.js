@@ -6147,6 +6147,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -6161,6 +6180,11 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   },
   data: function data() {
     return {
+      oivapartida: null,
+      oiepspartida: null,
+      tipoventapartida: null,
+      esMejorada: false,
+      esEdicion: false,
       switchVariables: false,
       switch1: false,
       tab: null,
@@ -6226,14 +6250,6 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         align: 'center',
         value: 'numserie'
       }, {
-        text: '% IVA',
-        align: 'center',
-        value: 'ivapartida'
-      }, {
-        text: '% IEPS',
-        align: 'center',
-        value: 'iepspartida'
-      }, {
         text: 'Tipo de Venta',
         align: 'center',
         value: 'utilidadpartida'
@@ -6260,7 +6276,6 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       }],
       partidas: [],
       search: "",
-      activareditar: false,
       idEditar: null,
       singleSelect: false,
       selected: [],
@@ -6321,7 +6336,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   },
   methods: {
     cargarEdicion: function cargarEdicion(item) {
-      console.log(item);
+      this.tab = 'tab-3';
       this.partida = item.partida;
       this.descripcion = item.descripcion;
       this.unidadmedida = item.unidadmedida;
@@ -6335,7 +6350,26 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       this.iepspartida = item.iepspartida;
       this.utilidadpartida = item.utilidadpartida;
       this.idEditar = item.id;
-      this.activareditar = true;
+      this.esEdicion = true;
+      this.esMejorada = false;
+    },
+    cargarEdicionMejorada: function cargarEdicionMejorada(item) {
+      this.tab = 'tab-3';
+      this.partida = item.partida;
+      this.descripcion = item.descripcion;
+      this.unidadmedida = item.unidadmedida;
+      this.cantidad = item.cantidad;
+      this.precioproveedor = item.precioproveedor;
+      this.marca = item.marca;
+      this.modelo = item.modelo;
+      this.numserie = item.numserie;
+      this.notasproducto = item.notasproducto;
+      this.ivapartida = item.ivapartida;
+      this.iepspartida = item.iepspartida;
+      this.utilidadpartida = item.utilidadpartida;
+      this.idEditar = item.id;
+      this.esEdicion = false;
+      this.esMejorada = true;
     },
     guardarPartida: function guardarPartida() {
       var _this = this;
@@ -6352,36 +6386,38 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
                   method: 'post',
                   url: 'savePartida',
                   data: {
-                    idCotizacion: parseInt(_this.$route.params.id),
-                    partida: parseInt(_this.partida),
+                    idCotizacion: parseFloat(_this.$route.params.id),
+                    partida: parseFloat(_this.partida),
                     descripcion: _this.descripcion,
                     unidadmedida: _this.unidadmedida,
-                    cantidad: parseInt(_this.cantidad),
-                    precioproveedor: parseInt(_this.precioproveedor),
+                    cantidad: parseFloat(_this.cantidad),
+                    precioproveedor: parseFloat(_this.precioproveedor),
                     marca: _this.marca,
                     modelo: _this.modelo,
                     numserie: _this.numserie,
                     notasproducto: _this.notasproducto,
-                    ivapartida: parseInt(_this.ivapartida),
-                    utilidadpartida: parseInt(_this.utilidadpartida),
-                    iepspartida: parseInt(_this.iepspartida),
-                    importe1: parseInt(_this.importe1),
-                    utilidadgenerada: parseInt(_this.utilidadgenerada),
-                    preciounitario: parseInt(_this.preciounitario),
-                    importe2: parseInt(_this.importe2)
+                    ivapartida: parseFloat(_this.ivapartida),
+                    utilidadpartida: parseFloat(_this.utilidadpartida),
+                    iepspartida: parseFloat(_this.iepspartida),
+                    importe1: parseFloat(_this.importe1),
+                    utilidadgenerada: parseFloat(_this.utilidadgenerada),
+                    preciounitario: parseFloat(_this.preciounitario),
+                    importe2: parseFloat(_this.importe2)
                   }
                 });
 
               case 3:
                 response = _context.sent;
-                console.log("aqui", response.data.cotizacion);
+                console.log(response);
+                _this.esEdicion = false;
+                _this.esMejorada = false;
                 _this.ivaCotizacion = response.data.cotizacion.ivaTotal;
                 _this.iepsCotizacion = response.data.cotizacion.iepsTotal;
                 _this.subtotalCotizacion = response.data.cotizacion.subtotal;
                 _this.totalCotizacion = response.data.cotizacion.total;
                 _this.partidas = response.data.response;
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "La partida #" + _this.partida + " se registró con éxito", "success");
-                _this.partida = parseInt(_this.partida) + 1;
+                _this.partida = parseFloat(_this.partida) + 1;
                 _this.descripcion = null;
                 _this.unidadmedida = null;
                 _this.cantidad = 0;
@@ -6391,27 +6427,29 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
                 _this.numserie = null;
                 _this.notasproducto = null;
                 _this.ivapartida = _this.ivaGlobal;
-                _this.utilidadpartida = _this.utilidadGlobal;
+                _this.utilidadpartida = _this.tipoventapartida;
                 _this.iepspartida = _this.iepsGlobal;
                 _this.importe1 = 0;
                 _this.utilidadgenerada = 0;
                 _this.preciounitario = 0;
                 _this.importe2 = 0;
-                _context.next = 33;
+                _this.ivapartida = _this.oivapartida;
+                _this.iepspartida = _this.oiepspartida;
+                _context.next = 37;
                 break;
 
-              case 29:
-                _context.prev = 29;
+              case 33:
+                _context.prev = 33;
                 _context.t0 = _context["catch"](0);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
                 console.log(_context.t0);
 
-              case 33:
+              case 37:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 29]]);
+        }, _callee, null, [[0, 33]]);
       }))();
     },
     editarPartida: function editarPartida() {
@@ -6429,39 +6467,40 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
                   method: 'post',
                   url: 'editarPartida',
                   data: {
-                    idCotizacion: parseInt(_this2.$route.params.id),
+                    idCotizacion: parseFloat(_this2.$route.params.id),
                     idPartida: _this2.idEditar,
-                    partida: parseInt(_this2.partida),
+                    partida: parseFloat(_this2.partida),
                     descripcion: _this2.descripcion,
                     unidadmedida: _this2.unidadmedida,
-                    cantidad: parseInt(_this2.cantidad),
-                    precioproveedor: parseInt(_this2.precioproveedor),
+                    cantidad: parseFloat(_this2.cantidad),
+                    precioproveedor: parseFloat(_this2.precioproveedor),
                     marca: _this2.marca,
                     modelo: _this2.modelo,
                     numserie: _this2.numserie,
                     notasproducto: _this2.notasproducto,
-                    ivapartida: parseInt(_this2.ivapartida),
-                    utilidadpartida: parseInt(_this2.utilidadpartida),
-                    iepspartida: parseInt(_this2.iepspartida),
-                    importe1: parseInt(_this2.importe1),
-                    utilidadgenerada: parseInt(_this2.utilidadgenerada),
-                    preciounitario: parseInt(_this2.preciounitario),
-                    importe2: parseInt(_this2.importe2)
+                    ivapartida: parseFloat(_this2.ivapartida),
+                    utilidadpartida: parseFloat(_this2.utilidadpartida),
+                    iepspartida: parseFloat(_this2.iepspartida),
+                    importe1: parseFloat(_this2.importe1),
+                    utilidadgenerada: parseFloat(_this2.utilidadgenerada),
+                    preciounitario: parseFloat(_this2.preciounitario),
+                    importe2: parseFloat(_this2.importe2)
                   }
                 });
 
               case 3:
                 response = _context2.sent;
+                _this2.esEdicion = false;
+                _this2.esMejorada = false;
                 _this2.partidas = response.data.response;
                 _this2.idEditar = null;
-                _this2.activareditar = false;
                 console.log("aqui", response.data.cotizacion);
                 _this2.ivaCotizacion = response.data.cotizacion.ivaTotal;
                 _this2.iepsCotizacion = response.data.cotizacion.iepsTotal;
                 _this2.subtotalCotizacion = response.data.cotizacion.subtotal;
                 _this2.totalCotizacion = response.data.cotizacion.total;
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "La partida #" + _this2.partida + " se actualizó con éxito", "success");
-                _this2.partida = parseInt(_this2.partida) + 1;
+                _this2.partida = parseFloat(_this2.partida) + 1;
                 _this2.descripcion = null;
                 _this2.unidadmedida = null;
                 _this2.cantidad = 0;
@@ -6471,27 +6510,29 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
                 _this2.numserie = null;
                 _this2.notasproducto = null;
                 _this2.ivapartida = _this2.ivaGlobal;
-                _this2.utilidadpartida = _this2.utilidadGlobal;
+                _this2.utilidadpartida = _this2.tipoventapartida;
                 _this2.iepspartida = _this2.iepsGlobal;
                 _this2.importe1 = 0;
                 _this2.utilidadgenerada = 0;
                 _this2.preciounitario = 0;
                 _this2.importe2 = 0;
-                _context2.next = 35;
+                _this2.ivapartida = _this2.oivapartida;
+                _this2.iepspartida = _this2.oiepspartida;
+                _context2.next = 38;
                 break;
 
-              case 31:
-                _context2.prev = 31;
+              case 34:
+                _context2.prev = 34;
                 _context2.t0 = _context2["catch"](0);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
                 console.log(_context2.t0);
 
-              case 35:
+              case 38:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 31]]);
+        }, _callee2, null, [[0, 34]]);
       }))();
     },
     iniciar: function iniciar() {
@@ -6517,7 +6558,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
                 response = _context3.sent;
                 console.log(response.data.response.estatus);
 
-                if (parseInt(response.data.response.estatus) != 0) {
+                if (parseFloat(response.data.response.estatus) != 0) {
                   _this3.btniniciar = false;
                 }
 
@@ -6561,11 +6602,15 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
               case 3:
                 response = _context4.sent;
                 _this4.partidas = response.data.response.partidas;
-                console.log(_this4.partidas.length);
-                _this4.partida = parseInt(_this4.partidas.length) + 1;
+                console.log(response.data.response);
+                _this4.oivapartida = response.data.response.ivaGlobal;
+                _this4.oiepspartida = response.data.response.iepsGlobal;
+                _this4.ivapartida = _this4.oivapartida;
+                _this4.iepspartida = _this4.oiepspartida;
+                _this4.partida = parseFloat(_this4.partidas.length) + 1;
                 _this4.cotizacion = response.data.response;
 
-                if (parseInt(_this4.cotizacion.estatus) == 0) {
+                if (parseFloat(_this4.cotizacion.estatus) == 0) {
                   _this4.btniniciar = true;
                 }
 
@@ -6574,35 +6619,36 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
                 _this4.solicitante = _this4.cotizacion.solicitud.solicitante;
                 _this4.agente = _this4.cotizacion.solicitud.agente;
                 _this4.responsable = _this4.cotizacion.solicitud.responsable;
-                _this4.ivaGlobal = parseInt(_this4.cotizacion.ivaGlobal);
-                _this4.iepsGlobal = parseInt(_this4.cotizacion.iepsGlobal);
+                _this4.ivaGlobal = parseFloat(_this4.cotizacion.ivaGlobal);
+                _this4.iepsGlobal = parseFloat(_this4.cotizacion.iepsGlobal);
                 _this4.iepspartida = _this4.iepsGlobal;
 
                 if (_this4.cotizacion.utilidadGlobal != null) {
-                  _this4.utilidadGlobal = parseInt(_this4.cotizacion.utilidadGlobal);
+                  _this4.utilidadGlobal = parseFloat(_this4.cotizacion.utilidadGlobal);
                 }
 
                 if (_this4.cotizacion.utilidad != null) {
                   if (_this4.cotizacion.utilidad.porcentaje != null) {
-                    _this4.utilidadpartida = _this4.cotizacion.utilidad.porcentaje;
+                    _this4.tipoventapartida = _this4.cotizacion.utilidad.porcentaje;
+                    _this4.utilidadpartida = _this4.tipoventapartida;
                   }
                 }
 
-                _context4.next = 25;
+                _context4.next = 29;
                 break;
 
-              case 21:
-                _context4.prev = 21;
+              case 25:
+                _context4.prev = 25;
                 _context4.t0 = _context4["catch"](0);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
                 console.log(_context4.t0);
 
-              case 25:
+              case 29:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4, null, [[0, 21]]);
+        }, _callee4, null, [[0, 25]]);
       }))();
     },
     gettipoventas: function gettipoventas() {
@@ -6665,27 +6711,28 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
               case 3:
                 response = _context6.sent;
-
-                if (response.data.utilidad.porcentaje != null) {
-                  _this6.utilidadpartida = response.data.utilidad.porcentaje;
-                }
-
+                _this6.tipoventapartida = parseInt(response.data.cotizacion.utilidad.porcentaje);
+                _this6.oivapartida = parseInt(response.data.cotizacion.ivaGlobal);
+                _this6.oiepspartida = parseInt(response.data.cotizacion.iepsGlobal);
+                _this6.ivapartida = _this6.oivapartida;
+                _this6.iepspartida = _this6.oiepspartida;
+                _this6.utilidadpartida = _this6.tipoventapartida;
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "Se ha configuradado esta cotización", "success");
-                _context6.next = 12;
+                _context6.next = 17;
                 break;
 
-              case 8:
-                _context6.prev = 8;
+              case 13:
+                _context6.prev = 13;
                 _context6.t0 = _context6["catch"](0);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
                 console.log(_context6.t0);
 
-              case 12:
+              case 17:
               case "end":
                 return _context6.stop();
             }
           }
-        }, _callee6, null, [[0, 8]]);
+        }, _callee6, null, [[0, 13]]);
       }))();
     }
   }
@@ -52548,7 +52595,7 @@ var render = function() {
                     "v-tab",
                     { attrs: { href: "#tab-3" } },
                     [
-                      _vm._v("\n       Registrar Partida\n       "),
+                      _vm._v("\n       Registro de Partida\n       "),
                       _c("v-icon", [_vm._v("mdi-file-document")])
                     ],
                     1
@@ -52560,16 +52607,6 @@ var render = function() {
                     [
                       _vm._v("\n       Partidas Registradas\n       "),
                       _c("v-icon", [_vm._v("mdi-clipboard-text")])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-tab",
-                    { attrs: { href: "#tab-5" } },
-                    [
-                      _vm._v("\n       Acciones Disponibles\n       "),
-                      _c("v-icon", [_vm._v("mdi-auto-fix")])
                     ],
                     1
                   )
@@ -52937,7 +52974,8 @@ var render = function() {
                                           outlined: "",
                                           dense: "",
                                           type: "number",
-                                          label: "Número de Partida sugerida  "
+                                          label: "Número de Partida sugerida  ",
+                                          disabled: _vm.esMejorada
                                         },
                                         model: {
                                           value: _vm.partida,
@@ -52946,7 +52984,26 @@ var render = function() {
                                           },
                                           expression: "partida"
                                         }
-                                      })
+                                      }),
+                                      _vm._v(" "),
+                                      _vm.esMejorada
+                                        ? _c("strong", [
+                                            _vm._v("Mejora de Partida")
+                                          ])
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.esEdicion
+                                        ? _c("strong", [
+                                            _vm._v("Edición de Partida")
+                                          ])
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.esMejorada == false &&
+                                      _vm.esEdicion == false
+                                        ? _c("strong", [
+                                            _vm._v("Registro Normal")
+                                          ])
+                                        : _vm._e()
                                     ],
                                     1
                                   ),
@@ -53381,7 +53438,8 @@ var render = function() {
                                     "v-col",
                                     { attrs: { cols: "12" } },
                                     [
-                                      !_vm.activareditar
+                                      _vm.esEdicion == false &&
+                                      _vm.esMejorada == false
                                         ? _c(
                                             "v-btn",
                                             {
@@ -53399,7 +53457,7 @@ var render = function() {
                                           )
                                         : _vm._e(),
                                       _vm._v(" "),
-                                      _vm.activareditar
+                                      _vm.esEdicion
                                         ? _c(
                                             "v-btn",
                                             {
@@ -53412,6 +53470,24 @@ var render = function() {
                                             [
                                               _vm._v(
                                                 "\n                                     Editar Partida\n                                     "
+                                              )
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.esMejorada
+                                        ? _c(
+                                            "v-btn",
+                                            {
+                                              attrs: {
+                                                block: "",
+                                                color: "warning"
+                                              },
+                                              on: { click: _vm.mejorarPartida }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                     Mejorar Partida\n                                     "
                                               )
                                             ]
                                           )
@@ -53645,7 +53721,83 @@ var render = function() {
                                                     [
                                                       _vm._v(" "),
                                                       _c("span", [
-                                                        _vm._v("Editar")
+                                                        _vm._v("Editar Partida")
+                                                      ])
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "v-tooltip",
+                                                    {
+                                                      attrs: { bottom: "" },
+                                                      scopedSlots: _vm._u(
+                                                        [
+                                                          {
+                                                            key: "activator",
+                                                            fn: function(ref) {
+                                                              var on = ref.on
+                                                              var attrs =
+                                                                ref.attrs
+                                                              return [
+                                                                _c(
+                                                                  "v-btn",
+                                                                  _vm._g(
+                                                                    _vm._b(
+                                                                      {
+                                                                        staticClass:
+                                                                          "mx-2",
+                                                                        attrs: {
+                                                                          fab:
+                                                                            "",
+                                                                          small:
+                                                                            "",
+                                                                          width:
+                                                                            "32",
+                                                                          height:
+                                                                            "30"
+                                                                        },
+                                                                        on: {
+                                                                          click: function(
+                                                                            $event
+                                                                          ) {
+                                                                            return _vm.cargarEdicionMejorada(
+                                                                              item
+                                                                            )
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      "v-btn",
+                                                                      attrs,
+                                                                      false
+                                                                    ),
+                                                                    on
+                                                                  ),
+                                                                  [
+                                                                    _c(
+                                                                      "v-icon",
+                                                                      [
+                                                                        _vm._v(
+                                                                          "mdi-checkbox-multiple-marked-circle-outline"
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  ],
+                                                                  1
+                                                                )
+                                                              ]
+                                                            }
+                                                          }
+                                                        ],
+                                                        null,
+                                                        true
+                                                      )
+                                                    },
+                                                    [
+                                                      _vm._v(" "),
+                                                      _c("span", [
+                                                        _vm._v(
+                                                          "Mejorar Partida"
+                                                        )
                                                       ])
                                                     ]
                                                   )
@@ -53657,432 +53809,6 @@ var render = function() {
                                           true
                                         )
                                       })
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-tab-item",
-                    { attrs: { value: "tab-5" } },
-                    [
-                      _c(
-                        "v-card",
-                        { attrs: { flat: "" } },
-                        [
-                          _c(
-                            "v-card-text",
-                            [
-                              _c(
-                                "v-row",
-                                [
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "3" } },
-                                    [
-                                      _c(
-                                        "v-card",
-                                        {
-                                          staticClass: "mx-auto",
-                                          attrs: { "max-width": "344" }
-                                        },
-                                        [
-                                          _c("v-img", {
-                                            attrs: {
-                                              src:
-                                                "https://banner2.cleanpng.com/20190423/hzg/kisspng-scalable-vector-graphics-computer-icons-computer-f-documents-files-and-folders-png-icons-and-graphics-5cbed2f5cceb05.4165270515560097178394.jpg",
-                                              height: "150px"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("v-card-title", [
-                                            _vm._v(
-                                              "\n                    Oficio de Cotización\n                  "
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-card-actions",
-                                            [
-                                              _c(
-                                                "v-btn",
-                                                {
-                                                  attrs: {
-                                                    color: "orange lighten-2",
-                                                    text: ""
-                                                  }
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "\n                      Generar Oficio\n                    "
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c("v-spacer"),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-btn",
-                                                {
-                                                  attrs: { icon: "" },
-                                                  on: {
-                                                    click: function($event) {
-                                                      _vm.show = !_vm.show
-                                                    }
-                                                  }
-                                                },
-                                                [
-                                                  _c("v-icon", [
-                                                    _vm._v(
-                                                      _vm._s(
-                                                        _vm.show
-                                                          ? "mdi-chevron-up"
-                                                          : "mdi-chevron-down"
-                                                      )
-                                                    )
-                                                  ])
-                                                ],
-                                                1
-                                              )
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c("v-expand-transition", [
-                                            _c(
-                                              "div",
-                                              {
-                                                directives: [
-                                                  {
-                                                    name: "show",
-                                                    rawName: "v-show",
-                                                    value: _vm.show,
-                                                    expression: "show"
-                                                  }
-                                                ]
-                                              },
-                                              [
-                                                _c("v-divider"),
-                                                _vm._v(" "),
-                                                _c("v-card-text")
-                                              ],
-                                              1
-                                            )
-                                          ])
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "3" } },
-                                    [
-                                      _c(
-                                        "v-card",
-                                        {
-                                          staticClass: "mx-auto",
-                                          attrs: { "max-width": "344" }
-                                        },
-                                        [
-                                          _c("v-img", {
-                                            attrs: {
-                                              src:
-                                                "https://banner2.cleanpng.com/20190423/hzg/kisspng-scalable-vector-graphics-computer-icons-computer-f-documents-files-and-folders-png-icons-and-graphics-5cbed2f5cceb05.4165270515560097178394.jpg",
-                                              height: "150px"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("v-card-title", [
-                                            _vm._v(
-                                              "\n                    Segundo Oficio\n                  "
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-card-actions",
-                                            [
-                                              _c(
-                                                "v-btn",
-                                                {
-                                                  attrs: {
-                                                    color: "orange lighten-2",
-                                                    text: ""
-                                                  }
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "\n                      Generar Oficio\n                    "
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c("v-spacer"),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-btn",
-                                                {
-                                                  attrs: { icon: "" },
-                                                  on: {
-                                                    click: function($event) {
-                                                      _vm.show = !_vm.show
-                                                    }
-                                                  }
-                                                },
-                                                [
-                                                  _c("v-icon", [
-                                                    _vm._v(
-                                                      _vm._s(
-                                                        _vm.show
-                                                          ? "mdi-chevron-up"
-                                                          : "mdi-chevron-down"
-                                                      )
-                                                    )
-                                                  ])
-                                                ],
-                                                1
-                                              )
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c("v-expand-transition", [
-                                            _c(
-                                              "div",
-                                              {
-                                                directives: [
-                                                  {
-                                                    name: "show",
-                                                    rawName: "v-show",
-                                                    value: _vm.show,
-                                                    expression: "show"
-                                                  }
-                                                ]
-                                              },
-                                              [
-                                                _c("v-divider"),
-                                                _vm._v(" "),
-                                                _c("v-card-text")
-                                              ],
-                                              1
-                                            )
-                                          ])
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "3" } },
-                                    [
-                                      _c(
-                                        "v-card",
-                                        {
-                                          staticClass: "mx-auto",
-                                          attrs: { "max-width": "344" }
-                                        },
-                                        [
-                                          _c("v-img", {
-                                            attrs: {
-                                              src:
-                                                "https://banner2.cleanpng.com/20190423/hzg/kisspng-scalable-vector-graphics-computer-icons-computer-f-documents-files-and-folders-png-icons-and-graphics-5cbed2f5cceb05.4165270515560097178394.jpg",
-                                              height: "150px"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("v-card-title", [
-                                            _vm._v(
-                                              "\n                    Tercer Oficio\n                  "
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-card-actions",
-                                            [
-                                              _c(
-                                                "v-btn",
-                                                {
-                                                  attrs: {
-                                                    color: "orange lighten-2",
-                                                    text: ""
-                                                  }
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "\n                      Generar Oficio\n                    "
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c("v-spacer"),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-btn",
-                                                {
-                                                  attrs: { icon: "" },
-                                                  on: {
-                                                    click: function($event) {
-                                                      _vm.show = !_vm.show
-                                                    }
-                                                  }
-                                                },
-                                                [
-                                                  _c("v-icon", [
-                                                    _vm._v(
-                                                      _vm._s(
-                                                        _vm.show
-                                                          ? "mdi-chevron-up"
-                                                          : "mdi-chevron-down"
-                                                      )
-                                                    )
-                                                  ])
-                                                ],
-                                                1
-                                              )
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c("v-expand-transition", [
-                                            _c(
-                                              "div",
-                                              {
-                                                directives: [
-                                                  {
-                                                    name: "show",
-                                                    rawName: "v-show",
-                                                    value: _vm.show,
-                                                    expression: "show"
-                                                  }
-                                                ]
-                                              },
-                                              [
-                                                _c("v-divider"),
-                                                _vm._v(" "),
-                                                _c("v-card-text")
-                                              ],
-                                              1
-                                            )
-                                          ])
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "3" } },
-                                    [
-                                      _c(
-                                        "v-card",
-                                        {
-                                          staticClass: "mx-auto",
-                                          attrs: { "max-width": "344" }
-                                        },
-                                        [
-                                          _c("v-img", {
-                                            attrs: {
-                                              src:
-                                                "https://banner2.cleanpng.com/20190423/hzg/kisspng-scalable-vector-graphics-computer-icons-computer-f-documents-files-and-folders-png-icons-and-graphics-5cbed2f5cceb05.4165270515560097178394.jpg",
-                                              height: "150px"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("v-card-title", [
-                                            _vm._v(
-                                              "\n                    Cuarto Oficio\n                  "
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-card-actions",
-                                            [
-                                              _c(
-                                                "v-btn",
-                                                {
-                                                  attrs: {
-                                                    color: "orange lighten-2",
-                                                    text: ""
-                                                  }
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "\n                      Generar Oficio\n                    "
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c("v-spacer"),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-btn",
-                                                {
-                                                  attrs: { icon: "" },
-                                                  on: {
-                                                    click: function($event) {
-                                                      _vm.show = !_vm.show
-                                                    }
-                                                  }
-                                                },
-                                                [
-                                                  _c("v-icon", [
-                                                    _vm._v(
-                                                      _vm._s(
-                                                        _vm.show
-                                                          ? "mdi-chevron-up"
-                                                          : "mdi-chevron-down"
-                                                      )
-                                                    )
-                                                  ])
-                                                ],
-                                                1
-                                              )
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c("v-expand-transition", [
-                                            _c(
-                                              "div",
-                                              {
-                                                directives: [
-                                                  {
-                                                    name: "show",
-                                                    rawName: "v-show",
-                                                    value: _vm.show,
-                                                    expression: "show"
-                                                  }
-                                                ]
-                                              },
-                                              [
-                                                _c("v-divider"),
-                                                _vm._v(" "),
-                                                _c("v-card-text")
-                                              ],
-                                              1
-                                            )
-                                          ])
-                                        ],
-                                        1
-                                      )
                                     ],
                                     1
                                   )

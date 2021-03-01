@@ -69,18 +69,15 @@ class CotizacionController extends Controller
 
         try {
 
-          $cotizacion = Cotizacion::where('id', '=', $request->id)->first();
+          $cotizacion = Cotizacion::where('id', '=', $request->id)->with('utilidad')->first();
           $cotizacion->ivaGlobal = $request->ivaGlobal;
           $cotizacion->iepsGlobal = $request->iepsGlobal;
           $cotizacion->utilidadGlobal = $request->utilidadGlobal;
           $cotizacion->estatus = 1;
           $cotizacion->save();
 
-          $utilidad = Utilidad::where('id', '=', $request->utilidadGlobal )->first();
 
-
-
-          return response()->json(['response' => true, 'utilidad' => $utilidad],200);
+          return response()->json(['response' => true, 'cotizacion' => $cotizacion],200);
 
         } catch (Exception $e) {
           return response()->json(['response' => $e],500);

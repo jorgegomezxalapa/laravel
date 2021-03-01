@@ -53,7 +53,7 @@
      </v-tab>
 
      <v-tab href="#tab-3">
-       Registrar Partida
+       Registro de Partida
        <v-icon>mdi-file-document</v-icon>
      </v-tab>
 
@@ -62,10 +62,10 @@
        <v-icon>mdi-clipboard-text</v-icon>
      </v-tab>
 
-     <v-tab href="#tab-5">
-       Acciones Disponibles
+     <!-- <v-tab href="#tab-5">
+      Generar Oficio
        <v-icon>mdi-auto-fix</v-icon>
-     </v-tab>
+     </v-tab> -->
    </v-tabs>
 
    <v-tabs-items v-model="tab">
@@ -263,8 +263,11 @@
                        v-model="partida"
                        type="number"
                        label="Número de Partida sugerida  "
-
+                       :disabled="esMejorada"
                      ></v-text-field>
+                     <strong v-if="esMejorada">Mejora de Partida</strong>
+                     <strong v-if="esEdicion">Edición de Partida</strong>
+                      <strong v-if="esMejorada == false && esEdicion == false">Registro Normal</strong>
                    </v-col>
                    <v-col
                            cols="12"
@@ -516,7 +519,7 @@
                                      block
                                      color="primary"
                                      @click="guardarPartida"
-                                      v-if="!activareditar"
+                                     v-if="esEdicion == false && esMejorada == false"
                                      >
                                      Guardar Partida
                                      </v-btn>
@@ -524,9 +527,17 @@
                                      block
                                      color="warning"
                                      @click="editarPartida"
-                                      v-if="activareditar"
+                                     v-if="esEdicion"
                                      >
                                      Editar Partida
+                                     </v-btn>
+                                     <v-btn
+                                     block
+                                     color="warning"
+                                     @click="mejorarPartida"
+                                     v-if="esMejorada"
+                                     >
+                                     Mejorar Partida
                                      </v-btn>
                                    </v-col>
              </v-row>
@@ -620,8 +631,16 @@
                         <v-icon >mdi-pencil</v-icon>
                       </v-btn>
                   </template>
-                  <span>Editar</span>
+                  <span>Editar Partida</span>
               </v-tooltip>
+              <v-tooltip bottom>
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-btn class="mx-2" fab small width="32" height="30" v-bind="attrs" v-on="on" @click="cargarEdicionMejorada(item)">
+                          <v-icon >mdi-checkbox-multiple-marked-circle-outline</v-icon>
+                        </v-btn>
+                    </template>
+                    <span>Mejorar Partida</span>
+                </v-tooltip>
 
 
       </template>
@@ -635,7 +654,7 @@
        </v-card>
      </v-tab-item>
 
-     <v-tab-item
+     <!-- <v-tab-item
 
        value="tab-5"
      >
@@ -832,7 +851,7 @@
 
          </v-card-text>
        </v-card>
-     </v-tab-item>
+     </v-tab-item> -->
 
 
 
@@ -858,6 +877,11 @@ import swal from 'sweetalert';
           this.iepsGlobal = 0
         },
         data: () => ({
+          oivapartida:null,
+          oiepspartida:null,
+          tipoventapartida:null,
+          esMejorada:false,
+          esEdicion:false,
             switchVariables:false,
             switch1:false,
             tab:null,
@@ -903,8 +927,7 @@ import swal from 'sweetalert';
               { text: 'Marca', align: 'center', value: 'marca' },
               { text: 'Modelo', align: 'center', value: 'modelo' },
               { text: 'Número de Serie', align: 'center', value: 'numserie' },
-              { text: '% IVA', align: 'center', value: 'ivapartida' },
-              { text: '% IEPS', align: 'center', value: 'iepspartida' },
+
               { text: 'Tipo de Venta', align: 'center', value: 'utilidadpartida' },
               { text: 'Importe(1)', align: 'center', value: 'importe1' },
               { text: 'Utilidad', align: 'center', value: 'utilidadgenerada' },
@@ -915,7 +938,7 @@ import swal from 'sweetalert';
             ],
             partidas: [],
             search:"",
-            activareditar:false,
+
             idEditar:null,
             singleSelect: false,
        selected: [],
@@ -992,7 +1015,8 @@ import swal from 'sweetalert';
          },
           methods:{
             cargarEdicion(item){
-              console.log(item)
+            this.tab='tab-3'
+
             this.partida = item.partida
             this.descripcion = item.descripcion
             this.unidadmedida = item.unidadmedida
@@ -1006,7 +1030,33 @@ import swal from 'sweetalert';
             this.iepspartida = item.iepspartida
             this.utilidadpartida = item.utilidadpartida
             this.idEditar = item.id
-            this.activareditar = true
+
+            this.esEdicion = true
+            this.esMejorada = false
+
+
+            },
+            cargarEdicionMejorada(item){
+
+              this.tab='tab-3'
+
+              this.partida = item.partida
+              this.descripcion = item.descripcion
+              this.unidadmedida = item.unidadmedida
+              this.cantidad = item.cantidad
+              this.precioproveedor = item.precioproveedor
+              this.marca = item.marca
+              this.modelo = item.modelo
+              this.numserie = item.numserie
+              this.notasproducto = item.notasproducto
+              this.ivapartida = item.ivapartida
+              this.iepspartida = item.iepspartida
+              this.utilidadpartida = item.utilidadpartida
+              this.idEditar = item.id
+
+              this.esEdicion = false
+              this.esMejorada = true
+
 
             },
             async guardarPartida(){
@@ -1015,28 +1065,30 @@ import swal from 'sweetalert';
                       method: 'post',
                       url: 'savePartida',
                       data:{
-                        idCotizacion:parseInt(this.$route.params.id),
-                        partida:parseInt(this.partida),
+                        idCotizacion:parseFloat(this.$route.params.id),
+                        partida:parseFloat(this.partida),
                         descripcion:this.descripcion,
                         unidadmedida:this.unidadmedida,
-                        cantidad:parseInt(this.cantidad),
-                        precioproveedor:parseInt(this.precioproveedor),
+                        cantidad:parseFloat(this.cantidad),
+                        precioproveedor:parseFloat(this.precioproveedor),
                         marca:this.marca,
                         modelo:this.modelo,
                         numserie:this.numserie,
                         notasproducto:this.notasproducto,
 
-                        ivapartida:parseInt(this.ivapartida),
-                        utilidadpartida:parseInt(this.utilidadpartida),
-                        iepspartida:parseInt(this.iepspartida),
+                        ivapartida:parseFloat(this.ivapartida),
+                        utilidadpartida:parseFloat(this.utilidadpartida),
+                        iepspartida:parseFloat(this.iepspartida),
 
-                        importe1:parseInt(this.importe1),
-                        utilidadgenerada:parseInt(this.utilidadgenerada),
-                        preciounitario:parseInt(this.preciounitario),
-                        importe2:parseInt(this.importe2),
+                        importe1:parseFloat(this.importe1),
+                        utilidadgenerada:parseFloat(this.utilidadgenerada),
+                        preciounitario:parseFloat(this.preciounitario),
+                        importe2:parseFloat(this.importe2),
                       }
                     })
-                    console.log("aqui",response.data.cotizacion)
+                    console.log(response)
+                  this.esEdicion = false
+                  this.esMejorada = false
                     this.ivaCotizacion = response.data.cotizacion.ivaTotal
                     this.iepsCotizacion = response.data.cotizacion.iepsTotal
                     this.subtotalCotizacion = response.data.cotizacion.subtotal
@@ -1044,7 +1096,7 @@ import swal from 'sweetalert';
                       this.partidas = response.data.response
 
                     swal("Éxito", "La partida #"+this.partida+" se registró con éxito", "success");
-                    this.partida = parseInt(this.partida)+1
+                    this.partida = parseFloat(this.partida)+1
 
                     this.descripcion = null
                     this.unidadmedida = null
@@ -1056,13 +1108,16 @@ import swal from 'sweetalert';
                     this.notasproducto = null
 
                     this.ivapartida = this.ivaGlobal
-                    this.utilidadpartida = this.utilidadGlobal
+                      this.utilidadpartida = this.tipoventapartida
                     this.iepspartida = this.iepsGlobal
 
                     this.importe1 = 0
                     this.utilidadgenerada = 0
                     this.preciounitario = 0
                     this.importe2 = 0
+
+                    this.ivapartida = this.oivapartida
+                    this.iepspartida = this.oiepspartida
 
                 } catch (error) {
 
@@ -1079,32 +1134,34 @@ import swal from 'sweetalert';
                       method: 'post',
                       url: 'editarPartida',
                       data:{
-                        idCotizacion:parseInt(this.$route.params.id),
+                        idCotizacion:parseFloat(this.$route.params.id),
                         idPartida:this.idEditar,
-                        partida:parseInt(this.partida),
+                        partida:parseFloat(this.partida),
                         descripcion:this.descripcion,
                         unidadmedida:this.unidadmedida,
-                        cantidad:parseInt(this.cantidad),
-                        precioproveedor:parseInt(this.precioproveedor),
+                        cantidad:parseFloat(this.cantidad),
+                        precioproveedor:parseFloat(this.precioproveedor),
                         marca:this.marca,
                         modelo:this.modelo,
                         numserie:this.numserie,
                         notasproducto:this.notasproducto,
 
-                        ivapartida:parseInt(this.ivapartida),
-                        utilidadpartida:parseInt(this.utilidadpartida),
-                        iepspartida:parseInt(this.iepspartida),
+                        ivapartida:parseFloat(this.ivapartida),
+                        utilidadpartida:parseFloat(this.utilidadpartida),
+                        iepspartida:parseFloat(this.iepspartida),
 
-                        importe1:parseInt(this.importe1),
-                        utilidadgenerada:parseInt(this.utilidadgenerada),
-                        preciounitario:parseInt(this.preciounitario),
-                        importe2:parseInt(this.importe2),
+                        importe1:parseFloat(this.importe1),
+                        utilidadgenerada:parseFloat(this.utilidadgenerada),
+                        preciounitario:parseFloat(this.preciounitario),
+                        importe2:parseFloat(this.importe2),
                       }
                     })
+                    this.esEdicion = false
+                    this.esMejorada = false
 
                       this.partidas = response.data.response
                       this.idEditar = null
-                      this.activareditar = false
+
                       console.log("aqui",response.data.cotizacion)
                       this.ivaCotizacion = response.data.cotizacion.ivaTotal
                       this.iepsCotizacion = response.data.cotizacion.iepsTotal
@@ -1112,7 +1169,7 @@ import swal from 'sweetalert';
                       this.totalCotizacion = response.data.cotizacion.total
 
                     swal("Éxito", "La partida #"+this.partida+" se actualizó con éxito", "success");
-                    this.partida = parseInt(this.partida)+1
+                    this.partida = parseFloat(this.partida)+1
 
                     this.descripcion = null
                     this.unidadmedida = null
@@ -1124,13 +1181,16 @@ import swal from 'sweetalert';
                     this.notasproducto = null
 
                     this.ivapartida = this.ivaGlobal
-                    this.utilidadpartida = this.utilidadGlobal
+                      this.utilidadpartida = this.tipoventapartida
                     this.iepspartida = this.iepsGlobal
 
                     this.importe1 = 0
                     this.utilidadgenerada = 0
                     this.preciounitario = 0
                     this.importe2 = 0
+
+                    this.ivapartida = this.oivapartida
+                    this.iepspartida = this.oiepspartida
 
                 } catch (error) {
 
@@ -1150,7 +1210,7 @@ import swal from 'sweetalert';
                       }
                     })
                     console.log(response.data.response.estatus)
-                    if ( parseInt(response.data.response.estatus) != 0) {
+                    if ( parseFloat(response.data.response.estatus) != 0) {
                         this.btniniciar = false
                     }
 
@@ -1173,12 +1233,19 @@ import swal from 'sweetalert';
                       }
                     })
                     this.partidas = response.data.response.partidas
-                    console.log(this.partidas.length)
-                    this.partida = parseInt(this.partidas.length)+1
+                    console.log(response.data.response)
+
+                    this.oivapartida = response.data.response.ivaGlobal
+                    this.oiepspartida = response.data.response.iepsGlobal
+
+                    this.ivapartida = this.oivapartida
+                    this.iepspartida = this.oiepspartida
+
+                    this.partida = parseFloat(this.partidas.length)+1
 
                     this.cotizacion = response.data.response
 
-                    if (parseInt(this.cotizacion.estatus) == 0) {
+                    if (parseFloat(this.cotizacion.estatus) == 0) {
                         this.btniniciar = true
                     }
 
@@ -1188,16 +1255,17 @@ import swal from 'sweetalert';
                         this.agente = this.cotizacion.solicitud.agente
                           this.responsable = this.cotizacion.solicitud.responsable
 
-                          this.ivaGlobal = parseInt(this.cotizacion.ivaGlobal)
-                          this.iepsGlobal = parseInt(this.cotizacion.iepsGlobal)
+                          this.ivaGlobal = parseFloat(this.cotizacion.ivaGlobal)
+                          this.iepsGlobal = parseFloat(this.cotizacion.iepsGlobal)
                           this.iepspartida = this.iepsGlobal
 
                           if (this.cotizacion.utilidadGlobal != null) {
-                              this.utilidadGlobal = parseInt(this.cotizacion.utilidadGlobal)
+                              this.utilidadGlobal = parseFloat(this.cotizacion.utilidadGlobal)
                           }
                           if(this.cotizacion.utilidad != null){
                             if (this.cotizacion.utilidad.porcentaje != null) {
-                              this.utilidadpartida = this.cotizacion.utilidad.porcentaje
+                              this.tipoventapartida = this.cotizacion.utilidad.porcentaje
+                              this.utilidadpartida = this.tipoventapartida
                             }
                           }
 
@@ -1246,11 +1314,12 @@ import swal from 'sweetalert';
                       iepsGlobal:this.iepsGlobal,
                     }
                   })
-                if (response.data.utilidad.porcentaje != null) {
-                  this.utilidadpartida = response.data.utilidad.porcentaje
-                }
-
-
+                  this.tipoventapartida = parseInt(response.data.cotizacion.utilidad.porcentaje)
+                  this.oivapartida = parseInt(response.data.cotizacion.ivaGlobal)
+                  this.oiepspartida = parseInt(response.data.cotizacion.iepsGlobal)
+                  this.ivapartida = this.oivapartida
+                  this.iepspartida = this.oiepspartida
+                  this.utilidadpartida = this.tipoventapartida
 
                    swal("Éxito", "Se ha configuradado esta cotización", "success");
 
