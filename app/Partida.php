@@ -19,6 +19,7 @@ class Partida extends Model
         'unidadmedida',
         'cantidad',
         'precioproveedor',
+        'politicas',
 
         'marca',
         'modelo',
@@ -34,12 +35,14 @@ class Partida extends Model
         'utilidadgenerada',
         'preciounitario',
         'importe2',
+        'disponible',
+        'solicitadas',
 
 
 
       ];
 
-      // function solicitud(){
-      //     return $this->hasOne('App\Solicitud','id','idSolicitud');
-      // }
+      function cotizacion(){
+          return $this->hasOne('App\Cotizacion','id','idCotizacion');
+      }
 }

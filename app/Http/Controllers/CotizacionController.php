@@ -25,6 +25,61 @@ class CotizacionController extends Controller
       }
     }
 
+    public function getAlmacen () {
+      try {
+
+        $partidas = Partida::orderBy('id', 'DESC')->get();
+
+        return response()->json(['response' => $partidas],200);
+
+      } catch (Exception $e) {
+        return response()->json(['response' => $e],500);
+
+      }
+    }
+
+    public function getAlmacenSolicitadas () {
+      try {
+
+        $partidas = Partida::orderBy('id', 'DESC')->where('solicitadas', '!=', null)->with('cotizacion')->with('cotizacion.solicitud')->get();
+
+        return response()->json(['response' => $partidas],200);
+
+      } catch (Exception $e) {
+        return response()->json(['response' => $e],500);
+
+      }
+    }
+
+    public function actualizarPInventario (Request $request) {
+      try {
+
+        $partidas = Partida::where('id', '=', $request->id)->first();
+        $partidas->disponible = $request->sumar;
+        $partidas->solicitadas = $request->restar;
+        $partidas->save();
+
+        return response()->json(['response' => "ok"],200);
+
+      } catch (Exception $e) {
+        return response()->json(['response' => $e],500);
+
+      }
+    }
+
+    public function getAlmacenDisponibles () {
+      try {
+
+        $partidas = Partida::orderBy('id', 'DESC')->where('solicitadas', '=', null)->get();
+
+        return response()->json(['response' => $partidas],200);
+
+      } catch (Exception $e) {
+        return response()->json(['response' => $e],500);
+
+      }
+    }
+
       public function getCotizacion (Request $request) {
         try {
 
@@ -96,6 +151,8 @@ class CotizacionController extends Controller
           $partida->descripcion = $request->descripcion;
           $partida->unidadmedida = $request->unidadmedida;
           $partida->cantidad = $request->cantidad;
+          $partida->politicas = $request->politicas;
+          $partida->solicitadas = $request->cantidad;
           if ($request->cantidad == null) {
             $partida->cantidad = "NO COTIZA";
           }
@@ -161,6 +218,43 @@ class CotizacionController extends Controller
             $cotizacion->save();
 
             return response()->json(['response' => $partidas, 'cotizacion'=>$cotizacion],200);
+
+        } catch (Exception $e) {
+          return response()->json(['response' => $e],500);
+
+        }
+      }
+
+      public function saveInventario (Request $request) {
+
+        try {
+
+
+          $partida = new Partida();
+
+          $partida->descripcion = $request->descripcion;
+          $partida->unidadmedida = $request->unidadmedida;
+          $partida->cantidad = $request->cantidad;
+
+          $partida->precioproveedor = $request->precioproveedor;
+
+          $partida->marca = $request->marca;
+          $partida->modelo = $request->modelo;
+          $partida->numserie = $request->numserie;
+          $partida->notasproducto = $request->notasproducto;
+          $partida->politicas = $request->politicas;
+
+          $partida->disponible = $request->cantidad;
+
+
+
+
+          $partida->save();
+
+            $partidas = Partida::orderBy('partida', 'ASC')->get();
+
+
+            return response()->json(['response' => $partidas],200);
 
         } catch (Exception $e) {
           return response()->json(['response' => $e],500);

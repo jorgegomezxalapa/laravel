@@ -62,9 +62,14 @@ Route::get('catalogosSolicitud', 'CatalogosController@catalogosSolicitud')->name
 
 //cotizaciones
 Route::get('getCotizaciones', 'CotizacionController@getCotizaciones')->name('getCotizaciones');
+Route::get('getAlmacen', 'CotizacionController@getAlmacen')->name('getAlmacen');
+Route::get('getAlmacenSolicitadas', 'CotizacionController@getAlmacenSolicitadas')->name('getAlmacenSolicitadas');
+Route::get('getAlmacenDisponibles', 'CotizacionController@getAlmacenDisponibles')->name('getAlmacenDisponibles');
+Route::get('actualizarPInventario', 'CotizacionController@actualizarPInventario')->name('actualizarPInventario');
 Route::post('getCotizacion', 'CotizacionController@getCotizacion')->name('getCotizacion');
 Route::post('saveConfigCotizacion', 'CotizacionController@saveConfigCotizacion')->name('saveConfigCotizacion');
 Route::post('savePartida', 'CotizacionController@savePartida')->name('savePartida');
+Route::post('saveInventario', 'CotizacionController@saveInventario')->name('saveInventario');
 Route::post('editarPartida', 'CotizacionController@editarPartida')->name('editarPartida');
 Route::post('iniciarCotizacion', 'CotizacionController@iniciarCotizacion')->name('iniciarCotizacion');
 

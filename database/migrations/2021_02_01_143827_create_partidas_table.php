@@ -22,6 +22,7 @@ class CreatePartidasTable extends Migration
             $table->string('unidadmedida',250)->nullable();
             $table->string('cantidad',250)->nullable();
             $table->string('precioproveedor',250)->nullable();
+            $table->boolean('politicas')->nullable();
 
             $table->string('marca',250)->nullable();
             $table->string('modelo',250)->nullable();
@@ -38,6 +39,9 @@ class CreatePartidasTable extends Migration
             $table->string('preciounitario',250)->nullable();
             $table->string('importe2',250)->nullable();
 
+            $table->integer('disponible')->nullable();
+            $table->integer('solicitadas')->nullable();
+          
             $table->timestamps();
         });
     }
