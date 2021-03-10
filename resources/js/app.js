@@ -13,6 +13,7 @@ Vue.component('dashboard-component', require('./components/DashboardComponent.vu
 Vue.component('cards-dashboard', require('./components/DashboardCardsComponent.vue').default);
 Vue.component('tables-dashboard', require('./components/DashBoardTablesComponent.vue').default);
 Vue.component('registro-inventario', require('./views/RegistroInventarioComponent.vue').default);
+Vue.component('registro-segmentacion', require('./views/RegistroSegmentacionComponent.vue').default);
 
 Vue.component('componente-clientes', require('./views/ClientesComponent.vue').default);
 Vue.component('componente-solicitantes', require('./views/SolicitantesComponent.vue').default);

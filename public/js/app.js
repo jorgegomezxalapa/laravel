@@ -4070,20 +4070,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -8575,17 +8561,20 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
                 _context.next = 3;
                 return axios({
                   method: 'post',
-                  url: 'saveInventario',
+                  url: 'registroinventario',
                   data: {
+                    idSegmento: null,
                     descripcion: _this.descripcion,
-                    unidadmedida: _this.unidadmedida,
+                    unidaddemedida: _this.unidadmedida,
                     cantidad: parseFloat(_this.cantidad),
-                    precioproveedor: parseFloat(_this.precioproveedor),
+                    preciodelproveedor: parseFloat(_this.precioproveedor),
                     marca: _this.marca,
                     modelo: _this.modelo,
-                    numserie: _this.numserie,
-                    notasproducto: _this.notasproducto,
-                    politicas: _this.switch5
+                    numerodeserie: _this.numserie,
+                    politicasdegarantia: _this.switch5,
+                    notasdelproducto: _this.notasproducto,
+                    archivosdenotas: null,
+                    miniatura: null
                   }
                 });
 
@@ -8617,8 +8606,209 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
           }
         }, _callee, null, [[0, 16]]);
       }))();
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroSegmentacionComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/RegistroSegmentacionComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate/dist/rules */ "./node_modules/vee-validate/dist/rules.js");
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_3__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+
+
+
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["setInteractionMode"])('eager');
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('digits', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["digits"]), {}, {
+  message: '{_field_} needs to be {length} digits. ({_value_})'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('required', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["required"]), {}, {
+  message: '{_field_} no puede quedarse vacío'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('max', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["max"]), {}, {
+  message: '{_field_} may not be greater than {length} characters'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('regex', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["regex"]), {}, {
+  message: '{_field_} {_value_} does not match {regex}'
+}));
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["email"]), {}, {
+  message: 'El formato de email debe ser válido'
+}));
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    this.verificar();
+  },
+  components: {
+    ValidationProvider: vee_validate__WEBPACK_IMPORTED_MODULE_2__["ValidationProvider"],
+    ValidationObserver: vee_validate__WEBPACK_IMPORTED_MODULE_2__["ValidationObserver"]
+  },
+  data: function data() {
+    return {
+      editar: false,
+      descripcion: null,
+      porcentaje: null,
+      utilidad: []
+    };
+  },
+  methods: {
+    verificar: function verificar() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (_this.$route.params.id != undefined) {
+                  _this.editar = true;
+
+                  _this.getEditar();
+                } else {}
+
+              case 1:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     },
-    guardarConfiguracion: function guardarConfiguracion() {
+    getEditar: function getEditar() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -8631,39 +8821,156 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
                 _context2.next = 3;
                 return axios({
                   method: 'post',
-                  url: 'saveConfigCotizacion',
+                  url: 'getUtilidad',
                   data: {
-                    id: _this2.$route.params.id,
-                    utilidadGlobal: _this2.utilidadGlobal,
-                    ivaGlobal: _this2.ivaGlobal,
-                    iepsGlobal: _this2.iepsGlobal
+                    id: _this2.$route.params.id
                   }
                 });
 
               case 3:
                 response = _context2.sent;
-                _this2.tipoventapartida = parseInt(response.data.cotizacion.utilidad.porcentaje);
-                _this2.oivapartida = parseInt(response.data.cotizacion.ivaGlobal);
-                _this2.oiepspartida = parseInt(response.data.cotizacion.iepsGlobal);
-                _this2.ivapartida = _this2.oivapartida;
-                _this2.iepspartida = _this2.oiepspartida;
-                _this2.utilidadpartida = _this2.tipoventapartida;
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "Se ha configuradado esta cotización", "success");
-                _context2.next = 17;
+                _this2.utilidad = response.data.response;
+                console.log("solicitd", _this2.utilidad.agente);
+                _this2.descripcion = _this2.utilidad.descripcion;
+                _this2.porcentaje = _this2.utilidad.porcentaje;
+                _context2.next = 14;
                 break;
 
-              case 13:
-                _context2.prev = 13;
+              case 10:
+                _context2.prev = 10;
                 _context2.t0 = _context2["catch"](0);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
                 console.log(_context2.t0);
 
-              case 17:
+              case 14:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 13]]);
+        }, _callee2, null, [[0, 10]]);
+      }))();
+    },
+    submit: function submit(evt) {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var result;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                evt.preventDefault();
+                _context3.next = 3;
+                return _this3.$refs.observer.validate();
+
+              case 3:
+                result = _context3.sent;
+
+                if (result) {
+                  if (_this3.editar == true) {
+                    _this3.editarUtilidad();
+                  } else {
+                    _this3.registrarUtilidad();
+                  }
+                }
+
+              case 5:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    registrarUtilidad: function registrarUtilidad() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.prev = 0;
+                _context4.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'createUtilidad',
+                  data: {
+                    descripcion: _this4.descripcion,
+                    porcentaje: _this4.porcentaje
+                  }
+                });
+
+              case 3:
+                response = _context4.sent;
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "El Tipos de Venta se ha registrado de manera correcta", "success");
+
+                _this4.$router.push({
+                  name: 'utilidades'
+                });
+
+                _context4.next = 12;
+                break;
+
+              case 8:
+                _context4.prev = 8;
+                _context4.t0 = _context4["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+                console.log(_context4.t0);
+
+              case 12:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, null, [[0, 8]]);
+      }))();
+    },
+    editarUtilidad: function editarUtilidad() {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.prev = 0;
+                _context5.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'editarUtilidad',
+                  data: {
+                    id: _this5.$route.params.id,
+                    descripcion: _this5.descripcion,
+                    porcentaje: _this5.porcentaje
+                  }
+                });
+
+              case 3:
+                response = _context5.sent;
+
+                _this5.$router.push({
+                  name: 'utilidades'
+                });
+
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "El tipo de Venta se ha editado de manera correcta", "success");
+                _context5.next = 12;
+                break;
+
+              case 8:
+                _context5.prev = 8;
+                _context5.t0 = _context5["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+                console.log(_context5.t0);
+
+              case 12:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, null, [[0, 8]]);
       }))();
     }
   }
@@ -52610,7 +52917,7 @@ var render = function() {
                                             { attrs: { href: "#tab-1" } },
                                             [
                                               _vm._v(
-                                                "\n         Registro\n       "
+                                                "\n         Registro de Inventario\n       "
                                               )
                                             ]
                                           ),
@@ -52623,7 +52930,7 @@ var render = function() {
                                             },
                                             [
                                               _vm._v(
-                                                "\n        Inventario\n       "
+                                                "\n        Registro de Segmento\n       "
                                               )
                                             ]
                                           )
@@ -52674,37 +52981,9 @@ var render = function() {
                                                   _c(
                                                     "v-card-text",
                                                     [
-                                                      _c("v-text-field", {
-                                                        attrs: {
-                                                          "append-icon":
-                                                            "mdi-magnify",
-                                                          label:
-                                                            "Buscar Partida",
-                                                          "single-line": "",
-                                                          "hide-details": ""
-                                                        },
-                                                        model: {
-                                                          value: _vm.search1,
-                                                          callback: function(
-                                                            $$v
-                                                          ) {
-                                                            _vm.search1 = $$v
-                                                          },
-                                                          expression: "search1"
-                                                        }
-                                                      }),
-                                                      _vm._v(" "),
-                                                      _c("br"),
-                                                      _vm._v(" "),
-                                                      _c("br"),
-                                                      _vm._v(" "),
-                                                      _c("v-data-table", {
-                                                        attrs: {
-                                                          headers: _vm.headers,
-                                                          items: _vm.global,
-                                                          search: _vm.search1
-                                                        }
-                                                      })
+                                                      _c(
+                                                        "registro-segmentacion"
+                                                      )
                                                     ],
                                                     1
                                                   )
@@ -57226,6 +57505,244 @@ var render = function() {
             ],
             1
           )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroSegmentacionComponent.vue?vue&type=template&id=14504668&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/RegistroSegmentacionComponent.vue?vue&type=template&id=14504668& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "v-card",
+        {
+          staticClass: "mx-auto rounded-lg py-5 px-2 mt-5 mb-5",
+          attrs: { width: "100%", align: "center", justify: "space-around" }
+        },
+        [
+          _c("validation-observer", {
+            ref: "observer",
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(ref) {
+                  var invalid = ref.invalid
+                  return [
+                    _c(
+                      "form",
+                      {
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.submit($event)
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "v-card-text",
+                          [
+                            _c(
+                              "v-container",
+                              [
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass: "font-weight-black mb-3",
+                                    attrs: { align: "center" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "Llena el Formulario para registrar una nueva segmentación de Inventario"
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-row",
+                                  [
+                                    _c(
+                                      "v-col",
+                                      { attrs: { cols: "12", md: "12" } },
+                                      [
+                                        _c("validation-provider", {
+                                          attrs: {
+                                            name: "Nombre de la segmentación",
+                                            rules: "required"
+                                          },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "default",
+                                                fn: function(ref) {
+                                                  var errors = ref.errors
+                                                  return [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        label:
+                                                          "Nombre de la segmentación*",
+                                                        "error-messages": errors
+                                                      },
+                                                      model: {
+                                                        value: _vm.descripcion,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.descripcion = $$v
+                                                        },
+                                                        expression:
+                                                          "descripcion"
+                                                      }
+                                                    })
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-col",
+                                      { attrs: { cols: "12" } },
+                                      [
+                                        _c("validation-provider", {
+                                          attrs: {
+                                            name:
+                                              "Descripción de la segmentación",
+                                            rules: "required"
+                                          },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "default",
+                                                fn: function(ref) {
+                                                  var errors = ref.errors
+                                                  return [
+                                                    _c("v-text-field", {
+                                                      attrs: {
+                                                        type: "number",
+                                                        label:
+                                                          "Descripción de la segmentación*",
+                                                        "error-messages": errors
+                                                      },
+                                                      model: {
+                                                        value: _vm.porcentaje,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.porcentaje = $$v
+                                                        },
+                                                        expression: "porcentaje"
+                                                      }
+                                                    })
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            true
+                                          )
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("v-divider"),
+                        _vm._v(" "),
+                        _c(
+                          "v-card-actions",
+                          [
+                            _c(
+                              "v-row",
+                              [
+                                _c(
+                                  "v-col",
+                                  [
+                                    _vm.editar
+                                      ? _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              color: "warning",
+                                              cols: "6",
+                                              block: "",
+                                              type: "submit"
+                                            }
+                                          },
+                                          [_vm._v("\n      Editar\n    ")]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.editar
+                                      ? _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              cols: "6",
+                                              block: "",
+                                              type: "submit",
+                                              color: "primary"
+                                            }
+                                          },
+                                          [_vm._v("\nRegistrar\n")]
+                                        )
+                                      : _vm._e()
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                }
+              }
+            ])
+          })
         ],
         1
       )
@@ -118446,6 +118963,7 @@ Vue.component('dashboard-component', __webpack_require__(/*! ./components/Dashbo
 Vue.component('cards-dashboard', __webpack_require__(/*! ./components/DashboardCardsComponent.vue */ "./resources/js/components/DashboardCardsComponent.vue")["default"]);
 Vue.component('tables-dashboard', __webpack_require__(/*! ./components/DashBoardTablesComponent.vue */ "./resources/js/components/DashBoardTablesComponent.vue")["default"]);
 Vue.component('registro-inventario', __webpack_require__(/*! ./views/RegistroInventarioComponent.vue */ "./resources/js/views/RegistroInventarioComponent.vue")["default"]);
+Vue.component('registro-segmentacion', __webpack_require__(/*! ./views/RegistroSegmentacionComponent.vue */ "./resources/js/views/RegistroSegmentacionComponent.vue")["default"]);
 Vue.component('componente-clientes', __webpack_require__(/*! ./views/ClientesComponent.vue */ "./resources/js/views/ClientesComponent.vue")["default"]);
 Vue.component('componente-solicitantes', __webpack_require__(/*! ./views/SolicitantesComponent.vue */ "./resources/js/views/SolicitantesComponent.vue")["default"]);
 Vue.component('componente-solicitudes', __webpack_require__(/*! ./views/SolicitudesComponent.vue */ "./resources/js/views/SolicitudesComponent.vue")["default"]);
@@ -119832,6 +120350,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroInventarioComponent_vue_vue_type_template_id_31259e8a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroInventarioComponent_vue_vue_type_template_id_31259e8a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/views/RegistroSegmentacionComponent.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/views/RegistroSegmentacionComponent.vue ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _RegistroSegmentacionComponent_vue_vue_type_template_id_14504668___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RegistroSegmentacionComponent.vue?vue&type=template&id=14504668& */ "./resources/js/views/RegistroSegmentacionComponent.vue?vue&type=template&id=14504668&");
+/* harmony import */ var _RegistroSegmentacionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RegistroSegmentacionComponent.vue?vue&type=script&lang=js& */ "./resources/js/views/RegistroSegmentacionComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _RegistroSegmentacionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _RegistroSegmentacionComponent_vue_vue_type_template_id_14504668___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _RegistroSegmentacionComponent_vue_vue_type_template_id_14504668___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/RegistroSegmentacionComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/RegistroSegmentacionComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/views/RegistroSegmentacionComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroSegmentacionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./RegistroSegmentacionComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroSegmentacionComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroSegmentacionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/RegistroSegmentacionComponent.vue?vue&type=template&id=14504668&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/views/RegistroSegmentacionComponent.vue?vue&type=template&id=14504668& ***!
+  \*********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroSegmentacionComponent_vue_vue_type_template_id_14504668___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./RegistroSegmentacionComponent.vue?vue&type=template&id=14504668& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RegistroSegmentacionComponent.vue?vue&type=template&id=14504668&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroSegmentacionComponent_vue_vue_type_template_id_14504668___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegistroSegmentacionComponent_vue_vue_type_template_id_14504668___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

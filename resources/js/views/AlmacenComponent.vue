@@ -36,13 +36,13 @@
        <v-tab
          href="#tab-1"
        >
-         Registro
+         Registro de Inventario
        </v-tab>
        <v-tab
          href="#tab-2"
          @click="getInventario"
        >
-        Inventario
+        Registro de Segmento
        </v-tab>
      </v-tabs>
 
@@ -62,25 +62,11 @@
 
         value="tab-2"
       >
-        <v-card flat>
-          <v-card-text>
-
-            <v-text-field
-        v-model="search1"
-        append-icon="mdi-magnify"
-        label="Buscar Partida"
-        single-line
-        hide-details
-      ></v-text-field>
-      <br> <br>
-    </v-card-title>
-    <v-data-table
-      :headers="headers"
-      :items="global"
-      :search="search1"
-    ></v-data-table>
-          </v-card-text>
-        </v-card>
+      <v-card flat>
+        <v-card-text>
+          <registro-segmentacion></registro-segmentacion>
+        </v-card-text>
+      </v-card>
       </v-tab-item>
     </v-tabs-items>
 
@@ -369,7 +355,7 @@ methods : {
           this.getAlmacen()
           this.getDisponibles()
           this.getSolicitadas()
-        
+
 
 
           swal("Éxito", "La Partida se actualizó correctamente", "error");

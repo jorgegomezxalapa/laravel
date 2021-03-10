@@ -78,3 +78,6 @@ Route::post('createUtilidad', 'UtilidadController@createUtilidad')->name('create
 Route::get('getUtilidades', 'UtilidadController@getUtilidades')->name('getUtilidades');
 Route::post('getUtilidad', 'UtilidadController@getUtilidad')->name('getUtilidad');
 Route::post('editarUtilidad', 'UtilidadController@editarUtilidad')->name('editarUtilidad');
+
+//AlmacenController
+Route::post('registroinventario', 'AlmacenController@registro')->name('registroinventario');

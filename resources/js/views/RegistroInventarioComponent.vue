@@ -339,18 +339,20 @@ import swal from 'sweetalert';
               try {
                     const response = await axios({
                       method: 'post',
-                      url: 'saveInventario',
+                      url: 'registroinventario',
                       data:{
-
+                        idSegmento:null,
                         descripcion:this.descripcion,
-                        unidadmedida:this.unidadmedida,
+                        unidaddemedida:this.unidadmedida,
                         cantidad:parseFloat(this.cantidad),
-                        precioproveedor:parseFloat(this.precioproveedor),
+                        preciodelproveedor:parseFloat(this.precioproveedor),
                         marca:this.marca,
                         modelo:this.modelo,
-                        numserie:this.numserie,
-                        notasproducto:this.notasproducto,
-                        politicas:this.switch5,
+                        numerodeserie:this.numserie,
+                        politicasdegarantia:this.switch5,
+                        notasdelproducto:this.notasproducto,
+                        archivosdenotas:null,
+                        miniatura:null,
                       }
                     })
 
@@ -378,38 +380,6 @@ import swal from 'sweetalert';
             },
 
 
-
-            async guardarConfiguracion () {
-              try {
-                  const response = await axios({
-                    method: 'post',
-                    url: 'saveConfigCotizacion',
-                    data: {
-                      id:this.$route.params.id,
-                      utilidadGlobal : this.utilidadGlobal,
-                      ivaGlobal:this.ivaGlobal,
-                      iepsGlobal:this.iepsGlobal,
-                    }
-                  })
-                  this.tipoventapartida = parseInt(response.data.cotizacion.utilidad.porcentaje)
-                  this.oivapartida = parseInt(response.data.cotizacion.ivaGlobal)
-                  this.oiepspartida = parseInt(response.data.cotizacion.iepsGlobal)
-                  this.ivapartida = this.oivapartida
-                  this.iepspartida = this.oiepspartida
-                  this.utilidadpartida = this.tipoventapartida
-
-                   swal("Éxito", "Se ha configuradado esta cotización", "success");
-
-
-
-
-              } catch (error) {
-                 swal("Error", "Ha ocurrido un error en el servidor", "warning");
-
-                  console.log(error);
-
-              }
-            },
 
 
           },
