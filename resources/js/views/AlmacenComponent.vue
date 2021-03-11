@@ -33,17 +33,18 @@
 
        slider-color="primary"
      >
+     <v-tab
+       href="#tab-2"
+       @click="getInventario"
+     >
+      Segmentos del Inventario
+     </v-tab>
        <v-tab
          href="#tab-1"
        >
          Registro de Inventario
        </v-tab>
-       <v-tab
-         href="#tab-2"
-         @click="getInventario"
-       >
-        Registro de Segmento
-       </v-tab>
+
      </v-tabs>
 
      <v-tabs-items v-model="model2">

@@ -81,3 +81,5 @@ Route::post('editarUtilidad', 'UtilidadController@editarUtilidad')->name('editar
 
 //AlmacenController
 Route::post('registroinventario', 'AlmacenController@registro')->name('registroinventario');
+Route::post('nuevoSegmento', 'AlmacenController@nuevoSegmento')->name('nuevoSegmento');
+Route::get('getSegmentos', 'AlmacenController@getSegmentos')->name('getSegmentos');

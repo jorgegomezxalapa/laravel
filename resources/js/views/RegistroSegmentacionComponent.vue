@@ -19,6 +19,7 @@
 
 
     <v-container>
+      <p class="font-weight-black mb-3"  align="center" @click="verSegmentos">Ver Segmentos registrados</p>
         <p class="font-weight-black mb-3"  align="center">Llena el Formulario para registrar una nueva segmentación de Inventario</p>
 
       <v-row>
@@ -32,7 +33,7 @@
          rules="required"
         >
           <v-text-field
-      v-model="descripcion"
+      v-model="nombre"
       label="Nombre de la segmentación*"
 :error-messages="errors"
     ></v-text-field>
@@ -50,8 +51,8 @@
          rules="required"
         >
           <v-text-field
-      v-model="porcentaje"
- type="number"
+      v-model="descripcion"
+
       label="Descripción de la segmentación*"
 :error-messages="errors"
     ></v-text-field>
@@ -67,21 +68,11 @@
     <v-card-actions>
         <v-row>
             <v-col>
-                <v-btn
 
-      color="warning"
-      cols="6"
-      block
-      v-if="editar"
-       type="submit"
-
-    >
-      Editar
-    </v-btn>
     <v-btn
     cols="6"
     block
-    v-if="!editar"
+
      type="submit"
 color="primary"
 
@@ -103,6 +94,40 @@ Registrar
 </validation-observer>
 
   </v-card>
+
+  <v-dialog
+      v-model="dialog"
+    
+    >
+
+      <v-card>
+        <v-card-title class="headline grey lighten-2">
+          Lista de Segmentos registrados
+        </v-card-title>
+
+        <v-card-text>
+          <v-data-table
+    :headers="headers"
+    :items="segmentos"
+    :items-per-page="5"
+    class="elevation-1"
+  ></v-data-table>
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            text
+            @click="dialog = false"
+          >
+            Cerrar
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
 
     </v-container>
 </template>
@@ -137,61 +162,40 @@ message: 'El formato de email debe ser válido',
 
     export default {
         mounted() {
-          this.verificar()
+
         },
         components: {
         ValidationProvider,
         ValidationObserver,
       },
         data: () => ({
-          editar:false,
+          headers: [
+          {
+            text: 'Fecha de Registro',
+            align: 'start',
+            sortable: false,
+            value: 'created_at',
+          },
+          { text: 'Nombre', value: 'nombre' },
+          { text: 'Descripción', value: 'descripcion' },
+          { text: 'Acciones', value: 'acciones' },
+
+        ],
+        segmentos: [],
+         dialog: false,
+          nombre:null,
           descripcion:null,
-          porcentaje:null,
-          utilidad:[],
          }),
          methods:{
-           async verificar(){
-              if (this.$route.params.id != undefined) {
-                 this.editar = true
-                 this.getEditar()
-             }else{
-
-             }
-           },
-           async getEditar(){
-             try {
-                 const response = await axios({
-                   method: 'post',
-                   url: 'getUtilidad',
-                   data: {
-                     id: this.$route.params.id,
-                   }
-                 })
-                 this.utilidad= response.data.response
-                 console.log("solicitd", this.utilidad.agente)
-                 this.descripcion = this.utilidad.descripcion
-                 this.porcentaje = this.utilidad.porcentaje
 
 
-             } catch (error) {
-                swal("Error", "Ha ocurrido un error en el servidor", "warning");
-
-                 console.log(error);
-
-             }
-
-           },
            async submit (evt) {
 
          evt.preventDefault();
          const result = await this.$refs.observer.validate()
 
          if (result) {
-           if (this.editar == true ) {
-             this.editarUtilidad()
-           }else{
-             this.registrarUtilidad()
-           }
+            this.registrarUtilidad()
 
          }
        },
@@ -199,16 +203,17 @@ message: 'El formato de email debe ser válido',
          try {
              const response = await axios({
                method: 'post',
-               url: 'createUtilidad',
+               url: 'nuevoSegmento',
                data: {
+                 nombre: this.nombre,
                  descripcion: this.descripcion,
-                 porcentaje: this.porcentaje,
 
                }
              })
 
-             swal("Éxito", "El Tipos de Venta se ha registrado de manera correcta", "success");
-              this.$router.push({ name: 'utilidades' });
+             swal("Éxito", "El segmento "+ this.nombre+ "se ha registrado de manera correcta", "success");
+            this.nombre=null
+            this.descripcion=null
 
          } catch (error) {
             swal("Error", "Ha ocurrido un error en el servidor", "warning");
@@ -217,22 +222,21 @@ message: 'El formato de email debe ser válido',
 
          }
        },
-       async editarUtilidad () {
 
+       async verSegmentos() {
+         this.getSegmentos()
+         this.dialog = true
+       },
 
+       async getSegmentos () {
          try {
              const response = await axios({
-               method: 'post',
-               url: 'editarUtilidad',
-               data: {
-                 id: this.$route.params.id,
-                 descripcion: this.descripcion,
-                 porcentaje: this.porcentaje,
-               }
-             })
-              this.$router.push({ name: 'utilidades' });
-             swal("Éxito", "El tipo de Venta se ha editado de manera correcta", "success");
+               method: 'get',
+               url: 'getSegmentos',
 
+             })
+
+          this.segmentos = response.data.response
 
          } catch (error) {
             swal("Error", "Ha ocurrido un error en el servidor", "warning");
@@ -240,7 +244,9 @@ message: 'El formato de email debe ser válido',
              console.log(error);
 
          }
+
        },
+
          },
 
     }

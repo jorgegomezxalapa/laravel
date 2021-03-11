@@ -4070,6 +4070,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -8748,6 +8749,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -8770,37 +8796,56 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
   message: 'El formato de email debe ser válido'
 }));
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    this.verificar();
-  },
+  mounted: function mounted() {},
   components: {
     ValidationProvider: vee_validate__WEBPACK_IMPORTED_MODULE_2__["ValidationProvider"],
     ValidationObserver: vee_validate__WEBPACK_IMPORTED_MODULE_2__["ValidationObserver"]
   },
   data: function data() {
     return {
-      editar: false,
-      descripcion: null,
-      porcentaje: null,
-      utilidad: []
+      headers: [{
+        text: 'Fecha de Registro',
+        align: 'start',
+        sortable: false,
+        value: 'created_at'
+      }, {
+        text: 'Nombre',
+        value: 'nombre'
+      }, {
+        text: 'Descripción',
+        value: 'descripcion'
+      }, {
+        text: 'Acciones',
+        value: 'acciones'
+      }],
+      segmentos: [],
+      dialog: false,
+      nombre: null,
+      descripcion: null
     };
   },
   methods: {
-    verificar: function verificar() {
+    submit: function submit(evt) {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var result;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (_this.$route.params.id != undefined) {
-                  _this.editar = true;
+                evt.preventDefault();
+                _context.next = 3;
+                return _this.$refs.observer.validate();
 
-                  _this.getEditar();
-                } else {}
+              case 3:
+                result = _context.sent;
 
-              case 1:
+                if (result) {
+                  _this.registrarUtilidad();
+                }
+
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -8808,7 +8853,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
         }, _callee);
       }))();
     },
-    getEditar: function getEditar() {
+    registrarUtilidad: function registrarUtilidad() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -8821,60 +8866,48 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
                 _context2.next = 3;
                 return axios({
                   method: 'post',
-                  url: 'getUtilidad',
+                  url: 'nuevoSegmento',
                   data: {
-                    id: _this2.$route.params.id
+                    nombre: _this2.nombre,
+                    descripcion: _this2.descripcion
                   }
                 });
 
               case 3:
                 response = _context2.sent;
-                _this2.utilidad = response.data.response;
-                console.log("solicitd", _this2.utilidad.agente);
-                _this2.descripcion = _this2.utilidad.descripcion;
-                _this2.porcentaje = _this2.utilidad.porcentaje;
-                _context2.next = 14;
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "El segmento " + _this2.nombre + "se ha registrado de manera correcta", "success");
+                _this2.nombre = null;
+                _this2.descripcion = null;
+                _context2.next = 13;
                 break;
 
-              case 10:
-                _context2.prev = 10;
+              case 9:
+                _context2.prev = 9;
                 _context2.t0 = _context2["catch"](0);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
                 console.log(_context2.t0);
 
-              case 14:
+              case 13:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 10]]);
+        }, _callee2, null, [[0, 9]]);
       }))();
     },
-    submit: function submit(evt) {
+    verSegmentos: function verSegmentos() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var result;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                evt.preventDefault();
-                _context3.next = 3;
-                return _this3.$refs.observer.validate();
+                _this3.getSegmentos();
 
-              case 3:
-                result = _context3.sent;
+                _this3.dialog = true;
 
-                if (result) {
-                  if (_this3.editar == true) {
-                    _this3.editarUtilidad();
-                  } else {
-                    _this3.registrarUtilidad();
-                  }
-                }
-
-              case 5:
+              case 2:
               case "end":
                 return _context3.stop();
             }
@@ -8882,7 +8915,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
         }, _callee3);
       }))();
     },
-    registrarUtilidad: function registrarUtilidad() {
+    getSegmentos: function getSegmentos() {
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
@@ -8894,83 +8927,28 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('email', _objectSpre
                 _context4.prev = 0;
                 _context4.next = 3;
                 return axios({
-                  method: 'post',
-                  url: 'createUtilidad',
-                  data: {
-                    descripcion: _this4.descripcion,
-                    porcentaje: _this4.porcentaje
-                  }
+                  method: 'get',
+                  url: 'getSegmentos'
                 });
 
               case 3:
                 response = _context4.sent;
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "El Tipos de Venta se ha registrado de manera correcta", "success");
-
-                _this4.$router.push({
-                  name: 'utilidades'
-                });
-
-                _context4.next = 12;
+                _this4.segmentos = response.data.response;
+                _context4.next = 11;
                 break;
 
-              case 8:
-                _context4.prev = 8;
+              case 7:
+                _context4.prev = 7;
                 _context4.t0 = _context4["catch"](0);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
                 console.log(_context4.t0);
 
-              case 12:
+              case 11:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4, null, [[0, 8]]);
-      }))();
-    },
-    editarUtilidad: function editarUtilidad() {
-      var _this5 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                _context5.prev = 0;
-                _context5.next = 3;
-                return axios({
-                  method: 'post',
-                  url: 'editarUtilidad',
-                  data: {
-                    id: _this5.$route.params.id,
-                    descripcion: _this5.descripcion,
-                    porcentaje: _this5.porcentaje
-                  }
-                });
-
-              case 3:
-                response = _context5.sent;
-
-                _this5.$router.push({
-                  name: 'utilidades'
-                });
-
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "El tipo de Venta se ha editado de manera correcta", "success");
-                _context5.next = 12;
-                break;
-
-              case 8:
-                _context5.prev = 8;
-                _context5.t0 = _context5["catch"](0);
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
-                console.log(_context5.t0);
-
-              case 12:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5, null, [[0, 8]]);
+        }, _callee4, null, [[0, 7]]);
       }))();
     }
   }
@@ -52914,23 +52892,23 @@ var render = function() {
                                         [
                                           _c(
                                             "v-tab",
-                                            { attrs: { href: "#tab-1" } },
-                                            [
-                                              _vm._v(
-                                                "\n         Registro de Inventario\n       "
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-tab",
                                             {
                                               attrs: { href: "#tab-2" },
                                               on: { click: _vm.getInventario }
                                             },
                                             [
                                               _vm._v(
-                                                "\n        Registro de Segmento\n       "
+                                                "\n      Segmentos del Inventario\n     "
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-tab",
+                                            { attrs: { href: "#tab-1" } },
+                                            [
+                                              _vm._v(
+                                                "\n         Registro de Inventario\n       "
                                               )
                                             ]
                                           )
@@ -57574,6 +57552,16 @@ var render = function() {
                                   "p",
                                   {
                                     staticClass: "font-weight-black mb-3",
+                                    attrs: { align: "center" },
+                                    on: { click: _vm.verSegmentos }
+                                  },
+                                  [_vm._v("Ver Segmentos registrados")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass: "font-weight-black mb-3",
                                     attrs: { align: "center" }
                                   },
                                   [
@@ -57609,14 +57597,13 @@ var render = function() {
                                                         "error-messages": errors
                                                       },
                                                       model: {
-                                                        value: _vm.descripcion,
+                                                        value: _vm.nombre,
                                                         callback: function(
                                                           $$v
                                                         ) {
-                                                          _vm.descripcion = $$v
+                                                          _vm.nombre = $$v
                                                         },
-                                                        expression:
-                                                          "descripcion"
+                                                        expression: "nombre"
                                                       }
                                                     })
                                                   ]
@@ -57650,19 +57637,19 @@ var render = function() {
                                                   return [
                                                     _c("v-text-field", {
                                                       attrs: {
-                                                        type: "number",
                                                         label:
                                                           "Descripción de la segmentación*",
                                                         "error-messages": errors
                                                       },
                                                       model: {
-                                                        value: _vm.porcentaje,
+                                                        value: _vm.descripcion,
                                                         callback: function(
                                                           $$v
                                                         ) {
-                                                          _vm.porcentaje = $$v
+                                                          _vm.descripcion = $$v
                                                         },
-                                                        expression: "porcentaje"
+                                                        expression:
+                                                          "descripcion"
                                                       }
                                                     })
                                                   ]
@@ -57697,35 +57684,18 @@ var render = function() {
                                 _c(
                                   "v-col",
                                   [
-                                    _vm.editar
-                                      ? _c(
-                                          "v-btn",
-                                          {
-                                            attrs: {
-                                              color: "warning",
-                                              cols: "6",
-                                              block: "",
-                                              type: "submit"
-                                            }
-                                          },
-                                          [_vm._v("\n      Editar\n    ")]
-                                        )
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    !_vm.editar
-                                      ? _c(
-                                          "v-btn",
-                                          {
-                                            attrs: {
-                                              cols: "6",
-                                              block: "",
-                                              type: "submit",
-                                              color: "primary"
-                                            }
-                                          },
-                                          [_vm._v("\nRegistrar\n")]
-                                        )
-                                      : _vm._e()
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: {
+                                          cols: "6",
+                                          block: "",
+                                          type: "submit",
+                                          color: "primary"
+                                        }
+                                      },
+                                      [_vm._v("\nRegistrar\n")]
+                                    )
                                   ],
                                   1
                                 )
@@ -57743,6 +57713,69 @@ var render = function() {
               }
             ])
           })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          model: {
+            value: _vm.dialog,
+            callback: function($$v) {
+              _vm.dialog = $$v
+            },
+            expression: "dialog"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            [
+              _c("v-card-title", { staticClass: "headline grey lighten-2" }, [
+                _vm._v("\n          Lista de Segmentos registrados\n        ")
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [
+                  _c("v-data-table", {
+                    staticClass: "elevation-1",
+                    attrs: {
+                      headers: _vm.headers,
+                      items: _vm.segmentos,
+                      "items-per-page": 5
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-divider"),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "primary", text: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.dialog = false
+                        }
+                      }
+                    },
+                    [_vm._v("\n            Cerrar\n          ")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
         ],
         1
       )
