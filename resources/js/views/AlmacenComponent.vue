@@ -135,6 +135,7 @@
 
         <v-tab-item
         >
+
           <v-card flat>
             <v-card-text>
               <v-card flat>
@@ -143,7 +144,7 @@
                   <v-text-field
               v-model="search3"
               append-icon="mdi-magnify"
-              label="Buscar Partida"
+              label="Buscar Producto"
               single-line
               hide-details
             ></v-text-field>
@@ -154,12 +155,15 @@
             :items="disponibles"
             :search="search3"
           >
+          <template v-slot:item.politicasdegarantia="{ item }">
+
+            <span v-if ="item.politicasdegarantia == 1">Sí Aplica</span>
+            <span v-else>No Aplica</span>
+          </template>
+
           <template v-slot:item.acciones="{ item }">
-
-
             <v-tooltip top>
             <template v-slot:activator="{ on, attrs }">
-
             <v-btn
              v-bind="attrs"
                 v-on="on"
@@ -173,10 +177,8 @@
                     </v-btn>
 
                 </template>
-                <span>Actualizar Inventario</span>
+                <span>Registrar Salida</span>
             </v-tooltip>
-
-
           </template>
         </v-data-table>
                 </v-card-text>
@@ -195,7 +197,7 @@
   </v-card>
   <v-dialog
       v-model="dialog"
-      width="500"
+
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -211,21 +213,42 @@
 
       <v-card>
         <v-card-title class="headline grey lighten-2">
-        Modificación de Partida
+        Salida de Almacén
         </v-card-title>
 
         <v-card-text>
+<br>
+          <v-textarea
+          outlined
+
+           label="Concepto de salida de mercancía"
+             v-model="conceptosalida"
+
+         ></v-textarea>
+
+         <v-file-input
+v-model="files"
+placeholder="Ingresa tus archivos"
+label="Archivos de evidencia salida de mercancía"
+multiple
+prepend-icon="mdi-paperclip"
+>
+<template v-slot:selection="{ text }">
+<v-chip
+small
+label
+color="primary"
+>
+{{ text }}
+</v-chip>
+</template>
+</v-file-input>
 
           <v-text-field
-            v-model="cantidadingresada"
-            label="Digite la cantidad a ingresar"
-            required
-          ></v-text-field>
+            v-model="cantidadsalida"
+            label="Cantidad de salida"
+              type="number"
 
-          <v-text-field
-            v-model="cantidadretirada"
-            label="Digite la cantidad a retirar"
-            required
           ></v-text-field>
         </v-card-text>
 
@@ -236,9 +259,9 @@
           <v-btn
             color="primary"
             text
-            @click="actualizarPartida"
+            @click="salidaPartida"
           >
-            Actualizar partida
+            Confirmar Salida
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -255,9 +278,11 @@ export default {
 data () {
   return {
     idEditar:null,
+        files:[],
     dialog:false,
     cantidadingresada:null,
-    cantidadretirada:null,
+    cantidadsalida:null,
+    conceptosalida:null,
     tab: null,
     model2:'tab-1',
     search1:null,
@@ -306,20 +331,24 @@ data () {
             ],
 
             headersDisponibles: [
-              { text: '# Folio Solicitud|Cotización', value: 'cotizacion.solicitud.folio' },
+              { text: 'Fecha de Registro', value: 'created_at' },
                   {
-                    text: 'Descripcion',
+                    text: 'Segmento',
                     align: 'start',
                     filterable: false,
-                    value: 'descripcion',
+                    value: 'segmento.nombre',
                   },
-                  { text: 'Precio de Proveedor', value: 'precioproveedor' },
-                  { text: 'Disponible', value: 'disponible' },
-                    { text: 'Solicitado', value: 'solicitadas' },
-                  { text: 'Unidad de Medida', value: 'unidadmedida' },
+                  { text: 'Miniatura', value: '' },
+                  { text: 'Cantidad Ingresada', value: 'cantidad' },
+                  { text: 'Cantidad Disponible', value: 'disponible' },
+                  { text: 'Unidad de Medida', value: 'unidaddemedida' },
+                  { text: 'Descripcion', value: 'descripcion' },
+                  { text: 'Precio', value: 'preciodelproveedor' },
+                    { text: 'Políticas de Garantía', value: 'politicasdegarantia' },
                   { text: 'Marca', value: 'marca' },
                   { text: 'Modelo', value: 'modelo' },
-                  { text: 'Número de Serie', value: 'numserie' },
+                  { text: 'Número de Serie', value: 'numerodeserie' },
+                  { text: 'Notas del Producto', value: 'notasdelproducto' },
                   { text: 'Acciones', align: 'center', value: 'acciones' },
 
                 ],
@@ -339,27 +368,22 @@ methods : {
     console.log(item)
     this.dialog = true
   },
-  async actualizarPartida() {
+  async salidaPartida() {
     this.dialog = false
 
     try {
           const response = await axios({
             method: 'post',
-            url: 'actualizarPInventario',
+            url: 'salidaPartida',
             data: {
               id: this.idEditar,
-              sumar:parseInt(this.cantidadingresada),
-              restar:parseInt(this.cantidadretirada),
+              conceptosalida:this.conceptosalida,
+              cantidadsalida:parseInt(this.cantidadsalida),
             }
 
           })
-          this.getAlmacen()
-          this.getDisponibles()
-          this.getSolicitadas()
 
-
-
-          swal("Éxito", "La Partida se actualizó correctamente", "error");
+          swal("Éxito", "La salida se ha realizado con éxito", "error");
       } catch (error) {
 
          swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");

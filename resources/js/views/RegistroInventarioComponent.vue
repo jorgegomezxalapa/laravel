@@ -13,6 +13,18 @@
 
                       md="4"
                     >
+                    <v-select
+            v-model="segmento"
+            :items="segmentos"
+            item-text="nombre"
+            item-value="id"
+
+            label="Seleccione un segmento"
+            data-vv-name="select"
+
+          >
+
+          </v-select>
 
 
                      <v-switch
@@ -20,6 +32,8 @@
      inset
      label="¿Aplica Políticas de Garantía?"
    ></v-switch>
+
+
                   </v-col>
                   <v-col
                           cols="12"
@@ -187,11 +201,15 @@ import { required, digits, email, max, regex } from 'vee-validate/dist/rules'
 import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
 import swal from 'sweetalert';
     export default {
+      
         mounted() {
+          this.getSegmentos()
 
         },
         data: () => ({
           panel: [0, 1],
+          segmentos:[],
+          segmento:null,
      disablednew: false,
      readonlynew: false,
           oivapartida:16,
@@ -334,14 +352,34 @@ import swal from 'sweetalert';
          },
           methods:{
 
+                   async getSegmentos () {
+                     try {
+                         const response = await axios({
+                           method: 'get',
+                           url: 'getSegmentos',
+
+                         })
+
+                      this.segmentos = response.data.response
+
+                     } catch (error) {
+                        swal("Error", "Ha ocurrido un error en el servidor", "warning");
+
+                         console.log(error);
+
+                     }
+
+                   },
+
 
             async guardarIventario(){
+              console.log(this.segmento)
               try {
                     const response = await axios({
                       method: 'post',
                       url: 'registroinventario',
                       data:{
-                        idSegmento:null,
+                        idSegmento:this.segmento,
                         descripcion:this.descripcion,
                         unidaddemedida:this.unidadmedida,
                         cantidad:parseFloat(this.cantidad),

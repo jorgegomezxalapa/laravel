@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Almacen;
 use App\Segmento;
+use App\Salida;
 // use App\Solicitud;
 // use App\Cotizacion;
 // use App\Partida;
@@ -20,6 +21,7 @@ class AlmacenController extends Controller
         $registro->descripcion = $request->descripcion;
         $registro->unidaddemedida = $request->unidaddemedida;
         $registro->cantidad = $request->cantidad;
+        $registro->disponible = $request->cantidad;
         $registro->preciodelproveedor = $request->preciodelproveedor;
         $registro->marca = $request->marca;
         $registro->modelo = $request->modelo;
@@ -46,6 +48,27 @@ class AlmacenController extends Controller
     public function getSegmentos( ){
         $segmentos = Segmento::all();
         return response()->json(['response' => $segmentos],200);
+
+    }
+
+    public function getAlmacenDisponibles () {
+      $disponible = Almacen::with('segmento')->get();
+      return response()->json(['response' => $disponible],200);
+
+    }
+
+    public function salidaPartida( Request $request ){
+        $salida = new Salida();
+        $salida->idProducto = $request->id;
+        $salida->cantidad = $request->cantidadsalida;
+        $salida->concepto = $request->conceptosalida;
+        $salida->save();
+
+        $descuento = Almacen::where('id', '=', $request->id)->first();
+        $resta = intval($descuento->disponible) - intval($request->cantidadsalida) ;
+        $descuento->disponible = $resta;
+        $descuento->save();
+        return "true";
 
     }
 }

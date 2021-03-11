@@ -64,7 +64,7 @@ Route::get('catalogosSolicitud', 'CatalogosController@catalogosSolicitud')->name
 Route::get('getCotizaciones', 'CotizacionController@getCotizaciones')->name('getCotizaciones');
 Route::get('getAlmacen', 'CotizacionController@getAlmacen')->name('getAlmacen');
 Route::get('getAlmacenSolicitadas', 'CotizacionController@getAlmacenSolicitadas')->name('getAlmacenSolicitadas');
-Route::get('getAlmacenDisponibles', 'CotizacionController@getAlmacenDisponibles')->name('getAlmacenDisponibles');
+
 Route::get('actualizarPInventario', 'CotizacionController@actualizarPInventario')->name('actualizarPInventario');
 Route::post('getCotizacion', 'CotizacionController@getCotizacion')->name('getCotizacion');
 Route::post('saveConfigCotizacion', 'CotizacionController@saveConfigCotizacion')->name('saveConfigCotizacion');
@@ -83,3 +83,5 @@ Route::post('editarUtilidad', 'UtilidadController@editarUtilidad')->name('editar
 Route::post('registroinventario', 'AlmacenController@registro')->name('registroinventario');
 Route::post('nuevoSegmento', 'AlmacenController@nuevoSegmento')->name('nuevoSegmento');
 Route::get('getSegmentos', 'AlmacenController@getSegmentos')->name('getSegmentos');
+Route::get('getAlmacenDisponibles', 'AlmacenController@getAlmacenDisponibles')->name('getAlmacenDisponibles');
+Route::post('salidaPartida', 'AlmacenController@salidaPartida')->name('salidaPartida');

@@ -13,6 +13,7 @@ class Almacen extends Model
     'descripcion',
     'unidaddemedida',
     'cantidad',
+    'disponible',
     'preciodelproveedor',
     'marca',
     'modelo',
@@ -22,6 +23,10 @@ class Almacen extends Model
     'archivosdenotas',
     'miniatura',
     ];
+
+    function segmento(){
+        return $this->hasOne('App\Segmento','id','idSegmento');
+    }
 
 
 }

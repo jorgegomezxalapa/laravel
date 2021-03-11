@@ -19,6 +19,7 @@ class CreateProductosTable extends Migration
             $table->text('descripcion',65535)->nullable();
             $table->string('unidaddemedida',80)->nullable();
             $table->float('cantidad', 8, 2)->nullable();
+            $table->float('disponible', 8, 2)->nullable();
             $table->float('preciodelproveedor', 8, 2)->nullable();
             $table->string('marca',100)->nullable();
             $table->string('modelo',104)->nullable();

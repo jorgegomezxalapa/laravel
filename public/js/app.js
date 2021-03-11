@@ -4071,6 +4071,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -4080,9 +4103,11 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   data: function data() {
     return {
       idEditar: null,
+      files: [],
       dialog: false,
       cantidadingresada: null,
-      cantidadretirada: null,
+      cantidadsalida: null,
+      conceptosalida: null,
       tab: null,
       model2: 'tab-1',
       search1: null,
@@ -4158,25 +4183,34 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         value: 'acciones'
       }],
       headersDisponibles: [{
-        text: '# Folio Solicitud|Cotización',
-        value: 'cotizacion.solicitud.folio'
+        text: 'Fecha de Registro',
+        value: 'created_at'
       }, {
-        text: 'Descripcion',
+        text: 'Segmento',
         align: 'start',
         filterable: false,
-        value: 'descripcion'
+        value: 'segmento.nombre'
       }, {
-        text: 'Precio de Proveedor',
-        value: 'precioproveedor'
+        text: 'Miniatura',
+        value: ''
       }, {
-        text: 'Disponible',
+        text: 'Cantidad Ingresada',
+        value: 'cantidad'
+      }, {
+        text: 'Cantidad Disponible',
         value: 'disponible'
       }, {
-        text: 'Solicitado',
-        value: 'solicitadas'
-      }, {
         text: 'Unidad de Medida',
-        value: 'unidadmedida'
+        value: 'unidaddemedida'
+      }, {
+        text: 'Descripcion',
+        value: 'descripcion'
+      }, {
+        text: 'Precio',
+        value: 'preciodelproveedor'
+      }, {
+        text: 'Políticas de Garantía',
+        value: 'politicasdegarantia'
       }, {
         text: 'Marca',
         value: 'marca'
@@ -4185,7 +4219,10 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         value: 'modelo'
       }, {
         text: 'Número de Serie',
-        value: 'numserie'
+        value: 'numerodeserie'
+      }, {
+        text: 'Notas del Producto',
+        value: 'notasdelproducto'
       }, {
         text: 'Acciones',
         align: 'center',
@@ -4220,7 +4257,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         }, _callee);
       }))();
     },
-    actualizarPartida: function actualizarPartida() {
+    salidaPartida: function salidaPartida() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -4234,39 +4271,32 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
                 _context2.next = 4;
                 return axios({
                   method: 'post',
-                  url: 'actualizarPInventario',
+                  url: 'salidaPartida',
                   data: {
                     id: _this2.idEditar,
-                    sumar: parseInt(_this2.cantidadingresada),
-                    restar: parseInt(_this2.cantidadretirada)
+                    conceptosalida: _this2.conceptosalida,
+                    cantidadsalida: parseInt(_this2.cantidadsalida)
                   }
                 });
 
               case 4:
                 response = _context2.sent;
-
-                _this2.getAlmacen();
-
-                _this2.getDisponibles();
-
-                _this2.getSolicitadas();
-
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "La Partida se actualizó correctamente", "error");
-                _context2.next = 15;
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "La salida se ha realizado con éxito", "error");
+                _context2.next = 12;
                 break;
 
-              case 11:
-                _context2.prev = 11;
+              case 8:
+                _context2.prev = 8;
                 _context2.t0 = _context2["catch"](1);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
                 console.log(_context2.t0);
 
-              case 15:
+              case 12:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[1, 11]]);
+        }, _callee2, null, [[1, 8]]);
       }))();
     },
     getAlmacen: function getAlmacen() {
@@ -8380,16 +8410,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    this.getSegmentos();
+  },
   data: function data() {
     return {
       panel: [0, 1],
+      segmentos: [],
+      segmento: null,
       disablednew: false,
       readonlynew: false,
       oivapartida: 16,
@@ -8549,7 +8597,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     }
   },
   methods: {
-    guardarIventario: function guardarIventario() {
+    getSegmentos: function getSegmentos() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -8561,51 +8609,88 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
                 _context.prev = 0;
                 _context.next = 3;
                 return axios({
+                  method: 'get',
+                  url: 'getSegmentos'
+                });
+
+              case 3:
+                response = _context.sent;
+                _this.segmentos = response.data.response;
+                _context.next = 11;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Error", "Ha ocurrido un error en el servidor", "warning");
+                console.log(_context.t0);
+
+              case 11:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 7]]);
+      }))();
+    },
+    guardarIventario: function guardarIventario() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                console.log(_this2.segmento);
+                _context2.prev = 1;
+                _context2.next = 4;
+                return axios({
                   method: 'post',
                   url: 'registroinventario',
                   data: {
-                    idSegmento: null,
-                    descripcion: _this.descripcion,
-                    unidaddemedida: _this.unidadmedida,
-                    cantidad: parseFloat(_this.cantidad),
-                    preciodelproveedor: parseFloat(_this.precioproveedor),
-                    marca: _this.marca,
-                    modelo: _this.modelo,
-                    numerodeserie: _this.numserie,
-                    politicasdegarantia: _this.switch5,
-                    notasdelproducto: _this.notasproducto,
+                    idSegmento: _this2.segmento,
+                    descripcion: _this2.descripcion,
+                    unidaddemedida: _this2.unidadmedida,
+                    cantidad: parseFloat(_this2.cantidad),
+                    preciodelproveedor: parseFloat(_this2.precioproveedor),
+                    marca: _this2.marca,
+                    modelo: _this2.modelo,
+                    numerodeserie: _this2.numserie,
+                    politicasdegarantia: _this2.switch5,
+                    notasdelproducto: _this2.notasproducto,
                     archivosdenotas: null,
                     miniatura: null
                   }
                 });
 
-              case 3:
-                response = _context.sent;
+              case 4:
+                response = _context2.sent;
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "La partida se registró con éxito", "success");
-                _this.descripcion = null;
-                _this.unidadmedida = null;
-                _this.cantidad = 0;
-                _this.precioproveedor = 0;
-                _this.marca = null;
-                _this.modelo = null;
-                _this.numserie = null;
-                _this.notasproducto = null;
-                _this.switch5 = false;
-                _context.next = 20;
+                _this2.descripcion = null;
+                _this2.unidadmedida = null;
+                _this2.cantidad = 0;
+                _this2.precioproveedor = 0;
+                _this2.marca = null;
+                _this2.modelo = null;
+                _this2.numserie = null;
+                _this2.notasproducto = null;
+                _this2.switch5 = false;
+                _context2.next = 21;
                 break;
 
-              case 16:
-                _context.prev = 16;
-                _context.t0 = _context["catch"](0);
+              case 17:
+                _context2.prev = 17;
+                _context2.t0 = _context2["catch"](1);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
-                console.log(_context.t0);
+                console.log(_context2.t0);
 
-              case 20:
+              case 21:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, null, [[0, 16]]);
+        }, _callee2, null, [[1, 17]]);
       }))();
     }
   }
@@ -53149,7 +53234,7 @@ var render = function() {
                                       _c("v-text-field", {
                                         attrs: {
                                           "append-icon": "mdi-magnify",
-                                          label: "Buscar Partida",
+                                          label: "Buscar Producto",
                                           "single-line": "",
                                           "hide-details": ""
                                         },
@@ -53173,6 +53258,21 @@ var render = function() {
                                           search: _vm.search3
                                         },
                                         scopedSlots: _vm._u([
+                                          {
+                                            key: "item.politicasdegarantia",
+                                            fn: function(ref) {
+                                              var item = ref.item
+                                              return [
+                                                item.politicasdegarantia == 1
+                                                  ? _c("span", [
+                                                      _vm._v("Sí Aplica")
+                                                    ])
+                                                  : _c("span", [
+                                                      _vm._v("No Aplica")
+                                                    ])
+                                              ]
+                                            }
+                                          },
                                           {
                                             key: "item.acciones",
                                             fn: function(ref) {
@@ -53241,9 +53341,7 @@ var render = function() {
                                                   [
                                                     _vm._v(" "),
                                                     _c("span", [
-                                                      _vm._v(
-                                                        "Actualizar Inventario"
-                                                      )
+                                                      _vm._v("Registrar Salida")
                                                     ])
                                                   ]
                                                 )
@@ -53284,7 +53382,6 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { width: "500" },
           scopedSlots: _vm._u([
             {
               key: "activator",
@@ -53329,37 +53426,73 @@ var render = function() {
             "v-card",
             [
               _c("v-card-title", { staticClass: "headline grey lighten-2" }, [
-                _vm._v("\n        Modificación de Partida\n        ")
+                _vm._v("\n        Salida de Almacén\n        ")
               ]),
               _vm._v(" "),
               _c(
                 "v-card-text",
                 [
-                  _c("v-text-field", {
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("v-textarea", {
                     attrs: {
-                      label: "Digite la cantidad a ingresar",
-                      required: ""
+                      outlined: "",
+                      label: "Concepto de salida de mercancía"
                     },
                     model: {
-                      value: _vm.cantidadingresada,
+                      value: _vm.conceptosalida,
                       callback: function($$v) {
-                        _vm.cantidadingresada = $$v
+                        _vm.conceptosalida = $$v
                       },
-                      expression: "cantidadingresada"
+                      expression: "conceptosalida"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("v-file-input", {
+                    attrs: {
+                      placeholder: "Ingresa tus archivos",
+                      label: "Archivos de evidencia salida de mercancía",
+                      multiple: "",
+                      "prepend-icon": "mdi-paperclip"
+                    },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "selection",
+                        fn: function(ref) {
+                          var text = ref.text
+                          return [
+                            _c(
+                              "v-chip",
+                              {
+                                attrs: {
+                                  small: "",
+                                  label: "",
+                                  color: "primary"
+                                }
+                              },
+                              [_vm._v("\n" + _vm._s(text) + "\n")]
+                            )
+                          ]
+                        }
+                      }
+                    ]),
+                    model: {
+                      value: _vm.files,
+                      callback: function($$v) {
+                        _vm.files = $$v
+                      },
+                      expression: "files"
                     }
                   }),
                   _vm._v(" "),
                   _c("v-text-field", {
-                    attrs: {
-                      label: "Digite la cantidad a retirar",
-                      required: ""
-                    },
+                    attrs: { label: "Cantidad de salida", type: "number" },
                     model: {
-                      value: _vm.cantidadretirada,
+                      value: _vm.cantidadsalida,
                       callback: function($$v) {
-                        _vm.cantidadretirada = $$v
+                        _vm.cantidadsalida = $$v
                       },
-                      expression: "cantidadretirada"
+                      expression: "cantidadsalida"
                     }
                   })
                 ],
@@ -53377,9 +53510,9 @@ var render = function() {
                     "v-btn",
                     {
                       attrs: { color: "primary", text: "" },
-                      on: { click: _vm.actualizarPartida }
+                      on: { click: _vm.salidaPartida }
                     },
-                    [_vm._v("\n            Actualizar partida\n          ")]
+                    [_vm._v("\n            Confirmar Salida\n          ")]
                   )
                 ],
                 1
@@ -57211,6 +57344,23 @@ var render = function() {
                     "v-col",
                     { attrs: { cols: "12", md: "4" } },
                     [
+                      _c("v-select", {
+                        attrs: {
+                          items: _vm.segmentos,
+                          "item-text": "nombre",
+                          "item-value": "id",
+                          label: "Seleccione un segmento",
+                          "data-vv-name": "select"
+                        },
+                        model: {
+                          value: _vm.segmento,
+                          callback: function($$v) {
+                            _vm.segmento = $$v
+                          },
+                          expression: "segmento"
+                        }
+                      }),
+                      _vm._v(" "),
                       _c("v-switch", {
                         attrs: {
                           inset: "",
