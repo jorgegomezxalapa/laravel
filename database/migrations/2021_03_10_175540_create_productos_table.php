@@ -15,6 +15,7 @@ class CreateProductosTable extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('idEmpleado')->nullable();
             $table->integer('idSegmento')->nullable();
             $table->text('descripcion',65535)->nullable();
             $table->string('unidaddemedida',80)->nullable();

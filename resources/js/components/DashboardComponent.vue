@@ -236,6 +236,8 @@
             this.name = this.perfil.name
             this.email = this.perfil.email
 
+            localStorage.idPerfil = this.perfil.id;
+
 
         } catch (error) {
             // Error 😨

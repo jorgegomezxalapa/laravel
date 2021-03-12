@@ -201,7 +201,7 @@ import { required, digits, email, max, regex } from 'vee-validate/dist/rules'
 import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
 import swal from 'sweetalert';
     export default {
-      
+
         mounted() {
           this.getSegmentos()
 
@@ -379,6 +379,7 @@ import swal from 'sweetalert';
                       method: 'post',
                       url: 'registroinventario',
                       data:{
+                        idEmpleado:parseInt(localStorage.getItem('idPerfil')),
                         idSegmento:this.segmento,
                         descripcion:this.descripcion,
                         unidaddemedida:this.unidadmedida,

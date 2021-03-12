@@ -16,7 +16,7 @@ class AlmacenController extends Controller
 {
     public function registro( Request $request ){
       $registro = new Almacen();
-
+      $registro->idEmpleado = $request->idEmpleado;
         $registro->idSegmento = $request->idSegmento;
         $registro->descripcion = $request->descripcion;
         $registro->unidaddemedida = $request->unidaddemedida;
@@ -51,8 +51,14 @@ class AlmacenController extends Controller
 
     }
 
+    public function getSalidas( ){
+        $salidas = Salida::with('producto')->with('producto.segmento')->with('empleado')->get();
+        return response()->json(['response' => $salidas],200);
+
+    }
+
     public function getAlmacenDisponibles () {
-      $disponible = Almacen::with('segmento')->get();
+      $disponible = Almacen::with('segmento')->with('empleado')->get();
       return response()->json(['response' => $disponible],200);
 
     }
@@ -60,6 +66,7 @@ class AlmacenController extends Controller
     public function salidaPartida( Request $request ){
         $salida = new Salida();
         $salida->idProducto = $request->id;
+        $salida->idEmpleado = $request->idEmpleado;
         $salida->cantidad = $request->cantidadsalida;
         $salida->concepto = $request->conceptosalida;
         $salida->save();

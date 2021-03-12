@@ -13,6 +13,8 @@
    <v-tab>Almacén</v-tab>
    <v-tab @click="getSolicitadas">Partidas Solicitadas</v-tab>
    <v-tab @click="getDisponibles">Inventario Disponible</v-tab>
+   <v-tab>Historial de Entrada</v-tab>
+   <v-tab>Historial de Salida</v-tab>
  </v-tabs>
     </v-card-title>
 <v-divider></v-divider>
@@ -114,7 +116,7 @@
                      small
                       color="warning"
                       dark
-                      @click="btnactualizar(item)"
+                      @click="asociarInventario(item)"
                       fab
                     >
                       <v-icon>mdi-pencil-box-outline</v-icon>
@@ -165,6 +167,7 @@
             <v-tooltip top>
             <template v-slot:activator="{ on, attrs }">
             <v-btn
+            v-if="item.disponible > 0"
              v-bind="attrs"
                 v-on="on"
                      small
@@ -179,6 +182,24 @@
                 </template>
                 <span>Registrar Salida</span>
             </v-tooltip>
+            <v-tooltip top>
+            <template v-slot:activator="{ on, attrs }">
+            <v-btn
+            v-if="item.disponible == 0"
+             v-bind="attrs"
+                v-on="on"
+                     small
+                      color="warning"
+                      dark
+  @click="btnactualizar(item)"
+                      fab
+                    >
+                      <v-icon>mdi-pencil-box-outline</v-icon>
+                    </v-btn>
+
+                </template>
+                <span>Ingresar Entrada</span>
+            </v-tooltip>
           </template>
         </v-data-table>
                 </v-card-text>
@@ -186,6 +207,117 @@
             </v-card-text>
           </v-card>
         </v-tab-item>
+
+        <v-tab-item
+        >
+
+          <v-card flat>
+            <v-card-text>
+              <v-card flat>
+
+                <v-card-text>
+
+                  <v-text-field
+              v-model="search5"
+              append-icon="mdi-magnify"
+              label="Buscar Producto"
+              single-line
+              hide-details
+            ></v-text-field>
+            <br> <br>
+          </v-card-title>
+          <v-data-table
+            :headers="headersEntradas"
+            :items="entradas"
+            :search="search5"
+          >
+          <template v-slot:item.politicasdegarantia="{ item }">
+
+            <span v-if ="item.politicasdegarantia == 1">Sí Aplica</span>
+            <span v-else>No Aplica</span>
+          </template>
+
+          <template v-slot:item.producto="{ item }">
+            <v-tooltip top>
+            <template v-slot:activator="{ on, attrs }">
+            <v-btn
+             v-bind="attrs"
+                v-on="on"
+                     small
+                      color="warning"
+                      dark
+                        @click="verProducto(item.producto)"
+                      fab
+                    >
+                      <v-icon>mdi-pencil-box-outline</v-icon>
+                    </v-btn>
+
+                </template>
+                <span>Ver Detalle del Producto</span>
+            </v-tooltip>
+          </template>
+        </v-data-table>
+                </v-card-text>
+              </v-card>
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+
+        <v-tab-item
+        >
+
+          <v-card flat>
+            <v-card-text>
+              <v-card flat>
+
+                <v-card-text>
+
+                  <v-text-field
+              v-model="search4"
+              append-icon="mdi-magnify"
+              label="Buscar Producto"
+              single-line
+              hide-details
+            ></v-text-field>
+            <br> <br>
+          </v-card-title>
+          <v-data-table
+            :headers="headersSalidas"
+            :items="salidas"
+            :search="search4"
+          >
+          <template v-slot:item.politicasdegarantia="{ item }">
+
+            <span v-if ="item.politicasdegarantia == 1">Sí Aplica</span>
+            <span v-else>No Aplica</span>
+          </template>
+
+          <template v-slot:item.producto="{ item }">
+            <v-tooltip top>
+            <template v-slot:activator="{ on, attrs }">
+            <v-btn
+             v-bind="attrs"
+                v-on="on"
+                     small
+                      color="warning"
+                      dark
+                        @click="verProducto(item.producto)"
+                      fab
+                    >
+                      <v-icon>mdi-pencil-box-outline</v-icon>
+                    </v-btn>
+
+                </template>
+                <span>Ver Detalle del Producto</span>
+            </v-tooltip>
+          </template>
+        </v-data-table>
+                </v-card-text>
+              </v-card>
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+
       </v-tabs-items>
 
 
@@ -195,6 +327,44 @@
 
     </v-card-actions>
   </v-card>
+  <v-dialog
+      v-model="modalProducto"
+      width="500"
+    >
+      <template v-slot:activator="{ on, attrs }">
+
+      </template>
+
+      <v-card>
+        <v-card-title class="headline grey lighten-2">
+          Detalle del producto
+        </v-card-title>
+
+        <v-card-text>
+          <p>Descripción del producto: {{descripcionModal}}</p> <br>
+          <p>Unidad de Medida: {{unidaddemedidaModal}}</p> <br>
+            <p>Marca: {{marcaModal}}</p> <br>
+            <p>modelo: {{modeloModal}}</p> <br>
+            <p>Número de Serie: {{numeroSerieModal}}</p> <br>
+            <p v-if="politicasdegarantiaModal == 1">Políticas de garantía: SÍ</p>
+              <p v-else>Políticas de garantía: NO</p> <br>
+            <p>Notas del prodcuto: {{notasModal}}</p>
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            text
+            @click="modalProducto = false"
+          >
+          Cerrar
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   <v-dialog
       v-model="dialog"
 
@@ -280,6 +450,7 @@ data () {
     idEditar:null,
         files:[],
     dialog:false,
+    modalProducto:false,
     cantidadingresada:null,
     cantidadsalida:null,
     conceptosalida:null,
@@ -288,6 +459,8 @@ data () {
     search1:null,
       search2:null,
         search3:null,
+        search4:null,
+        search5:null,
     headers: [
       { text: '# Folio Solicitud|Cotización', value: 'cotizacion.solicitud.folio' },
           {
@@ -305,6 +478,50 @@ data () {
           { text: 'Número de Serie', value: 'numserie' },
 
         ],
+        headersSalidas: [
+          { text: 'Fecha de Salida', value: 'created_at' },
+              {
+                text: 'Responsable',
+                align: 'start',
+                filterable: false,
+                value: 'empleado.name',
+              },
+              { text: 'Segmento', value: 'producto.segmento.nombre' },
+              { text: 'Concepto', value: 'concepto' },
+              { text: 'Cantidad', value: 'cantidad' },
+
+              { text: 'Descripción del producto', value: 'producto.descripcion' },
+              { text: 'Evidencias', value: 'evidencias' },
+              { text: 'Producto', value: 'producto' },
+
+
+            ],
+            headersEntradas: [
+              { text: 'Fecha de Ingreso', value: 'created_at' },
+              {
+                text: 'Responsable',
+                align: 'start',
+                filterable: false,
+                value: 'empleado.name',
+              },
+                  {
+                    text: 'Segmento',
+                    align: 'start',
+                    filterable: false,
+                    value: 'segmento.nombre',
+                  },
+                  { text: 'Miniatura', value: '' },
+                  { text: 'Cantidad Ingresada', value: 'cantidad' },
+                  { text: 'Unidad de Medida', value: 'unidaddemedida' },
+                  { text: 'Descripcion', value: 'descripcion' },
+                  { text: 'Precio', value: 'preciodelproveedor' },
+                    { text: 'Políticas de Garantía', value: 'politicasdegarantia' },
+                  { text: 'Marca', value: 'marca' },
+                  { text: 'Modelo', value: 'modelo' },
+                  { text: 'Número de Serie', value: 'numerodeserie' },
+                  { text: 'Notas del Producto', value: 'notasdelproducto' },
+
+                ],
         headersSolicitadas: [
           { text: '# Folio Solicitud|Cotización', value: 'cotizacion.solicitud.folio' },
               {
@@ -331,7 +548,7 @@ data () {
             ],
 
             headersDisponibles: [
-              { text: 'Fecha de Registro', value: 'created_at' },
+              { text: 'Fecha de Ingreso', value: 'created_at' },
                   {
                     text: 'Segmento',
                     align: 'start',
@@ -339,7 +556,7 @@ data () {
                     value: 'segmento.nombre',
                   },
                   { text: 'Miniatura', value: '' },
-                  { text: 'Cantidad Ingresada', value: 'cantidad' },
+
                   { text: 'Cantidad Disponible', value: 'disponible' },
                   { text: 'Unidad de Medida', value: 'unidaddemedida' },
                   { text: 'Descripcion', value: 'descripcion' },
@@ -355,14 +572,40 @@ data () {
         global: [],
         solicitadas:[],
         disponibles:[],
+        salidas:[],
+        descripcionModal:null,
+        unidaddemedidaModal:null,
+        marcaModal:null,
+        modeloModal:null,
+        numeroSerieModal:null,
+        politicasdegarantiaModal:null,
+        notasModal:null,
+        entradas:[],
 
   }
 },
 mounted() {
   this.getAlmacen()
+  this.getSalidas()
 
 },
 methods : {
+  async asociarInventario (item) {
+    console.log(item)
+  },
+    async verProducto (item) {
+      console.log(item)
+      this.modalProducto = true
+      this.descripcionModal = item.descripcion
+      this.unidaddemedidaModal = item.unidaddemedida
+      this.marcaModal = item.marca
+      this.modeloModal = item.modelo
+      this.numeroSerieModal = item.numerodeserie
+      this.politicasdegarantiaModal = item.politicasdegarantia
+      this.notasModal = item.notasdelproducto
+
+    },
+
   async btnactualizar (item) {
     this.idEditar = item.id
     console.log(item)
@@ -377,13 +620,16 @@ methods : {
             url: 'salidaPartida',
             data: {
               id: this.idEditar,
+              idEmpleado:parseInt(localStorage.getItem('idPerfil')),
               conceptosalida:this.conceptosalida,
               cantidadsalida:parseInt(this.cantidadsalida),
             }
 
           })
 
-          swal("Éxito", "La salida se ha realizado con éxito", "error");
+          swal("Éxito", "La salida se ha realizado con éxito", "success");
+          this.getSalidas()
+          this.getDisponibles()
       } catch (error) {
 
          swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
@@ -411,6 +657,24 @@ methods : {
       }
   },
 
+  async getSalidas(){
+    try {
+          const response = await axios({
+            method: 'get',
+            url: 'getSalidas',
+
+          })
+          this.salidas = response.data.response
+
+
+      } catch (error) {
+
+         swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+          console.log(error);
+
+      }
+  },
+
   async getInventario () {
     this.getAlmacen()
   },
@@ -423,6 +687,7 @@ methods : {
 
           })
           this.disponibles = response.data.response
+          this.entradas = this.disponibles
           console.log(response.data.response)
 
 

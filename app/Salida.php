@@ -16,4 +16,11 @@ class Salida extends Model
       'concepto',
       'evidencias',
     ];
+
+    function producto(){
+        return $this->hasOne('App\Almacen','id','idProducto');
+    }
+    function empleado(){
+        return $this->hasOne('App\User','id','idEmpleado');
+    }
 }

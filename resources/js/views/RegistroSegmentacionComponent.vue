@@ -97,7 +97,7 @@ Registrar
 
   <v-dialog
       v-model="dialog"
-    
+
     >
 
       <v-card>
@@ -178,8 +178,7 @@ message: 'El formato de email debe ser válido',
           },
           { text: 'Nombre', value: 'nombre' },
           { text: 'Descripción', value: 'descripcion' },
-          { text: 'Acciones', value: 'acciones' },
-
+          
         ],
         segmentos: [],
          dialog: false,

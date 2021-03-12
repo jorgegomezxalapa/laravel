@@ -85,3 +85,4 @@ Route::post('nuevoSegmento', 'AlmacenController@nuevoSegmento')->name('nuevoSegm
 Route::get('getSegmentos', 'AlmacenController@getSegmentos')->name('getSegmentos');
 Route::get('getAlmacenDisponibles', 'AlmacenController@getAlmacenDisponibles')->name('getAlmacenDisponibles');
 Route::post('salidaPartida', 'AlmacenController@salidaPartida')->name('salidaPartida');
+Route::get('getSalidas', 'AlmacenController@getSalidas')->name('getSalidas');

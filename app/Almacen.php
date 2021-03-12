@@ -10,6 +10,7 @@ class Almacen extends Model
     protected $fillable =[
     'id',
     'idSegmento',
+    'idEmpleado',
     'descripcion',
     'unidaddemedida',
     'cantidad',
@@ -26,6 +27,9 @@ class Almacen extends Model
 
     function segmento(){
         return $this->hasOne('App\Segmento','id','idSegmento');
+    }
+    function empleado(){
+        return $this->hasOne('App\User','id','idEmpleado');
     }
 
 
