@@ -104,6 +104,9 @@
             :items="partidasSolicitadas"
             :search="buscarSolicitadas"
           >
+          <template v-slot:no-data>
+    Aún no hay información disponible
+    </template>
           <template v-slot:item.acciones="{ item }">
 
 
@@ -157,6 +160,9 @@
             :items="inventarioDisponible"
             :search="buscarInventarioDisponible"
           >
+          <template v-slot:no-data>
+    Aún no hay información disponible
+    </template>
           <template v-slot:item.politicasdegarantia="{ item }">
 
             <span v-if ="item.politicasdegarantia == 1">Sí Aplica</span>
@@ -231,6 +237,9 @@
             :items="inventarioEntradas"
             :search="buscarHistorialEntradas"
           >
+          <template v-slot:no-data>
+    Aún no hay información disponible
+    </template>
           <template v-slot:item.producto.politicasdegarantia="{ item }">
 
             <span v-if ="item.politicasdegarantia == 1">Sí Aplica</span>
@@ -286,6 +295,9 @@
             :items="inventarioSalidas"
             :search="buscarInventarioSalidas"
           >
+          <template v-slot:no-data>
+    Aún no hay información disponible
+    </template>
           <template v-slot:item.politicasdegarantia="{ item }">
 
             <span v-if ="item.politicasdegarantia == 1">Sí Aplica</span>
@@ -758,6 +770,8 @@ methods : {
           })
 
           swal("Éxito", "La salida se ha realizado con éxito", "success");
+          this.conceptosalida = null
+          this.cantidadsalida = null
           this.getInventario()
           this.getHistorialSalida()
           this.getHistorialEntrada()

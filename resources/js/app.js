@@ -4,6 +4,8 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import Vuetify from 'vuetify';
+import 'vuetify/dist/vuetify.min.css'
+import es from "vuetify/es5/locale/es";
 Vue.use(Vuetify);
 
 
@@ -24,5 +26,10 @@ import router from './routes'
 const app = new Vue({
   el: '#app',
   router,
-  vuetify: new Vuetify(),
+  vuetify: new Vuetify({
+    lang: {
+        locales: { es },
+        current: "es",
+    },
+}),
 });
