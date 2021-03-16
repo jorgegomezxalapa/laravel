@@ -13,7 +13,7 @@ class Partida extends Model
 
         'id',
         'idCotizacion',
-
+        'idProducto',
         'partida',
         'descripcion',
         'unidadmedida',
@@ -44,5 +44,9 @@ class Partida extends Model
 
       function cotizacion(){
           return $this->hasOne('App\Cotizacion','id','idCotizacion');
+      }
+
+      function producto(){
+          return $this->hasOne('App\Almacen','id','idProducto');
       }
 }

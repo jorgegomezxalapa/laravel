@@ -10,7 +10,7 @@ use App\Salida;
 use App\Entrada;
 // use App\Solicitud;
 // use App\Cotizacion;
-// use App\Partida;
+use App\Partida;
 // use App\Utilidad;
 
 class AlmacenController extends Controller
@@ -54,6 +54,27 @@ class AlmacenController extends Controller
 
     }
 
+    public function actualizarIngresoPartida( Request $request ){
+      $partida = Partida::where('id', '=', $request->idPartida)->first();
+      $partida ->disponible = intval($partida->disponible) + intval($request->cantidad);
+      $partida->save();
+
+      $producto = Almacen::where('id', '=', $request->idProducto)->first();
+      $producto->disponible = intval($producto->disponible) + intval($request->cantidad);
+      $producto->save();
+
+      $entrada = new Entrada();
+      $entrada->idProducto = $producto->id;
+      $entrada->idEmpleado = $request->idEmpleado;
+      $entrada->idCotizacion = intval($request->idCotizacion);
+      $entrada->cantidad = intval($request->cantidad);
+      $entrada->concepto = $request->concepto;
+
+      $entrada->save();
+
+      return "exito";
+    }
+
     public function getSegmentos( ){
         $segmentos = Segmento::all();
         return response()->json(['response' => $segmentos],200);
@@ -67,7 +88,13 @@ class AlmacenController extends Controller
     }
 
     public function getInventario () {
-      $disponible = Almacen::with('segmento')->with('empleado')->get();
+      $disponible = Almacen::with('segmento')->with('empleado')->where('esSolicitud', '=', null)->where('disponible', '>', 0.00)->get();
+      return response()->json(['response' => $disponible],200);
+
+    }
+
+    public function getInventarioSolicitado () {
+      $disponible = Partida::with('producto')->with('cotizacion.solicitud')->get();
       return response()->json(['response' => $disponible],200);
 
     }

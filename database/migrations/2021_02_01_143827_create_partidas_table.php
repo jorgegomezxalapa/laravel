@@ -16,7 +16,7 @@ class CreatePartidasTable extends Migration
         Schema::create('partidas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('idCotizacion',250)->nullable();
-
+            $table->string('idProducto',250)->nullable();
             $table->string('partida',250)->nullable();
             $table->text('descripcion',65535)->nullable();
             $table->string('unidadmedida',250)->nullable();
@@ -41,7 +41,7 @@ class CreatePartidasTable extends Migration
 
             $table->integer('disponible')->nullable();
             $table->integer('solicitadas')->nullable();
-          
+
             $table->timestamps();
         });
     }

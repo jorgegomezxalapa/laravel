@@ -9,6 +9,7 @@ class Almacen extends Model
   protected $table = 'productos';
     protected $fillable =[
     'id',
+    'esSolicitud',
     'idSegmento',
     'idEmpleado',
     'descripcion',

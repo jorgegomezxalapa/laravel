@@ -81,9 +81,11 @@ Route::post('editarUtilidad', 'UtilidadController@editarUtilidad')->name('editar
 
 //AlmacenController
 Route::post('registroinventario', 'AlmacenController@registro')->name('registroinventario');
+Route::post('actualizarIngresoPartida', 'AlmacenController@actualizarIngresoPartida')->name('actualizarIngresoPartida');
 Route::post('nuevoSegmento', 'AlmacenController@nuevoSegmento')->name('nuevoSegmento');
 Route::get('getSegmentos', 'AlmacenController@getSegmentos')->name('getSegmentos');
 Route::get('getInventario', 'AlmacenController@getInventario')->name('getInventario');
 Route::get('getEntradas', 'AlmacenController@getEntradas')->name('getEntradas');
 Route::post('salidaPartida', 'AlmacenController@salidaPartida')->name('salidaPartida');
 Route::get('getSalidas', 'AlmacenController@getSalidas')->name('getSalidas');
+Route::get('getInventarioSolicitado', 'AlmacenController@getInventarioSolicitado')->name('getInventarioSolicitado');

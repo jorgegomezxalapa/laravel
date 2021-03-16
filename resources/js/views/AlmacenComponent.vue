@@ -123,7 +123,7 @@
                     </v-btn>
 
                 </template>
-                <span>Actualizar Inventario</span>
+                <span>Marcar Ingreso de Mercancía</span>
             </v-tooltip>
 
 
@@ -328,6 +328,48 @@
     </v-card-actions>
   </v-card>
   <v-dialog
+      v-model="modalEntrada"
+      width="500"
+    >
+
+
+      <v-card>
+        <v-card-title class="headline grey lighten-2">
+          Entrada de Mercancía
+        </v-card-title>
+
+        <v-card-text>
+          <v-text-field
+            v-model="ingresoProducto"
+              type="number"
+            label="Coloque la cantidad de Entrada de Mercancía"
+
+          ></v-text-field>
+
+          <v-textarea
+          outlined
+
+           label="Concepto de Entrada de Mercancía"
+             v-model="conceptoentrada"
+
+         ></v-textarea>
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            text
+              @click="actualizarIngreso()"
+          >
+            Confirmar Ingreso
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  <v-dialog
       v-model="modalProducto"
       width="500"
     >
@@ -447,9 +489,12 @@ import swal from 'sweetalert';
 export default {
 data () {
   return {
+    ingresoProducto:null,
+    conceptoentrada:null,
     idEditar:null,
     files:[],
     dialog:false,
+    modalEntrada:false,
     modalProducto:false,
     cantidadingresada:null,
     cantidadsalida:null,
@@ -461,20 +506,23 @@ data () {
    buscarHistorialEntradas:"",
    buscarInventarioDisponible:"",
     headersPartidasSolicitadas: [
-      { text: '# Folio Solicitud|Cotización', value: 'cotizacion.solicitud.folio' },
-          {
-            text: 'Descripcion',
-            align: 'start',
-            filterable: false,
-            value: 'descripcion',
-          },
-          { text: 'Precio de Proveedor', value: 'precioproveedor' },
-          { text: 'Disponible', value: 'disponible' },
-            { text: 'Solicitado', value: 'solicitadas' },
-          { text: 'Unidad de Medida', value: 'unidadmedida' },
-          { text: 'Marca', value: 'marca' },
-          { text: 'Modelo', value: 'modelo' },
-          { text: 'Número de Serie', value: 'numserie' },
+      { text: 'Número de Folio', value: 'cotizacion.solicitud.folio' },
+
+          { text: 'Número de Partida', value: 'partida' },
+              {
+                text: 'Descripcion',
+                align: 'start',
+
+                value: 'producto.descripcion',
+              },
+
+          { text: 'Disponible', value: 'producto.disponible' },
+            { text: 'Solicitado', value: 'producto.cantidad' },
+          { text: 'Unidad de Medida', value: 'producto.unidaddemedida' },
+          { text: 'Marca', value: 'producto.marca' },
+          { text: 'Modelo', value: 'producto.modelo' },
+          { text: 'Número de Serie', value: 'producto.numerodeserie' },
+          { text: 'Acciones', align: 'center', value: 'acciones' },
 
         ],
         headersInventarioSalidas: [
@@ -482,11 +530,11 @@ data () {
               {
                 text: 'Responsable',
                 align: 'start',
-                filterable: false,
+
                 value: 'empleado.name',
               },
               { text: 'Segmento', value: 'producto.segmento.nombre' },
-              { text: 'Concepto', value: 'concepto' },
+              { text: 'Concepto de Salida', value: 'concepto' },
               { text: 'Cantidad', value: 'cantidad' },
 
               { text: 'Descripción del producto', value: 'producto.descripcion' },
@@ -500,13 +548,13 @@ data () {
               {
                 text: 'Responsable',
                 align: 'start',
-                filterable: false,
+
                 value: 'responsable.name',
               },
                   {
                     text: 'Segmento',
                     align: 'start',
-                    filterable: false,
+
                     value: 'producto.segmento.nombre',
                   },
                   { text: 'Miniatura', value: '' },
@@ -514,14 +562,14 @@ data () {
                   { text: 'Unidad de Medida', value: 'producto.unidaddemedida' },
                   { text: 'Descripcion', value: 'producto.descripcion' },
                   { text: 'Precio', value: 'producto.preciodelproveedor' },
-                    { text: 'Políticas de Garantía', value: 'producto.politicasdegarantia' },
+
                   { text: 'Marca', value: 'producto.marca' },
                   { text: 'Modelo', value: 'producto.modelo' },
                   { text: 'Número de Serie', value: 'producto.numerodeserie' },
-                  { text: 'Notas del Producto', value: 'producto.notasdelproducto' },
+                  { text: 'Concepto de Entrada', value: 'concepto' },
 
                 ],
-    
+
 
             headersInventarioDisponible: [
               { text: 'Miniatura', value: '' },
@@ -529,7 +577,7 @@ data () {
               {
                 text: 'Segmento',
                 align: 'start',
-                filterable: false,
+
                 value: 'segmento.nombre',
               },
               { text: 'Cantidad Disponible', value: 'disponible' },
@@ -543,8 +591,8 @@ data () {
               { text: 'Acciones', align: 'center', value: 'acciones' },
 
                 ],
-        
-       
+
+
         descripcionModal:null,
         unidaddemedidaModal:null,
         marcaModal:null,
@@ -558,17 +606,63 @@ data () {
         inventarioDisponible:[],
         inventarioEntradas:[],
         inventarioSalidas:[],
-       
+
+        idPartidaEntrada:null,
+        idProductoEntrada:null,
+        idCotizacionEntrada:null,
+
 
   }
 },
 mounted() {
-  
+
 },
 methods : {
+  async actualizarIngreso () {
 
+
+    try {
+        const response = await axios({
+          method: 'post',
+          url: 'actualizarIngresoPartida',
+          data:{
+            idEmpleado:parseInt(localStorage.getItem('idPerfil')),
+            idCotizacion : this.idCotizacionEntrada,
+            idPartida : this.idPartidaEntrada,
+            idProducto : this.idProductoEntrada,
+            cantidad: this.ingresoProducto,
+            concepto : this.conceptoentrada,
+          },
+        })
+       this.modalEntrada = false
+        swal("Éxito", "El ingreso de la mercancía se ha realizado correctamente", "success");
+        this.getPartidasSolicitadas()
+        this.idCotizacionEntrada = null
+        this.idPartidaEntrada = null
+        this.idProductoEntrada = null
+        this.ingresoProducto = null
+        this.conceptoentrada = null
+
+    } catch (error) {
+
+       swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+
+    }
+  },
     async getPartidasSolicitadas () {
-      alert("buscar solcitidas")
+      try {
+          const response = await axios({
+            method: 'get',
+            url: 'getInventarioSolicitado',
+          })
+          console.log(response.data.response)
+        this.partidasSolicitadas = response.data.response
+
+      } catch (error) {
+
+         swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+
+      }
 
     },
     async getInventario () {
@@ -579,11 +673,11 @@ methods : {
           })
 
           this.inventarioDisponible = response.data.response
-         
+
       } catch (error) {
 
          swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
-        
+
       }
     },
     async getHistorialEntrada () {
@@ -595,20 +689,39 @@ methods : {
 
           this.inventarioEntradas = response.data.response
           console.log(response.data)
-         
+
       } catch (error) {
 
          swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
-        
+
       }
     },
     async getHistorialSalida () {
-      alert("buscar salidas")
+
+      try {
+         const response = await axios({
+           method: 'get',
+           url: 'getSalidas',
+         })
+
+         this.inventarioSalidas = response.data.response
+         console.log("salidas",response.data.response)
+
+     } catch (error) {
+
+        swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+
+     }
+
     },
 
 
   async asociarInventario (item) {
-    console.log(item)
+    this.modalEntrada = true
+    this.idCotizacionEntrada = item.idCotizacion
+    this.idPartidaEntrada = item.id
+    this.idProductoEntrada = item.producto.id
+    console.log("actualizar",item)
   },
     async verProducto (item) {
       console.log(item)
@@ -645,8 +758,10 @@ methods : {
           })
 
           swal("Éxito", "La salida se ha realizado con éxito", "success");
-          this.getSalidas()
-          this.getDisponibles()
+          this.getInventario()
+          this.getHistorialSalida()
+          this.getHistorialEntrada()
+
       } catch (error) {
 
          swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
@@ -654,7 +769,7 @@ methods : {
 
       }
   },
-  
+
 
 }
 }

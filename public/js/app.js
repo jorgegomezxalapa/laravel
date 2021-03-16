@@ -4265,6 +4265,48 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -4273,9 +4315,12 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      ingresoProducto: null,
+      conceptoentrada: null,
       idEditar: null,
       files: [],
       dialog: false,
+      modalEntrada: false,
       modalProducto: false,
       cantidadingresada: null,
       cantidadsalida: null,
@@ -4287,34 +4332,37 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       buscarHistorialEntradas: "",
       buscarInventarioDisponible: "",
       headersPartidasSolicitadas: [{
-        text: '# Folio Solicitud|Cotización',
+        text: 'Número de Folio',
         value: 'cotizacion.solicitud.folio'
+      }, {
+        text: 'Número de Partida',
+        value: 'partida'
       }, {
         text: 'Descripcion',
         align: 'start',
-        filterable: false,
-        value: 'descripcion'
-      }, {
-        text: 'Precio de Proveedor',
-        value: 'precioproveedor'
+        value: 'producto.descripcion'
       }, {
         text: 'Disponible',
-        value: 'disponible'
+        value: 'producto.disponible'
       }, {
         text: 'Solicitado',
-        value: 'solicitadas'
+        value: 'producto.cantidad'
       }, {
         text: 'Unidad de Medida',
-        value: 'unidadmedida'
+        value: 'producto.unidaddemedida'
       }, {
         text: 'Marca',
-        value: 'marca'
+        value: 'producto.marca'
       }, {
         text: 'Modelo',
-        value: 'modelo'
+        value: 'producto.modelo'
       }, {
         text: 'Número de Serie',
-        value: 'numserie'
+        value: 'producto.numerodeserie'
+      }, {
+        text: 'Acciones',
+        align: 'center',
+        value: 'acciones'
       }],
       headersInventarioSalidas: [{
         text: 'Fecha de Salida',
@@ -4322,13 +4370,12 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       }, {
         text: 'Responsable',
         align: 'start',
-        filterable: false,
         value: 'empleado.name'
       }, {
         text: 'Segmento',
         value: 'producto.segmento.nombre'
       }, {
-        text: 'Concepto',
+        text: 'Concepto de Salida',
         value: 'concepto'
       }, {
         text: 'Cantidad',
@@ -4349,12 +4396,10 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       }, {
         text: 'Responsable',
         align: 'start',
-        filterable: false,
         value: 'responsable.name'
       }, {
         text: 'Segmento',
         align: 'start',
-        filterable: false,
         value: 'producto.segmento.nombre'
       }, {
         text: 'Miniatura',
@@ -4372,9 +4417,6 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         text: 'Precio',
         value: 'producto.preciodelproveedor'
       }, {
-        text: 'Políticas de Garantía',
-        value: 'producto.politicasdegarantia'
-      }, {
         text: 'Marca',
         value: 'producto.marca'
       }, {
@@ -4384,8 +4426,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         text: 'Número de Serie',
         value: 'producto.numerodeserie'
       }, {
-        text: 'Notas del Producto',
-        value: 'producto.notasdelproducto'
+        text: 'Concepto de Entrada',
+        value: 'concepto'
       }],
       headersInventarioDisponible: [{
         text: 'Miniatura',
@@ -4396,7 +4438,6 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       }, {
         text: 'Segmento',
         align: 'start',
-        filterable: false,
         value: 'segmento.nombre'
       }, {
         text: 'Cantidad Disponible',
@@ -4437,29 +4478,68 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       partidasSolicitadas: [],
       inventarioDisponible: [],
       inventarioEntradas: [],
-      inventarioSalidas: []
+      inventarioSalidas: [],
+      idPartidaEntrada: null,
+      idProductoEntrada: null,
+      idCotizacionEntrada: null
     };
   },
   mounted: function mounted() {},
   methods: {
-    getPartidasSolicitadas: function getPartidasSolicitadas() {
+    actualizarIngreso: function actualizarIngreso() {
+      var _this = this;
+
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                alert("buscar solcitidas");
+                _context.prev = 0;
+                _context.next = 3;
+                return axios({
+                  method: 'post',
+                  url: 'actualizarIngresoPartida',
+                  data: {
+                    idEmpleado: parseInt(localStorage.getItem('idPerfil')),
+                    idCotizacion: _this.idCotizacionEntrada,
+                    idPartida: _this.idPartidaEntrada,
+                    idProducto: _this.idProductoEntrada,
+                    cantidad: _this.ingresoProducto,
+                    concepto: _this.conceptoentrada
+                  }
+                });
 
-              case 1:
+              case 3:
+                response = _context.sent;
+                _this.modalEntrada = false;
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "El ingreso de la mercancía se ha realizado correctamente", "success");
+
+                _this.getPartidasSolicitadas();
+
+                _this.idCotizacionEntrada = null;
+                _this.idPartidaEntrada = null;
+                _this.idProductoEntrada = null;
+                _this.ingresoProducto = null;
+                _this.conceptoentrada = null;
+                _context.next = 17;
+                break;
+
+              case 14:
+                _context.prev = 14;
+                _context.t0 = _context["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+
+              case 17:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
+        }, _callee, null, [[0, 14]]);
       }))();
     },
-    getInventario: function getInventario() {
-      var _this = this;
+    getPartidasSolicitadas: function getPartidasSolicitadas() {
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var response;
@@ -4471,30 +4551,31 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
                 _context2.next = 3;
                 return axios({
                   method: 'get',
-                  url: 'getInventario'
+                  url: 'getInventarioSolicitado'
                 });
 
               case 3:
                 response = _context2.sent;
-                _this.inventarioDisponible = response.data.response;
-                _context2.next = 10;
+                console.log(response.data.response);
+                _this2.partidasSolicitadas = response.data.response;
+                _context2.next = 11;
                 break;
 
-              case 7:
-                _context2.prev = 7;
+              case 8:
+                _context2.prev = 8;
                 _context2.t0 = _context2["catch"](0);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
 
-              case 10:
+              case 11:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 7]]);
+        }, _callee2, null, [[0, 8]]);
       }))();
     },
-    getHistorialEntrada: function getHistorialEntrada() {
-      var _this2 = this;
+    getInventario: function getInventario() {
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var response;
@@ -4506,80 +4587,115 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
                 _context3.next = 3;
                 return axios({
                   method: 'get',
-                  url: 'getEntradas'
+                  url: 'getInventario'
                 });
 
               case 3:
                 response = _context3.sent;
-                _this2.inventarioEntradas = response.data.response;
-                console.log(response.data);
-                _context3.next = 11;
+                _this3.inventarioDisponible = response.data.response;
+                _context3.next = 10;
                 break;
 
-              case 8:
-                _context3.prev = 8;
+              case 7:
+                _context3.prev = 7;
                 _context3.t0 = _context3["catch"](0);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
 
-              case 11:
+              case 10:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[0, 8]]);
+        }, _callee3, null, [[0, 7]]);
       }))();
     },
-    getHistorialSalida: function getHistorialSalida() {
+    getHistorialEntrada: function getHistorialEntrada() {
+      var _this4 = this;
+
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                alert("buscar salidas");
+                _context4.prev = 0;
+                _context4.next = 3;
+                return axios({
+                  method: 'get',
+                  url: 'getEntradas'
+                });
 
-              case 1:
+              case 3:
+                response = _context4.sent;
+                _this4.inventarioEntradas = response.data.response;
+                console.log(response.data);
+                _context4.next = 11;
+                break;
+
+              case 8:
+                _context4.prev = 8;
+                _context4.t0 = _context4["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+
+              case 11:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4);
+        }, _callee4, null, [[0, 8]]);
       }))();
     },
-    asociarInventario: function asociarInventario(item) {
+    getHistorialSalida: function getHistorialSalida() {
+      var _this5 = this;
+
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                console.log(item);
+                _context5.prev = 0;
+                _context5.next = 3;
+                return axios({
+                  method: 'get',
+                  url: 'getSalidas'
+                });
 
-              case 1:
+              case 3:
+                response = _context5.sent;
+                _this5.inventarioSalidas = response.data.response;
+                console.log("salidas", response.data.response);
+                _context5.next = 11;
+                break;
+
+              case 8:
+                _context5.prev = 8;
+                _context5.t0 = _context5["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+
+              case 11:
               case "end":
                 return _context5.stop();
             }
           }
-        }, _callee5);
+        }, _callee5, null, [[0, 8]]);
       }))();
     },
-    verProducto: function verProducto(item) {
-      var _this3 = this;
+    asociarInventario: function asociarInventario(item) {
+      var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                console.log(item);
-                _this3.modalProducto = true;
-                _this3.descripcionModal = item.descripcion;
-                _this3.unidaddemedidaModal = item.unidaddemedida;
-                _this3.marcaModal = item.marca;
-                _this3.modeloModal = item.modelo;
-                _this3.numeroSerieModal = item.numerodeserie;
-                _this3.politicasdegarantiaModal = item.politicasdegarantia;
-                _this3.notasModal = item.notasdelproducto;
+                _this6.modalEntrada = true;
+                _this6.idCotizacionEntrada = item.idCotizacion;
+                _this6.idPartidaEntrada = item.id;
+                _this6.idProductoEntrada = item.producto.id;
+                console.log("actualizar", item);
 
-              case 9:
+              case 5:
               case "end":
                 return _context6.stop();
             }
@@ -4587,19 +4703,25 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         }, _callee6);
       }))();
     },
-    btnactualizar: function btnactualizar(item) {
-      var _this4 = this;
+    verProducto: function verProducto(item) {
+      var _this7 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
-                _this4.idEditar = item.id;
                 console.log(item);
-                _this4.dialog = true;
+                _this7.modalProducto = true;
+                _this7.descripcionModal = item.descripcion;
+                _this7.unidaddemedidaModal = item.unidaddemedida;
+                _this7.marcaModal = item.marca;
+                _this7.modeloModal = item.modelo;
+                _this7.numeroSerieModal = item.numerodeserie;
+                _this7.politicasdegarantiaModal = item.politicasdegarantia;
+                _this7.notasModal = item.notasdelproducto;
 
-              case 3:
+              case 9:
               case "end":
                 return _context7.stop();
             }
@@ -4607,52 +4729,74 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         }, _callee7);
       }))();
     },
-    salidaPartida: function salidaPartida() {
-      var _this5 = this;
+    btnactualizar: function btnactualizar(item) {
+      var _this8 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
           while (1) {
             switch (_context8.prev = _context8.next) {
               case 0:
-                _this5.dialog = false;
-                _context8.prev = 1;
-                _context8.next = 4;
-                return axios({
-                  method: 'post',
-                  url: 'salidaPartida',
-                  data: {
-                    id: _this5.idEditar,
-                    idEmpleado: parseInt(localStorage.getItem('idPerfil')),
-                    conceptosalida: _this5.conceptosalida,
-                    cantidadsalida: parseInt(_this5.cantidadsalida)
-                  }
-                });
+                _this8.idEditar = item.id;
+                console.log(item);
+                _this8.dialog = true;
 
-              case 4:
-                response = _context8.sent;
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "La salida se ha realizado con éxito", "success");
-
-                _this5.getSalidas();
-
-                _this5.getDisponibles();
-
-                _context8.next = 14;
-                break;
-
-              case 10:
-                _context8.prev = 10;
-                _context8.t0 = _context8["catch"](1);
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
-                console.log(_context8.t0);
-
-              case 14:
+              case 3:
               case "end":
                 return _context8.stop();
             }
           }
-        }, _callee8, null, [[1, 10]]);
+        }, _callee8);
+      }))();
+    },
+    salidaPartida: function salidaPartida() {
+      var _this9 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
+          while (1) {
+            switch (_context9.prev = _context9.next) {
+              case 0:
+                _this9.dialog = false;
+                _context9.prev = 1;
+                _context9.next = 4;
+                return axios({
+                  method: 'post',
+                  url: 'salidaPartida',
+                  data: {
+                    id: _this9.idEditar,
+                    idEmpleado: parseInt(localStorage.getItem('idPerfil')),
+                    conceptosalida: _this9.conceptosalida,
+                    cantidadsalida: parseInt(_this9.cantidadsalida)
+                  }
+                });
+
+              case 4:
+                response = _context9.sent;
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "La salida se ha realizado con éxito", "success");
+
+                _this9.getInventario();
+
+                _this9.getHistorialSalida();
+
+                _this9.getHistorialEntrada();
+
+                _context9.next = 15;
+                break;
+
+              case 11:
+                _context9.prev = 11;
+                _context9.t0 = _context9["catch"](1);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+                console.log(_context9.t0);
+
+              case 15:
+              case "end":
+                return _context9.stop();
+            }
+          }
+        }, _callee9, null, [[1, 11]]);
       }))();
     }
   }
@@ -53422,7 +53566,7 @@ var render = function() {
                                                     _vm._v(" "),
                                                     _c("span", [
                                                       _vm._v(
-                                                        "Actualizar Inventario"
+                                                        "Marcar Ingreso de Mercancía"
                                                       )
                                                     ])
                                                   ]
@@ -54003,6 +54147,89 @@ var render = function() {
           _c("v-divider"),
           _vm._v(" "),
           _c("v-card-actions")
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          attrs: { width: "500" },
+          model: {
+            value: _vm.modalEntrada,
+            callback: function($$v) {
+              _vm.modalEntrada = $$v
+            },
+            expression: "modalEntrada"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            [
+              _c("v-card-title", { staticClass: "headline grey lighten-2" }, [
+                _vm._v("\n          Entrada de Mercancía\n        ")
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      type: "number",
+                      label: "Coloque la cantidad de Entrada de Mercancía"
+                    },
+                    model: {
+                      value: _vm.ingresoProducto,
+                      callback: function($$v) {
+                        _vm.ingresoProducto = $$v
+                      },
+                      expression: "ingresoProducto"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("v-textarea", {
+                    attrs: {
+                      outlined: "",
+                      label: "Concepto de Entrada de Mercancía"
+                    },
+                    model: {
+                      value: _vm.conceptoentrada,
+                      callback: function($$v) {
+                        _vm.conceptoentrada = $$v
+                      },
+                      expression: "conceptoentrada"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-divider"),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "primary", text: "" },
+                      on: {
+                        click: function($event) {
+                          return _vm.actualizarIngreso()
+                        }
+                      }
+                    },
+                    [_vm._v("\n            Confirmar Ingreso\n          ")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
         ],
         1
       ),

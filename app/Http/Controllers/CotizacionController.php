@@ -8,6 +8,7 @@ use App\Solicitud;
 use App\Cotizacion;
 use App\Partida;
 use App\Utilidad;
+use App\Almacen;
 
 class CotizacionController extends Controller
 {
@@ -144,14 +145,33 @@ class CotizacionController extends Controller
 
         try {
 
+          $almacen = new Almacen();
+          $almacen->esSolicitud = 1;
+          $almacen->idSegmento = null;
+          $almacen->idEmpleado = null;
+          $almacen->descripcion = $request->descripcion;
+          $almacen->unidaddemedida = $request->unidadmedida;
+          $almacen->cantidad = $request->cantidad;
+          $almacen->disponible = 0;
+          $almacen->preciodelproveedor = $request->precioproveedor;
+          $almacen->marca = $request->marca;
+          $almacen->modelo = $request->modelo;
+          $almacen->numerodeserie = $request->numserie;
+          $almacen->politicasdegarantia = $request->politicas;
+          $almacen->notasdelproducto = $request->notasproducto;
+          $almacen->archivosdenotas = null;
+          $almacen->miniatura = null;
+          $almacen->save();
 
           $partida = new Partida();
             $partida->idCotizacion = $request->idCotizacion;
+            $partida->idProducto = $almacen->id;
           $partida->partida = $request->partida;
           $partida->descripcion = $request->descripcion;
           $partida->unidadmedida = $request->unidadmedida;
           $partida->cantidad = $request->cantidad;
           $partida->politicas = $request->politicas;
+          $partida->disponible = 0;
           $partida->solicitadas = $request->cantidad;
           if ($request->cantidad == null) {
             $partida->cantidad = "NO COTIZA";
