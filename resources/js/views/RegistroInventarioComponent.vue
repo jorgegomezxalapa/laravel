@@ -4,7 +4,7 @@
       <v-card flat>
         <v-card-text>
 <br>
-            <p class="font-weight-black mb-3"  align="center">Llena el Formulario para registrar una nueva Partida</p>
+            <p class="font-weight-black mb-3"  align="center">Llena el Formulario para registrar un nuevo producto</p>
             <p>El ingreso de los símbolos(Peso $ | Coma , | Porcentaje %) en campos numérico(EJ: Precio) no están permitidos</p>
             <br>
             <v-row>
@@ -182,7 +182,7 @@
               @click="guardarIventario"
 
               >
-              Guardar Partida
+              Guardar Producto
               </v-btn>
             </v-row>
 

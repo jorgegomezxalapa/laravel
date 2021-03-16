@@ -4282,12 +4282,11 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       conceptosalida: null,
       tab: null,
       model2: 'tab-1',
-      search1: null,
-      search2: null,
-      search3: null,
-      search4: null,
-      search5: null,
-      headers: [{
+      buscarSolicitadas: "",
+      buscarInventarioSalidas: "",
+      buscarHistorialEntradas: "",
+      buscarInventarioDisponible: "",
+      headersPartidasSolicitadas: [{
         text: '# Folio Solicitud|Cotización',
         value: 'cotizacion.solicitud.folio'
       }, {
@@ -4317,7 +4316,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         text: 'Número de Serie',
         value: 'numserie'
       }],
-      headersSalidas: [{
+      headersInventarioSalidas: [{
         text: 'Fecha de Salida',
         value: 'created_at'
       }, {
@@ -4344,19 +4343,19 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         text: 'Producto',
         value: 'producto'
       }],
-      headersEntradas: [{
+      headersInventarioEntradas: [{
         text: 'Fecha de Ingreso',
         value: 'created_at'
       }, {
         text: 'Responsable',
         align: 'start',
         filterable: false,
-        value: 'empleado.name'
+        value: 'responsable.name'
       }, {
         text: 'Segmento',
         align: 'start',
         filterable: false,
-        value: 'segmento.nombre'
+        value: 'producto.segmento.nombre'
       }, {
         text: 'Miniatura',
         value: ''
@@ -4365,79 +4364,40 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         value: 'cantidad'
       }, {
         text: 'Unidad de Medida',
-        value: 'unidaddemedida'
+        value: 'producto.unidaddemedida'
       }, {
         text: 'Descripcion',
-        value: 'descripcion'
+        value: 'producto.descripcion'
       }, {
         text: 'Precio',
-        value: 'preciodelproveedor'
+        value: 'producto.preciodelproveedor'
       }, {
         text: 'Políticas de Garantía',
-        value: 'politicasdegarantia'
+        value: 'producto.politicasdegarantia'
       }, {
         text: 'Marca',
-        value: 'marca'
+        value: 'producto.marca'
       }, {
         text: 'Modelo',
-        value: 'modelo'
+        value: 'producto.modelo'
       }, {
         text: 'Número de Serie',
-        value: 'numerodeserie'
+        value: 'producto.numerodeserie'
       }, {
         text: 'Notas del Producto',
-        value: 'notasdelproducto'
+        value: 'producto.notasdelproducto'
       }],
-      headersSolicitadas: [{
-        text: '# Folio Solicitud|Cotización',
-        value: 'cotizacion.solicitud.folio'
+      headersInventarioDisponible: [{
+        text: 'Miniatura',
+        value: ''
       }, {
         text: 'Descripcion',
-        align: 'start',
-        filterable: false,
         value: 'descripcion'
-      }, {
-        text: 'Notas',
-        align: 'start',
-        filterable: false,
-        value: 'notasproducto'
-      }, {
-        text: 'Precio de Proveedor',
-        value: 'precioproveedor'
-      }, {
-        text: 'Disponible',
-        value: 'disponible'
-      }, {
-        text: 'Solicitado',
-        value: 'solicitadas'
-      }, {
-        text: 'Unidad de Medida',
-        value: 'unidadmedida'
-      }, {
-        text: 'Marca',
-        value: 'marca'
-      }, {
-        text: 'Modelo',
-        value: 'modelo'
-      }, {
-        text: 'Número de Serie',
-        value: 'numserie'
-      }, {
-        text: 'Acciones',
-        align: 'center',
-        value: 'acciones'
-      }],
-      headersDisponibles: [{
-        text: 'Fecha de Ingreso',
-        value: 'created_at'
       }, {
         text: 'Segmento',
         align: 'start',
         filterable: false,
         value: 'segmento.nombre'
-      }, {
-        text: 'Miniatura',
-        value: ''
       }, {
         text: 'Cantidad Disponible',
         value: 'disponible'
@@ -4445,14 +4405,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         text: 'Unidad de Medida',
         value: 'unidaddemedida'
       }, {
-        text: 'Descripcion',
-        value: 'descripcion'
-      }, {
         text: 'Precio',
         value: 'preciodelproveedor'
-      }, {
-        text: 'Políticas de Garantía',
-        value: 'politicasdegarantia'
       }, {
         text: 'Marca',
         value: 'marca'
@@ -4463,6 +4417,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         text: 'Número de Serie',
         value: 'numerodeserie'
       }, {
+        text: 'Políticas de Garantía',
+        value: 'politicasdegarantia'
+      }, {
         text: 'Notas del Producto',
         value: 'notasdelproducto'
       }, {
@@ -4470,10 +4427,6 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         align: 'center',
         value: 'acciones'
       }],
-      global: [],
-      solicitadas: [],
-      disponibles: [],
-      salidas: [],
       descripcionModal: null,
       unidaddemedidaModal: null,
       marcaModal: null,
@@ -4481,21 +4434,21 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       numeroSerieModal: null,
       politicasdegarantiaModal: null,
       notasModal: null,
-      entradas: []
+      partidasSolicitadas: [],
+      inventarioDisponible: [],
+      inventarioEntradas: [],
+      inventarioSalidas: []
     };
   },
-  mounted: function mounted() {
-    this.getAlmacen();
-    this.getSalidas();
-  },
+  mounted: function mounted() {},
   methods: {
-    asociarInventario: function asociarInventario(item) {
+    getPartidasSolicitadas: function getPartidasSolicitadas() {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                console.log(item);
+                alert("buscar solcitidas");
 
               case 1:
               case "end":
@@ -4505,184 +4458,148 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         }, _callee);
       }))();
     },
-    verProducto: function verProducto(item) {
+    getInventario: function getInventario() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                console.log(item);
-                _this.modalProducto = true;
-                _this.descripcionModal = item.descripcion;
-                _this.unidaddemedidaModal = item.unidaddemedida;
-                _this.marcaModal = item.marca;
-                _this.modeloModal = item.modelo;
-                _this.numeroSerieModal = item.numerodeserie;
-                _this.politicasdegarantiaModal = item.politicasdegarantia;
-                _this.notasModal = item.notasdelproducto;
+                _context2.prev = 0;
+                _context2.next = 3;
+                return axios({
+                  method: 'get',
+                  url: 'getInventario'
+                });
 
-              case 9:
+              case 3:
+                response = _context2.sent;
+                _this.inventarioDisponible = response.data.response;
+                _context2.next = 10;
+                break;
+
+              case 7:
+                _context2.prev = 7;
+                _context2.t0 = _context2["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+
+              case 10:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2);
+        }, _callee2, null, [[0, 7]]);
       }))();
     },
-    btnactualizar: function btnactualizar(item) {
+    getHistorialEntrada: function getHistorialEntrada() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _this2.idEditar = item.id;
-                console.log(item);
-                _this2.dialog = true;
+                _context3.prev = 0;
+                _context3.next = 3;
+                return axios({
+                  method: 'get',
+                  url: 'getEntradas'
+                });
 
               case 3:
+                response = _context3.sent;
+                _this2.inventarioEntradas = response.data.response;
+                console.log(response.data);
+                _context3.next = 11;
+                break;
+
+              case 8:
+                _context3.prev = 8;
+                _context3.t0 = _context3["catch"](0);
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+
+              case 11:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3);
+        }, _callee3, null, [[0, 8]]);
       }))();
     },
-    salidaPartida: function salidaPartida() {
-      var _this3 = this;
-
+    getHistorialSalida: function getHistorialSalida() {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _this3.dialog = false;
-                _context4.prev = 1;
-                _context4.next = 4;
-                return axios({
-                  method: 'post',
-                  url: 'salidaPartida',
-                  data: {
-                    id: _this3.idEditar,
-                    idEmpleado: parseInt(localStorage.getItem('idPerfil')),
-                    conceptosalida: _this3.conceptosalida,
-                    cantidadsalida: parseInt(_this3.cantidadsalida)
-                  }
-                });
+                alert("buscar salidas");
 
-              case 4:
-                response = _context4.sent;
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "La salida se ha realizado con éxito", "success");
-
-                _this3.getSalidas();
-
-                _this3.getDisponibles();
-
-                _context4.next = 14;
-                break;
-
-              case 10:
-                _context4.prev = 10;
-                _context4.t0 = _context4["catch"](1);
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
-                console.log(_context4.t0);
-
-              case 14:
+              case 1:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4, null, [[1, 10]]);
+        }, _callee4);
       }))();
     },
-    getAlmacen: function getAlmacen() {
-      var _this4 = this;
-
+    asociarInventario: function asociarInventario(item) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                _context5.prev = 0;
-                _context5.next = 3;
-                return axios({
-                  method: 'get',
-                  url: 'getAlmacen'
-                });
+                console.log(item);
 
-              case 3:
-                response = _context5.sent;
-                _this4.global = response.data.response;
-                console.log(response.data.response);
-                _context5.next = 12;
-                break;
-
-              case 8:
-                _context5.prev = 8;
-                _context5.t0 = _context5["catch"](0);
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
-                console.log(_context5.t0);
-
-              case 12:
+              case 1:
               case "end":
                 return _context5.stop();
             }
           }
-        }, _callee5, null, [[0, 8]]);
+        }, _callee5);
       }))();
     },
-    getSalidas: function getSalidas() {
-      var _this5 = this;
+    verProducto: function verProducto(item) {
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                _context6.prev = 0;
-                _context6.next = 3;
-                return axios({
-                  method: 'get',
-                  url: 'getSalidas'
-                });
+                console.log(item);
+                _this3.modalProducto = true;
+                _this3.descripcionModal = item.descripcion;
+                _this3.unidaddemedidaModal = item.unidaddemedida;
+                _this3.marcaModal = item.marca;
+                _this3.modeloModal = item.modelo;
+                _this3.numeroSerieModal = item.numerodeserie;
+                _this3.politicasdegarantiaModal = item.politicasdegarantia;
+                _this3.notasModal = item.notasdelproducto;
 
-              case 3:
-                response = _context6.sent;
-                _this5.salidas = response.data.response;
-                _context6.next = 11;
-                break;
-
-              case 7:
-                _context6.prev = 7;
-                _context6.t0 = _context6["catch"](0);
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
-                console.log(_context6.t0);
-
-              case 11:
+              case 9:
               case "end":
                 return _context6.stop();
             }
           }
-        }, _callee6, null, [[0, 7]]);
+        }, _callee6);
       }))();
     },
-    getInventario: function getInventario() {
-      var _this6 = this;
+    btnactualizar: function btnactualizar(item) {
+      var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
-                _this6.getAlmacen();
+                _this4.idEditar = item.id;
+                console.log(item);
+                _this4.dialog = true;
 
-              case 1:
+              case 3:
               case "end":
                 return _context7.stop();
             }
@@ -4690,8 +4607,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         }, _callee7);
       }))();
     },
-    getDisponibles: function getDisponibles() {
-      var _this7 = this;
+    salidaPartida: function salidaPartida() {
+      var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
         var response;
@@ -4699,70 +4616,43 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
           while (1) {
             switch (_context8.prev = _context8.next) {
               case 0:
-                _context8.prev = 0;
-                _context8.next = 3;
+                _this5.dialog = false;
+                _context8.prev = 1;
+                _context8.next = 4;
                 return axios({
-                  method: 'get',
-                  url: 'getAlmacenDisponibles'
+                  method: 'post',
+                  url: 'salidaPartida',
+                  data: {
+                    id: _this5.idEditar,
+                    idEmpleado: parseInt(localStorage.getItem('idPerfil')),
+                    conceptosalida: _this5.conceptosalida,
+                    cantidadsalida: parseInt(_this5.cantidadsalida)
+                  }
                 });
 
-              case 3:
+              case 4:
                 response = _context8.sent;
-                _this7.disponibles = response.data.response;
-                _this7.entradas = _this7.disponibles;
-                console.log(response.data.response);
-                _context8.next = 13;
+                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Éxito", "La salida se ha realizado con éxito", "success");
+
+                _this5.getSalidas();
+
+                _this5.getDisponibles();
+
+                _context8.next = 14;
                 break;
 
-              case 9:
-                _context8.prev = 9;
-                _context8.t0 = _context8["catch"](0);
+              case 10:
+                _context8.prev = 10;
+                _context8.t0 = _context8["catch"](1);
                 sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
                 console.log(_context8.t0);
 
-              case 13:
+              case 14:
               case "end":
                 return _context8.stop();
             }
           }
-        }, _callee8, null, [[0, 9]]);
-      }))();
-    },
-    getSolicitadas: function getSolicitadas() {
-      var _this8 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9() {
-        var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
-          while (1) {
-            switch (_context9.prev = _context9.next) {
-              case 0:
-                _context9.prev = 0;
-                _context9.next = 3;
-                return axios({
-                  method: 'get',
-                  url: 'getAlmacenSolicitadas'
-                });
-
-              case 3:
-                response = _context9.sent;
-                _this8.solicitadas = response.data.response;
-                console.log(response.data.response);
-                _context9.next = 12;
-                break;
-
-              case 8:
-                _context9.prev = 8;
-                _context9.t0 = _context9["catch"](0);
-                sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Ocurrió un error de servidor", "Por favor recarga la página", "error");
-                console.log(_context9.t0);
-
-              case 12:
-              case "end":
-                return _context9.stop();
-            }
-          }
-        }, _callee9, null, [[0, 8]]);
+        }, _callee8, null, [[1, 10]]);
       }))();
     }
   }
@@ -53249,17 +53139,21 @@ var render = function() {
                 [
                   _c("v-tab", [_vm._v("Almacén")]),
                   _vm._v(" "),
-                  _c("v-tab", { on: { click: _vm.getSolicitadas } }, [
+                  _c("v-tab", { on: { click: _vm.getPartidasSolicitadas } }, [
                     _vm._v("Partidas Solicitadas")
                   ]),
                   _vm._v(" "),
-                  _c("v-tab", { on: { click: _vm.getDisponibles } }, [
+                  _c("v-tab", { on: { click: _vm.getInventario } }, [
                     _vm._v("Inventario Disponible")
                   ]),
                   _vm._v(" "),
-                  _c("v-tab", [_vm._v("Historial de Entrada")]),
+                  _c("v-tab", { on: { click: _vm.getHistorialEntrada } }, [
+                    _vm._v("Historial de Entrada")
+                  ]),
                   _vm._v(" "),
-                  _c("v-tab", [_vm._v("Historial de Salida")])
+                  _c("v-tab", { on: { click: _vm.getHistorialSalida } }, [
+                    _vm._v("Historial de Salida")
+                  ])
                 ],
                 1
               )
@@ -53439,11 +53333,11 @@ var render = function() {
                                           "hide-details": ""
                                         },
                                         model: {
-                                          value: _vm.search2,
+                                          value: _vm.buscarSolicitadas,
                                           callback: function($$v) {
-                                            _vm.search2 = $$v
+                                            _vm.buscarSolicitadas = $$v
                                           },
-                                          expression: "search2"
+                                          expression: "buscarSolicitadas"
                                         }
                                       }),
                                       _vm._v(" "),
@@ -53453,9 +53347,10 @@ var render = function() {
                                       _vm._v(" "),
                                       _c("v-data-table", {
                                         attrs: {
-                                          headers: _vm.headersSolicitadas,
-                                          items: _vm.solicitadas,
-                                          search: _vm.search2
+                                          headers:
+                                            _vm.headersPartidasSolicitadas,
+                                          items: _vm.partidasSolicitadas,
+                                          search: _vm.buscarSolicitadas
                                         },
                                         scopedSlots: _vm._u([
                                           {
@@ -53578,11 +53473,12 @@ var render = function() {
                                           "hide-details": ""
                                         },
                                         model: {
-                                          value: _vm.search3,
+                                          value: _vm.buscarInventarioDisponible,
                                           callback: function($$v) {
-                                            _vm.search3 = $$v
+                                            _vm.buscarInventarioDisponible = $$v
                                           },
-                                          expression: "search3"
+                                          expression:
+                                            "buscarInventarioDisponible"
                                         }
                                       }),
                                       _vm._v(" "),
@@ -53592,9 +53488,10 @@ var render = function() {
                                       _vm._v(" "),
                                       _c("v-data-table", {
                                         attrs: {
-                                          headers: _vm.headersDisponibles,
-                                          items: _vm.disponibles,
-                                          search: _vm.search3
+                                          headers:
+                                            _vm.headersInventarioDisponible,
+                                          items: _vm.inventarioDisponible,
+                                          search: _vm.buscarInventarioDisponible
                                         },
                                         scopedSlots: _vm._u([
                                           {
@@ -53812,11 +53709,11 @@ var render = function() {
                                           "hide-details": ""
                                         },
                                         model: {
-                                          value: _vm.search5,
+                                          value: _vm.buscarHistorialEntradas,
                                           callback: function($$v) {
-                                            _vm.search5 = $$v
+                                            _vm.buscarHistorialEntradas = $$v
                                           },
-                                          expression: "search5"
+                                          expression: "buscarHistorialEntradas"
                                         }
                                       }),
                                       _vm._v(" "),
@@ -53826,13 +53723,15 @@ var render = function() {
                                       _vm._v(" "),
                                       _c("v-data-table", {
                                         attrs: {
-                                          headers: _vm.headersEntradas,
-                                          items: _vm.entradas,
-                                          search: _vm.search5
+                                          headers:
+                                            _vm.headersInventarioEntradas,
+                                          items: _vm.inventarioEntradas,
+                                          search: _vm.buscarHistorialEntradas
                                         },
                                         scopedSlots: _vm._u([
                                           {
-                                            key: "item.politicasdegarantia",
+                                            key:
+                                              "item.producto.politicasdegarantia",
                                             fn: function(ref) {
                                               var item = ref.item
                                               return [
@@ -53966,11 +53865,11 @@ var render = function() {
                                           "hide-details": ""
                                         },
                                         model: {
-                                          value: _vm.search4,
+                                          value: _vm.buscarInventarioSalidas,
                                           callback: function($$v) {
-                                            _vm.search4 = $$v
+                                            _vm.buscarInventarioSalidas = $$v
                                           },
-                                          expression: "search4"
+                                          expression: "buscarInventarioSalidas"
                                         }
                                       }),
                                       _vm._v(" "),
@@ -53980,9 +53879,9 @@ var render = function() {
                                       _vm._v(" "),
                                       _c("v-data-table", {
                                         attrs: {
-                                          headers: _vm.headersSalidas,
-                                          items: _vm.salidas,
-                                          search: _vm.search4
+                                          headers: _vm.headersInventarioSalidas,
+                                          items: _vm.inventarioSalidas,
+                                          search: _vm.buscarInventarioSalidas
                                         },
                                         scopedSlots: _vm._u([
                                           {
@@ -58155,7 +58054,7 @@ var render = function() {
                   staticClass: "font-weight-black mb-3",
                   attrs: { align: "center" }
                 },
-                [_vm._v("Llena el Formulario para registrar una nueva Partida")]
+                [_vm._v("Llena el Formulario para registrar un nuevo producto")]
               ),
               _vm._v(" "),
               _c("p", [
@@ -58454,7 +58353,7 @@ var render = function() {
                       attrs: { block: "", color: "primary" },
                       on: { click: _vm.guardarIventario }
                     },
-                    [_vm._v("\n              Guardar Partida\n              ")]
+                    [_vm._v("\n              Guardar Producto\n              ")]
                   )
                 ],
                 1

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Almacen;
 use App\Segmento;
 use App\Salida;
+use App\Entrada;
 // use App\Solicitud;
 // use App\Cotizacion;
 // use App\Partida;
@@ -30,8 +31,16 @@ class AlmacenController extends Controller
         $registro->notasdelproducto = $request->notasdelproducto;
         $registro->archivosdenotas = $request->archivosdenotas;
         $registro->miniatura = $request->miniatura;
-
         $registro->save();
+
+        $entrada =  new Entrada();
+        $entrada->idProducto = $registro->id;
+        $entrada->idEmpleado = $request->idEmpleado;
+        // $entrada->idCotizacion = $request->valor;
+        $entrada->cantidad = $request->cantidad;
+        $entrada->concepto = $request->concepto;
+        // $entrada->evidencias = $request->valor;
+        $entrada->save();
         return "true";
 
     }
@@ -57,8 +66,14 @@ class AlmacenController extends Controller
 
     }
 
-    public function getAlmacenDisponibles () {
+    public function getInventario () {
       $disponible = Almacen::with('segmento')->with('empleado')->get();
+      return response()->json(['response' => $disponible],200);
+
+    }
+
+    public function getEntradas () {
+      $disponible = Entrada::with('producto')->with('producto.segmento')->with('responsable')->get();
       return response()->json(['response' => $disponible],200);
 
     }

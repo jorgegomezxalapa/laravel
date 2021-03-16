@@ -11,10 +11,10 @@
       <v-tabs v-model="tab"
           align-with-title>
    <v-tab>Almacén</v-tab>
-   <v-tab @click="getSolicitadas">Partidas Solicitadas</v-tab>
-   <v-tab @click="getDisponibles">Inventario Disponible</v-tab>
-   <v-tab>Historial de Entrada</v-tab>
-   <v-tab>Historial de Salida</v-tab>
+   <v-tab @click="getPartidasSolicitadas">Partidas Solicitadas</v-tab>
+   <v-tab @click="getInventario">Inventario Disponible</v-tab>
+   <v-tab @click="getHistorialEntrada">Historial de Entrada</v-tab>
+   <v-tab @click="getHistorialSalida">Historial de Salida</v-tab>
  </v-tabs>
     </v-card-title>
 <v-divider></v-divider>
@@ -91,7 +91,7 @@
                 <v-card-text>
 
                   <v-text-field
-              v-model="search2"
+              v-model="buscarSolicitadas"
               append-icon="mdi-magnify"
               label="Buscar Partida"
               single-line
@@ -100,9 +100,9 @@
             <br> <br>
           </v-card-title>
           <v-data-table
-            :headers="headersSolicitadas"
-            :items="solicitadas"
-            :search="search2"
+            :headers="headersPartidasSolicitadas"
+            :items="partidasSolicitadas"
+            :search="buscarSolicitadas"
           >
           <template v-slot:item.acciones="{ item }">
 
@@ -144,7 +144,7 @@
                 <v-card-text>
 
                   <v-text-field
-              v-model="search3"
+              v-model="buscarInventarioDisponible"
               append-icon="mdi-magnify"
               label="Buscar Producto"
               single-line
@@ -153,9 +153,9 @@
             <br> <br>
           </v-card-title>
           <v-data-table
-            :headers="headersDisponibles"
-            :items="disponibles"
-            :search="search3"
+            :headers="headersInventarioDisponible"
+            :items="inventarioDisponible"
+            :search="buscarInventarioDisponible"
           >
           <template v-slot:item.politicasdegarantia="{ item }">
 
@@ -218,7 +218,7 @@
                 <v-card-text>
 
                   <v-text-field
-              v-model="search5"
+              v-model="buscarHistorialEntradas"
               append-icon="mdi-magnify"
               label="Buscar Producto"
               single-line
@@ -227,11 +227,11 @@
             <br> <br>
           </v-card-title>
           <v-data-table
-            :headers="headersEntradas"
-            :items="entradas"
-            :search="search5"
+            :headers="headersInventarioEntradas"
+            :items="inventarioEntradas"
+            :search="buscarHistorialEntradas"
           >
-          <template v-slot:item.politicasdegarantia="{ item }">
+          <template v-slot:item.producto.politicasdegarantia="{ item }">
 
             <span v-if ="item.politicasdegarantia == 1">Sí Aplica</span>
             <span v-else>No Aplica</span>
@@ -273,7 +273,7 @@
                 <v-card-text>
 
                   <v-text-field
-              v-model="search4"
+              v-model="buscarInventarioSalidas"
               append-icon="mdi-magnify"
               label="Buscar Producto"
               single-line
@@ -282,9 +282,9 @@
             <br> <br>
           </v-card-title>
           <v-data-table
-            :headers="headersSalidas"
-            :items="salidas"
-            :search="search4"
+            :headers="headersInventarioSalidas"
+            :items="inventarioSalidas"
+            :search="buscarInventarioSalidas"
           >
           <template v-slot:item.politicasdegarantia="{ item }">
 
@@ -448,7 +448,7 @@ export default {
 data () {
   return {
     idEditar:null,
-        files:[],
+    files:[],
     dialog:false,
     modalProducto:false,
     cantidadingresada:null,
@@ -456,12 +456,11 @@ data () {
     conceptosalida:null,
     tab: null,
     model2:'tab-1',
-    search1:null,
-      search2:null,
-        search3:null,
-        search4:null,
-        search5:null,
-    headers: [
+   buscarSolicitadas:"",
+   buscarInventarioSalidas:"",
+   buscarHistorialEntradas:"",
+   buscarInventarioDisponible:"",
+    headersPartidasSolicitadas: [
       { text: '# Folio Solicitud|Cotización', value: 'cotizacion.solicitud.folio' },
           {
             text: 'Descripcion',
@@ -478,7 +477,7 @@ data () {
           { text: 'Número de Serie', value: 'numserie' },
 
         ],
-        headersSalidas: [
+        headersInventarioSalidas: [
           { text: 'Fecha de Salida', value: 'created_at' },
               {
                 text: 'Responsable',
@@ -496,83 +495,56 @@ data () {
 
 
             ],
-            headersEntradas: [
+            headersInventarioEntradas: [
               { text: 'Fecha de Ingreso', value: 'created_at' },
               {
                 text: 'Responsable',
                 align: 'start',
                 filterable: false,
-                value: 'empleado.name',
+                value: 'responsable.name',
               },
                   {
                     text: 'Segmento',
                     align: 'start',
                     filterable: false,
-                    value: 'segmento.nombre',
+                    value: 'producto.segmento.nombre',
                   },
                   { text: 'Miniatura', value: '' },
                   { text: 'Cantidad Ingresada', value: 'cantidad' },
-                  { text: 'Unidad de Medida', value: 'unidaddemedida' },
-                  { text: 'Descripcion', value: 'descripcion' },
-                  { text: 'Precio', value: 'preciodelproveedor' },
-                    { text: 'Políticas de Garantía', value: 'politicasdegarantia' },
-                  { text: 'Marca', value: 'marca' },
-                  { text: 'Modelo', value: 'modelo' },
-                  { text: 'Número de Serie', value: 'numerodeserie' },
-                  { text: 'Notas del Producto', value: 'notasdelproducto' },
+                  { text: 'Unidad de Medida', value: 'producto.unidaddemedida' },
+                  { text: 'Descripcion', value: 'producto.descripcion' },
+                  { text: 'Precio', value: 'producto.preciodelproveedor' },
+                    { text: 'Políticas de Garantía', value: 'producto.politicasdegarantia' },
+                  { text: 'Marca', value: 'producto.marca' },
+                  { text: 'Modelo', value: 'producto.modelo' },
+                  { text: 'Número de Serie', value: 'producto.numerodeserie' },
+                  { text: 'Notas del Producto', value: 'producto.notasdelproducto' },
 
                 ],
-        headersSolicitadas: [
-          { text: '# Folio Solicitud|Cotización', value: 'cotizacion.solicitud.folio' },
+    
+
+            headersInventarioDisponible: [
+              { text: 'Miniatura', value: '' },
+              { text: 'Descripcion', value: 'descripcion' },
               {
-                text: 'Descripcion',
+                text: 'Segmento',
                 align: 'start',
                 filterable: false,
-                value: 'descripcion',
+                value: 'segmento.nombre',
               },
-              {
-                text: 'Notas',
-                align: 'start',
-                filterable: false,
-                value: 'notasproducto',
-              },
-              { text: 'Precio de Proveedor', value: 'precioproveedor' },
-              { text: 'Disponible', value: 'disponible' },
-                { text: 'Solicitado', value: 'solicitadas' },
-              { text: 'Unidad de Medida', value: 'unidadmedida' },
+              { text: 'Cantidad Disponible', value: 'disponible' },
+              { text: 'Unidad de Medida', value: 'unidaddemedida' },
+              { text: 'Precio', value: 'preciodelproveedor' },
               { text: 'Marca', value: 'marca' },
               { text: 'Modelo', value: 'modelo' },
-              { text: 'Número de Serie', value: 'numserie' },
-                  { text: 'Acciones', align: 'center', value: 'acciones' },
-
-            ],
-
-            headersDisponibles: [
-              { text: 'Fecha de Ingreso', value: 'created_at' },
-                  {
-                    text: 'Segmento',
-                    align: 'start',
-                    filterable: false,
-                    value: 'segmento.nombre',
-                  },
-                  { text: 'Miniatura', value: '' },
-
-                  { text: 'Cantidad Disponible', value: 'disponible' },
-                  { text: 'Unidad de Medida', value: 'unidaddemedida' },
-                  { text: 'Descripcion', value: 'descripcion' },
-                  { text: 'Precio', value: 'preciodelproveedor' },
-                    { text: 'Políticas de Garantía', value: 'politicasdegarantia' },
-                  { text: 'Marca', value: 'marca' },
-                  { text: 'Modelo', value: 'modelo' },
-                  { text: 'Número de Serie', value: 'numerodeserie' },
-                  { text: 'Notas del Producto', value: 'notasdelproducto' },
-                  { text: 'Acciones', align: 'center', value: 'acciones' },
+              { text: 'Número de Serie', value: 'numerodeserie' },
+              { text: 'Políticas de Garantía', value: 'politicasdegarantia' },
+              { text: 'Notas del Producto', value: 'notasdelproducto' },
+              { text: 'Acciones', align: 'center', value: 'acciones' },
 
                 ],
-        global: [],
-        solicitadas:[],
-        disponibles:[],
-        salidas:[],
+        
+       
         descripcionModal:null,
         unidaddemedidaModal:null,
         marcaModal:null,
@@ -580,16 +552,61 @@ data () {
         numeroSerieModal:null,
         politicasdegarantiaModal:null,
         notasModal:null,
-        entradas:[],
+
+
+        partidasSolicitadas:[],
+        inventarioDisponible:[],
+        inventarioEntradas:[],
+        inventarioSalidas:[],
+       
 
   }
 },
 mounted() {
-  this.getAlmacen()
-  this.getSalidas()
-
+  
 },
 methods : {
+
+    async getPartidasSolicitadas () {
+      alert("buscar solcitidas")
+
+    },
+    async getInventario () {
+      try {
+          const response = await axios({
+            method: 'get',
+            url: 'getInventario',
+          })
+
+          this.inventarioDisponible = response.data.response
+         
+      } catch (error) {
+
+         swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+        
+      }
+    },
+    async getHistorialEntrada () {
+       try {
+          const response = await axios({
+            method: 'get',
+            url: 'getEntradas',
+          })
+
+          this.inventarioEntradas = response.data.response
+          console.log(response.data)
+         
+      } catch (error) {
+
+         swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+        
+      }
+    },
+    async getHistorialSalida () {
+      alert("buscar salidas")
+    },
+
+
   async asociarInventario (item) {
     console.log(item)
   },
@@ -637,90 +654,7 @@ methods : {
 
       }
   },
-  async getAlmacen(){
-    try {
-          const response = await axios({
-            method: 'get',
-            url: 'getAlmacen',
-
-          })
-          this.global = response.data.response
-          console.log(response.data.response)
-
-
-
-      } catch (error) {
-
-         swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
-          console.log(error);
-
-      }
-  },
-
-  async getSalidas(){
-    try {
-          const response = await axios({
-            method: 'get',
-            url: 'getSalidas',
-
-          })
-          this.salidas = response.data.response
-
-
-      } catch (error) {
-
-         swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
-          console.log(error);
-
-      }
-  },
-
-  async getInventario () {
-    this.getAlmacen()
-  },
-
-  async getDisponibles () {
-    try {
-          const response = await axios({
-            method: 'get',
-            url: 'getAlmacenDisponibles',
-
-          })
-          this.disponibles = response.data.response
-          this.entradas = this.disponibles
-          console.log(response.data.response)
-
-
-
-      } catch (error) {
-
-         swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
-          console.log(error);
-
-      }
-
-  },
-
-  async getSolicitadas () {
-    try {
-          const response = await axios({
-            method: 'get',
-            url: 'getAlmacenSolicitadas',
-
-          })
-          this.solicitadas = response.data.response
-          console.log(response.data.response)
-
-
-
-      } catch (error) {
-
-         swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
-          console.log(error);
-
-      }
-  },
-
+  
 
 }
 }
