@@ -16,30 +16,61 @@ use App\Partida;
 class AlmacenController extends Controller
 {
     public function registro( Request $request ){
+
       $registro = new Almacen();
-      $registro->idEmpleado = $request->idEmpleado;
-        $registro->idSegmento = $request->idSegmento;
-        $registro->descripcion = $request->descripcion;
-        $registro->unidaddemedida = $request->unidaddemedida;
-        $registro->cantidad = $request->cantidad;
-        $registro->disponible = $request->cantidad;
-        $registro->preciodelproveedor = $request->preciodelproveedor;
-        $registro->marca = $request->marca;
-        $registro->modelo = $request->modelo;
-        $registro->numerodeserie = $request->numerodeserie;
-        $registro->politicasdegarantia = $request->politicasdegarantia;
-        $registro->notasdelproducto = $request->notasdelproducto;
-        $registro->archivosdenotas = $request->archivosdenotas;
-        $registro->miniatura = $request->miniatura;
+      $registro->idEmpleado = intval($request->idEmpleado);
+        $registro->idSegmento = $request->idSegmento == 'null' ? null : $request->idSegmento;
+        $registro->descripcion = $request->descripcion == 'null' ? null : $request->descripcion;
+        $registro->unidaddemedida = $request->unidaddemedida == 'null' ? null : $request->unidaddemedida;
+        $registro->cantidad = ($request->cantidad == 'NaN') ? null: intval($request->cantidad);
+        $registro->disponible = ($request->cantidad == 'NaN') ? null: intval($request->cantidad);
+        $registro->preciodelproveedor = ($request->preciodelproveedor == 'NaN') ? null: intval($request->preciodelproveedor);
+        $registro->marca = $request->marca == 'null' ? null : $request->marca;
+        $registro->modelo = $request->modelo == 'null' ? null : $request->modelo;
+        $registro->numerodeserie = $request->numerodeserie == 'null' ? null : $request->numerodeserie;
+        $registro->politicasdegarantia = ($request->politicasdegarantia == 'false') ? 0: 1;
+        $registro->notasdelproducto = $request->notasdelproducto == 'null' ? null : $request->notasdelproducto;
+        if(  isset ( $request->archivo ) ){
+                $nombreConcatenado = null;
+                foreach($request->archivo as $archivo){
+                $nombre = $archivo->getClientOriginalName();
+                if($nombreConcatenado != null){
+                    $nombreConcatenado = $nombreConcatenado.','.$nombre;
+                }else{
+                    $nombreConcatenado = $nombre;
+                }
+                $path = $archivo->storeAs(
+                'fotosProductos',  $nombre
+                );
+                }
+                $registro->archivosdenotas = $nombreConcatenado;
+
+            }
+        // $registro->miniatura = $request->miniatura;
         $registro->save();
 
         $entrada =  new Entrada();
         $entrada->idProducto = $registro->id;
-        $entrada->idEmpleado = $request->idEmpleado;
+        $entrada->idEmpleado = intval($request->idEmpleado);
         // $entrada->idCotizacion = $request->valor;
-        $entrada->cantidad = $request->cantidad;
-        $entrada->concepto = $request->concepto;
-        // $entrada->evidencias = $request->valor;
+        $entrada->cantidad = ($request->cantidad == 'NaN') ? null: intval($request->cantidad);
+        $entrada->concepto = ($request->concepto == 'null') ? null: $request->concepto;
+        if(  isset ( $request->entrada ) ){
+                $nombreConcatenado = null;
+                foreach($request->entrada as $archivo){
+                $nombre = $archivo->getClientOriginalName();
+                if($nombreConcatenado != null){
+                    $nombreConcatenado = $nombreConcatenado.','.$nombre;
+                }else{
+                    $nombreConcatenado = $nombre;
+                }
+                $path = $archivo->storeAs(
+                'evidenciaEntradas',  $nombre
+                );
+                }
+                $entrada->evidencias = $nombreConcatenado;
+
+            }
         $entrada->save();
         return "true";
 
@@ -55,20 +86,36 @@ class AlmacenController extends Controller
     }
 
     public function actualizarIngresoPartida( Request $request ){
-      $partida = Partida::where('id', '=', $request->idPartida)->first();
+      $partida = Partida::where('id', '=', intval($request->idPartida))->first();
       $partida ->disponible = intval($partida->disponible) + intval($request->cantidad);
       $partida->save();
 
-      $producto = Almacen::where('id', '=', $request->idProducto)->first();
+      $producto = Almacen::where('id', '=', intval($request->idProducto))->first();
       $producto->disponible = intval($producto->disponible) + intval($request->cantidad);
       $producto->save();
 
       $entrada = new Entrada();
-      $entrada->idProducto = $producto->id;
-      $entrada->idEmpleado = $request->idEmpleado;
+      $entrada->idProducto = intval($producto->id);
+      $entrada->idEmpleado = intval($request->idEmpleado);
       $entrada->idCotizacion = intval($request->idCotizacion);
       $entrada->cantidad = intval($request->cantidad);
       $entrada->concepto = $request->concepto;
+      if(  isset ( $request->archivo ) ){
+                $nombreConcatenado = null;
+                foreach($request->archivo as $archivo){
+                $nombre = $archivo->getClientOriginalName();
+                if($nombreConcatenado != null){
+                    $nombreConcatenado = $nombreConcatenado.','.$nombre;
+                }else{
+                    $nombreConcatenado = $nombre;
+                }
+                $path = $archivo->storeAs(
+                'evidenciaEntradas',  $nombre
+                );
+                }
+                $entrada->evidencias = $nombreConcatenado;
+
+            }
 
       $entrada->save();
 
@@ -83,13 +130,31 @@ class AlmacenController extends Controller
 
     public function getSalidas( ){
         $salidas = Salida::with('producto')->with('producto.segmento')->with('empleado')->get();
-        return response()->json(['response' => $salidas],200);
+        $array = array();
+        foreach($salidas as $item){
+        $itemArray = $item->toArray();
+        $itemArray['documentos'] = explode(",", $item->evidencias);
+        $array[] = $itemArray;
+        }
+      return response()->json(['response' => $array],200);
 
     }
 
     public function getInventario () {
       $disponible = Almacen::with('segmento')->with('empleado')->where('esSolicitud', '=', null)->where('disponible', '>', 0.00)->get();
       return response()->json(['response' => $disponible],200);
+
+    }
+
+    public function getInventarioTotal () {
+      $disponible = Almacen::with('segmento')->where('disponible', '>', 0.00)->get();
+        $array = array();
+        foreach($disponible as $item){
+        $itemArray = $item->toArray();
+        $itemArray['documentos'] = explode(",", $item->archivosdenotas);
+        $array[] = $itemArray;
+        }
+      return response()->json(['response' => $array],200);
 
     }
 
@@ -101,19 +166,43 @@ class AlmacenController extends Controller
 
     public function getEntradas () {
       $disponible = Entrada::with('producto')->with('producto.segmento')->with('responsable')->get();
+       $array = array();
+      foreach($disponible as $item){
+        $itemArray = $item->toArray();
+        $itemArray['documentos'] = explode(",", $item->evidencias);
+        $array[] = $itemArray;
+        }
+      return response()->json(['response' => $array],200);
       return response()->json(['response' => $disponible],200);
 
     }
 
     public function salidaPartida( Request $request ){
         $salida = new Salida();
-        $salida->idProducto = $request->id;
-        $salida->idEmpleado = $request->idEmpleado;
-        $salida->cantidad = $request->cantidadsalida;
+        $salida->idProducto = intval($request->id);
+        $salida->idEmpleado = intval($request->idEmpleado);
+        $salida->cantidad = intval($request->cantidadsalida);
         $salida->concepto = $request->conceptosalida;
+        if(  isset ( $request->archivo ) ){
+                $nombreConcatenado = null;
+                foreach($request->archivo as $archivo){
+                $nombre = $archivo->getClientOriginalName();
+                if($nombreConcatenado != null){
+                    $nombreConcatenado = $nombreConcatenado.','.$nombre;
+                }else{
+                    $nombreConcatenado = $nombre;
+                }
+                $path = $archivo->storeAs(
+                'evidenciaSalidas',  $nombre
+                );
+                }
+               $salida->evidencias = $nombreConcatenado;
+
+            }
+
         $salida->save();
 
-        $descuento = Almacen::where('id', '=', $request->id)->first();
+        $descuento = Almacen::where('id', '=', intval($request->id))->first();
         $resta = intval($descuento->disponible) - intval($request->cantidadsalida) ;
         $descuento->disponible = $resta;
         $descuento->save();

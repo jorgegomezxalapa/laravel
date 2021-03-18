@@ -806,9 +806,7 @@
                  :headers="headers"
                  :items="partidas"
                  :search="search"
-                 :single-select="singleSelect"
-        item-key="id"
-        show-select
+                 
         class="elevation-1"
                    :items-per-page="5"
                  >
@@ -1131,7 +1129,9 @@ import swal from 'sweetalert';
               },
               { text: 'Descripción', align: 'center', value: 'descripcion' },
                 { text: 'Unidad de Medida', align: 'center', value: 'unidadmedida' },
-              { text: 'Cantidad', align: 'center', value: 'cantidad' },
+                { text: 'Almacén', align: 'center', value: 'disponible' },
+              { text: 'Cantidad solicitada', align: 'center', value: 'cantidad' },
+
               { text: 'Precio Proveedor', align: 'center', value: 'precioproveedor' },
               { text: 'Marca', align: 'center', value: 'marca' },
               { text: 'Modelo', align: 'center', value: 'modelo' },

@@ -13,11 +13,13 @@
 
                       md="4"
                     >
+
                     <v-select
             v-model="segmento"
             :items="segmentos"
             item-text="nombre"
             item-value="id"
+            @click="getSegmentos()"
 
             label="Seleccione un segmento"
             data-vv-name="select"
@@ -151,22 +153,48 @@
 
                                                         ></v-textarea>
                                                         <v-file-input
-   v-model="files"
-   placeholder="Documentación soporte"
-   label="Ingresa tus archivos"
-   multiple
-   prepend-icon="mdi-paperclip"
- >
-   <template v-slot:selection="{ text }">
-     <v-chip
-       small
-       label
-       color="primary"
-     >
-       {{ text }}
-     </v-chip>
-   </template>
- </v-file-input>
+    v-model="files"
+    placeholder="Documentos soporte"
+    label="Ingresa tus archivos"
+    multiple
+    prepend-icon="mdi-paperclip"
+  >
+    <template v-slot:selection="{ text }">
+      <v-chip
+        small
+        label
+        color="primary"
+      >
+        {{ text }}
+      </v-chip>
+    </template>
+  </v-file-input>
+
+   <v-text-field
+                                                  v-model="concepto"
+                                                  type="text"
+                                                  label="Concepto de Entrada"
+                                                  outlined
+                                                  dense
+                                                ></v-text-field>
+
+                                                <v-file-input
+    v-model="files2"
+    placeholder="Evidencia de Entrada"
+    label="Ingresa tus archivos"
+    multiple
+    prepend-icon="mdi-paperclip"
+  >
+    <template v-slot:selection="{ text }">
+      <v-chip
+        small
+        label
+        color="primary"
+      >
+        {{ text }}
+      </v-chip>
+    </template>
+  </v-file-input>
                                                       </v-col>
 
             </v-row>
@@ -210,6 +238,7 @@ import swal from 'sweetalert';
           panel: [0, 1],
           segmentos:[],
           segmento:null,
+          concepto:null,
      disablednew: false,
      readonlynew: false,
           oivapartida:16,
@@ -221,6 +250,7 @@ import swal from 'sweetalert';
             switch1:false,
             switch5:false,
             files:[],
+            files2:[],
             tab:null,
             utilidadGlobal:null,
             ivaGlobal:16,
@@ -373,31 +403,51 @@ import swal from 'sweetalert';
 
 
             async guardarIventario(){
-              console.log(this.segmento)
+              console.log(this.files)
+              let formData = new FormData()
+
+              formData.append( 'idEmpleado',parseInt(localStorage.getItem('idPerfil')) )
+                        formData.append( 'idSegmento',this.segmento )
+                        formData.append( 'descripcion',this.descripcion )
+                        formData.append( 'unidaddemedida',this.unidadmedida )
+                        formData.append( 'cantidad',parseFloat(this.cantidad) )
+                        formData.append( 'preciodelproveedor',parseFloat(this.precioproveedor) )
+                        formData.append( 'marca',this.marca )
+                        formData.append( 'modelo',this.modelo )
+                        formData.append( 'numerodeserie',this.numserie )
+                        formData.append( 'politicasdegarantia',this.switch5 )
+                        formData.append( 'notasdelproducto',this.notasproducto )
+                        formData.append( 'concepto',this.concepto )
+                  
+                    if(this.files.length != 0){
+                        for(let i = 0; i < this.files.length; i++){
+                            let file = this.files[i]
+                            
+                            formData.append('archivo['+i+']',file)
+                        }
+                    }
+
+                    if(this.files2.length != 0){
+                        for(let i = 0; i < this.files2.length; i++){
+                            let file2 = this.files2[i]
+                            
+                            formData.append('entrada['+i+']',file2)
+                        }
+                    }
+                    console.log(formData)
+
               try {
                     const response = await axios({
                       method: 'post',
                       url: 'registroinventario',
-                      data:{
-                        idEmpleado:parseInt(localStorage.getItem('idPerfil')),
-                        idSegmento:this.segmento,
-                        descripcion:this.descripcion,
-                        unidaddemedida:this.unidadmedida,
-                        cantidad:parseFloat(this.cantidad),
-                        preciodelproveedor:parseFloat(this.precioproveedor),
-                        marca:this.marca,
-                        modelo:this.modelo,
-                        numerodeserie:this.numserie,
-                        politicasdegarantia:this.switch5,
-                        notasdelproducto:this.notasproducto,
-                        archivosdenotas:null,
-                        miniatura:null,
-                      }
+                      data:formData
                     })
 
                     swal("Éxito", "La partida se registró con éxito", "success");
 
-
+                    this.files.splice(0)
+                    this.concepto = null
+                    this.segmento = null     
                     this.descripcion = null
                     this.unidadmedida = null
                     this.cantidad = 0

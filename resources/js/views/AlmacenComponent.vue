@@ -11,6 +11,7 @@
       <v-tabs v-model="tab"
           align-with-title>
    <v-tab>Almacén</v-tab>
+   <v-tab @click="getInventarioTotal">Inventario Total</v-tab>
    <v-tab @click="getPartidasSolicitadas">Partidas Solicitadas</v-tab>
    <v-tab @click="getInventario">Inventario Disponible</v-tab>
    <v-tab @click="getHistorialEntrada">Historial de Entrada</v-tab>
@@ -82,6 +83,80 @@
             </v-card-text>
           </v-card>
         </v-tab-item>
+
+        <v-tab-item
+        >
+       
+          <v-card flat>
+            <v-card-text>
+              <v-card flat>
+                <v-card-text>
+
+                  <v-text-field
+              v-model="buscarInventarioTotal"
+              append-icon="mdi-magnify"
+              label="Buscar Producto"
+              single-line
+              hide-details
+            ></v-text-field>
+            <br> <br>
+          </v-card-title>
+          <v-data-table
+            :headers="headersInventarioTotal"
+            :items="inventarioTotal"
+            :search="buscarInventarioTotal"
+          >
+          <template v-slot:no-data>
+    Aún no hay información disponible
+    </template>
+          <template v-slot:item.esSolicitud="{ item }">
+
+
+             <v-chip
+      class="ma-2"
+      color="orange"
+      dark
+      v-if="item.esSolicitud == 1"
+    >
+      Comprometido
+    </v-chip>
+    <v-chip
+      class="ma-2"
+      color="primary"
+      v-else
+      dark
+    >
+      Disponible
+    </v-chip>
+
+          </template>
+          <template v-slot:item.documentos="{ item }">
+            <p>{{item.notasdelproducto}}</p>
+          
+     <span
+                      v-for="(item) in item.documentos"
+                      v-bind:key="item.documentos"
+                    >
+                    <v-chip
+                    class="ma-2"
+                       small
+                       color="secondary"
+                       v-if="item != ''"
+                     @click="abrirpopup(item)"
+                    >
+                      {{item}}
+                    </v-chip>
+                            <p v-if="item == ''"><strong>Sin Documentos Adjuntos</strong></p>              
+                   
+                    </span>
+    </template>
+        </v-data-table>
+                </v-card-text>
+              </v-card>
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+
 
         <v-tab-item
         >
@@ -265,6 +340,27 @@
                 <span>Ver Detalle del Producto</span>
             </v-tooltip>
           </template>
+
+          <template v-slot:item.documentos="{ item }">
+           
+          
+     <span
+                      v-for="(item) in item.documentos"
+                      v-bind:key="item.documentos"
+                    >
+                    <v-chip
+                    class="ma-2"
+                       small
+                       color="secondary"
+                       v-if="item != ''"
+                     @click="abrirpopup3(item)"
+                    >
+                      {{item}}
+                    </v-chip>
+                            <p v-if="item == ''"><strong>Sin Documentos Adjuntos</strong></p>              
+                   
+                    </span>
+    </template>
         </v-data-table>
                 </v-card-text>
               </v-card>
@@ -303,6 +399,27 @@
             <span v-if ="item.politicasdegarantia == 1">Sí Aplica</span>
             <span v-else>No Aplica</span>
           </template>
+
+          <template v-slot:item.documentos="{ item }">
+          
+          
+     <span
+                      v-for="(item) in item.documentos"
+                      v-bind:key="item.documentos"
+                    >
+                    <v-chip
+                    class="ma-2"
+                       small
+                       color="secondary"
+                       v-if="item != ''"
+                     @click="abrirpopup2(item)"
+                    >
+                      {{item}}
+                    </v-chip>
+                            <p v-if="item == ''"><strong>Sin Documentos Adjuntos</strong></p>              
+                   
+                    </span>
+    </template>
 
           <template v-slot:item.producto="{ item }">
             <v-tooltip top>
@@ -365,6 +482,23 @@
              v-model="conceptoentrada"
 
          ></v-textarea>
+         <v-file-input
+v-model="files2"
+placeholder="Ingresa tus archivos"
+label="Archivos de evidencia de entrada de mercancía"
+multiple
+prepend-icon="mdi-paperclip"
+>
+<template v-slot:selection="{ text }">
+<v-chip
+small
+label
+color="primary"
+>
+{{ text }}
+</v-chip>
+</template>
+</v-file-input>
         </v-card-text>
 
         <v-divider></v-divider>
@@ -505,6 +639,7 @@ data () {
     conceptoentrada:null,
     idEditar:null,
     files:[],
+     files2:[],
     dialog:false,
     modalEntrada:false,
     modalProducto:false,
@@ -513,6 +648,7 @@ data () {
     conceptosalida:null,
     tab: null,
     model2:'tab-1',
+    buscarInventarioTotal:"",
    buscarSolicitadas:"",
    buscarInventarioSalidas:"",
    buscarHistorialEntradas:"",
@@ -550,7 +686,7 @@ data () {
               { text: 'Cantidad', value: 'cantidad' },
 
               { text: 'Descripción del producto', value: 'producto.descripcion' },
-              { text: 'Evidencias', value: 'evidencias' },
+              { text: 'Evidencias', value: 'documentos' },
               { text: 'Producto', value: 'producto' },
 
 
@@ -569,7 +705,7 @@ data () {
 
                     value: 'producto.segmento.nombre',
                   },
-                  { text: 'Miniatura', value: '' },
+                  
                   { text: 'Cantidad Ingresada', value: 'cantidad' },
                   { text: 'Unidad de Medida', value: 'producto.unidaddemedida' },
                   { text: 'Descripcion', value: 'producto.descripcion' },
@@ -579,12 +715,13 @@ data () {
                   { text: 'Modelo', value: 'producto.modelo' },
                   { text: 'Número de Serie', value: 'producto.numerodeserie' },
                   { text: 'Concepto de Entrada', value: 'concepto' },
+                  { text: 'Evidencias', value: 'documentos' },
 
                 ],
 
 
             headersInventarioDisponible: [
-              { text: 'Miniatura', value: '' },
+              
               { text: 'Descripcion', value: 'descripcion' },
               {
                 text: 'Segmento',
@@ -603,6 +740,25 @@ data () {
               { text: 'Acciones', align: 'center', value: 'acciones' },
 
                 ],
+                headersInventarioTotal: [
+              
+              
+              { text: 'Descripcion', value: 'descripcion' },
+              {
+                text: 'Segmento',
+                align: 'start',
+
+                value: 'segmento.nombre',
+              },
+              { text: 'Cantidad', value: 'disponible' },
+              { text: 'Unidad de Medida', value: 'unidaddemedida' },
+              
+              { text: 'Marca', value: 'marca' },
+              { text: 'Modelo', value: 'modelo' },
+              { text: 'Número de Serie', value: 'numerodeserie' },
+              {text : 'Documentación Soporte', value :'documentos'},
+              { text: 'Estatus', value: 'esSolicitud' },
+                ],
 
 
         descripcionModal:null,
@@ -618,6 +774,7 @@ data () {
         inventarioDisponible:[],
         inventarioEntradas:[],
         inventarioSalidas:[],
+        inventarioTotal:[],
 
         idPartidaEntrada:null,
         idProductoEntrada:null,
@@ -630,21 +787,51 @@ mounted() {
 
 },
 methods : {
+ abrirpopup(item){
+              // var url = process.env.MIX_ARCHIVOS_URL;
+              var url = 'http://localhost/laravel/storage/app/fotosProductos/'
+              window.open(url+item,'popup','width=600,height=600')
+              // falta poner la ruta real
+
+            },
+            abrirpopup2(item){
+              // var url = process.env.MIX_ARCHIVOS_URL;
+              var url = 'http://localhost/laravel/storage/app/evidenciaSalidas/'
+              window.open(url+item,'popup','width=600,height=600')
+              // falta poner la ruta real
+
+            },
+            abrirpopup3(item){
+              // var url = process.env.MIX_ARCHIVOS_URL;
+              var url = 'http://localhost/laravel/storage/app/evidenciaEntradas/'
+              window.open(url+item,'popup','width=600,height=600')
+              // falta poner la ruta real
+
+            },
   async actualizarIngreso () {
+
+    let formData = new FormData()
+            formData.append( 'idEmpleado' , parseInt(localStorage.getItem('idPerfil')) )
+            formData.append( 'idCotizacion'  , this.idCotizacionEntrada )
+            formData.append( 'idPartida'  , this.idPartidaEntrada )
+            formData.append( 'idProducto'  , this.idProductoEntrada )
+            formData.append( 'cantidad' , this.ingresoProducto )
+            formData.append( 'concepto'  , this.conceptoentrada )
+    
+                    if(this.files2.length != 0){
+                        for(let i = 0; i < this.files2.length; i++){
+                            let file = this.files2[i]
+                            
+                            formData.append('archivo['+i+']',file)
+                        }
+                    }
 
 
     try {
         const response = await axios({
           method: 'post',
           url: 'actualizarIngresoPartida',
-          data:{
-            idEmpleado:parseInt(localStorage.getItem('idPerfil')),
-            idCotizacion : this.idCotizacionEntrada,
-            idPartida : this.idPartidaEntrada,
-            idProducto : this.idProductoEntrada,
-            cantidad: this.ingresoProducto,
-            concepto : this.conceptoentrada,
-          },
+          data:formData,
         })
        this.modalEntrada = false
         swal("Éxito", "El ingreso de la mercancía se ha realizado correctamente", "success");
@@ -654,6 +841,7 @@ methods : {
         this.idProductoEntrada = null
         this.ingresoProducto = null
         this.conceptoentrada = null
+        this.files2.splice(0)
 
     } catch (error) {
 
@@ -669,6 +857,22 @@ methods : {
           })
           console.log(response.data.response)
         this.partidasSolicitadas = response.data.response
+
+      } catch (error) {
+
+         swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+
+      }
+
+    },
+    async getInventarioTotal () {
+      try {
+          const response = await axios({
+            method: 'get',
+            url: 'getInventarioTotal',
+          })
+          console.log(response.data.response)
+        this.inventarioTotal = response.data.response
 
       } catch (error) {
 
@@ -755,21 +959,31 @@ methods : {
   },
   async salidaPartida() {
     this.dialog = false
+    let formData = new FormData()
+    formData.append( 'id', this.idEditar )
+    formData.append( 'idEmpleado', parseInt(localStorage.getItem('idPerfil')) )
+    formData.append( 'conceptosalida',this.conceptosalida )
+    formData.append( 'cantidadsalida',this.cantidadsalida )
+                       
+                  
+                    if(this.files.length != 0){
+                        for(let i = 0; i < this.files.length; i++){
+                            let file = this.files[i]
+                            
+                            formData.append('archivo['+i+']',file)
+                        }
+                    }
 
     try {
           const response = await axios({
             method: 'post',
             url: 'salidaPartida',
-            data: {
-              id: this.idEditar,
-              idEmpleado:parseInt(localStorage.getItem('idPerfil')),
-              conceptosalida:this.conceptosalida,
-              cantidadsalida:parseInt(this.cantidadsalida),
-            }
+            data: formData
 
           })
 
           swal("Éxito", "La salida se ha realizado con éxito", "success");
+           this.files.splice(0)
           this.conceptosalida = null
           this.cantidadsalida = null
           this.getInventario()
