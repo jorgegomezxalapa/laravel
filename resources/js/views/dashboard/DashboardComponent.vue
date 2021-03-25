@@ -213,7 +213,7 @@
          { text: 'SOLICITANTES', icon: 'mdi-account-badge-horizontal-outline' , url:'solicitantes'},
         { text: 'TIPOS DE VENTA', icon: 'mdi-file-percent-outline' , url:'utilidades'},
         { text: 'FORMATOS PDF', icon: 'mdi-file-pdf-box-outline' , url:'formatos'},
-        { text: 'USUARIOS', icon: 'mdi-account-box-multiple-outline' , url:'empleados'},
+        { text: 'EMPLEADOS', icon: 'mdi-account-box-multiple-outline' , url:'empleados'},
         { text: 'HISTORIAL', icon: 'mdi-history' , url:'historial'},
       ],
 

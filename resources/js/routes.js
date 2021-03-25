@@ -114,22 +114,22 @@ export default new Router ({
 	{
 		path:'/empleados',
 		name:'empleados',
-		component: require('./views/EmpleadosComponent.vue').default
+		component: require('./views/empleados/EmpleadosComponent.vue').default
 	},
 	{
 		path:'/nuevo-empleado',
 		name:'nuevoEmpleado',
-		component: require('./views/RegistroEmpleado.vue').default
+		component: require('./views/empleados/RegistroEmpleado.vue').default
 	},
 	{
 		path:'/editar-empleado/:id',
 		name:'editarEmpleado',
-		component: require('./views/RegistroEmpleado.vue').default
+		component: require('./views/empleados/RegistroEmpleado.vue').default
 	},
 	{
 		path:'/detalle-empleado/:id',
 		name:'detalleEmpleado',
-		component: require('./views/DetalleEmpleado.vue').default
+		component: require('./views/empleados/DetalleEmpleado.vue').default
 	},
 	{
 		path:'/historial',
