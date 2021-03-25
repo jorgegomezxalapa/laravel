@@ -32,7 +32,7 @@
             <v-text-field
         v-model="search"
         append-icon="mdi-magnify"
-        label="BUSCAR POR PARÁMETRO"
+        label="BUSCAR DATOS POR COLUMNA"
         single-line
         hide-details
       ></v-text-field>

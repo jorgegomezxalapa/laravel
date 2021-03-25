@@ -17,17 +17,17 @@ export default new Router ({
 	{
 		path:'/solicitudes',
 		name:'solicitudes',
-		component: require('./views/SolicitudesComponent.vue').default
+		component: require('./views/solicitudes/SolicitudesComponent.vue').default
 	},
 	{
 		path:'/nueva-solicitud',
 		name:'nuevaSolicitud',
-		component: require('./views/RegistroSolicitudesComponent.vue').default
+		component: require('./views/solicitudes/RegistroSolicitudesComponent.vue').default
 	},
 	{
 		path:'/editar-solicitud/:id',
 		name:'editarSolicitud',
-		component: require('./views/RegistroSolicitudesComponent.vue').default
+		component: require('./views/solicitudes/RegistroSolicitudesComponent.vue').default
 	},
 	{
 		path:'/cotizaciones',
@@ -91,7 +91,7 @@ export default new Router ({
 		component: require('./views/solicitantes/RegistroSolicitantesComponent.vue').default
 	},
 	{
-		path:'/utilidades',
+		path:'/tipos-de-venta',
 		name:'utilidades',
 		component: require('./views/tiposdeventa/TiposdeventaComponent.vue').default
 	},

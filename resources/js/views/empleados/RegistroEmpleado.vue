@@ -36,12 +36,12 @@
         <p class="font-weight-black">Información del Empleado</p>
        <validation-provider
         v-slot="{ errors }"
-        name="Nombre de Usuario"
+        name="NOMBRE DE USUARIO"
         rules="required"
       >
     <v-text-field
       v-model="userName"
-      label="Nombre de Usuario *"
+      label="NOMBRE DE USUARIO *"
        :error-messages="errors"
       @blur="compararUsuario"
     ></v-text-field>
@@ -51,7 +51,7 @@
     <v-text-field
       v-model="email"
 
-      label="Email de Usuario"
+      label="EMAIL DE CONTACTO"
       @blur="compararEmail"
     ></v-text-field>
 
@@ -59,13 +59,13 @@
 
 <validation-provider
         v-slot="{ errors }"
-        name="Rol de Usuario"
+        name="ROL ASIGNADO"
         rules="required"
       >
     <v-select
       v-model="rol"
       :items="catroles"
-      label="Rol de Usuario *"
+      label="ROL ASIGNADO *"
       :error-messages="errors"
     ></v-select>
   </validation-provider>
@@ -81,13 +81,13 @@
        <p class="font-weight-black">Información Personal</p>
       <validation-provider
         v-slot="{ errors }"
-        name="Nombre Completo"
+        name="NOMBRE COMPLETO"
         rules="required"
       >
     <v-text-field
       v-model="name"
      :error-messages="errors"
-      label="Nombre Completo *"
+      label="NOMBRE COMPLETO *"
 
     ></v-text-field>
   </validation-provider>
@@ -95,13 +95,13 @@
     <v-text-field
       v-model="telefono"
 
-      label="Teléfono"
+      label="TELÉFONO DE CONTACTO"
 
     ></v-text-field>
      <validation-provider
      v-if="!editar"
         v-slot="{ errors }"
-        name="Contraseña"
+        name="CONTRASEÑA"
         rules="required"
       >
 
@@ -110,7 +110,7 @@
       v-model="password"
      :error-messages="errors"
 
-      label="Contraseña(Mínimo 8 caracteres) *"
+      label="CONTRASEÑA(MÍNIMO 8 CARACTERES) *"
 
     ></v-text-field>
 
@@ -125,7 +125,7 @@
       <validation-provider
         v-if="checkbox"
         v-slot="{ errors }"
-        name="Contraseña"
+        name="CONTRASEÑA(MÍNIMO 8 CARACTERES)"
         rules="required"
       >
       <v-text-field
@@ -134,12 +134,12 @@
        :error-messages="errors"
        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
       @click:append="show1 = !show1"
-        label="Contraseña(Mínimo 8 caracteres) *"
+        label="CONTRASEÑA(MÍNIMO 8 CARACTERES) *"
       ></v-text-field>
     </validation-provider>
 
 
-<label>Seleccionar Sexo</label>
+<label>SELECCIONE UN SEXO</label>
 <v-card
       class="d-flex justify-center mb-6"
 
@@ -151,11 +151,11 @@
       row
     >
       <v-radio
-        label="Masculino"
+        label="MASCULINO"
         value="masc"
       ></v-radio>
       <v-radio
-        label="Femenino"
+        label="FEMENINO"
         value="fem"
       ></v-radio>
     </v-radio-group>
