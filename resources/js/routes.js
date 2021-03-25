@@ -93,17 +93,17 @@ export default new Router ({
 	{
 		path:'/utilidades',
 		name:'utilidades',
-		component: require('./views/UtilidadesComponent.vue').default
+		component: require('./views/tiposdeventa/TiposdeventaComponent.vue').default
 	},
 	{
 		path:'/editar-tipo-de-venta/:id',
 		name:'editarUtilidad',
-		component: require('./views/RegistroUtilidadMontoComponent.vue').default
+		component: require('./views/tiposdeventa/RegistroTiposdeventaComponent.vue').default
 	},
 	{
 		path:'/nuevo-tipo-de-venta',
 		name:'nuevaUtilidad',
-		component: require('./views/RegistroUtilidadMontoComponent.vue').default
+		component: require('./views/tiposdeventa/RegistroTiposdeventaComponent.vue').default
 	},
 
 	{

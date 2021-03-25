@@ -45,6 +45,7 @@
       :headers="headers"
       :items="usuarios"
       :search="search"
+      :items-per-page="5"
     >
 
 
