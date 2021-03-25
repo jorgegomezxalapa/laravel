@@ -119,18 +119,19 @@
         ideliminar:null,
         search: '',
         headers: [
-        { text: 'FECHA DE REGISTRO', align: 'center', value: 'created_at' },
+
+        { text: 'FECHA DE REGISTRO', align: 'center', value: 'created_at',class: "primary" },
           {
             text: 'NOMBRE COMPLETO',
             align: 'center',
 
-            value: 'name',
+            value: 'name',class: "primary"
           },
-          { text: 'USUARIO', align: 'center', value: 'userName' },
-          { text: 'ROL ASIGNADO', align: 'center', value: 'rol' },
+          { text: 'USUARIO', align: 'center', value: 'userName',class: "primary" },
+          { text: 'ROL ASIGNADO', align: 'center', value: 'rol',class: "primary" },
 
         
-          { text: 'ACCIONES DISPONIBLES', align: 'center', value: 'acciones' },
+          { text: 'ACCIONES DISPONIBLES', align: 'center', value: 'acciones',class: "primary" },
         ],
         usuarios: [],
       }

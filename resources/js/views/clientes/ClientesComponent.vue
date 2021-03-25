@@ -107,22 +107,22 @@
             text: 'FECHA DE REGISTRO',
             align: 'center',
 
-            value: 'created_at',
+            value: 'created_at', class: "primary"
           },
           {
             text: 'RAZÓN SOCIAL',
             align: 'center',
 
-            value: 'razonSocial',
+            value: 'razonSocial', class: "primary"
           },
-          { text: 'DIRIGIDO A', align: 'center', value: 'representante' },
-            { text: 'CON ATENCIÓN A', align: 'center', value: 'conatencion' },
-          { text: 'RFC', align: 'center', value: 'rfc' },
-          { text: 'EMAIL', align: 'center', value: 'email' },
-            { text: 'TELÉFONO', align: 'center', value: 'telefono' },
+          { text: 'DIRIGIDO A', align: 'center', value: 'representante', class: "primary" },
+            { text: 'CON ATENCIÓN A', align: 'center', value: 'conatencion', class: "primary" },
+          { text: 'RFC', align: 'center', value: 'rfc', class: "primary" },
+          { text: 'EMAIL', align: 'center', value: 'email', class: "primary" },
+            { text: 'TELÉFONO', align: 'center', value: 'telefono', class: "primary" },
 
 
-          { text: 'ACCIONES', align: 'center', value: 'acciones' },
+          { text: 'ACCIONES', align: 'center', value: 'acciones', class: "primary" },
         ],
         clientes: [],
       }

@@ -137,24 +137,24 @@
       return {
         search: '',
         headers: [
-        { text: 'FOLIO', align: 'center', value: 'folio' },
-         { text: 'PRIORIDAD', align: 'center', value: 'urgente' },
+        { text: 'FOLIO', align: 'center', value: 'folio', class: "primary" },
+         { text: 'PRIORIDAD', align: 'center', value: 'urgente', class: "primary" },
         
           {
             text: 'FECHA DE RECEPCIÓN',
             align: 'center',
 
-            value: 'fecha',
+            value: 'fecha', class: "primary"
           },
 
-           { text: 'RAZÓN SOCIAL', align: 'center', value: 'cliente.razonSocial' },
-           { text: 'SOLICITANTE', align: 'center', value: 'solicitante.nombre' },
-          { text: 'AGENTE DE VENTA', align: 'center', value: 'agente.name' },
-            { text: 'RESPONSABLE', align: 'center', value: 'responsable.name' },
+           { text: 'RAZÓN SOCIAL', align: 'center', value: 'cliente.razonSocial', class: "primary" },
+           { text: 'SOLICITANTE', align: 'center', value: 'solicitante.nombre', class: "primary" },
+          { text: 'AGENTE DE VENTA', align: 'center', value: 'agente.name', class: "primary" },
+            { text: 'RESPONSABLE', align: 'center', value: 'responsable.name', class: "primary" },
           
          
           
-          { text: 'ACCIONES', align: 'center', value: 'acciones' },
+          { text: 'ACCIONES', align: 'center', value: 'acciones', class: "primary" },
         ],
         solicitudes: [],
       }

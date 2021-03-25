@@ -107,12 +107,12 @@
             text: 'FECHA DE REGISTRO',
             align: 'center',
 
-            value: 'created_at',
+            value: 'created_at',class: "primary"
           },
-          { text: 'DESCRIPCIÓN', align: 'center', value: 'descripcion' },
-            { text: 'PORCENTAJE DE UTILIDAD', align: 'center', value: 'porcentaje' },
+          { text: 'DESCRIPCIÓN', align: 'center', value: 'descripcion', class: "primary" },
+            { text: 'PORCENTAJE DE UTILIDAD', align: 'center', value: 'porcentaje', class: "primary" },
 
-          { text: 'ACCIONES', align: 'center', value: 'acciones' },
+          { text: 'ACCIONES', align: 'center', value: 'acciones', class: "primary" },
         ],
         utilidades: [],
       }

@@ -338,3 +338,18 @@
 }
   }
 </script>
+<style type="text/css">
+  tbody tr:nth-of-type(odd) {
+   background-color: rgba(0, 0, 0, .06) !important;
+ }
+ .theme--light.v-data-table thead tr:last-child th, 
+   .theme--light.v-data-table tbody tr:not(:last-child) td:last-child,
+   .theme--light.v-data-table tbody tr td,
+   .theme--light.v-data-table tbody tr:not(:last-child) td:not(.v-data-table__mobile-row) {
+      border-bottom: medium solid rgba(0,0,0,.12);
+      border-left: medium solid rgba(0,0,0,.12);
+      border-right: medium solid rgba(0,0,0,.12);
+      border-left: medium solid rgba(0,0,0,.12);
+   }
+
+</style>

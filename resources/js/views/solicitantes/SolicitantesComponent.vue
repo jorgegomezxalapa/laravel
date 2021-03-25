@@ -104,19 +104,19 @@
       return {
         search: '',
         headers: [
-        { text: 'FECHA DE REGISTRO', align: 'center', value: 'created_at' },
+        { text: 'FECHA DE REGISTRO', align: 'center', value: 'created_at', class: "primary" },
           {
             text: 'NOMBRE COMPLETO',
             align: 'center',
 
-            value: 'nombre',
+            value: 'nombre', class: "primary"
           },
-          { text: 'EMAIL DE CONTACTO', align: 'center', value: 'email' },
-          { text: 'TELÉFONO DE CONTACTO', align: 'center', value: 'telefono' },
+          { text: 'EMAIL DE CONTACTO', align: 'center', value: 'email', class: "primary" },
+          { text: 'TELÉFONO DE CONTACTO', align: 'center', value: 'telefono', class: "primary" },
 
 
 
-          { text: 'ACCIONES', align: 'center', value: 'acciones' },
+          { text: 'ACCIONES', align: 'center', value: 'acciones', class: "primary" },
         ],
         solicitantes: [],
       }
