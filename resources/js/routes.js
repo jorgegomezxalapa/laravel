@@ -32,7 +32,7 @@ export default new Router ({
 	{
 		path:'/cotizaciones',
 		name:'cotizaciones',
-		component: require('./views/CotizacionesComponent.vue').default
+		component: require('./views/cotizaciones/CotizacionesComponent.vue').default
 	},
 	{
 		path:'/iniciar-cotizacion/:id',

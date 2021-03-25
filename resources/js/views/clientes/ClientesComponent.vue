@@ -8,7 +8,14 @@
 
 
       >
-    <v-card-title class="font-weight-black">MÓDULO DE CLIENTES</v-card-title>
+    <v-card-title class="font-weight-black">MÓDULO DE CLIENTES<v-chip
+      class="ma-2"
+      color="secondary"
+      dark
+      
+    >
+      {{this.clientes.length}} REGISTRADOS
+    </v-chip></v-card-title>
 
 <v-divider></v-divider>
   <v-card-text>

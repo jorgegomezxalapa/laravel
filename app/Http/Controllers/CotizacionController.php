@@ -13,10 +13,36 @@ use App\Almacen;
 class CotizacionController extends Controller
 {
     //
-    public function getCotizaciones () {
+    public function getSolicitadas () {
       try {
 
-        $cotizaciones = Cotizacion::orderBy('id', 'DESC')->with('solicitud.agente')->with('solicitud.cliente')->with('solicitud.solicitante')->with('solicitud.responsable')->get();
+        $cotizaciones = Cotizacion::orderBy('id', 'DESC')->with('solicitud')->with('solicitud.agente')->with('solicitud.cliente')->with('solicitud.solicitante')->with('solicitud.responsable')->where('estatus', '=', 0)->get();
+
+        return response()->json(['response' => $cotizaciones],200);
+
+      } catch (Exception $e) {
+        return response()->json(['response' => $e],500);
+
+      }
+    }
+
+    public function getProceso () {
+      try {
+
+        $cotizaciones = Cotizacion::orderBy('id', 'DESC')->with('solicitud')->with('solicitud.agente')->with('solicitud.cliente')->with('solicitud.solicitante')->with('solicitud.responsable')->where('estatus', '=', 1)->with('partidas')->get();
+
+        return response()->json(['response' => $cotizaciones],200);
+
+      } catch (Exception $e) {
+        return response()->json(['response' => $e],500);
+
+      }
+    }
+
+    public function getCotizadas () {
+      try {
+
+        $cotizaciones = Cotizacion::orderBy('id', 'DESC')->with('solicitud')->with('solicitud.agente')->with('solicitud.cliente')->with('solicitud.solicitante')->with('solicitud.responsable')->where('estatus', '=', 2)->with('partidas')->get();
 
         return response()->json(['response' => $cotizaciones],200);
 

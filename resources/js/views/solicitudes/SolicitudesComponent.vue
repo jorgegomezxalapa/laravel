@@ -8,7 +8,14 @@
 
 
       >
-    <v-card-title class="font-weight-black">MÓDULO DE SOLICITUDES</v-card-title>
+    <v-card-title class="font-weight-black">MÓDULO DE SOLICITUDES <v-chip
+      class="ma-2"
+      color="secondary"
+      dark
+      
+    >
+      {{this.solicitudes.length}} REGISTRADAS
+    </v-chip></v-card-title>
 
 <v-divider></v-divider>
   <v-card-text>

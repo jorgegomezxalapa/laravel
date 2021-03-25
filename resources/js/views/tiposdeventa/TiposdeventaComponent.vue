@@ -8,7 +8,14 @@
 
 
       >
-    <v-card-title class="font-weight-black">MÓDULO TIPOS DE VENTA</v-card-title>
+    <v-card-title class="font-weight-black">MÓDULO TIPOS DE VENTA<v-chip
+      class="ma-2"
+      color="secondary"
+      dark
+      
+    >
+      {{this.utilidades.length}} REGISTRADAS
+    </v-chip></v-card-title>
 
 <v-divider></v-divider>
   <v-card-text>

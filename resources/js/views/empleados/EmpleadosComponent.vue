@@ -8,7 +8,14 @@
 
 
       >
-    <v-card-title class="font-weight-black">MÓDULO DE EMPLEADOS</v-card-title>
+    <v-card-title class="font-weight-black">MÓDULO DE EMPLEADOS<v-chip
+      class="ma-2"
+      color="secondary"
+      dark
+      
+    >
+      {{this.usuarios.length}} REGISTRADOS
+    </v-chip></v-card-title>
 
 <v-divider></v-divider>
   <v-card-text>
