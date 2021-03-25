@@ -78,17 +78,17 @@ export default new Router ({
 
 		path:'/solicitantes',
 		name:'solicitantes',
-		component: require('./views/SolicitantesComponent.vue').default
+		component: require('./views/solicitantes/SolicitantesComponent.vue').default
 	},
 	{
 		path:'/nuevo-solicitante',
 		name:'nuevoSolicitante',
-		component: require('./views/RegistroSolicitantesComponent.vue').default
+		component: require('./views/solicitantes/RegistroSolicitantesComponent.vue').default
 	},
 	{
 		path:'/editar-solicitante/:id',
 		name:'editarSolicitante',
-		component: require('./views/RegistroSolicitantesComponent.vue').default
+		component: require('./views/solicitantes/RegistroSolicitantesComponent.vue').default
 	},
 	{
 		path:'/utilidades',

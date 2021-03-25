@@ -112,6 +112,7 @@
         ideliminar:null,
         search: '',
         headers: [
+        { text: 'FECHA DE REGISTRO', align: 'center', value: 'created_at' },
           {
             text: 'NOMBRE COMPLETO',
             align: 'center',
