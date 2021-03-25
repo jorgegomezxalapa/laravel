@@ -55,23 +55,26 @@ return response()->json(['response' => $cliente],200);
     }
 
     public function editarCliente(Request $request){
+      
       try {
         DB::beginTransaction();
-        $cliente = Cliente::where('id', '=', $request->id )->first();
+        $cliente = Cliente::where('id', '=', intval($request->id) )->first();
 
-       $cliente->razonSocial = $request->razonSocial;
-       $cliente->representante = $request->representante;
-         $user->conatencion = $request->conatencion;
-       $cliente->rfc = $request->rfc;
-       $cliente->email = $request->email;
-       $cliente->telefono = $request->telefono;
-       $cliente->save();
+         $cliente->razonSocial = $request->razonSocial;
+         $cliente->representante = $request->representante;
+         $cliente->conatencion = $request->conatencion;
+         $cliente->rfc = $request->rfc;
+         $cliente->email = $request->email;
+         $cliente->telefono = $request->telefono;
+         $cliente->save();
         DB::commit();
+       
+       
       } catch (\Exception $e) {
         DB::rollBack();
           return response()->json(['response' => $e],500);
       }
-return response()->json(['response' =>true],200);
+      return response()->json(['response' =>"ok"],200);
 
     }
 }

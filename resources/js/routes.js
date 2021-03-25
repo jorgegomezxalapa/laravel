@@ -62,17 +62,17 @@ export default new Router ({
 	{
 		path:'/clientes',
 		name:'clientes',
-		component: require('./views/ClientesComponent.vue').default
+		component: require('./views/clientes/ClientesComponent.vue').default
 	},
 	{
 		path:'/nuevo-cliente',
 		name:'nuevoCliente',
-		component: require('./views/RegistroClientesComponent.vue').default
+		component: require('./views/clientes/RegistroClientesComponent.vue').default
 	},
 	{
 		path:'/editar-cliente/:id',
 		name:'editarCliente',
-		component: require('./views/RegistroClientesComponent.vue').default
+		component: require('./views/clientes/RegistroClientesComponent.vue').default
 	},
 	{
 

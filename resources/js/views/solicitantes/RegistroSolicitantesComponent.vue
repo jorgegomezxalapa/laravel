@@ -106,7 +106,7 @@
       v-if="editar"
       type="submit"
     >
-     Editar
+     EDITAR SOLICITANTE
     </v-btn>
     <v-btn
     cols="12"

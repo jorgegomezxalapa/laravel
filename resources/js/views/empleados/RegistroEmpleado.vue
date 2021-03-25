@@ -182,7 +182,7 @@
        type="submit"
 
     >
-      Editar
+      EDITAR EMPLEADO
     </v-btn>
 
 
