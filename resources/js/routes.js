@@ -35,9 +35,9 @@ export default new Router ({
 		component: require('./views/cotizaciones/CotizacionesComponent.vue').default
 	},
 	{
-		path:'/iniciar-cotizacion/:id',
+		path:'/detalle-cotizacion/:id',
 		name:'iniciarCotizacion',
-		component: require('./views/RegistroCotizacionComponent.vue').default
+		component: require('./views/cotizaciones/DetalleCotizacionComponent.vue').default
 	},
 	{
 		path:'/registro-partidas/:id',

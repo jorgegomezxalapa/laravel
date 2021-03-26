@@ -26,6 +26,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "moment": "^2.29.1",
         "sweetalert": "^2.1.2",
         "vee-validate": "^3.4.5",
         "vuetify": "^2.3.21"

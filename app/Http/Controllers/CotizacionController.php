@@ -109,21 +109,10 @@ class CotizacionController extends Controller
 
       public function getCotizacion (Request $request) {
         try {
+          $id = $request->id;
+          $cotizaciones = Cotizacion::orderBy('id', 'DESC')->with('solicitud')->with('solicitud.agente')->with('solicitud.cliente')->with('solicitud.solicitante')->with('solicitud.responsable')->with('partidas')->where('id', '=', intval($id))->first();
 
-          $cotizacion = Cotizacion::where('id', '=', $request->id)->with('partidas')->with('utilidad')->with('solicitud')->with('solicitud.agente')->with('solicitud.cliente')->with('solicitud.solicitante')->with('solicitud.responsable')->first();
-          $datos = Partida::where('idCotizacion', '=', $request->id)->get();
-          $subtotal = 0;
-          $iva = 0.16;
-          $total = 0;
-          $ieps = 0;
-          $partidas = 0;
-          foreach($datos as $dato){
-            $partidas = $partidas + 1;
-            $subtotal = $subtotal + floatval($dato->importe2);
-          }
-          $iva = $iva * $subtotal;
-          $total = $subtotal + $iva + $ieps;
-          return response()->json(['response' => $cotizacion, 'iva' => $iva, 'subtotal' => $subtotal, 'total' => $total, 'partidas' => $partidas ],200);
+        return response()->json(['response' => $cotizaciones],200);
 
         } catch (Exception $e) {
           return response()->json(['response' => $e],500);
@@ -136,6 +125,38 @@ class CotizacionController extends Controller
 
           $cotizacion = Cotizacion::where('id', '=', $request->id)->first();
           $cotizacion->estatus = 1;
+          $cotizacion->save();
+
+
+          return response()->json(['response' => $cotizacion],200);
+
+        } catch (Exception $e) {
+          return response()->json(['response' => $e],500);
+
+        }
+      }
+
+      public function setIvaCotizacion (Request $request) {
+        try {
+
+          $cotizacion = Cotizacion::where('id', '=', $request->id)->first();
+          $cotizacion->ivaGlobal = floatval ($request->iva);
+          $cotizacion->save();
+
+
+          return response()->json(['response' => $cotizacion],200);
+
+        } catch (Exception $e) {
+          return response()->json(['response' => $e],500);
+
+        }
+      }
+
+      public function setIepsCotizacion (Request $request) {
+        try {
+
+          $cotizacion = Cotizacion::where('id', '=', $request->id)->first();
+          $cotizacion->iepsGlobal = floatval ($request->ieps);
           $cotizacion->save();
 
 

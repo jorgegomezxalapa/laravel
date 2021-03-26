@@ -74,12 +74,16 @@ Route::post('savePartida', 'CotizacionController@savePartida')->name('savePartid
 Route::post('saveInventario', 'CotizacionController@saveInventario')->name('saveInventario');
 Route::post('editarPartida', 'CotizacionController@editarPartida')->name('editarPartida');
 Route::post('iniciarCotizacion', 'CotizacionController@iniciarCotizacion')->name('iniciarCotizacion');
+Route::post('setIvaCotizacion', 'CotizacionController@setIvaCotizacion')->name('setIvaCotizacion');
+Route::post('setIepsCotizacion', 'CotizacionController@setIepsCotizacion')->name('setIepsCotizacion');
 
 //utilidades
 Route::post('createUtilidad', 'UtilidadController@createUtilidad')->name('createUtilidad');
 Route::get('getUtilidades', 'UtilidadController@getUtilidades')->name('getUtilidades');
 Route::post('getUtilidad', 'UtilidadController@getUtilidad')->name('getUtilidad');
 Route::post('editarUtilidad', 'UtilidadController@editarUtilidad')->name('editarUtilidad');
+
+Route::post('setTipoVenta', 'UtilidadController@setTipoVenta')->name('setTipoVenta');
 
 //AlmacenController
 Route::post('registroinventario', 'AlmacenController@registro')->name('registroinventario');

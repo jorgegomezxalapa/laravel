@@ -8,10 +8,23 @@ import 'vuetify/dist/vuetify.min.css'
 import es from "vuetify/es5/locale/es";
 Vue.use(Vuetify);
 
+import moment from 'moment';
+
+Vue.filter('formatDate', function(value) {
+    if (value) {
+        return moment(String(value)).format('MM/DD/YYYY')
+    }
+});
+
 
 
 Vue.component('login-component', require('./views/login/LoginComponent.vue').default);
 Vue.component('dashboard-component', require('./views/dashboard/DashboardComponent.vue').default);
+Vue.component('datos-generales-cotizacion', require('./views/cotizaciones/DatosGeneralesComponent.vue').default);
+Vue.component('trabajo-cotizacion', require('./views/cotizaciones/TrabajoCotizacionComponent.vue').default);
+Vue.component('configuraciones-cotizacion', require('./views/cotizaciones/ConfiguracionesCotizacionComponent.vue').default);
+Vue.component('partidas-component', require('./views/cotizaciones/PartidasComponent.vue').default);
+
 Vue.component('cards-dashboard', require('./components/DashboardCardsComponent.vue').default);
 Vue.component('tables-dashboard', require('./components/DashBoardTablesComponent.vue').default);
 Vue.component('registro-inventario', require('./views/RegistroInventarioComponent.vue').default);

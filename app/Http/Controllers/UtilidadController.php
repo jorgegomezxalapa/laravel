@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Utilidad;
+use App\Cotizacion;
 
 
 class UtilidadController extends Controller
@@ -53,6 +54,7 @@ class UtilidadController extends Controller
 
       }
     }
+
     public function editarUtilidad ( Request $request ) {
 
       try {
@@ -71,5 +73,19 @@ class UtilidadController extends Controller
           return response()->json(['response' => $e],500);
       }
         return response()->json(['response' => true],200);
+    }
+
+    public function setTipoVenta (Request $request) {
+      try {
+
+        $cotizacion = Cotizacion::where('id', '=', $request->id )->first();
+        $cotizacion->utilidadGlobal = intval($request->utilidad);
+        $cotizacion->save();
+        return response()->json(['response' =>'éxito'],200);
+
+      } catch (Exception $e) {
+        return response()->json(['response' => $e],500);
+
+      }
     }
 }
