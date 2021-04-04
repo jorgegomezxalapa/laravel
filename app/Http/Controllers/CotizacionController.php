@@ -110,11 +110,10 @@ class CotizacionController extends Controller
       public function getCotizacion (Request $request) {
         try {
           $id = $request->id;
-          $cotizacion = Cotizacion::
-          ->with('solicitud')->with('solicitud.agente')->
+          $cotizacion = Cotizacion::where('id', '=', $id )->with('solicitud')->with('solicitud.agente')->
           with('solicitud.cliente')->with('solicitud.solicitante')
           ->with('solicitud.responsable')->with('partidas')
-          ->where('id', '=', $id )->first();
+          ->first();
 
         return response()->json(['response' => $cotizacion],200);
 
