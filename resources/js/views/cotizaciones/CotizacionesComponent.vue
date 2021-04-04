@@ -284,6 +284,8 @@
     export default {
       mounted(){
    this.getSolicitadas()
+   this.getProceso()
+   this.getCotizadas()
 
    },
     data () {
