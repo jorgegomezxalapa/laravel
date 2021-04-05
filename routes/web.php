@@ -62,6 +62,8 @@ Route::get('catalogosSolicitud', 'CatalogosController@catalogosSolicitud')->name
 
 //cotizaciones
 Route::get('getSolicitadas', 'CotizacionController@getSolicitadas')->name('getSolicitadas');
+Route::get('getPartidas', 'CotizacionController@getPartidas')->name('getPartidas');
+Route::post('getPartidasCotizacion', 'CotizacionController@getPartidasCotizacion')->name('getPartidasCotizacion');
 Route::get('getProceso', 'CotizacionController@getProceso')->name('getProceso');
 Route::get('getCotizadas', 'CotizacionController@getCotizadas')->name('getCotizadas');
 Route::get('getAlmacen', 'CotizacionController@getAlmacen')->name('getAlmacen');
@@ -71,6 +73,7 @@ Route::get('actualizarPInventario', 'CotizacionController@actualizarPInventario'
 Route::post('getCotizacion', 'CotizacionController@getCotizacion')->name('getCotizacion');
 Route::post('saveConfigCotizacion', 'CotizacionController@saveConfigCotizacion')->name('saveConfigCotizacion');
 Route::post('savePartida', 'CotizacionController@savePartida')->name('savePartida');
+Route::post('savePartidaCotizacion', 'CotizacionController@savePartidaCotizacion')->name('savePartidaCotizacion');
 Route::post('saveInventario', 'CotizacionController@saveInventario')->name('saveInventario');
 Route::post('editarPartida', 'CotizacionController@editarPartida')->name('editarPartida');
 Route::post('iniciarCotizacion', 'CotizacionController@iniciarCotizacion')->name('iniciarCotizacion');

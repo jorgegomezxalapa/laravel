@@ -245,7 +245,7 @@ const axios = require('axios');
                     })
                     
 
-                  swal("ÉXITO", "EL IEPS DE LA COTIZACIÓN SE ASIGNÓ CON ÉXITO", "success");
+                  swal("ÉXITO", "LA CONFIGURACIÓN SE ASIGNÓ CON ÉXITO", "success");
 
                 } catch (error) {
 

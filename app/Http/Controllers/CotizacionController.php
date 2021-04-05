@@ -13,6 +13,32 @@ use App\Almacen;
 class CotizacionController extends Controller
 {
     //
+  public function getPartidas () {
+      try {
+
+        $partidas = Partida::orderBy('partida', 'DESC')->get();
+
+        return response()->json(['response' => $partidas],200);
+
+      } catch (Exception $e) {
+        return response()->json(['response' => $e],500);
+
+      }
+    }
+
+    public function getPartidasCotizacion (Request $request) {
+      try {
+
+        $partidas = Partida::orderBy('partida', 'DESC')->with('producto.segmento')->where('idCotizacion', '=', $request->id)->get();
+
+        return response()->json(['response' => $partidas],200);
+
+      } catch (Exception $e) {
+        return response()->json(['response' => $e],500);
+
+      }
+    }
+
     public function getSolicitadas () {
       try {
 
@@ -110,7 +136,7 @@ class CotizacionController extends Controller
       public function getCotizacion (Request $request) {
         try {
           $id = $request->id;
-          $cotizacion = Cotizacion::where('id', '=', $id )->with('solicitud')->with('solicitud.agente')->
+          $cotizacion = Cotizacion::where('id', '=', $id )->with('solicitud')->with('utilidad')->with('solicitud.agente')->
           with('solicitud.cliente')->with('solicitud.solicitante')
           ->with('solicitud.responsable')->with('partidas')
           ->first();
@@ -262,32 +288,106 @@ class CotizacionController extends Controller
 
           $partida->save();
 
-            $partidas = Partida::orderBy('partida', 'ASC')->where('idCotizacion', '=' ,$request->idCotizacion )->get();
-            $iva = 0;
-            $ieps = 0;
-            $subtotal = 0;
-            $total = 0;
+           
 
 
-            foreach($partidas as $partida){
+         
+            return response()->json(['response' => "ok"],200);
 
-            $subtotal = intval($subtotal) + intval($partida->importe2);
-            $iva = intval($iva) + ( intval($partida->importe2) * intval(intval($partida->ivapartida)/100));
-            $ieps = intval($ieps) + ( intval($partida->importe2) * (intval($partida->iepspartida)/100));
+        } catch (Exception $e) {
+          return response()->json(['response' => $e],500);
+
+        }
+      }
+
+      public function savePartidaCotizacion (Request $request) {
+
+        try {
+         
+
+          $almacen = new Almacen();
+          $almacen->esSolicitud = 1;
+          $almacen->idSegmento = ($request->segmento == null || $request->segmento =="null") ? null : $request->segmento;
+          $almacen->idEmpleado = $request->idEmpleado;
+          $almacen->descripcion = ($request->descripcion == null || $request->descripcion =="null") ? null : $request->descripcion;
+          $almacen->unidaddemedida = ($request->unidaddemedida == null || $request->unidaddemedida =="null") ? null : $request->unidaddemedida;
+         
+          $almacen->cantidad = ($request->cantidad == null || $request->cantidad =="null") ? 0.00 : $request->cantidad;
+          $almacen->disponible = 0;
+          $almacen->preciodelproveedor = ($request->preciodeproveedor == null || $request->preciodeproveedor =="null") ? null : $request->preciodeproveedor;
+          $almacen->marca = ($request->marca == null || $request->marca =="null") ? null : $request->marca;
+          $almacen->modelo = ($request->modelo == null || $request->modelo =="null") ? null : $request->modelo;
+          $almacen->numerodeserie = ($request->numerodeserie == null || $request->numerodeserie =="null") ? null : $request->numerodeserie;
+          $almacen->politicasdegarantia = $request->politicas;
+          $almacen->notasdelproducto = ($request->notasdelproducto == null || $request->notasdelproducto =="null") ? null : $request->notasdelproducto;
+          if(  isset ( $request->archivo ) ){
+                $nombreConcatenado = null;
+                foreach($request->archivo as $archivo){
+                $nombre = $archivo->getClientOriginalName();
+                if($nombreConcatenado != null){
+                    $nombreConcatenado = $nombreConcatenado.','.$nombre;
+                }else{
+                    $nombreConcatenado = $nombre;
+                }
+                $path = $archivo->storeAs(
+                'cotizaciones/'.$request->idCotizacion.'/'.$request->partida,  $nombre
+                );
+                }
+                $almacen->archivosdenotas = $nombreConcatenado;
+
             }
+          $almacen->miniatura = null;
 
-            $total = $subtotal + $iva + $ieps;
+          $almacen->save();
+
+          $partida = new Partida();
+          $partida->idCotizacion = $request->idCotizacion;
+          $partida->idProducto = $almacen->id;
+          $partida->partida = $request->partida;
+          $partida->descripcion = ($request->descripcion == null || $request->descripcion =="null") ? null : $request->descripcion;
+          $partida->unidadmedida = ($request->unidaddemedida == null || $request->unidaddemedida =="null") ? null : $request->unidaddemedida;
+          $partida->cantidad = ($request->cantidad == null || $request->cantidad =="null") ? "NO COTIZA" : $request->cantidad;
+          $partida->politicas = $request->politicas;
+          $partida->disponible = 0;
+          $partida->solicitadas = ($request->cantidad == null || $request->cantidad =="null") ? 0.00 : $request->cantidad;
+          if ($request->cantidad == null || $request->cantidad =="null") {
+            $partida->cantidad = "NO COTIZA";
+          }
+          $partida->precioproveedor = ($request->preciodeproveedor == null || $request->preciodeproveedor =="null") ? null : $request->preciodeproveedor;
+          if ($request->preciodeproveedor == null || $request->preciodeproveedor =="null") {
+            $partida->precioproveedor = "NO COTIZA";
+          }
+
+          $partida->marca = ($request->marca == null || $request->marca =="null") ? null : $request->marca;
+          $partida->modelo = ($request->modelo == null || $request->modelo =="null") ? null : $request->modelo;
+          $partida->numserie = ($request->numerodeserie == null || $request->numerodeserie =="null") ? null : $request->numerodeserie;
+            $partida->notasproducto = ($request->notasdelproducto == null || $request->notasdelproducto =="null") ? null : $request->notasdelproducto;
+
+          $partida->ivapartida = intval($request->ivaglobal);
+          $partida->iepspartida = intval($request->iepsglobal);
+          $partida->utilidadpartida = intval($request->utilidadglobal);
 
 
-            $cotizacion = Cotizacion::where('id', '=', $request->idCotizacion)->first();
 
-            $cotizacion->ivaTotal = $iva;
-            $cotizacion->iepsTotal = $ieps;
-            $cotizacion->subtotal = $subtotal;
-            $cotizacion->total = $total;
-            $cotizacion->save();
+          $partida->importe1 = $request->importe1;
+          $partida->utilidadgenerada = $request->utilidadgenerada;
+          $partida->preciounitario = $request->preciounitario;
+          $partida->importe2 = $request->importe2;
+          if ($request->cantidad == null || $request->cantidad =="null") {
+            $partida->importe1 = "NO COTIZA";
+            $partida->importe2 = "NO COTIZA";
+          }
+          if ($request->preciodeproveedor == null || $request->preciodeproveedor =="null") {
+            $partida->importe1 = "NO COTIZA";
+            $partida->utilidadgenerada = "NO COTIZA";
+            $partida->preciounitario = "NO COTIZA";
+            $partida->importe2 = "NO COTIZA";
+          }
 
-            return response()->json(['response' => $partidas, 'cotizacion'=>$cotizacion],200);
+          $partida->save();
+
+           
+            return response()->json(['response' => "ok"],200);
 
         } catch (Exception $e) {
           return response()->json(['response' => $e],500);
@@ -336,29 +436,66 @@ class CotizacionController extends Controller
 
         try {
 
+          $almacen =  Almacen::where('id', '=', $request->idProducto)->first();
+          
+          $almacen->idSegmento = ($request->segmento == null || $request->segmento =="null") ? null : $request->segmento;
+          $almacen->descripcion = ($request->descripcion == null || $request->descripcion =="null") ? null : $request->descripcion;
+          $almacen->unidaddemedida = ($request->unidaddemedida == null || $request->unidaddemedida =="null") ? null : $request->unidaddemedida;
+         
+          $almacen->cantidad = ($request->cantidad == null || $request->cantidad =="null") ? 0.00 : $request->cantidad;
+          $almacen->disponible = 0;
+          $almacen->preciodelproveedor = ($request->preciodeproveedor == null || $request->preciodeproveedor =="null") ? null : $request->preciodeproveedor;
+          $almacen->marca = ($request->marca == null || $request->marca =="null") ? null : $request->marca;
+          $almacen->modelo = ($request->modelo == null || $request->modelo =="null") ? null : $request->modelo;
+          $almacen->numerodeserie = ($request->numerodeserie == null || $request->numerodeserie =="null") ? null : $request->numerodeserie;
+          $almacen->politicasdegarantia = $request->politicas;
+          $almacen->notasdelproducto = ($request->notasdelproducto == null || $request->notasdelproducto =="null") ? null : $request->notasdelproducto;
+          if(  isset ( $request->archivo ) ){
+                $nombreConcatenado = null;
+                foreach($request->archivo as $archivo){
+                $nombre = $archivo->getClientOriginalName();
+                if($nombreConcatenado != null){
+                    $nombreConcatenado = $nombreConcatenado.','.$nombre;
+                }else{
+                    $nombreConcatenado = $nombre;
+                }
+                $path = $archivo->storeAs(
+                'cotizaciones/'.$request->idCotizacion.'/'.$request->partida,  $nombre
+                );
+                }
+                $almacen->archivosdenotas = $nombreConcatenado;
 
-          $partida = Partida::where('id', '=', $request->idPartida)->first();
-          $partida->idCotizacion = $request->idCotizacion;
-          $partida->partida = $request->partida;
-          $partida->descripcion = $request->descripcion;
-          $partida->unidadmedida = $request->unidadmedida;
-          $partida->cantidad = $request->cantidad;
-          if ($request->cantidad == null) {
+            }
+          $almacen->miniatura = null;
+
+          $almacen->save();
+
+          $partida =  Partida::where('id', '=', $request->idPartida)->first();;
+         
+         
+          $partida->partida = ($request->partida == null || $request->partida =="null") ? null : $request->partida;
+          $partida->descripcion = ($request->descripcion == null || $request->descripcion =="null") ? null : $request->descripcion;
+          $partida->unidadmedida = ($request->unidaddemedida == null || $request->unidaddemedida =="null") ? null : $request->unidaddemedida;
+          $partida->cantidad = ($request->cantidad == null || $request->cantidad =="null") ? "NO COTIZA" : $request->cantidad;
+          $partida->politicas = $request->politicas;
+          $partida->disponible = 0;
+          $partida->solicitadas = ($request->cantidad == null || $request->cantidad =="null") ? 0.00 : $request->cantidad;
+          if ($request->cantidad == null || $request->cantidad =="null") {
             $partida->cantidad = "NO COTIZA";
           }
-          $partida->precioproveedor = $request->precioproveedor;
-          if ($request->precioproveedor == null) {
+          $partida->precioproveedor = ($request->preciodeproveedor == null || $request->preciodeproveedor =="null") ? null : $request->preciodeproveedor;
+          if ($request->preciodeproveedor == null || $request->preciodeproveedor =="null") {
             $partida->precioproveedor = "NO COTIZA";
           }
 
-          $partida->marca = $request->marca;
-          $partida->modelo = $request->modelo;
-          $partida->numserie = $request->numserie;
-            $partida->notasproducto = $request->notasproducto;
+          $partida->marca = ($request->marca == null || $request->marca =="null") ? null : $request->marca;
+          $partida->modelo = ($request->modelo == null || $request->modelo =="null") ? null : $request->modelo;
+          $partida->numserie = ($request->numerodeserie == null || $request->numerodeserie =="null") ? null : $request->numerodeserie;
+            $partida->notasproducto = ($request->notasdelproducto == null || $request->notasdelproducto =="null") ? null : $request->notasdelproducto;
 
-          $partida->ivapartida = $request->ivapartida;
-          $partida->iepspartida = $request->iepspartida;
-          $partida->utilidadpartida = $request->utilidadpartida;
+          $partida->ivapartida = intval($request->ivaglobal);
+          $partida->iepspartida = intval($request->iepsglobal);
+          $partida->utilidadpartida = intval($request->utilidadglobal);
 
 
 
@@ -366,46 +503,24 @@ class CotizacionController extends Controller
           $partida->utilidadgenerada = $request->utilidadgenerada;
           $partida->preciounitario = $request->preciounitario;
           $partida->importe2 = $request->importe2;
-          if ($request->cantidad == null) {
+          if ($request->cantidad == null || $request->cantidad =="null") {
             $partida->importe1 = "NO COTIZA";
             $partida->importe2 = "NO COTIZA";
           }
-          if ($request->precioproveedor == null) {
+          if ($request->preciodeproveedor == null || $request->preciodeproveedor =="null") {
             $partida->importe1 = "NO COTIZA";
             $partida->utilidadgenerada = "NO COTIZA";
             $partida->preciounitario = "NO COTIZA";
             $partida->importe2 = "NO COTIZA";
           }
 
-
-
-
           $partida->save();
 
-            $partidas = Partida::orderBy('partida', 'ASC')->where('idCotizacion', '=' ,$request->idCotizacion )->get();
 
-            $iva = 0;
-            $ieps = 0;
-            $subtotal = 0;
-            $total = 0;
-
-            foreach($partidas as $partida){
-
-            $subtotal = intval($subtotal) + intval($partida->importe2);
-            $iva = intval($iva) + ( intval($partida->importe2) * intval(intval($partida->ivapartida)/100));
-            $ieps = intval($ieps) + ( intval($partida->importe2) * (intval($partida->iepspartida)/100));
-            }
-            $total = $subtotal + $iva + $ieps;
-
-            $cotizacion = Cotizacion::where('id', '=', $request->idCotizacion)->first();
-            $cotizacion->ivaTotal = $iva;
-            $cotizacion->iepsTotal = $ieps;
-            $cotizacion->subtotal = $subtotal;
-            $cotizacion->total = $total;
-            $cotizacion->save();
+         
 
 
-            return response()->json(['response' => $partidas, 'cotizacion'=>$cotizacion],200);
+            return response()->json(['response' => "ok"],200);
 
         } catch (Exception $e) {
           return response()->json(['response' => $e],500);
