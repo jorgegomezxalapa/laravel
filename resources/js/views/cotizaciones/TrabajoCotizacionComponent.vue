@@ -23,6 +23,15 @@
         </v-expansion-panel-content>
       </v-expansion-panel>
 
+      <v-expansion-panel>
+        <v-expansion-panel-header>
+           <v-card-title class="font-weight-black">DETALLE TOTAL</v-card-title>
+        </v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <totales-cotizacion v-if="mostrarTotales"></totales-cotizacion>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+
       
     </v-expansion-panels>
       
@@ -74,14 +83,17 @@ const axios = require('axios');
             disabled: false,
             readonly: false,
             mostrarPartidas:false,
+            mostrarTotales:false,
           
          }),
          watch : {
           panel: function (newVal, oldVal) {
             if (newVal == 1) {
               this.mostrarPartidas = true
-            }else{
+              this.mostrarTotales = false
+            }else if(newVal == 2){
               this.mostrarPartidas = false
+              this.mostrarTotales = true
             }
           },
           

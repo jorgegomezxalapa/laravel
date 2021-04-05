@@ -12,6 +12,7 @@ class Partida extends Model
 
 
         'id',
+        'esMejora',
         'idCotizacion',
         'idProducto',
         'partida',

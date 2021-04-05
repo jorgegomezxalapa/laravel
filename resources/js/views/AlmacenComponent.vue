@@ -206,6 +206,18 @@
 
 
           </template>
+          <template v-slot:item.producto.notasdelproducto="{ item }">
+             {{item.producto.notasdelproducto}}
+                <div v-if="item.producto.archivosdenotas != null">
+                  
+                  <v-chip small class="mb-1" v-for="(imagen, index) in item.producto.archivosdenotas.split(',')" 
+                :key="index"
+                @click="abrirpopupcomentarios(item.idCotizacion,item.partida,imagen)"
+                >{{
+                    imagen
+                }}</v-chip>
+                </div>
+          </template>
         </v-data-table>
                 </v-card-text>
               </v-card>
@@ -663,6 +675,12 @@ data () {
 
                 value: 'producto.descripcion',
               },
+               {
+                text: 'COMENTARIOS',
+                align: 'start',
+
+                value: 'producto.notasdelproducto',
+              },
 
           { text: 'Disponible', value: 'producto.disponible' },
             { text: 'Solicitado', value: 'producto.cantidad' },
@@ -787,6 +805,14 @@ mounted() {
 
 },
 methods : {
+  abrirpopupcomentarios(idCotizacion,idPartida,imagen){
+             
+              // var url = process.env.MIX_ARCHIVOS_URL;
+              var url = 'http://localhost/laravel/storage/app/cotizaciones/'+idCotizacion+'/'+idPartida+'/'
+              window.open(url+imagen,'popup','width=600,height=600')
+              // falta poner la ruta real
+
+            },
  abrirpopup(item){
               // var url = process.env.MIX_ARCHIVOS_URL;
               var url = 'http://localhost/laravel/storage/app/fotosProductos/'

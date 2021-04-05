@@ -159,7 +159,7 @@ class AlmacenController extends Controller
     }
 
     public function getInventarioSolicitado () {
-      $disponible = Partida::with('producto')->with('cotizacion.solicitud')->get();
+      $disponible = Partida::where('esMejora', '!=', '1')->with('producto')->with('cotizacion.solicitud')->get();
       return response()->json(['response' => $disponible],200);
 
     }

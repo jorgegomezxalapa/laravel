@@ -15,6 +15,7 @@ class CreateProductosTable extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('esMejora')->nullable();
               $table->boolean('esSolicitud')->nullable();
             $table->integer('idEmpleado')->nullable();
             $table->integer('idSegmento')->nullable();

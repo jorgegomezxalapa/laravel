@@ -76,6 +76,7 @@ Route::post('savePartida', 'CotizacionController@savePartida')->name('savePartid
 Route::post('savePartidaCotizacion', 'CotizacionController@savePartidaCotizacion')->name('savePartidaCotizacion');
 Route::post('saveInventario', 'CotizacionController@saveInventario')->name('saveInventario');
 Route::post('editarPartida', 'CotizacionController@editarPartida')->name('editarPartida');
+Route::post('mejorarPartida', 'CotizacionController@mejorarPartida')->name('mejorarPartida');
 Route::post('iniciarCotizacion', 'CotizacionController@iniciarCotizacion')->name('iniciarCotizacion');
 Route::post('setIvaCotizacion', 'CotizacionController@setIvaCotizacion')->name('setIvaCotizacion');
 Route::post('setIepsCotizacion', 'CotizacionController@setIepsCotizacion')->name('setIepsCotizacion');
