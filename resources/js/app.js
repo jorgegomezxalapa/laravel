@@ -25,6 +25,7 @@ Vue.component('trabajo-cotizacion', require('./views/cotizaciones/TrabajoCotizac
 Vue.component('configuraciones-cotizacion', require('./views/cotizaciones/ConfiguracionesCotizacionComponent.vue').default);
 Vue.component('partidas-component', require('./views/cotizaciones/PartidasComponent.vue').default);
 Vue.component('totales-cotizacion', require('./views/cotizaciones/TotalesCotizacionComponent.vue').default);
+Vue.component('acciones-cotizacion', require('./views/cotizaciones/AccionesCotizacionComponent.vue').default);
 
 Vue.component('cards-dashboard', require('./components/DashboardCardsComponent.vue').default);
 Vue.component('tables-dashboard', require('./components/DashBoardTablesComponent.vue').default);

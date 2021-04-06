@@ -13,6 +13,100 @@ use App\Almacen;
 class CotizacionController extends Controller
 {
     //
+
+  public function disponiblecompra (Request $request) {
+      try {
+
+        $cotizacion = Cotizacion::where('id', '=', $request->id)->first();
+        $cotizacion->disponiblecompra = $request->accion;
+        $cotizacion->save();
+
+        return response()->json(['response' => $cotizacion],200);
+
+      } catch (Exception $e) {
+        return response()->json(['response' => $e],500);
+
+      }
+    }
+
+    
+
+    public function disponiblefactura (Request $request) {
+      try {
+
+        $cotizacion = Cotizacion::where('id', '=', $request->id)->first();
+        $cotizacion->disponiblefactura = $request->accion;
+        $cotizacion->save();
+
+        return response()->json(['response' => $cotizacion],200);
+
+      } catch (Exception $e) {
+        return response()->json(['response' => $e],500);
+
+      }
+    }
+
+    public function comprada (Request $request) {
+      try {
+
+        $cotizacion = Cotizacion::where('id', '=', $request->id)->first();
+        $cotizacion->comprada = $request->accion;
+        $cotizacion->save();
+
+        return response()->json(['response' => $cotizacion],200);
+
+      } catch (Exception $e) {
+        return response()->json(['response' => $e],500);
+
+      }
+    }
+
+    public function disponibleentrega (Request $request) {
+      try {
+
+        $cotizacion = Cotizacion::where('id', '=', $request->id)->first();
+        $cotizacion->disponibleentrega = $request->accion;
+        $cotizacion->save();
+
+        return response()->json(['response' => $cotizacion],200);
+
+      } catch (Exception $e) {
+        return response()->json(['response' => $e],500);
+
+      }
+    }
+
+    public function entregada (Request $request) {
+      try {
+
+        $cotizacion = Cotizacion::where('id', '=', $request->id)->first();
+        $cotizacion->entregada = $request->accion;
+        $cotizacion->save();
+
+        return response()->json(['response' => $cotizacion],200);
+
+      } catch (Exception $e) {
+        return response()->json(['response' => $e],500);
+
+      }
+    }
+
+    public function cobrada (Request $request) {
+      try {
+
+        $cotizacion = Cotizacion::where('id', '=', $request->id)->first();
+        $cotizacion->cobrada = $request->accion;
+        $cotizacion->save();
+
+        return response()->json(['response' => $cotizacion],200);
+
+      } catch (Exception $e) {
+        return response()->json(['response' => $e],500);
+
+      }
+    }
+
+
   public function getPartidas () {
       try {
 
@@ -356,6 +450,7 @@ class CotizacionController extends Controller
             $partida->cantidad = "NO COTIZA";
           }
           
+          $partida->precioproveedor = $request->preciodeproveedor;
           if ($request->preciodeproveedor == null || $request->preciodeproveedor =="null" || $request->preciodeproveedor == 0) {
             $partida->precioproveedor = "NO COTIZA";
           }

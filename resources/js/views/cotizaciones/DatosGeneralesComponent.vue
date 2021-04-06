@@ -6,6 +6,58 @@
       <v-row>
                   <v-col
                     cols="12"
+                  >
+                    <v-chip
+      class="ma-2"
+      color="secondary"
+      v-if="disponiblecompra != 0"
+      small
+    >
+      DISPONIBLE PARA COMPRA
+    </v-chip>
+    <v-chip
+      class="ma-2"
+      color="secondary"
+       v-if="disponiblefactura != 0"
+       small
+    >
+      DISPONIBLE PARA FACTURA
+    </v-chip>
+    <v-chip
+      class="ma-2"
+      color="secondary"
+      small
+      v-if="comprada != 0"
+    >
+      COMPRADA
+    </v-chip>
+    <v-chip
+      class="ma-2"
+      color="secondary"
+       small
+      v-if="disponibleentrega != 0"
+    >
+      DISPONIBLE PARA ENTREGA
+    </v-chip>
+    <v-chip
+      class="ma-2"
+      color="secondary"
+       small
+      v-if="entregada != 0"
+    >
+      ENTREGADA
+    </v-chip>
+    <v-chip
+      class="ma-2"
+      color="secondary"
+       small
+      v-if="cobrada != 0"
+    >
+      COBRADA
+    </v-chip>
+                  </v-col>
+                  <v-col
+                    cols="12"
                     md="3"
                     sm="6"
                   >
@@ -182,6 +234,12 @@ const axios = require('axios');
           agenteventas:null,
           responsable:null,
           estatus:null,
+          disponiblecompra:0,
+          disponiblefactura:0,
+          comprada:0,
+          disponibleentrega:0,
+          entregada:0,
+          cobrada:0,
 
 
           
@@ -201,6 +259,14 @@ const axios = require('axios');
                       }
                     })
                  this.cotizacion = response.data.response
+                 if (this.cotizacion != null) {
+                  this.disponiblecompra = this.cotizacion.disponiblecompra
+                 this.disponiblefactura = this.cotizacion.disponiblefactura
+                 this.comprada = this.cotizacion.comprada
+                 this.disponibleentrega = this.cotizacion.disponibleentrega
+                 this.entregada = this.cotizacion.entregada
+                 this.cobrada = this.cotizacion.cobrada
+                 }
                  this.solicitud = this.cotizacion.solicitud
                 this.datossolicitante = this.solicitud.solicitante
                 this.datoscliente = this.solicitud.cliente   

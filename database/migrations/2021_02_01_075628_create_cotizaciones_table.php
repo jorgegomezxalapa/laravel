@@ -28,6 +28,12 @@ class CreateCotizacionesTable extends Migration
                   $table->string('iepsTotal',250)->nullable();
                   $table->string('subtotal',250)->nullable();
                   $table->string('total',250)->nullable();
+                  $table->integer('disponiblecompra')->nullable();
+                  $table->integer('disponiblefactura')->nullable();
+                  $table->integer('comprada')->nullable();
+                  $table->integer('disponibleentrega')->nullable();
+                  $table->integer('entregada')->nullable();
+                  $table->integer('cobrada')->nullable();
                   
                 $table->string('fechafinalizado',250)->nullable();
               $table->timestamps();

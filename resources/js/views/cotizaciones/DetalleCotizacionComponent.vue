@@ -27,7 +27,7 @@
                 <trabajo-cotizacion v-if="mostrarCotizacion"></trabajo-cotizacion>
             </v-tab-item>
             <v-tab-item>
-                hola tres
+                <acciones-cotizacion v-if="mostrarAcciones"></acciones-cotizacion>
             </v-tab-item>
 
         </v-tabs>

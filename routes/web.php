@@ -81,6 +81,15 @@ Route::post('iniciarCotizacion', 'CotizacionController@iniciarCotizacion')->name
 Route::post('setIvaCotizacion', 'CotizacionController@setIvaCotizacion')->name('setIvaCotizacion');
 Route::post('setIepsCotizacion', 'CotizacionController@setIepsCotizacion')->name('setIepsCotizacion');
 
+
+
+Route::post('disponiblecompra', 'CotizacionController@disponiblecompra')->name('disponiblecompra');
+Route::post('disponiblefactura', 'CotizacionController@disponiblefactura')->name('disponiblefactura');
+Route::post('comprada', 'CotizacionController@comprada')->name('comprada');
+Route::post('disponibleentrega', 'CotizacionController@disponibleentrega')->name('disponibleentrega');
+Route::post('entregada', 'CotizacionController@entregada')->name('entregada');
+Route::post('cobrada', 'CotizacionController@cobrada')->name('cobrada');
+
 //utilidades
 Route::post('createUtilidad', 'UtilidadController@createUtilidad')->name('createUtilidad');
 Route::get('getUtilidades', 'UtilidadController@getUtilidades')->name('getUtilidades');

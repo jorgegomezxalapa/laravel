@@ -20,6 +20,12 @@ class Cotizacion extends Model
             'iepsTotal',
             'subtotal',
             'total',
+            'disponiblecompra',
+            'disponiblefactura',
+            'comprada',
+            'disponibleentrega',
+            'entregada',
+            'cobrada',
           'fechafinalizado'
 
 
