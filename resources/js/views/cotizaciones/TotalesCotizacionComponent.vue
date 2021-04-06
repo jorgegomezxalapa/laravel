@@ -180,7 +180,7 @@ const axios = require('axios');
                       method: 'post',
                       url: 'getCotizacion',
                       data:{
-                        id:this.$route.params.id,
+                        id:parseInt(this.$route.params.id),
                       }
                     })
                  this.cotizacion = response.data.response
