@@ -292,7 +292,7 @@ class CotizacionController extends Controller
         return response()->json(['response' => $cotizacion],200);
 
         } catch (Exception $e) {
-          return response()->json(['response' => $e],500);
+          return response()->json(['response' => $e->getMessage()],500);
 
         }
       }
