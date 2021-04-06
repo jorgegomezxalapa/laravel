@@ -67,6 +67,10 @@
       :items="solicitadas"
       :search="search1"
     >
+    <template v-slot:item.solicitud.fecha="{ item }">
+       {{ formatDate(item.solicitud.fecha) }} ({{item.solicitud.fecha}})      
+
+    </template>
      <template v-slot:item.solicitud.urgente="{ item }">
 
        <v-chip
@@ -146,6 +150,10 @@
       :items="proceso"
       :search="search2"
     >
+    <template v-slot:item.solicitud.fecha="{ item }">
+       {{ formatDate(item.solicitud.fecha) }} ({{item.solicitud.fecha}})      
+
+    </template>
     <template v-slot:item.solicitud.folio="{ item }">
 
        <v-chip
@@ -216,6 +224,14 @@
       :items="cotizadas"
       :search="search3"
     >
+    <template v-slot:item.fechafinalizado="{ item }">
+       {{ formatDate(item.fechafinalizado) }} ({{item.fechafinalizado}})      
+
+    </template>
+    <template v-slot:item.solicitud.fecha="{ item }">
+       {{ formatDate(item.solicitud.fecha) }} ({{item.solicitud.fecha}})      
+
+    </template>
     <template v-slot:item.partidas="{ item }">
 
        <v-chip
@@ -281,6 +297,7 @@
 </template>
 
 <script>
+   import moment from 'moment'
     export default {
       mounted(){
    this.getSolicitadas()
@@ -352,6 +369,12 @@
       }
     },
      methods: {
+       formatDate(value) {
+        var localLocale = moment(value);
+moment.locale('es');
+localLocale.locale(false);
+      return localLocale.format('LL')
+  },
         capturarCotizacion(){
             this.$router.push({ name: 'capturarCotizacion' }).catch(()=>{});
         },

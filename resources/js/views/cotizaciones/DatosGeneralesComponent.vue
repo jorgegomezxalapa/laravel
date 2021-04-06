@@ -264,7 +264,14 @@ const axios = require('axios');
 
          },
           methods:{
+             async formatDate(value) {
+        var localLocale = moment(value);
+moment.locale('es');
+localLocale.locale(false);
+      return localLocale.format('LL')
+  },
             async getCotizacion(){
+
               try {
                     const response = await axios({
                       method: 'post',
@@ -301,7 +308,11 @@ const axios = require('axios');
                   this.tipoSolicitud = 'NORMAL'
                  }
                  this.folio = this.solicitud.folio
-                 this.fechaSolicitud = moment(String(this.solicitud.fecha)).format('DD/MM/YYYY')
+                 var localLocale = moment(this.solicitud.fecha);
+                  moment.locale('es');
+                    localLocale.locale(false);
+              this.fechaSolicitud =  localLocale.format('LL')
+                 
                  this.cliente = this.datoscliente.razonSocial
                  this.solicitante = this.datossolicitante.nombre
                  this.agenteventas = this.datosagente.name

@@ -531,6 +531,7 @@ const axios = require('axios');
                  this.disponibleentrega = this.cotizacion.disponibleentrega
                  this.entregada = this.cotizacion.entregada
                  this.cobrada = this.cotizacion.cobrada
+                 this.finalizar = this.cotizacion.finalizada
                  this.evidencia1 =  (this.cotizacion.disponiblecompraEvidencia != null)? this.cotizacion.disponiblecompraEvidencia.split(",") : null; 
                 this.evidencia2 =  (this.cotizacion.disponiblefacturaEvidencia != null)? this.cotizacion.disponiblefacturaEvidencia.split(",") : null;
                 this.evidencia3 =  (this.cotizacion.compradaEvidencia != null)? this.cotizacion.compradaEvidencia.split(",") : null;
