@@ -13,6 +13,55 @@ use App\Almacen;
 class CotizacionController extends Controller
 {
     //
+  public function guardarDocumentos (Request $request) {
+      try {
+
+        $cotizacion = Cotizacion::where('id', '=', $request->id)->first();
+        if(  isset ( $request->archivo ) ){
+                $nombreConcatenado = null;
+                foreach($request->archivo as $archivo){
+                $nombre = $archivo->getClientOriginalName();
+                if($nombreConcatenado != null){
+                    $nombreConcatenado = $nombreConcatenado.','.$nombre;
+                }else{
+                    $nombreConcatenado = $nombre;
+                }
+                $path = $archivo->storeAs(
+                'cotizaciones/'.$request->id.'/soporteDocumental',  $nombre
+                );
+                }
+                switch ($request->categoria) {
+                    case 1:
+                         $cotizacion->disponiblecompraEvidencia = $nombreConcatenado;
+                        break;
+                    case 2:
+                         $cotizacion->disponiblefacturaEvidencia = $nombreConcatenado;
+                        break;
+                    case 3:
+                         $cotizacion->compradaEvidencia = $nombreConcatenado;
+                        break;
+                    case 4:
+                        $cotizacion->disponibleentregaEvidencia = $nombreConcatenado;
+                        break;
+                    case 5:
+                        $cotizacion->entregadaEvidencia = $nombreConcatenado;
+                        break;
+                    case 6:
+                        $cotizacion->cobradaEvidencia = $nombreConcatenado;
+                        break;
+                }
+               
+
+            }
+        $cotizacion->save();
+
+        return response()->json(['response' => $cotizacion],200);
+
+      } catch (Exception $e) {
+        return response()->json(['response' => $e],500);
+
+      }
+    }
 
   public function disponiblecompra (Request $request) {
       try {

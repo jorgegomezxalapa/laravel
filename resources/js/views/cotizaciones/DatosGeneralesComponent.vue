@@ -10,7 +10,7 @@
                     <v-chip
       class="ma-2"
       color="secondary"
-      v-if="disponiblecompra != 0"
+      v-if="disponiblecompra == 1"
       small
     >
       DISPONIBLE PARA COMPRA
@@ -18,7 +18,7 @@
     <v-chip
       class="ma-2"
       color="secondary"
-       v-if="disponiblefactura != 0"
+       v-if="disponiblefactura == 1"
        small
     >
       DISPONIBLE PARA FACTURA
@@ -27,7 +27,7 @@
       class="ma-2"
       color="secondary"
       small
-      v-if="comprada != 0"
+      v-if="comprada == 1"
     >
       COMPRADA
     </v-chip>
@@ -35,7 +35,7 @@
       class="ma-2"
       color="secondary"
        small
-      v-if="disponibleentrega != 0"
+      v-if="disponibleentrega == 1"
     >
       DISPONIBLE PARA ENTREGA
     </v-chip>
@@ -43,7 +43,7 @@
       class="ma-2"
       color="secondary"
        small
-      v-if="entregada != 0"
+      v-if="entregada == 1"
     >
       ENTREGADA
     </v-chip>
@@ -51,7 +51,7 @@
       class="ma-2"
       color="secondary"
        small
-      v-if="cobrada != 0"
+      v-if="cobrada == 1"
     >
       COBRADA
     </v-chip>

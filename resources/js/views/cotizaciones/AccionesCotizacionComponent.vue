@@ -38,6 +38,17 @@
      class="ml-5"
     ></v-switch>
         </v-btn>
+        <v-chip
+        small
+        @click="verDocumento(item)"
+         v-for="(item, i) in evidencia1"
+          :key="i"
+      class="ma-2"
+      color="primary"
+    >
+      {{item}}
+    </v-chip>
+
          </v-col>
          <v-col
            cols="12"
@@ -58,7 +69,7 @@
       >
         mdi-ballot-outline
       </v-icon>
-          Disponible Para Facturar
+          Disponible Para Factura
           <v-switch
           @click="disponiblefacturamethod()"
       v-model="disponiblefactura"
@@ -66,6 +77,16 @@
      class="ml-5"
     ></v-switch>
         </v-btn>
+        <v-chip
+        small
+        @click="verDocumento(item)"
+         v-for="(item, i) in evidencia2"
+          :key="i"
+      class="ma-2"
+      color="primary"
+    >
+      {{item}}
+    </v-chip>
          </v-col>
          <v-col
            cols="12"
@@ -94,6 +115,16 @@
      class="ml-5"
     ></v-switch>
         </v-btn>
+        <v-chip
+        small
+        @click="verDocumento(item)"
+         v-for="(item, i) in evidencia3"
+          :key="i"
+      class="ma-2"
+      color="primary"
+    >
+      {{item}}
+    </v-chip>
          </v-col>
          <v-col
            cols="12"
@@ -122,6 +153,16 @@
      class="ml-5"
     ></v-switch>
         </v-btn>
+        <v-chip
+        small
+        @click="verDocumento(item)"
+         v-for="(item, i) in evidencia4"
+          :key="i"
+      class="ma-2"
+      color="primary"
+    >
+      {{item}}
+    </v-chip>
          </v-col>
 
          <v-col
@@ -151,6 +192,16 @@
      class="ml-5"
     ></v-switch>
         </v-btn>
+        <v-chip
+        small
+        @click="verDocumento(item)"
+         v-for="(item, i) in evidencia5"
+          :key="i"
+      class="ma-2"
+      color="primary"
+    >
+      {{item}}
+    </v-chip>
          </v-col>
          <v-col
            cols="12"
@@ -179,6 +230,16 @@
      class="ml-5"
     ></v-switch>
         </v-btn>
+        <v-chip
+        small
+        @click="verDocumento(item)"
+         v-for="(item, i) in evidencia6"
+          :key="i"
+      class="ma-2"
+      color="primary"
+    >
+      {{item}}
+    </v-chip>
          </v-col>   
                   
                 </v-row>
@@ -192,15 +253,84 @@
           
         </v-col>
         
-        <v-col cols="12" md="6">
+        <v-col cols="12" md="6" style="cursor: pointer" @click="modalCarga()">
           <center>
              <hr>
           <h5 class="text-center"><strong>CARGA DE DOCUMENTOS</strong></h5>
-          <img :src="'img/carga.png'" width="50%" style="cursor: pointer">
+          <img :src="'img/carga.png'" width="50%">
           </center>
           
         </v-col>
                 </v-row>
+
+                <v-dialog
+                  v-model="dialog"
+        transition="dialog-bottom-transition"
+        max-width="600"
+      >
+       
+      
+          <v-card>
+            <v-toolbar
+              color="primary"
+              dark
+            >CARGA TU SOPORTE DOCUMENTAL AQUÍ</v-toolbar>
+            <v-card-text>
+                <v-row>
+                <!--  <h5 class="font-weight-black ml-4 mt-5"><strong>SELECCIONA UNA OPCIÓN</strong></h5> -->
+               <!--  <v-col cols="12">
+                  <hr>
+                </v-col> -->
+                <v-col cols="12">
+                  <v-select
+      v-model="categoria"
+      :items="categorias"
+      item-text="nombre"
+      item-value="id"
+      label="CATEGORÍA"
+      data-vv-name="select"
+      >
+      </v-select>
+      <hr>
+      <v-file-input
+    v-model="files"
+    placeholder="DOCUMENTOS ADJUNTOS A LAS NOTAS"
+    label="INGRESA TUS ARCHIVOS"
+    multiple
+    prepend-icon="mdi-paperclip"
+  >
+    <template v-slot:selection="{ text }">
+      <v-chip
+      small
+        small
+        label
+        color="primary"
+      >
+        {{ text }}
+      </v-chip>
+    </template>
+  </v-file-input>
+  <hr>
+   <v-btn
+       
+        block
+        color="primary"
+        @click="guardarDocumentos()"
+        >
+        GUARDAR SOPORTE DOCUMENTAL
+        </v-btn>
+                </v-col>
+               </v-row>
+            </v-card-text>
+            <v-card-actions class="justify-end">
+              <v-btn
+                text
+                 @click="cerrarModalCarga()"
+              >CERRAR</v-btn>
+            </v-card-actions>
+          </v-card>
+       
+      </v-dialog>
                
          
         
@@ -251,6 +381,17 @@ const axios = require('axios');
         
         },
         data: () => ({
+          categoria:null,
+          categorias:[
+          { id: 1, nombre: "DISPONIBLE PARA COMPRA"},
+          { id: 2, nombre: "DISPONIBLE PARA FACTURA"},
+          { id: 3, nombre: "COMPRADA"},
+          { id: 4, nombre: "DISPONIBLE PARA ENTREGA"},
+          { id: 5, nombre: "ENTREGADA"},
+          { id: 6, nombre: "COBRADA"}
+          ],
+          files:[],
+          dialog:false,
         cotizacion:[],
         disponiblecompra:false,
         disponiblefactura:false,
@@ -258,6 +399,12 @@ const axios = require('axios');
         disponibleentrega:false,
         entregada:false,
         cobrada:false,
+        evidencia1:null,
+        evidencia2:null,
+        evidencia3:null,
+        evidencia4:null,
+        evidencia5:null,
+        evidencia6:null,
          
 
 
@@ -268,6 +415,73 @@ const axios = require('axios');
 
          },
           methods:{
+            verDocumento(imagen){
+              let idCotizacion = this.$route.params.id
+             
+              // var url = process.env.MIX_ARCHIVOS_URL;
+              var url = 'http://localhost/laravel/storage/app/cotizaciones/'+idCotizacion+'/soporteDocumental/'
+              window.open(url+imagen,'popup','width=600,height=600')
+              // falta poner la ruta real
+
+            },
+            async cerrarModalCarga(){
+              this.dialog = false
+              this.categoria = null
+              this.files.splice(0)
+            },
+            async guardarDocumentos(){
+              try {
+                     let formData = new FormData()
+                      formData.append( 'id' , parseInt(this.$route.params.id))
+                      formData.append( 'categoria' , parseInt(this.categoria))
+                      if(this.files.length != 0){
+                        for(let i = 0; i < this.files.length; i++){
+                            let file = this.files[i]
+                            formData.append('archivo['+i+']',file)
+                        }
+                      }
+
+                    const response = await axios({
+                      method: 'post',
+                      url: 'guardarDocumentos',
+                      data:formData
+                    })
+                this.dialog = false
+              this.categoria = null
+              this.files.splice(0)
+
+              this.cotizacion = response.data.response
+
+                 if (this.cotizacion != null) {
+                  this.disponiblecompra = this.cotizacion.disponiblecompra
+                 this.disponiblefactura = this.cotizacion.disponiblefactura
+                 this.comprada = this.cotizacion.comprada
+                 this.disponibleentrega = this.cotizacion.disponibleentrega
+                 this.entregada = this.cotizacion.entregada
+                 this.cobrada = this.cotizacion.cobrada
+                 }
+                
+                this.evidencia1 =  (this.cotizacion.disponiblecompraEvidencia != null)? this.cotizacion.disponiblecompraEvidencia.split(",") : null; 
+                this.evidencia2 =  (this.cotizacion.disponiblefacturaEvidencia != null)? this.cotizacion.disponiblefacturaEvidencia.split(",") : null;
+                this.evidencia3 =  (this.cotizacion.compradaEvidencia != null)? this.cotizacion.compradaEvidencia.split(",") : null;
+                this.evidencia4 =  (this.cotizacion.disponibleentregaEvidencia != null)? this.cotizacion.disponibleentregaEvidencia.split(",") : null;
+                this.evidencia5 =  (this.cotizacion.entregadaEvidencia != null)? this.cotizacion.entregadaEvidencia.split(",") : null;
+                this.evidencia6 =  (this.cotizacion.cobradaEvidencia != null)? this.cotizacion.cobradaEvidencia.split(",") : null;
+
+                 swal("ÉXITO", "SE HA ACTUALIZADO EL SOPORTE DOCUMENTAL", "success");
+                
+
+                } catch (error) {
+
+                   swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+                    console.log(error);
+
+                }
+            },
+            async modalCarga(){
+              this.dialog = true
+
+            },
             async getCotizacion(){
               try {
                     const response = await axios({
@@ -286,6 +500,12 @@ const axios = require('axios');
                  this.disponibleentrega = this.cotizacion.disponibleentrega
                  this.entregada = this.cotizacion.entregada
                  this.cobrada = this.cotizacion.cobrada
+                 this.evidencia1 =  (this.cotizacion.disponiblecompraEvidencia != null)? this.cotizacion.disponiblecompraEvidencia.split(",") : null; 
+                this.evidencia2 =  (this.cotizacion.disponiblefacturaEvidencia != null)? this.cotizacion.disponiblefacturaEvidencia.split(",") : null;
+                this.evidencia3 =  (this.cotizacion.compradaEvidencia != null)? this.cotizacion.compradaEvidencia.split(",") : null;
+                this.evidencia4 =  (this.cotizacion.disponibleentregaEvidencia != null)? this.cotizacion.disponibleentregaEvidencia.split(",") : null;
+                this.evidencia5 =  (this.cotizacion.entregadaEvidencia != null)? this.cotizacion.entregadaEvidencia.split(",") : null;
+                this.evidencia6 =  (this.cotizacion.cobradaEvidencia != null)? this.cotizacion.cobradaEvidencia.split(",") : null;
                  }
                
                 

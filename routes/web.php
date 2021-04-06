@@ -61,6 +61,7 @@ Route::post('editarSolicitante', 'SolicitantesController@editarSolicitante')->na
 Route::get('catalogosSolicitud', 'CatalogosController@catalogosSolicitud')->name('catalogosSolicitud');
 
 //cotizaciones
+Route::post('guardarDocumentos', 'CotizacionController@guardarDocumentos')->name('guardarDocumentos');
 Route::get('getSolicitadas', 'CotizacionController@getSolicitadas')->name('getSolicitadas');
 Route::get('getPartidas', 'CotizacionController@getPartidas')->name('getPartidas');
 Route::post('getPartidasCotizacion', 'CotizacionController@getPartidasCotizacion')->name('getPartidasCotizacion');
