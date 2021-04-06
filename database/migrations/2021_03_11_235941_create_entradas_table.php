@@ -15,9 +15,9 @@ class CreateEntradasTable extends Migration
     {
         Schema::create('entradas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('idProducto',250)->nullable();
-            $table->string('idEmpleado',250)->nullable();
-            $table->string('idCotizacion',250)->nullable();
+            $table->integer('idProducto')->nullable();
+            $table->integer('idEmpleado')->nullable();
+            $table->integer('idCotizacion')->nullable();
             $table->string('cantidad',250)->nullable();
             $table->string('concepto',250)->nullable();
             $table->string('evidencias',250)->nullable();

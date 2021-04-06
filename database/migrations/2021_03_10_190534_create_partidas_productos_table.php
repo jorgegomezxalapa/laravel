@@ -15,8 +15,8 @@ class CreatePartidasProductosTable extends Migration
     {
         Schema::create('partidas_productos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('idPartida',250)->nullable();
-            $table->string('idProducto',250)->nullable();
+            $table->integer('idPartida')->nullable();
+            $table->integer('idProducto')->nullable();
             $table->timestamps();
         });
     }

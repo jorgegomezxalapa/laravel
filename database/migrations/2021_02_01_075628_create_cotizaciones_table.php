@@ -16,7 +16,7 @@ class CreateCotizacionesTable extends Migration
         Schema::create('cotizaciones', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('idSolicitud',250)->nullable();
+            $table->integer('idSolicitud')->nullable();
 
             $table->string('estatus',250)->nullable();
 

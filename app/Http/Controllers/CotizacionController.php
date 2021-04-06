@@ -279,7 +279,7 @@ class CotizacionController extends Controller
       public function getCotizacion (Request $request) {
         try {
           $id = intval($request->id);
-          $cotizacion = Cotizacion::where('id', '=', 1 )
+          $cotizacion = Cotizacion::where('id', '=', $id )
           ->with('solicitud')
           ->with('utilidad')
           ->with('solicitud.agente')
