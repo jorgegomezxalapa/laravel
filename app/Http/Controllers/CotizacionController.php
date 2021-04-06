@@ -291,9 +291,9 @@ class CotizacionController extends Controller
 
         return response()->json(['response' => $cotizacion],200);
 
-        } catch (Exception $e) {
-          return response()->json(['response' => $e->getMessage()],500);
-
+        } catch(\PDOException $e){
+            return $e->getMessage (); 
+            
         }
       }
 
