@@ -244,14 +244,7 @@
                   
                 </v-row>
                 <v-row>
-                  <v-col cols="12" md="6">
-                    <center>
-                       <hr>
-          <h5 class="text-center"><strong>GENERACIÓN DE DOCUMENTOS</strong></h5>
-          <img :src="'img/documento.png'" width="50%" style="cursor: pointer">
-                    </center>
-          
-        </v-col>
+                 
         
         <v-col cols="12" md="6" style="cursor: pointer" @click="modalCarga()">
           <center>
@@ -259,6 +252,14 @@
           <h5 class="text-center"><strong>CARGA DE DOCUMENTOS</strong></h5>
           <img :src="'img/carga.png'" width="50%">
           </center>
+          
+        </v-col>
+         <v-col cols="12" md="6">
+                    <center>
+                       <hr>
+          <h5 class="text-center"><strong>DESCARGA DE DOCUMENTOS</strong></h5>
+          <img :src="'img/documento2.png'" width="50%" style="cursor: pointer">
+                    </center>
           
         </v-col>
                 </v-row>

@@ -278,9 +278,10 @@ class CotizacionController extends Controller
 
       public function getCotizacion (Request $request) {
         try {
+          return $request->all();
           $id = $request->id;
-          $cotizacion = Cotizacion::where('id', '=', $id )->with('solicitud')->with('utilidad')->with('solicitud.agente')->
-          with('solicitud.cliente')->with('solicitud.solicitante')
+          $cotizacion = Cotizacion::where('id', '=', $id )->with('solicitud')->with('utilidad')->with('solicitud.agente')
+          ->with('solicitud.cliente')->with('solicitud.solicitante')
           ->with('solicitud.responsable')->with('partidas')
           ->first();
 
