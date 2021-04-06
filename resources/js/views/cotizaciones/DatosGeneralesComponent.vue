@@ -174,6 +174,20 @@
                       v-model="responsable"
                     ></v-text-field>
                   </v-col>
+                  <v-col
+                    cols="12"
+                    md="12"
+                    sm="12"
+                  >
+                  <v-textarea
+          label="COMENTARIOS"
+                      filled
+                      dense
+                      readonly
+                      v-model="comentarios"
+        ></v-textarea>
+                     
+                  </v-col>
                 </v-row>
     </v-container>
 </template>
@@ -240,6 +254,7 @@ const axios = require('axios');
           disponibleentrega:0,
           entregada:0,
           cobrada:0,
+          comentarios:null,
 
 
           
@@ -291,6 +306,7 @@ const axios = require('axios');
                  this.solicitante = this.datossolicitante.nombre
                  this.agenteventas = this.datosagente.name
                  this.responsable = this.datosresponsable.name
+                 this.comentarios = this.solicitud.comentario
 
 
 

@@ -147,7 +147,7 @@ class AlmacenController extends Controller
     }
 
     public function getInventarioTotal () {
-      $disponible = Almacen::with('segmento')->where('disponible', '>', 0.00)->get();
+      $disponible = Almacen::with('segmento')->with('partida')->where('disponible', '>', 0.00)->get();
         $array = array();
         foreach($disponible as $item){
         $itemArray = $item->toArray();

@@ -83,7 +83,7 @@ Route::post('setIvaCotizacion', 'CotizacionController@setIvaCotizacion')->name('
 Route::post('setIepsCotizacion', 'CotizacionController@setIepsCotizacion')->name('setIepsCotizacion');
 
 
-
+Route::post('finalizarCotizacion', 'CotizacionController@finalizarCotizacion')->name('finalizarCotizacion');
 Route::post('disponiblecompra', 'CotizacionController@disponiblecompra')->name('disponiblecompra');
 Route::post('disponiblefactura', 'CotizacionController@disponiblefactura')->name('disponiblefactura');
 Route::post('comprada', 'CotizacionController@comprada')->name('comprada');

@@ -13,6 +13,35 @@
       <v-row>
         <v-col
            cols="12"
+         
+         >
+         <v-btn
+         block
+          
+          color="grey lighten-4"
+          class="ma-2"
+         
+        >
+        <v-icon
+        class="mr-5"
+        left
+        dark
+      >
+        mdi-marker-check
+      </v-icon>
+          MARCAR COMO FINALIZADA
+           <v-switch
+           @click="finalizarCotizacion()"
+      v-model="finalizar"
+     color="success"
+     class="ml-5"
+    ></v-switch>
+        </v-btn>
+        
+
+         </v-col>
+        <v-col
+           cols="12"
            sm="12"
            md="4"
          >
@@ -394,6 +423,7 @@ const axios = require('axios');
           files:[],
           dialog:false,
         cotizacion:[],
+        finalizar:false,
         disponiblecompra:false,
         disponiblefactura:false,
         comprada:false,
@@ -518,6 +548,25 @@ const axios = require('axios');
 
                 }
             },
+
+            async finalizarCotizacion(){
+              try {
+                    const response = await axios({
+                      method: 'post',
+                      url: 'finalizarCotizacion',
+                      data:{
+                        id:this.$route.params.id,
+                        accion:this.finalizar
+                      }
+                    })
+             swal("ÉXITO", "EL ESTATUS DE LA COTIZACIÓN SE HA ACTUALIZADO", "success");
+
+                } catch (error) {
+                   swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
+                    console.log(error);
+                }
+            },
+
             async disponiblecompramethod(){
               try {
                     const response = await axios({

@@ -34,5 +34,10 @@ class Almacen extends Model
         return $this->hasOne('App\User','id','idEmpleado');
     }
 
+     public function partida()
+    {
+        return $this->belongsTo('App\Partida', 'id', 'idProducto');
+    }
+
 
 }

@@ -131,7 +131,8 @@
 
           </template>
           <template v-slot:item.documentos="{ item }">
-            <p>{{item.notasdelproducto}}</p>
+            <p>idPartida{{ idPartida = item.partida.id}}</p>
+            <p>idCotizacion{{ idCotizacion = item.partida.idCotizacion}}</p>
           
      <span
                       v-for="(item) in item.documentos"
@@ -142,9 +143,10 @@
                        small
                        color="secondary"
                        v-if="item != ''"
-                     @click="abrirpopup(item)"
+                     @click="abrirpopup(idCotizacion+'/'+idPartida+'/'+item)"
                     >
-                      {{item}}
+                    {{ idCotizacion}}/{{ idPartida}}/{{item}}
+                      
                     </v-chip>
                             <p v-if="item == ''"><strong>Sin Documentos Adjuntos</strong></p>              
                    
@@ -813,10 +815,11 @@ methods : {
               // falta poner la ruta real
 
             },
- abrirpopup(item){
+ abrirpopup(url2){
               // var url = process.env.MIX_ARCHIVOS_URL;
-              var url = 'http://localhost/laravel/storage/app/fotosProductos/'
-              window.open(url+item,'popup','width=600,height=600')
+              console.log(url2)
+              var url = 'http://localhost/laravel/storage/app/cotizaciones/'
+              window.open(url+url2,'popup','width=600,height=600')
               // falta poner la ruta real
 
             },
