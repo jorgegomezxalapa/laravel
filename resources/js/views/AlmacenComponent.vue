@@ -143,9 +143,10 @@
                        small
                        color="secondary"
                        v-if="item != ''"
-                     @click="abrirpopup(idCotizacion+'/'+idPartida+'/'+item)"
+                     :href="`http://localhost/laravel/storage/app/cotizaciones/${idCotizacion}/${idPartida}/${item}`" target="_blank"
                     >
-                    {{ idCotizacion}}/{{ idPartida}}/{{item}}
+                   
+{{item}}
                       
                     </v-chip>
                             <p v-if="item == ''"><strong>Sin Documentos Adjuntos</strong></p>              
