@@ -54,6 +54,10 @@
       :search="search"
       :items-per-page="5"
     >
+    <template v-slot:item.created_at="{ item }">
+       {{ formatDate(item.created_at) }} ({{item.created_at}})      
+
+    </template>
 
 
     <template v-slot:item.acciones="{ item }">
@@ -111,6 +115,7 @@
 </template>
 
 <script>
+   import moment from 'moment'
   const axios = require('axios');
   import swal from 'sweetalert';
     export default {
@@ -141,6 +146,12 @@
 
   },
      methods: {
+       formatDate(value) {
+        var localLocale = moment(value);
+moment.locale('es');
+localLocale.locale(false);
+      return localLocale.format('LL')
+  },
         nuevoEmpleado(){
             this.$router.push({ name: 'nuevoEmpleado' }).catch(()=>{});
         },

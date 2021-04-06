@@ -55,6 +55,12 @@
        :items-per-page="5"
     >
 
+     <template v-slot:item.fecha="{ item }">
+       {{ formatDate(item.fecha) }} ({{item.fecha}})      
+
+    </template>
+
+
     <template v-slot:item.folio="{ item }">
 
      
@@ -132,6 +138,7 @@
 </template>
 
 <script>
+  import moment from 'moment'
     export default {
     data () {
       return {
@@ -164,6 +171,12 @@
 
  },
      methods: {
+      formatDate(value) {
+        var localLocale = moment(value);
+moment.locale('es');
+localLocale.locale(false);
+      return localLocale.format('LL')
+  },
         nuevaSolicitud(){
             this.$router.push({ name: 'nuevaSolicitud' }).catch(()=>{});
         },

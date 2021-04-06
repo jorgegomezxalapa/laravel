@@ -55,7 +55,10 @@
       :items-per-page="5"
     >
 
+     <template v-slot:item.created_at="{ item }">
+       {{ formatDate(item.created_at) }} ({{item.created_at}})      
 
+    </template>
     <template v-slot:item.acciones="{ item }">
       <v-tooltip top>
         <template v-slot:activator="{ on, attrs }">
@@ -94,6 +97,7 @@
 </template>
 
 <script>
+  import moment from 'moment'
     export default {
       mounted(){
    this.getClientes()
@@ -128,6 +132,12 @@
       }
     },
      methods: {
+      formatDate(value) {
+        var localLocale = moment(value);
+moment.locale('es');
+localLocale.locale(false);
+      return localLocale.format('LL')
+  },
        async getClientes(){
          try {
                const response = await axios({

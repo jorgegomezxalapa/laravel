@@ -54,7 +54,10 @@
       :search="search"
       :items-per-page="5"
     >
+     <template v-slot:item.created_at="{ item }">
+       {{ formatDate(item.created_at) }} ({{item.created_at}})      
 
+    </template>
 
 
     <template v-slot:item.acciones="{ item }">
@@ -95,6 +98,7 @@
 </template>
 
 <script>
+  import moment from 'moment'
     export default {
       mounted(){
    this.getsolicitantes()
@@ -122,6 +126,12 @@
       }
     },
      methods: {
+      formatDate(value) {
+        var localLocale = moment(value);
+moment.locale('es');
+localLocale.locale(false);
+      return localLocale.format('LL')
+  },
         nuevoSolicitante(){
             this.$router.push({ name: 'nuevoSolicitante' }).catch(()=>{});
         },
