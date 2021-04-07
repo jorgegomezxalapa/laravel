@@ -20,6 +20,11 @@ Vue.filter('formatDate', function(value) {
 
 Vue.component('login-component', require('./views/login/LoginComponent.vue').default);
 Vue.component('dashboard-component', require('./views/dashboard/DashboardComponent.vue').default);
+Vue.component('dashboard-resumen', require('./views/dashboard/ResumenComponent.vue').default);
+Vue.component('dashboard-cliente', require('./views/dashboard/ClienteComponent.vue').default);
+Vue.component('dashboard-solicitante', require('./views/dashboard/SolicitanteComponent.vue').default);
+Vue.component('dashboard-empleado', require('./views/dashboard/EmpleadoComponent.vue').default);
+Vue.component('dashboard-razonsocial', require('./views/dashboard/RazonSocialComponent.vue').default);
 Vue.component('datos-generales-cotizacion', require('./views/cotizaciones/DatosGeneralesComponent.vue').default);
 Vue.component('trabajo-cotizacion', require('./views/cotizaciones/TrabajoCotizacionComponent.vue').default);
 Vue.component('configuraciones-cotizacion', require('./views/cotizaciones/ConfiguracionesCotizacionComponent.vue').default);
