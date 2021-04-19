@@ -7,20 +7,51 @@ use PhpOffice\PhpWord\Style\Language;
 use PhpOffice\PhpWord\SimpleType\Jc;
 use PhpOffice\PhpWord\Element\Table;
 use PhpOffice\PhpWord\TemplateProcessor;
+use App\Cotizacion;
+use Carbon;
+
+
 
 class WordController extends Controller
 {
 
-	public function word () {
-		$templateProcessor=new \PhpOffice\PhpWord\TemplateProcessor('cotizacion.docx');
-		// $templateProcessor->setValue('nombre_variable', 'Valor_variable');
-		// $templateProcessor->setValue('nombre_variable', 'Valor_variable');
+	public function descargarDocumento ($cotizacion,$rs,$tipo,$documento) {
+
+
+date_default_timezone_set('America/Mexico_City');
+
+$fecha = date('Y-m-d');
+
+
+
+$dt = Carbon\Carbon::now();
+$fecha = strtoupper ( $dt->format('l jS \\of F Y') ) ;  
+
+
+
+		$id = intval($cotizacion);
+          $cotizacion = Cotizacion::where('id', '=', $id )
+          ->with('solicitud')
+          ->with('utilidad')
+          ->with('solicitud.agente')
+          ->with('solicitud.cliente')
+          ->with('solicitud.solicitante')
+          ->with('solicitud.responsable')
+          ->with('partidas')
+          ->first();
+          return $cotizacion->solicitud->all() ;
+         
+          $url="app/documentos/";
+          $url=$url.$rs."/".$tipo."/".$documento;
+         
+		$templateProcessor=new \PhpOffice\PhpWord\TemplateProcessor(storage_path($url));
+	
 
 		
 
-		$templateProcessor->setValue('direccion_fecha', '27 DE JUNIO DE 2021');
+		$templateProcessor->setValue('fecha', $fecha);
 
-		$templateProcessor->setValue('representante', 'JORGE IVÁN RAMOS GÓMEZ');
+		$templateProcessor->setValue('representante', $cotizacion->cliente->nombre);
 
 		 
 

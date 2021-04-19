@@ -112,7 +112,8 @@ Route::get('getSalidas', 'AlmacenController@getSalidas')->name('getSalidas');
 Route::get('getInventarioSolicitado', 'AlmacenController@getInventarioSolicitado')->name('getInventarioSolicitado');
 
 //DOCUMENTOS WORD
-Route::get('word', 'WordController@word')->name('word');
+// Route::get('word', 'WordController@word')->name('word');
+Route::get('descargarDocumento/{cotizacion}/{rs}/{tipo}/{documento}', 'WordController@descargarDocumento')->name('descargarDocumento');
 
 //GESTION
 Route::post('nuevaRazon', 'GestionController@nuevaRazon')->name('nuevaRazon');
@@ -124,3 +125,5 @@ Route::post('editarFormato', 'GestionController@editarFormato')->name('editarFor
 Route::post('nuevoDocumento', 'GestionController@nuevoDocumento')->name('nuevoDocumento');
 Route::get('getDocumento', 'GestionController@getDocumento')->name('getDocumento');
 Route::post('editarDocumento', 'GestionController@editarDocumento')->name('editarDocumento');
+Route::post('getDocumentosF', 'GestionController@getDocumentosF')->name('getDocumentosF');
+

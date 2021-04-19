@@ -283,7 +283,7 @@
           </center>
           
         </v-col>
-         <v-col cols="12" md="6">
+         <v-col cols="12" md="6" @click="modalDescarga()">
                     <center>
                        <hr>
           <h5 class="text-center"><strong>DESCARGA DE DOCUMENTOS</strong></h5>
@@ -361,6 +361,80 @@
           </v-card>
        
       </v-dialog>
+
+      <v-dialog
+                  v-model="dialog2"
+        transition="dialog-bottom-transition"
+        max-width="600"
+      >
+       
+      
+          <v-card>
+            <v-toolbar
+              color="primary"
+              dark
+            >DESCARGA TU SOPORTE DOCUMENTAL AQUÍ</v-toolbar>
+            <v-card-text>
+                <v-row>
+               
+                <v-col cols="12">
+                  <v-select
+      v-model="razon"
+      :items="razones"
+      item-text="nombre"
+      item-value="id"
+      label="SELECCIONA UNA RAZÓN SOCIAL"
+      data-vv-name="select"
+      @click="getRazones()"
+      >
+      </v-select>
+      <hr>
+      <v-select
+      v-model="formato"
+      :items="formatos"
+      item-text="nombre"
+      item-value="id"
+      label="SELECCIONA UN TIPO DE FORMATO"
+      data-vv-name="select"
+      @click="getFormatos()"
+      >
+      </v-select>
+      <hr>
+      <v-select
+      v-model="documento"
+      :items="documentos"
+      item-text="nombre"
+      item-value="documento"
+      label="SELECCIONA UNA PLANTILLA DEL DOCUMENTO"
+      data-vv-name="select"
+      @click="getDocumentos()"
+      @change="descargarDocumento()"
+      >
+      </v-select>
+  <hr>
+  
+        <v-btn
+        v-if="url != null"
+       
+        block
+        color="primary"
+        :href="url"
+        target="_blank"
+        >
+        DESCARGAR DOCUMENTO WORD
+        </v-btn>
+                </v-col>
+               </v-row>
+            </v-card-text>
+            <v-card-actions class="justify-end">
+              <v-btn
+                text
+                 @click="cerrarModalCarga2()"
+              >CERRAR</v-btn>
+            </v-card-actions>
+          </v-card>
+       
+      </v-dialog>
                
          
         
@@ -422,6 +496,7 @@ const axios = require('axios');
           ],
           files:[],
           dialog:false,
+          dialog2:false,
         cotizacion:[],
         finalizar:false,
         disponiblecompra:false,
@@ -436,6 +511,13 @@ const axios = require('axios');
         evidencia4:null,
         evidencia5:null,
         evidencia6:null,
+        razones:[],
+        razon:null,
+        formatos:[],
+        formato:null,
+        documentos:[],
+        documento:null,
+        url:null,
          
 
 
@@ -446,6 +528,90 @@ const axios = require('axios');
 
          },
           methods:{
+            async getRazones(){
+              this.formatos = []
+              this.documentos = []
+              this.url = null
+               try {
+                const response = await axios({
+                  method: 'get',
+                  url: 'getRazon',
+                })
+
+                this.razones = response.data.response
+                
+
+
+            } catch (error) {
+
+               swal("OCURRIÓ UN ERROR DE SERVIDOR", "Por favor recarga la página", "error");
+                console.log(error);
+
+            }
+            },
+            async getFormatos(){
+
+              this.documentos = []
+              this.url = null
+              try {
+                const response = await axios({
+                  method: 'get',
+                  url: 'getFormato',
+                })
+
+                this.formatos = response.data.response
+                
+
+
+            } catch (error) {
+
+               swal("OCURRIÓ UN ERROR DE SERVIDOR", "Por favor recarga la página", "error");
+                console.log(error);
+
+            }
+
+            },
+            async getDocumentos(){
+              try {
+                const response = await axios({
+                  method: 'post',
+                  url: 'getDocumentosF',
+                  data:{
+                    idCotizacion:parseInt(this.$route.params.id),
+                    id_razonsocial:parseInt(this.razon),
+                    id_formato:parseInt(this.formato),
+                  }
+                })
+
+                this.documentos = response.data.response
+                
+
+
+            } catch (error) {
+
+               swal("OCURRIÓ UN ERROR DE SERVIDOR", "Por favor recarga la página", "error");
+                console.log(error);
+
+            }
+
+            },
+            async descargarDocumento(){
+              try {
+                  let carpeta = "descargarDocumento"
+                  let Valcotizacion = parseInt(this.$route.params.id)
+                  let Valrs = parseInt(this.razon)
+                  let Valtipo = parseInt(this.formato)
+                  let Valdocumento = this.documento
+                  this.url = carpeta+"/"+Valcotizacion+"/"+Valrs+"/"+Valtipo+"/"+Valdocumento
+
+
+            } catch (error) {
+
+               
+
+            }
+
+            },
             verDocumento(imagen){
               let idCotizacion = this.$route.params.id
              
@@ -459,6 +625,17 @@ const axios = require('axios');
               this.dialog = false
               this.categoria = null
               this.files.splice(0)
+            },
+            async cerrarModalCarga2(){
+              this.razones = []
+              this.razon = null
+              this.formatos = []
+              this.formato = null
+              this.documentos = []
+              this.documento = null
+              this.url = null
+              this.dialog2 = false
+             
             },
             async guardarDocumentos(){
               try {
@@ -511,6 +688,10 @@ const axios = require('axios');
             },
             async modalCarga(){
               this.dialog = true
+
+            },
+            async modalDescarga(){
+              this.dialog2 = true
 
             },
             async getCotizacion(){
