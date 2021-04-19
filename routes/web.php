@@ -113,3 +113,14 @@ Route::get('getInventarioSolicitado', 'AlmacenController@getInventarioSolicitado
 
 //DOCUMENTOS WORD
 Route::get('word', 'WordController@word')->name('word');
+
+//GESTION
+Route::post('nuevaRazon', 'GestionController@nuevaRazon')->name('nuevaRazon');
+Route::get('getRazon', 'GestionController@getRazon')->name('getRazon');
+Route::post('editarRazon', 'GestionController@editarRazon')->name('editarRazon');
+Route::post('nuevoFormato', 'GestionController@nuevoFormato')->name('nuevoFormato');
+Route::get('getFormato', 'GestionController@getFormato')->name('getFormato');
+Route::post('editarFormato', 'GestionController@editarFormato')->name('editarFormato');
+Route::post('nuevoDocumento', 'GestionController@nuevoDocumento')->name('nuevoDocumento');
+Route::get('getDocumento', 'GestionController@getDocumento')->name('getDocumento');
+Route::post('editarDocumento', 'GestionController@editarDocumento')->name('editarDocumento');

@@ -41,6 +41,10 @@ Vue.component('componente-clientes', require('./views/ClientesComponent.vue').de
 Vue.component('componente-solicitantes', require('./views/SolicitantesComponent.vue').default);
 Vue.component('componente-solicitudes', require('./views/SolicitudesComponent.vue').default);
 
+Vue.component('gestion-razonsocial', require('./views/gestion/RazonSocialComponent.vue').default);
+Vue.component('gestion-catalogos', require('./views/gestion/CatalogosComponent.vue').default);
+Vue.component('gestion-formatos', require('./views/gestion/FormatosComponent.vue').default);
+
 import router from './routes'
 
 const app = new Vue({

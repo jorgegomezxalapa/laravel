@@ -109,8 +109,9 @@ export default new Router ({
 	{
 		path:'/formatos',
 		name:'formatos',
-		component: require('./views/FormatosComponent.vue').default
+		component: require('./views/formatos/FormatosComponent.vue').default
 	},
+	
 	{
 		path:'/empleados',
 		name:'empleados',
@@ -130,6 +131,27 @@ export default new Router ({
 		path:'/detalle-empleado/:id',
 		name:'detalleEmpleado',
 		component: require('./views/empleados/DetalleEmpleado.vue').default
+	},
+
+	{
+		path:'/gestion',
+		name:'gestion',
+		component: require('./views/gestion/MenuComponent.vue').default
+	},
+	{
+		path:'/registro-razonsocial',
+		name:'nuevaRazon',
+		component: require('./views/gestion/RegistroRazonSocial.vue').default
+	},
+	{
+		path:'/registro-formato',
+		name:'nuevoFormato',
+		component: require('./views/gestion/RegistroFormato.vue').default
+	},
+	{
+		path:'/registro-documento',
+		name:'nuevoWord',
+		component: require('./views/gestion/RegistroDocumento.vue').default
 	},
 	{
 		path:'/historial',

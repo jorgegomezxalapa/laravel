@@ -80,7 +80,8 @@
         class="elevation-1"
                    :items-per-page="5"
                  >
-                
+
+                 
           
                </v-data-table>
                   </v-col>
@@ -175,6 +176,7 @@ const axios = require('axios');
          },
           methods:{
             async getCotizacion(){
+              alert("hola")
               try {
                     const response = await axios({
                       method: 'post',
@@ -189,6 +191,16 @@ const axios = require('axios');
                  this.ieps = this.cotizacion.iepsTotal
                  this.total = this.cotizacion.total
                  this.partidas = this.cotizacion.partidas
+
+                 let list=[];
+                  $.each(this.partidas, function(key, value) {
+                    if ( value.esMejora  == 0 ) {
+                      list.push(value);
+                    }
+                       
+                     });
+                  this.partidas = list
+                 console.log("partidas", this.partidas)
                 
 
                 } catch (error) {

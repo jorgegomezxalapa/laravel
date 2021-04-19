@@ -30,17 +30,7 @@ class WordController extends Controller
 
 		$templateProcessor->setValue('parrafo', 'Aqupi va mi tabla.');
 
-		$rows = 10;
-		$cols = 5;
 		
-
-		$table = $section->addTable();
-		for ($r = 1; $r <= $rows; $r++) {
-		    $table->addRow();
-		    for ($c = 1; $c <= $cols; $c++) {
-		        $table->addCell(1750)->addText("Row {$r}, Cell {$c}");
-		    }
-		}
 
 		 
 

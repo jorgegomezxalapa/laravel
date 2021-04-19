@@ -214,6 +214,7 @@
         { text: 'TIPOS DE VENTA', icon: 'mdi-file-percent-outline' , url:'utilidades'},
         { text: 'FORMATOS PDF', icon: 'mdi-file-pdf-box-outline' , url:'formatos'},
         { text: 'EMPLEADOS', icon: 'mdi-account-box-multiple-outline' , url:'empleados'},
+        { text: 'GESTIÓN', icon: 'mdi-settings-box' , url:'gestion'},
         { text: 'HISTORIAL', icon: 'mdi-history' , url:'historial'},
       ],
 
