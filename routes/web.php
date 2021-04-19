@@ -110,3 +110,6 @@ Route::get('getEntradas', 'AlmacenController@getEntradas')->name('getEntradas');
 Route::post('salidaPartida', 'AlmacenController@salidaPartida')->name('salidaPartida');
 Route::get('getSalidas', 'AlmacenController@getSalidas')->name('getSalidas');
 Route::get('getInventarioSolicitado', 'AlmacenController@getInventarioSolicitado')->name('getInventarioSolicitado');
+
+//DOCUMENTOS WORD
+Route::get('word', 'WordController@word')->name('word');
