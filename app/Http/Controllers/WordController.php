@@ -9,6 +9,7 @@ use PhpOffice\PhpWord\Element\Table;
 use PhpOffice\PhpWord\TemplateProcessor;
 use App\Cotizacion;
 use Carbon;
+use Storage;
 
 
 
@@ -17,6 +18,7 @@ class WordController extends Controller
 
 	public function descargarDocumento ($cotizacion,$rs,$tipo,$documento) {
 
+	return Storage::download('documentos/1/1/cotizacion.docx');
 
 date_default_timezone_set('America/Mexico_City');
 
@@ -59,7 +61,7 @@ $fecha = strtoupper ( $dt->format('l jS \\of F Y') ) ;
 
 		$templateProcessor->setValue('cliente', 'FISCALÍA GENERAL DEL ESTADO DE VERACRUZ');
 
-		$templateProcessor->setValue('parrafo', 'Aqupi va mi tabla.');
+		$templateProcessor->setValue('parrafo', 'Coloque su tabla aqui.');
 
 		
 

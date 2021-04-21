@@ -111,6 +111,30 @@
 
     },
     methods: {
+
+      async getAll(){
+        try {
+                const response = await axios({
+                  method: 'get',
+                  url: 'getAll',
+                })
+                let respuesta = []
+                respuesta = response.data
+                this.cantidadSolicitudes = respuesta.solicitudes
+                this.cantidadCotizaciones = respuesta.cotizaciones
+                this.cantidadVentas = respuesta.ventas
+                this.cantidadClientes = respuesta.clientes
+                console.log(this.usuarios)
+
+
+            } catch (error) {
+
+               swal("OCURRIÓ UN ERROR DE SERVIDOR", "Por favor recarga la página", "error");
+                console.log(error);
+
+            }
+
+      }
      
      
 
@@ -120,6 +144,7 @@
 
   },
   mounted: function () {
+    this.getAll()
  
 }
   }

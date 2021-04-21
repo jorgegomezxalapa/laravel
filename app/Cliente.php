@@ -20,7 +20,8 @@ class Cliente extends Model
 
     ];
 
-    // function municipio(){
-    //     return $this->hasOne('App\Models\CatMunicipio','cve_mun','municipio');
-    // }
+     public function solicitud()
+    {
+        return $this->belongsTo('App\Solicitud', 'id', 'cliente');
+    }
 }

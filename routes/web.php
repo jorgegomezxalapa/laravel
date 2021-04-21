@@ -22,6 +22,9 @@ Route::get('/', function () {
 Route::post('authenticate', 'HomeController@authenticate')->name('authenticate');
 
 //dashboard
+
+Route::get('getAll', 'CotizacionController@getAll')->name('getAll');
+Route::get('getAllClientes', 'CotizacionController@getAllClientes')->name('getAllClientes');
 Route::get('dashboard', 'HomeController@dashboard')->name('dashboard');
 Route::get('getperfil', 'HomeController@getperfil')->name('getperfil');
 Route::get('logout', 'HomeController@logout')->name('logout');
@@ -126,4 +129,6 @@ Route::post('nuevoDocumento', 'GestionController@nuevoDocumento')->name('nuevoDo
 Route::get('getDocumento', 'GestionController@getDocumento')->name('getDocumento');
 Route::post('editarDocumento', 'GestionController@editarDocumento')->name('editarDocumento');
 Route::post('getDocumentosF', 'GestionController@getDocumentosF')->name('getDocumentosF');
+
+
 

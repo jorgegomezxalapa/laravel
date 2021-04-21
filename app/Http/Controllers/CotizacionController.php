@@ -9,7 +9,7 @@ use App\Cotizacion;
 use App\Partida;
 use App\Utilidad;
 use App\Almacen;
-
+use App\Cliente;
 class CotizacionController extends Controller
 {
     //
@@ -870,4 +870,73 @@ class CotizacionController extends Controller
 
         }
       }
+
+      public function getAll () {
+      try {
+
+        $cotizaciones = Cotizacion::orderBy('id', 'DESC')->count();
+        $solicitudes = Solicitud::orderBy('id', 'DESC')->count();
+        $clientes = Cliente::orderBy('id', 'DESC')->count();
+        $ventas = Cotizacion::orderBy('id', 'DESC')->where('finalizada', '=', 1)->count();
+        return response()->json(['response' => "ok", "cotizaciones" => $cotizaciones, "solicitudes" => $solicitudes, "clientes" => $clientes, "ventas" => $ventas],200);
+
+        return response()->json(['response' => $cotizaciones],200);
+
+      } catch (Exception $e) {
+        return response()->json(['response' => $e],500);
+
+      }
+    }
+
+    public function getAllClientes () {
+      try {
+
+        
+
+       $clientes = Cliente::get();
+       $array = array();
+       $arrayClientes = array();
+       
+       foreach ($clientes as $cliente) {
+        $Nsolicitudes = 0;
+        $Ncotizaciones = 0;
+        $Nventas = 0;
+        $arrayClientes["cliente"] = $cliente->razonSocial;
+         $solicitudes = Solicitud::orderBy('id', 'DESC')->where('cliente', '=', $cliente->id)->get();
+         foreach($solicitudes as $solicitud){
+          $Nsolicitudes = $Nsolicitudes + 1;
+          $arrayClientes["solicitudes"] = $Nsolicitudes;
+          $cotizaciones = Cotizacion::orderBy('id', 'DESC')->where('idSolicitud','=', $solicitud->id)->get();
+          foreach ($cotizaciones as $cotizacion) {
+            $Ncotizaciones = $Ncotizaciones + 1;
+            $arrayClientes["cotizaciones"] = $Ncotizaciones;
+            if ($cotizacion->finalizada == 1) {
+              $Nventas = $Nventas + 1;
+              $arrayClientes["ventas"] = $Nventas;
+            }
+          }
+         }
+         
+         
+         
+
+         array_push($array, $arrayClientes);
+       }
+     
+
+          
+
+
+          
+        
+
+        return response()->json(['response' => $array],200);
+
+        return response()->json(['response' => $cotizaciones],200);
+
+      } catch (Exception $e) {
+        return response()->json(['response' => $e],500);
+
+      }
+    }
 }
