@@ -120,6 +120,7 @@ Route::get('descargarDocumento/{cotizacion}/{rs}/{tipo}/{documento}', 'WordContr
 
 //DOCUMENTOS EXCEL
 Route::get('excel', 'PartidasController@excel')->name('excel');
+Route::get('getExcel/{tipo}', 'PartidasController@getExcel')->name('getExcel');
 
 
 //GESTION
