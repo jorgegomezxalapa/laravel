@@ -118,6 +118,10 @@ Route::get('getInventarioSolicitado', 'AlmacenController@getInventarioSolicitado
 // Route::get('word', 'WordController@word')->name('word');
 Route::get('descargarDocumento/{cotizacion}/{rs}/{tipo}/{documento}', 'WordController@descargarDocumento')->name('descargarDocumento');
 
+//DOCUMENTOS EXCEL
+Route::get('excel', 'PartidasController@excel')->name('excel');
+
+
 //GESTION
 Route::post('nuevaRazon', 'GestionController@nuevaRazon')->name('nuevaRazon');
 Route::get('getRazon', 'GestionController@getRazon')->name('getRazon');

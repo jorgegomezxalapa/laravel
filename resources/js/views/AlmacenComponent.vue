@@ -312,6 +312,12 @@
               <v-card flat>
 
                 <v-card-text>
+                  <v-btn class="primary" @click="excelentrada = true" block>
+                    GENERAR FORMATO DE EXCEL
+                  </v-btn>
+                </v-card-text>
+
+                <v-card-text>
 
                   <v-text-field
               v-model="buscarHistorialEntradas"
@@ -322,6 +328,7 @@
             ></v-text-field>
             <br> <br>
           </v-card-title>
+
           <v-data-table
             :headers="headersInventarioEntradas"
             :items="inventarioEntradas"
@@ -572,17 +579,7 @@ color="primary"
       v-model="dialog"
 
     >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="red lighten-2"
-          dark
-          v-bind="attrs"
-          v-on="on"
-          hidden="true"
-        >
-          Click Me
-        </v-btn>
-      </template>
+     
 
       <v-card>
         <v-card-title class="headline grey lighten-2">
@@ -639,10 +636,97 @@ color="primary"
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+     <v-dialog
+      v-model="excelentrada"
+      width="100%"
+    >
+    
+
+      <v-card>
+        <v-card-title class="headline grey lighten-2">
+          EXCEL - REGISTRO DE ENTRADAS
+        </v-card-title>
+         <v-card-text v-if="!filtrado">
+         <v-row class="mt-5" align="center">
+            <v-col
+            align="center"
+            cols="12"
+            md="6">
+             <v-btn
+            color="primary"
+            class="mt-1 mb-1"
+            @click="descargarEntrada(0)"
+            >
+            DESCARGAR FORMATO COMPLETO
+          </v-btn>
+           </v-col>
+           <v-col
+           align="center"
+           cols="12"
+           md="6">
+             <v-btn
+            color="primary"
+            class="mt-1 mb-1"
+            @click="filtrado = true"
+            >
+            DESCARGAR FORMATO CON FILTROS
+          </v-btn>
+           </v-col>
+         </v-row>
+         </v-card-text>
+        <v-card-text v-if="filtrado">
+           <v-btn
+      class="ma-2"
+      outlined
+      @click="filtrado = false"
+    >
+     REGRESAR
+    </v-btn>
+          <h4 class="mt-3 mb-3">PORFAVOR SELECCIONA UN RANGO DE FECHAS</h4>
+          <p v-if="dates.length != 0"><strong>Fechas seleccionadas :</strong></p>
+          
+          <span v-for="(item,i) in dates"
+                      v-bind:key="i" class="mr-5">
+                        {{formatDate(item)}}
+                      </span>
+
+                      <v-btn
+         v-if="dates.length == 2"
+            color="primary"
+            class="mt-1 mb-1"
+            @click="descargarEntrada(1)"
+          >
+            DESCARGAR FORMATO FILTRADO
+          </v-btn>
+         
+         <v-date-picker
+        v-model="dates"
+        range
+         full-width
+      class="mt-4"
+      ></v-date-picker>
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            text
+            @click="excelentrada = false"
+          >
+            Cancelar
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     </v-container>
 </template>
 
 <script>
+   import moment from 'moment'
 const axios = require('axios');
 import { required, digits, email, max, regex } from 'vee-validate/dist/rules'
 import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
@@ -650,6 +734,7 @@ import swal from 'sweetalert';
 export default {
 data () {
   return {
+    filtrado:false,
     ingresoProducto:null,
     conceptoentrada:null,
     idEditar:null,
@@ -801,13 +886,41 @@ data () {
         idProductoEntrada:null,
         idCotizacionEntrada:null,
 
+        excelentrada:false,
+        dates: [],
 
   }
 },
 mounted() {
 
 },
+
+watch: {
+   
+    filtrado: function (newVal, oldVal) {
+     if (!newVal) {
+      this.dates = []
+     }
+    }
+  },
+
 methods : {
+  async descargarEntrada(completo){
+    //completo 0-> completo , 1->filtrado
+  
+    if (parseInt(completo) == 0) {
+      //completo
+    }else{
+      //filtrado
+    }
+  },
+
+  formatDate(value) {
+        var localLocale = moment(value);
+        moment.locale('es');
+        localLocale.locale(false);
+        return localLocale.format('LL')
+  },
   abrirpopupcomentarios(idCotizacion,idPartida,imagen){
              
               // var url = process.env.MIX_ARCHIVOS_URL;
