@@ -158,6 +158,11 @@ export default new Router ({
 		name:'historial',
 		component: require('./views/HistorialComponent.vue').default
 	},
+	{
+		path:'/file',
+		name:'file',
+		component: require('./components/FileUploadComponent.vue').default
+	},
 
 	],
 	// mode:'history'

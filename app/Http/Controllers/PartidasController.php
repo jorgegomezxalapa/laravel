@@ -14,6 +14,8 @@ class PartidasController extends Controller
 {
     //
      public function getExcel ($id) {
+
+     	echo asset('storage/file.txt');
      	
      	
 		//CON ESO OBTENGO LA FECHA ACTUAL
