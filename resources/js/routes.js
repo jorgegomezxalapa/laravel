@@ -57,7 +57,7 @@ export default new Router ({
 	{
 		path:'/ventas',
 		name:'ventas',
-		component: require('./views/VentasComponent.vue').default
+		component: require('./views/ventas/VentasComponent.vue').default
 	},
 	{
 		path:'/clientes',
