@@ -1,5 +1,9 @@
 <template>
     <v-container fluid>
+      <v-btn class="primary" @click="excelentrada = true" block>
+                    GENERAR FORMATO DE EXCEL
+                  </v-btn>
+      <a type="button" style="display: none;"  :href="hreff" value="facebook" target="_blank" class="button" ref="myBtn">hola</a>
       <v-card
         class="mx-auto rounded-lg py-5 px-2 mt-5 mb-5"
         width="100%"
@@ -312,9 +316,7 @@
               <v-card flat>
 
                 <v-card-text>
-                  <v-btn class="primary" @click="excelentrada = true" block>
-                    GENERAR FORMATO DE EXCEL
-                  </v-btn>
+                  
                 </v-card-text>
 
                 <v-card-text>
@@ -645,10 +647,24 @@ color="primary"
 
       <v-card>
         <v-card-title class="headline grey lighten-2">
-          EXCEL - REGISTRO DE ENTRADAS
+          FORMATO DE EXCEL
         </v-card-title>
          <v-card-text v-if="!filtrado">
          <v-row class="mt-5" align="center">
+          <v-col
+            align="center"
+            cols="12"
+           >
+            
+             <v-select
+              v-model="oexcel"
+              label="Selecciona una opción"
+              :items="exceles"
+              item-text="text"
+              item-value="value"
+              
+            ></v-select>
+           </v-col>
             <v-col
             align="center"
             cols="12"
@@ -734,12 +750,17 @@ import swal from 'sweetalert';
 export default {
 data () {
   return {
+    oexcel:null,
     filtrado:false,
     ingresoProducto:null,
     conceptoentrada:null,
     idEditar:null,
     files:[],
      files2:[],
+     exceles :[
+     { text: 'Registro de Entradas', value: '0' },
+     { text: 'Registro de Salidas', value: '1' },
+     ],
     dialog:false,
     modalEntrada:false,
     modalProducto:false,
@@ -888,6 +909,7 @@ data () {
 
         excelentrada:false,
         dates: [],
+        hreff:null,
 
   }
 },
@@ -896,6 +918,10 @@ mounted() {
 },
 
 watch: {
+
+  oexcel: function (newVal, oldVal) {
+    this.hreff = "getExcel/"+newVal
+    },
    
     filtrado: function (newVal, oldVal) {
      if (!newVal) {
@@ -906,7 +932,21 @@ watch: {
 
 methods : {
   async descargarEntrada(completo){
-    //completo 0-> completo , 1->filtrado
+   
+    const elem = this.$refs.myBtn
+   
+   
+    console.log(this.$refs.myBtn)
+            elem.click()
+    try {
+            
+
+      } catch (error) {
+
+        
+
+      }
+
   
     if (parseInt(completo) == 0) {
       //completo
