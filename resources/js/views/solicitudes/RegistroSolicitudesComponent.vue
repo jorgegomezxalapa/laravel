@@ -261,6 +261,7 @@ message: 'El formato de email debe ser válido',
         mounted() {
             this.getCatalogos()
             this.verificar()
+            this.getRandom()
 
         },
         components: {
@@ -288,6 +289,10 @@ agente:null,
 
          }),
          methods: {
+          async getRandom(){
+            let random = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+            this.folio = random.substring(17, 23).toUpperCase()
+          },
            async verificar(){
               if (this.$route.params.id != undefined) {
                  this.editar = true
