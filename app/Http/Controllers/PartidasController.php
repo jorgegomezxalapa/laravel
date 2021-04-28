@@ -14,6 +14,16 @@ class PartidasController extends Controller
 {
     //
      public function getExcel ($id) {
+
+     	echo asset('storage/file.txt');
+     	
+     	
+		//CON ESO OBTENGO LA FECHA ACTUAL
+		
+		$fecha = date("d/m/Y", strtotime(Carbon::now()->toDateString()));
+		$fechaString = Carbon::now()->isoFormat('dddd D \d\e MMMM \d\e\l Y');
+		return $fecha;
+
      	switch (intval($id)) {
 	    case 0:
 	    $spreadsheet = new Spreadsheet();

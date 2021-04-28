@@ -57,7 +57,7 @@ export default new Router ({
 	{
 		path:'/ventas',
 		name:'ventas',
-		component: require('./views/VentasComponent.vue').default
+		component: require('./views/ventas/VentasComponent.vue').default
 	},
 	{
 		path:'/clientes',
@@ -157,6 +157,11 @@ export default new Router ({
 		path:'/historial',
 		name:'historial',
 		component: require('./views/HistorialComponent.vue').default
+	},
+	{
+		path:'/file',
+		name:'file',
+		component: require('./components/FileUploadComponent.vue').default
 	},
 
 	],

@@ -23,6 +23,8 @@ Route::post('authenticate', 'HomeController@authenticate')->name('authenticate')
 
 //dashboard
 
+Route::post('upload', 'ArchivosController@index')->name('upload');
+
 Route::get('getAll', 'CotizacionController@getAll')->name('getAll');
 Route::get('getAllClientes', 'CotizacionController@getAllClientes')->name('getAllClientes');
 Route::get('dashboard', 'HomeController@dashboard')->name('dashboard');

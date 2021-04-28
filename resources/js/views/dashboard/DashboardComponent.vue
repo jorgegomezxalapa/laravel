@@ -208,6 +208,7 @@
       { text: 'DASHBOARD', icon: 'mdi-devices' , url:'dashboard'},
         { text: 'SOLICITUDES', icon: 'mdi-import' , url:'solicitudes'},
          { text: 'COTIZACIONES', icon: 'mdi-file-send-outline' , url:'cotizaciones'},
+         { text: 'VENTAS', icon: 'mdi-cash' , url:'ventas'},
          { text: 'ALMACÉN', icon: 'mdi-window-closed' , url:'almacen'},
         { text: 'CLIENTES', icon: 'mdi-account-badge-horizontal-outline' , url:'clientes'},
          { text: 'SOLICITANTES', icon: 'mdi-account-badge-horizontal-outline' , url:'solicitantes'},
