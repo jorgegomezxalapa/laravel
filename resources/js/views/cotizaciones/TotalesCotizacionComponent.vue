@@ -61,10 +61,54 @@
                       v-model="total"
                     ></v-text-field>
                   </v-col>
+                  <v-col
+                    cols="12"
+                    md="4"
+                    sm="6"
+                  >
+                     <v-text-field
+                      label="COSTO DE COMPRA"
+                      filled
+                      dense
+                      readonly
+                      light
+                      v-model="costocompra"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    md="4"
+                    sm="6"
+                  >
+                     <v-text-field
+                      label="GANANCIA EN PESOS"
+                      filled
+                      dense
+                      readonly
+                      light
+                      v-model="gananciapesos"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    md="4"
+                    sm="6"
+                  >
+                     <v-text-field
+                      label="GANANCIA EN PROCENTAJE"
+                      filled
+                      dense
+                      readonly
+                      light
+                      v-model="gananciaporcentaje"
+                    ></v-text-field>
+                  </v-col>
                 </v-row>
                  <v-row>
          
        </v-row>
+
+
 
                 <v-row>
                   <v-col
@@ -165,6 +209,9 @@ const axios = require('axios');
 
              
             ],
+            costocompra:null,
+            gananciapesos:null,
+            gananciaporcentaje:null,
          
 
 
@@ -176,7 +223,7 @@ const axios = require('axios');
          },
           methods:{
             async getCotizacion(){
-              alert("hola")
+             
               try {
                     const response = await axios({
                       method: 'post',
@@ -193,7 +240,9 @@ const axios = require('axios');
                  this.partidas = this.cotizacion.partidas
 
                  let list=[];
+                 this.costocompra = 0
                   $.each(this.partidas, function(key, value) {
+                   
                     if ( value.esMejora  == 0 ) {
                       list.push(value);
                     }
