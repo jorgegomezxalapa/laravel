@@ -28,8 +28,8 @@ class ArchivosController extends Controller
             }
             
              
-            // $file_path = public_path('storage/carpetas/'.$storageName);
-            $file_path = "storage/app/public/carpetas/cqkpIXbdpJLi2mp0WrST6RH0UAcs2DpNPtlzNfLW.pdf"
+            $file_path = public_path('storage/carpetas/'.$storageName);
+            return $file_path;
             return response()->download($file_path);
 
         } catch (\Exception $e) {
