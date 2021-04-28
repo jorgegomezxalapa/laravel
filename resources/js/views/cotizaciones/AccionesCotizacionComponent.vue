@@ -10,7 +10,7 @@
           <h5 class="text-center"><strong>ACTUALIAZCIÓN DE ESTATUS</strong></h5>
         </v-col>
        </v-row>
-      <v-row>
+      <v-row hidden="true">
         <v-col
            cols="12"
          
@@ -275,7 +275,7 @@
                 <v-row>
                  
         
-        <v-col cols="12" md="6" style="cursor: pointer" @click="modalCarga()">
+        <v-col hidden="true" cols="12" md="6" style="cursor: pointer" @click="modalCarga()">
           <center>
              <hr>
           <h5 class="text-center"><strong>CARGA DE DOCUMENTOS</strong></h5>
@@ -288,6 +288,14 @@
                        <hr>
           <h5 class="text-center"><strong>DESCARGA DE DOCUMENTOS</strong></h5>
           <img :src="'img/documento2.png'" width="50%" style="cursor: pointer">
+                    </center>
+          
+        </v-col>
+        <v-col cols="12" md="6" @click="modalDescarga()">
+                    <center>
+                       <hr>
+          <h5 class="text-center"><strong>FINALIZAR Y ENVIAR A VENTAS</strong></h5>
+          <img :src="'img/venta.png'" width="50%" style="cursor: pointer">
                     </center>
           
         </v-col>
