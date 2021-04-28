@@ -51,7 +51,8 @@ $fecha = strtoupper ( $dt->format('l jS \\of F Y') ) ;
 
 		
 
-		$templateProcessor->setValue('fecha', $fecha);
+		
+		$templateProcessor->setValue(' fecha', "JUEVES 22 DE ABRIL DEL 2021");
 
 		$templateProcessor->setValue('representante', $cotizacion->cliente->nombre);
 
