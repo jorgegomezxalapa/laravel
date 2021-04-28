@@ -14,9 +14,9 @@ class ArchivosController extends Controller
      */
     public function index(Request $request)
     {
-        //
-        $nombre = "";
-        if(  isset ( $request->archivo ) ){
+        try {
+
+          if(  isset ( $request->archivo ) ){
                 
                 foreach($request->archivo as $archivo){
                $storagePath = Storage::put('carpetas', $archivo);
@@ -30,6 +30,14 @@ class ArchivosController extends Controller
              
             $file_path = public_path('storage/carpetas/'.$storageName);
             return response()->download($file_path);
+
+        } catch (\Exception $e) {
+
+            return $e->getMessage();
+        }
+        //
+        $nombre = "";
+        
     }
 
     /**

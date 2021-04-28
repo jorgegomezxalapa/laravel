@@ -6,7 +6,7 @@
     label="File input"
   ></v-file-input>
    <v-btn @click="fileUpload()" block>
-   guardar
+   hola
   </v-btn>
     </v-container>
 </template>
