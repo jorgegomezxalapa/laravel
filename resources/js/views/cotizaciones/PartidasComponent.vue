@@ -1,6 +1,323 @@
 <template>
     <v-container fluid>
-       <v-row>
+      <v-row>
+         <v-col
+        cols="12"
+      >
+         <v-switch
+              v-model="alternativo"
+              label="ALTERNAR FORMATO DE CAPTURA"
+              color="primary"
+              value="primary"
+              hide-details
+            ></v-switch>
+      </v-col>
+      </v-row>
+      <v-row v-if="alternativo">
+         <v-col
+        cols="12"
+      >
+      <p class="font-weight-black mb-3"  align="center">FORMULARIO PARA CAPTURA DE PARTIDAS</p>
+       <p align="center">PARA MARCAR COMO "NO COTIZA", DEJAR EL CAMPO EN LIMPIO, LOS VALORES PARTICIPANTES SON CANTIDAD, PRECIO DE PROVEEDOR.</p>
+        <v-data-table
+          :headers="capturaH"
+          :items="capturaI"
+          class="elevation-1"
+        >
+          
+          <template v-slot:item.partida="{ item }">
+            <v-text-field
+            outlined
+        v-model="partida"
+        type="number"
+        full-width
+        height="7vw"
+        
+      ></v-text-field>
+          </template>
+          <template v-slot:item.politicas="{ item }">
+            <v-switch 
+          v-model="politicas"
+          inset
+          label="¿Activar?"
+        ></v-switch>
+          </template>
+          <template v-slot:item.descripcion="{ item }">
+            <v-textarea
+      outlined
+      v-model="descripcion"
+      height="7vw"
+      :counter="65535"
+      ></v-textarea>
+          </template>
+          <template v-slot:item.segmento="{ item }">
+            <v-select
+            outlined
+      v-model="segmento"
+      :items="segmentos"
+      item-text="nombre"
+      item-value="id"
+      @click="getSegmentos()"
+      height="7vw"
+      data-vv-name="select"
+      >
+      </v-select>
+          </template>
+          <template v-slot:item.unidaddemedida="{ item }">
+             <v-text-field
+        outlined
+        dense
+        v-model="unidaddemedida"
+        height="7vw"
+        ></v-text-field>
+          </template>
+          <template v-slot:item.cantidad="{ item }">
+            <v-text-field
+        outlined
+        dense
+        v-model="cantidad"
+        type="number"
+       height="7vw"
+        ></v-text-field>
+          </template>
+          <template v-slot:item.preciodeproveedor="{ item }">
+            <v-text-field
+        outlined
+        dense
+        v-model="preciodeproveedor"
+        type="number"
+        height="6vw"
+        ></v-text-field>
+        <v-switch
+          v-model="restariva"
+         height="1vw"
+          color="warning"
+          label="¿Restar IVA?"
+        ></v-switch>
+          </template>
+          <template v-slot:item.marca="{ item }">
+            <v-text-field
+        v-model="marca"
+        type="text"
+       height="7vw"
+        outlined
+        dense>
+        </v-text-field>
+          </template>
+          <template v-slot:item.modelo="{ item }">
+            <v-text-field
+    v-model="modelo"
+    type="text"
+    height="7vw"
+    outlined
+    dense
+  ></v-text-field>
+          </template>
+          <template v-slot:item.numerodeserie="{ item }">
+            <v-text-field
+        v-model="numerodeserie"
+        type="text"
+        height="7vw"
+        outlined
+        dense
+      ></v-text-field>
+          </template>
+          <template v-slot:item.notas="{ item }">
+            <v-textarea
+      outlined
+      v-model="notasdelproducto"
+      height="7vw"
+      ></v-textarea>
+          </template>
+          <template v-slot:item.soportenotas="{ item }">
+            <v-file-input
+    v-model="files"
+    placeholder="DOCUMENTOS ADJUNTOS A LAS NOTAS"
+    
+    multiple
+    prepend-icon="mdi-paperclip"
+  >
+    <template v-slot:selection="{ text }">
+      <v-chip
+        small
+        label
+        color="primary"
+      >
+        {{ text }}
+      </v-chip>
+    </template>
+  </v-file-input>
+          </template>
+          <template v-slot:item.tipodeventa="{ item }">
+            <v-text-field
+          v-model="utilidadglobal"
+          type="number"
+         height="7vw"
+          outlined
+          dense
+        ></v-text-field>
+          </template>
+          <template v-slot:item.iva="{ item }">
+            <v-text-field
+        v-model="ivaglobal"
+        type="number"
+       height="7vw"
+        outlined
+        dense
+        ></v-text-field>
+          </template>
+          <template v-slot:item.ieps="{ item }">
+            <v-text-field
+        v-model="iepsglobal"
+        type="number"
+       height="7vw"
+        outlined
+        dense
+      ></v-text-field>
+          </template>
+          <template v-slot:item.importe1="{ item }">
+            <v-text-field
+        v-model="importe1"
+        height="7vw"
+        outlined
+        dense
+        readonly
+        ></v-text-field>
+          </template>
+          <template v-slot:item.utilidadgenerada="{ item }">
+            <v-text-field
+        v-model="utilidadgenerada"
+       height="7vw"
+        outlined
+        dense
+        readonly
+      ></v-text-field>
+          </template>
+          <template v-slot:item.preciounitario="{ item }">
+            <v-text-field
+        v-model="preciounitario"
+      height="7vw"
+        outlined
+        dense
+        readonly
+        ></v-text-field>
+          </template>
+          <template v-slot:item.importe2="{ item }">
+            <v-text-field
+        v-model="importe2"
+      height="7vw"
+        outlined
+        dense
+        readonly
+      ></v-text-field>
+          </template>
+          <template v-slot:item.actions="{ item }">
+            <v-btn
+        v-if="!esEdicion && !esMejorada"
+        block
+        color="primary"
+        @click="guardarPartida()"
+        >
+        GUARDAR PARTIDA
+        </v-btn>
+        <v-btn
+        v-if="esEdicion"
+        block
+        color="primary"
+        @click="editarPartida()"
+        >
+        EDITAR PARTIDA
+        </v-btn>
+        <v-btn
+        v-if="esMejorada"
+        block
+        color="primary"
+        @click="mejorarPartida()"
+        >
+        MEJORAR PARTIDA
+        </v-btn>
+          </template>
+        </v-data-table>
+      </v-col>
+      <v-col cols="12">
+        <v-data-table
+                 :headers="headers"
+                 :items="partidas"
+                 :search="search"
+                 
+        class="elevation-1"
+                   :items-per-page="5"
+                 >
+                 <template v-slot:[`item.utilidadpartida`]="{ item }">
+
+              {{item.utilidadpartida}} %
+
+
+          </template>
+          <template v-slot:[`item.notasproducto`]="{ item }">
+
+              {{item.notasproducto}}
+                <div v-if="item.producto.archivosdenotas != null">
+                  
+                  <v-chip small class="mb-1" v-for="(imagen, index) in item.producto.archivosdenotas.split(',')" 
+                :key="index"
+                @click="abrirpopup(item.idCotizacion,item.partida,imagen)"
+                >{{
+                    imagen
+                }}</v-chip>
+                </div>
+             
+
+
+          </template>
+          <template v-slot:[`item.politicas`]="{ item }">
+
+              <p v-if="item.politicas == 1"> SÍ INCLUYE</p>
+              <p v-else>NO INCLUYE</p>
+
+
+          </template>
+          <template v-slot:[`item.partida`]="{ item }">
+
+              <v-chip
+      class="ma-2"
+      color="secondary"
+    >
+      {{item.partida}}
+    </v-chip>
+    <div v-if="item.esMejora == 1" class="secondary darken-2 text-center">
+    <span class="white--text">PARTIDA MEJORADA</span>
+  </div>
+    
+   
+
+
+          </template>
+                 <template v-slot:[`item.actions`]="{ item }">
+
+                <v-tooltip bottom>
+                      <template v-slot:activator="{ on, attrs }">
+                          <v-btn class="mx-2" fab small width="32" height="30" v-bind="attrs" v-on="on" @click="cargarEdicion(item)">
+                            <v-icon >mdi-pencil</v-icon>
+                          </v-btn>
+                      </template>
+                      <span>Editar Partida</span>
+                  </v-tooltip>
+                  <v-tooltip bottom>
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn class="mx-2" fab small width="32" height="30" v-bind="attrs" v-on="on" @click="cargarEdicionMejorada(item)">
+                              <v-icon >mdi-checkbox-multiple-marked-circle-outline</v-icon>
+                            </v-btn>
+                        </template>
+                        <span>Mejorar Partida</span>
+                    </v-tooltip>
+
+
+          </template>
+               </v-data-table>
+      </v-col>
+      </v-row>
+       <v-row v-if="!alternativo">
      <v-col
         cols="12"
       >
@@ -450,6 +767,7 @@ const axios = require('axios');
         
         },
         data: () => ({
+          alternativo:false,
           totalpartidas:null,
           esEdicion:false,
           esMejorada:false,
@@ -510,6 +828,63 @@ const axios = require('axios');
 
               { text: 'ACCIONES', align: 'center', value: 'actions' },
             ],
+            capturaH: [
+              {
+                text: '# PARTIDA',
+                align: 'left',
+                value: 'partida',
+                width: "15vw",
+              },
+             
+              { text: 'POLÍTICAS DE GARANTÍA', align: 'center', value: 'politicas', width: "15vw", },
+             
+              { text: 'DESCRIPCIÓN', align: 'center', value: 'descripcion', width: "15vw", },
+              { text: 'SEGMENTO', align: 'center', value: 'segmento', width: "15vw", },
+                { text: 'UNIDAD DE MEDIDA', align: 'center', value: 'unidaddemedida', width: "15vw", },
+                { text: 'CANTIDAD', align: 'center', value: 'cantidad', width: "15vw", },
+              { text: 'PRECIO DE PROVEEDOR', align: 'center', value: 'preciodeproveedor', width: "15vw", },
+              { text: 'MARCA', align: 'center', value: 'marca', width: "15vw", },
+              { text: 'MODELO', align: 'center', value: 'modelo', width: "15vw", },
+              { text: 'NÚMERO DE SERIE', align: 'center', value: 'numerodeserie', width: "15vw", },
+              { text: 'NOTAS', align: 'center', value: 'notas', width: "15vw", },
+              { text: 'SOPORTE PARA NOTAS', align: 'center', value: 'soportenotas', width: "15vw", },
+              { text: 'TIPO DE VENTA', align: 'center', value: 'tipodeventa' , width: "15vw",},
+              { text: 'IVA', align: 'center', value: 'iva', width: "15vw", },
+              { text: 'IEPS', align: 'center', value: 'ieps', width: "15vw", },
+
+              { text: 'IIMPORTE 1', align: 'center', value: 'importe1', width: "15vw", },
+              { text: 'UTILIDAD', align: 'center', value: 'utilidadgenerada', width: "15vw", },
+              { text: 'PRECIO UNITARIO', align: 'center', value: 'preciounitario', width: "15vw", },
+              { text: 'IMPORTE 2', align: 'center', value: 'importe2', width: "15vw", },
+
+              { text: 'ACCIONES', align: 'center', value: 'actions' },
+            ],
+            capturaI:[
+            {
+            partida: 0,
+            politicas: 0,
+            descripcion: 0,
+            segmento: 0,
+            unidaddemedida: 0,
+            cantidad: 0,
+            preciodeproveedor: 0,
+            marca: 0,
+            modelo: 0,
+            numerodeserie: 0,
+            notas: 0,
+            soportenotas: 0,
+            tipodeventa: 0,
+            iva: 0,
+            ieps: 0,
+            importe1: 0,
+            utilidadgenerada: 0,
+            preciounitario: 0,
+            importe2: 0,
+            actions: 0,
+
+            },
+            ],
+
          }),
          watch : {
           restariva :function (newVal, oldVal){
