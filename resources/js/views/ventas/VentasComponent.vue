@@ -7,8 +7,6 @@
         width="100%"
         align="center"
         justify="space-around"
-
-
       >
     <v-card-title class="font-weight-black">MÓDULO DE VENTAS<v-chip
       class="ma-2"
@@ -16,171 +14,240 @@
       dark
       
     >
-      {{parseInt(this.solicitadas.length)+parseInt(this.proceso.length)+parseInt(this.cotizadas.length)}} EN TOTAL
-    </v-chip></v-card-title>
-
-<v-divider></v-divider>
-<v-card-text>
-  <v-tabs grow color="primary" background-color="grey lighten-3" >
-            <v-tab @click="getSolicitadas">PENDIENTES <v-chip
-      class="ma-2"
-      color="secondary"
-      dark
-      
-    >
-      {{this.solicitadas.length}}
-    </v-chip> </v-tab>
-            <v-tab @click="getProceso">EN PROCESO <v-chip
-      class="ma-2"
-      color="secondary"
-      dark
-      
-    >
-      {{this.proceso.length}}
-    </v-chip> </v-tab>
-            <v-tab @click="getCotizadas">COTIZADAS <v-chip
-      class="ma-2"
-      color="secondary"
-      dark
-      
-    >
-      {{this.cotizadas.length}}
-    </v-chip> </v-tab>
-
-            <v-tab-item>
-              <v-card
-                elevation="2"
-                class="mt-5 mb-5"
-              >
-              <v-divider></v-divider>
-              <v-text-field
-        v-model="search1"
-        append-icon="mdi-magnify"
-        label="BUSCAR DATOS POR COLUMNA"
-        single-line
-        hide-details
-      ></v-text-field>
-      <v-divider></v-divider>
-                <v-data-table
-                :items-per-page="5"
-      :headers="headersSolicitadas"
-      :items="solicitadas"
-      :search="search1"
-    >
-    <template v-slot:item.solicitud.fecha="{ item }">
-       {{ formatDate(item.solicitud.fecha) }} ({{item.solicitud.fecha}})      
-
-    </template>
-     <template v-slot:item.solicitud.urgente="{ item }">
-
-       <v-chip
-      class="ma-2"
-      color="orange"
-      dark
-      v-if="item.solicitud.urgente == 1"
-    >
-      URGENTE
+      {{this.ventas.length
+      }} EN TOTAL
     </v-chip>
+    <div class="text-center">
+    <v-row>
+     
+    <v-col cols="12">
+      <v-chip
+      class="ma-2"
+      color="primary"
+      text-color="white"
+      
+      small
+
+    >
+      <v-avatar
+        left
+        class="primary darken-1"
+      >
+        {{this.sinAsignar.length}}
+      </v-avatar>
+      VENTAS SIN ESTATUS ASIGNADO 
+                            
+                        
+
+                           
+
+      
+    </v-chip>
+    </v-col>
+    <v-col cols="6"  md="3" class="d-flex justify-center">
     <v-chip
       class="ma-2"
       color="primary"
-      v-else
-      dark
+      text-color="white"
+      style="min-width: 100%!important;  text-align: center!important;"
+      small
+
     >
-      NORMAL
+      <v-avatar
+        left
+        class="primary darken-1"
+      >
+         {{this.disponiblecompra.length}}
+      </v-avatar>
+      DISPONIBLE PARA COMPRA
     </v-chip>
-
-    </template>
-   
-    <template v-slot:item.solicitud.folio="{ item }">
-
-       <v-chip
+    </v-col>
+    <v-col cols="6"  md="3" class="d-flex justify-center">
+    <v-chip
       class="ma-2"
       color="primary"
-     
-      dark
+      text-color="white"
+      style="min-width: 100%!important;  text-align: center!important;"
+      small
+
     >
-      {{item.solicitud.folio}}
+      <v-avatar
+        left
+        class="primary darken-1"
+      >
+        {{this.comprada.length}}
+      </v-avatar>
+      COMPRADAS
     </v-chip>
+    </v-col>
+    <v-col cols="6"  md="3" class="d-flex justify-center">
+    <v-chip
+      class="ma-2"
+      color="primary"
+      text-color="white"
+      style="min-width: 100%!important;  text-align: center!important;"
+      small
 
-    </template>
+    >
+      <v-avatar
+        left
+        class="primary darken-1"
+      >
+        {{this.disponibleentrega.length}}
+      </v-avatar>
+      DISPONIBLE PARA ENTREGA
+    </v-chip>
+    </v-col>
+    <v-col cols="6"  md="3" class="d-flex justify-center">
+    <v-chip
+      class="ma-2"
+      color="primary"
+      text-color="white"
+      style="min-width: 100%!important;  text-align: center!important;"
+      small
 
-    <template v-slot:item.acciones="{ item }">
+    >
+      <v-avatar
+        left
+        class="primary darken-1"
+      >
+        {{this.entregada.length}}
+      </v-avatar>
+      ENTREGADAS
+    </v-chip>
+    </v-col>
+    <v-col cols="6"  md="3" class="d-flex justify-center">
+    <v-chip
+      class="ma-2"
+      color="primary"
+      text-color="white"
+      style="min-width: 100%!important;  text-align: center!important;"
+      small
 
-      <v-tooltip top>
-      <template v-slot:activator="{ on, attrs }">
-        <router-link :to="{name: 'iniciarCotizacion', params:{id:item.id}}">
-      <v-btn
-       v-bind="attrs"
-          v-on="on"
-               small
-                color="primary"
-                dark
+    >
+      <v-avatar
+        left
+        class="primary darken-1"
+      >
+        {{this.disponiblefactura.length}}
+      </v-avatar>
+      DISPONIBLE PARA FACTURA
+    </v-chip>
+    </v-col>
+    <v-col cols="6"  md="3" class="d-flex justify-center">
+    <v-chip
+      class="ma-2"
+      color="primary"
+      text-color="white"
+      style="min-width: 100%!important;  text-align: center!important;"
+      small
 
-                fab
-              >
-                <v-icon>mdi-file-send-outline</v-icon>
-              </v-btn>
-            </router-link>
-          </template>
-          <span>Acceder a la Cotización</span>
-      </v-tooltip>
+    >
+      <v-avatar
+        left
+        class="primary darken-1"
+      >
+        {{this.facturada.length}}
+      </v-avatar>
+      FACTURADAS
+    </v-chip>
+    </v-col>
+    <v-col cols="6"  md="3" class="d-flex justify-center">
+    <v-chip
+      class="ma-2"
+      color="primary"
+      text-color="white"
+      style="min-width: 100%!important;  text-align: center!important;"
+      small
 
-    </template>
-    </v-data-table>
-              </v-card>
-            </v-tab-item>
-            <v-tab-item>
-              <v-card
-                elevation="2"
-                class="mt-5 mb-5"
-              >
-              <v-divider></v-divider>
-              <v-text-field
-        v-model="search2"
+    >
+      <v-avatar
+        left
+        class="primary darken-1"
+      >
+        {{this.cobrada.length}}
+      </v-avatar>
+      COBRADA
+    </v-chip>
+    </v-col>
+    <v-col cols="6"  md="3" class="d-flex justify-center">
+    <v-chip
+      class="ma-2"
+      color="primary"
+      text-color="white"
+      style="min-width: 100%!important;  text-align: center!important;"
+      small
+
+    >
+      <v-avatar
+        left
+        class="primary darken-1"
+      >
+        {{this.cobradasinfacturar.length}}
+      </v-avatar>
+      COBRADAS SIN FACTURAR
+    </v-chip>
+    </v-col>
+  </v-row>
+  <v-text-field
+        v-model="search"
         append-icon="mdi-magnify"
-        label="BUSCAR DATOS POR COLUMNA"
+        label="Buscar"
         single-line
         hide-details
       ></v-text-field>
-      <v-divider></v-divider>
-                <v-data-table
-                :items-per-page="5"
-      :headers="headersProceso"
-      :items="proceso"
-      :search="search2"
+  </div>
+  </v-card-title>
+
+<v-divider></v-divider>
+<v-card-text>
+<h4 class="mb-5 mt-5">{{mensaje}}</h4>
+  <v-data-table
+      :headers="headers"
+      :items="ventas"
+      :search="search"
     >
-    <template v-slot:item.solicitud.fecha="{ item }">
-       {{ formatDate(item.solicitud.fecha) }} ({{item.solicitud.fecha}})      
-
-    </template>
-    <template v-slot:item.solicitud.folio="{ item }">
-
-       <v-chip
-      class="ma-2"
-      color="primary"
+    <template v-slot:no-data>
      
-      dark
-    >
-      {{item.solicitud.folio}}
-    </v-chip>
+        <strong>NO HAY INFORMACÍÓN DISPONIBLE</strong>
+      
+    </template>
+    <template v-slot:item.cotizacion.solicitud.created_at="{ item }">
+      {{formatDate(item.cotizacion.solicitud.created_at)}}
 
     </template>
-    <template v-slot:item.partidas="{ item }">
-
-       <v-chip
-      class="ma-2"
-      color="primary"
-     
-      dark
-    >
-      {{item.partidas.length}}
-    </v-chip>
-
+    <template v-slot:item.created_at="{ item }">
+      {{formatDate(item.created_at)}}
     </template>
-
-    <template v-slot:item.acciones="{ item }">
-
+      
+      <template v-slot:item.cotizacion.solicitud.folio="{ item }">
+       
+      <span>
+         <v-chip
+        
+        color="primary"
+      >
+      
+        {{ item.cotizacion.solicitud.folio }}
+      
+        
+      </v-chip>
+      </span>
+      <span>
+        <router-link :to="{name: 'iniciarCotizacion', params:{id:item.cotizacion.id}}">
+      <v-chip
+        
+        color="primary"
+      >
+      
+        ACCEDER A LA COTIZACIÓN
+      
+        
+      </v-chip>
+      </router-link>
+      </span>
+    </template>
+    <template v-slot:item.actions="{ item }">
       <v-tooltip top>
       <template v-slot:activator="{ on, attrs }">
         <router-link :to="{name: 'iniciarCotizacion', params:{id:item.id}}">
@@ -197,94 +264,12 @@
               </v-btn>
             </router-link>
           </template>
-          <span>Acceder a la Cotización</span>
+          <span>ACTUALIZAR ESTATUS</span>
       </v-tooltip>
-
     </template>
     </v-data-table>
-              </v-card>
-            </v-tab-item>
-            <v-tab-item>
-                <v-card
-                elevation="2"
-                class="mt-5 mb-5"
-              >
-              <v-divider></v-divider>
-              <v-text-field
-        v-model="search3"
-        append-icon="mdi-magnify"
-        label="BUSCAR DATOS POR COLUMNA"
-        single-line
-        hide-details
-      ></v-text-field>
-      <v-divider></v-divider>
-                <v-data-table
-                :items-per-page="5"
-      :headers="headersCotizadas"
-      :items="cotizadas"
-      :search="search3"
-    >
-    <template v-slot:item.fechafinalizado="{ item }">
-       {{ formatDate(item.fechafinalizado) }} ({{item.fechafinalizado}})      
-
-    </template>
-    <template v-slot:item.solicitud.fecha="{ item }">
-       {{ formatDate(item.solicitud.fecha) }} ({{item.solicitud.fecha}})      
-
-    </template>
-    <template v-slot:item.partidas="{ item }">
-
-       <v-chip
-      class="ma-2"
-      color="primary"
-     
-      dark
-    >
-      {{item.partidas.length}}
-    </v-chip>
-
-    </template>
-    <template v-slot:item.solicitud.folio="{ item }">
-
-       <v-chip
-      class="ma-2"
-      color="primary"
-     
-      dark
-    >
-      {{item.solicitud.folio}}
-    </v-chip>
-
-    </template>
-
-    <template v-slot:item.acciones="{ item }">
-
-      <v-tooltip top>
-      <template v-slot:activator="{ on, attrs }">
-        <router-link :to="{name: 'iniciarCotizacion', params:{id:item.id}}">
-      <v-btn
-       v-bind="attrs"
-          v-on="on"
-               small
-                color="primary"
-                dark
-
-                fab
-              >
-                <v-icon>mdi-file-send-outline</v-icon>
-              </v-btn>
-            </router-link>
-          </template>
-          <span>ACCEDER A LA COTIZACIÓN</span>
-      </v-tooltip>
-
-    </template>
-    
-    </v-data-table>
-              </v-card>
-            </v-tab-item>
-
-        </v-tabs>
+  
+  
 </v-card-text>
   
     <v-divider></v-divider>
@@ -300,92 +285,111 @@
    import moment from 'moment'
     export default {
       mounted(){
-   this.getSolicitadas()
-   this.getProceso()
-   this.getCotizadas()
+    this.getVentas()
 
    },
     data () {
       return {
+        mensaje:"MOSTRANDO TODOS LOS RESULTADOS",
         value:0,
-        search1: '',
-        search2: '',
-        search3: '',
-        headersSolicitadas: [
-          {
-            text: 'FOLIO',
-            align: 'center',
-            value: 'solicitud.folio', class: "primary"
-          },
-         
-          { text: 'TIPO DE SOLICITUD', align: 'center', value: 'solicitud.urgente', class: "primary" },
-         { text: 'FECHA DE SOLICITUD', align: 'center', value: 'solicitud.fecha', class: "primary" },
-          { text: 'CLIENTE', align: 'center', value: 'solicitud.cliente.razonSocial', class: "primary" },
-          { text: 'PERSONA SOLICITANTE', align: 'center', value: 'solicitud.solicitante.nombre', class: "primary" },
-          { text: 'AGENTE DE VENTAS', align: 'center', value: 'solicitud.agente.name', class: "primary" },
-          { text: 'RESPONSABLE', align: 'center', value: 'solicitud.responsable.name', class: "primary" },
-          { text: 'ACCIONES', align: 'center', value: 'acciones', class: "primary" },
-        ],
-        headersProceso: [
-         {
-            text: 'FOLIO',
-            align: 'center',
-            value: 'solicitud.folio', class: "primary"
+        search: '',
+       headers: [
+        {
+            text: 'Fecha de Solicitud',
+            align: 'start',
+            filterable: false,
+            value: 'cotizacion.solicitud.created_at',
           },
           {
-            text: 'PARTIDAS REGISTRADAS',
-            align: 'center',
-            value: 'partidas', class: "primary"
+            text: 'Fecha de Venta',
+            align: 'start',
+            filterable: false,
+            value: 'created_at',
           },
-         { text: 'FECHA DE SOLICITUD', align: 'center', value: 'solicitud.fecha', class: "primary" },
-          { text: 'CLIENTE', align: 'center', value: 'solicitud.cliente.razonSocial', class: "primary" },
-          { text: 'PERSONA SOLICITANTE', align: 'center', value: 'solicitud.solicitante.nombre', class: "primary" },
-          { text: 'AGENTE DE VENTAS', align: 'center', value: 'solicitud.agente.name', class: "primary" },
-          { text: 'RESPONSABLE', align: 'center', value: 'solicitud.responsable.name', class: "primary" },
-          { text: 'ACCIONES', align: 'center', value: 'acciones', class: "primary" },
+          { text: 'Folio', value: 'cotizacion.solicitud.folio' },
+          { text: 'Subtotal', value: 'subtotal' },
+          { text: 'IVA', value: 'iva' },
+          { text: 'IEPS', value: 'ieps' },
+          { text: 'TOTAL', value: 'total' },
+          { text: 'ACCIONES', value: 'actions' },
         ],
-        headersCotizadas: [
-          {
-            text: 'FOLIO',
-            align: 'center',
-            value: 'solicitud.folio', class: "primary"
-          },
-         { text: 'FECHA DE SOLICITUD', align: 'center', value: 'solicitud.fecha', class: "primary" },
-         { text: 'FECHA DE FINALIZADO', align: 'center', value: 'fechafinalizado', class: "primary" },
-         {
-            text: 'PARTIDAS REGISTRADAS',
-            align: 'center',
-            value: 'partidas', class: "primary"
-          },
-          { text: 'CLIENTE', align: 'center', value: 'solicitud.cliente.razonSocial', class: "primary" },
-          { text: 'PERSONA SOLICITANTE', align: 'center', value: 'solicitud.solicitante.nombre', class: "primary" },
-          { text: 'AGENTE DE VENTAS', align: 'center', value: 'solicitud.agente.name', class: "primary" },
-          { text: 'RESPONSABLE', align: 'center', value: 'solicitud.responsable.name', class: "primary" },
-          { text: 'ACCIONES', align: 'center', value: 'acciones', class: "primary" },
-        ],
-        solicitadas: [],
-        proceso: [],
-        cotizadas: [],
+        ventas:[],
+        sinAsignar:[],
+        disponiblecompra:[],
+        comprada:[],
+        disponibleentrega:[],
+        entregada:[],
+        disponiblefactura:[],
+        facturada:[],
+        cobrada:[],
+        cobradasinfacturar:[],
+
       }
     },
      methods: {
+      mostrarTipo(){
+
+      },
        formatDate(value) {
         var localLocale = moment(value);
 moment.locale('es');
 localLocale.locale(false);
-      return localLocale.format('LL')
+      return localLocale.format('LL').toUpperCase();
   },
-        capturarCotizacion(){
-            this.$router.push({ name: 'capturarCotizacion' }).catch(()=>{});
-        },
-        async getSolicitadas(){
+       
+        async getVentas(){
           try {
                 const response = await axios({
                   method: 'get',
-                  url: 'getSolicitadas',
+                  url: 'getVentas',
                 })
 
-                this.solicitadas = response.data.response
+                this.ventas = response.data.response
+                $.each(this.ventas, function(key, value) {
+ 
+                          if (value.disponiblecompra == null && value.comprada == null && value.disponibleentrega == null && value.entregada == null && value.disponiblefactura == null && value.facturada == null && value.cobrada == null && value.cobradasf == null ) {
+                          
+                            this.sinAsignar.push(value)
+                          }
+
+                          if (value.disponiblecompra != null  ) {
+
+                            this.disponiblecompra.push(value)
+                          }
+
+                          if (value.comprada != null ) {
+
+                            this.comprada.push(value)
+                          }
+                          if (value.disponibleentrega != null ) {
+
+                            this.disponibleentrega.push(value)
+                          }
+                          if (value.entregada != null ) {
+
+                            this.entregada.push(value)
+                          }
+                          if (value.disponiblefactura != null) {
+
+                            this.disponiblefactura.push(value)
+                          }
+
+                          if (value.facturada != null ) {
+
+                            this.facturada.push(value)
+                          }
+
+                          if (value.cobrada != null) {
+
+                            this.cobrada.push(value)
+                          }
+
+                          if (value.cobradasf != null ) {
+
+                            this.cobradasinfacturar.push(value)
+                          }
+                           
+                }.bind(this));
                
             } catch (error) {
 
@@ -395,43 +399,9 @@ localLocale.locale(false);
             }
         },
 
-        async getProceso(){
-          try {
-                const response = await axios({
-                  method: 'get',
-                  url: 'getProceso',
-                })
+        
 
-                this.proceso = response.data.response
-                console.log(this.cotizaciones)
-
-
-            } catch (error) {
-
-               swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
-                console.log(error);
-
-            }
-        },
-
-        async getCotizadas(){
-          try {
-                const response = await axios({
-                  method: 'get',
-                  url: 'getCotizadas',
-                })
-
-                this.cotizadas = response.data.response
-                console.log(this.cotizaciones)
-
-
-            } catch (error) {
-
-               swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
-                console.log(error);
-
-            }
-        }
+        
 
      },
   }

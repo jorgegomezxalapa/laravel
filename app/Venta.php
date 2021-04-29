@@ -10,7 +10,7 @@ class Venta extends Model
      protected $table = 'ventas';
       protected $fillable =[
 
-            $table->bigIncrements('id');
+            'id',
             	'idCotizacion',
 	            'subtotal',
 	            'iva',
@@ -35,4 +35,7 @@ class Venta extends Model
 
 
       ];
+      function cotizacion(){
+          return $this->hasOne('App\Cotizacion','id','idCotizacion');
+      }
 }

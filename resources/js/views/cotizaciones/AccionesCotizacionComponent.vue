@@ -291,10 +291,14 @@
                     </center>
           
         </v-col>
-        <v-col cols="12" md="6" @click="modalDescarga()">
+        <v-col cols="12" md="6" @click="turnarVenta()">
                     <center>
                        <hr>
           <h5 class="text-center"><strong>FINALIZAR Y ENVIAR A VENTAS</strong></h5>
+           <div v-if="cotizacion.venta != null" class="purple darken-2 text-center mb-3">
+   <span  class="white--text">ESTA COTIZACIÓN YA SE ENCUENTRA TURNADA A VENTAS</span>
+  </div>
+          
           <img :src="'img/venta.png'" width="50%" style="cursor: pointer">
                     </center>
           
@@ -536,6 +540,22 @@ const axios = require('axios');
 
          },
           methods:{
+            async turnarVenta(){
+
+                const response = await axios({
+                  method: 'post',
+                  url: 'turnarVenta',
+                  data:{
+                    idCotizacion:parseInt(this.$route.params.id),
+                  }
+                })
+                if (parseInt(response.data.response) == 1) {
+                   swal("LA COTIZACIÓN FUÉ TURNADA A VENTAS", "", "success");
+                }else{
+                   swal("LA COTIZACIÓN YA SE ENCUENTRA EN VENTAS", "", "warning");
+                }
+
+            },
             async getRazones(){
               this.formatos = []
               this.documentos = []

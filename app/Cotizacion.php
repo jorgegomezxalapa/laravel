@@ -49,6 +49,11 @@ class Cotizacion extends Model
         return $this->hasMany('App\Partida','idCotizacion');
     }
 
+     public function venta()
+    {
+        return $this->belongsTo('App\Venta', 'id', 'idCotizacion');
+    }
+
 //     public function post()
 // {
 //     return $this->belongsTo(Post::class, 'foreign_key', 'owner_key');

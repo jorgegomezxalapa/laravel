@@ -328,6 +328,7 @@ class CotizacionController extends Controller
           ->with('solicitud.solicitante')
           ->with('solicitud.responsable')
           ->with('partidas')
+          ->with('venta')
           ->first();
 
           $cotizacion->ivaTotal = $iva;

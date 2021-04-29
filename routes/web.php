@@ -141,4 +141,4 @@ Route::post('getDocumentosF', 'GestionController@getDocumentosF')->name('getDocu
 //VENTAS
 
 Route::post('turnarVenta', 'VentasController@turnarVenta')->name('turnarVenta');
-
+Route::get('getVentas', 'VentasController@getVentas')->name('getVentas');
