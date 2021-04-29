@@ -250,7 +250,7 @@
     <template v-slot:item.actions="{ item }">
       <v-tooltip top>
       <template v-slot:activator="{ on, attrs }">
-        <router-link :to="{name: 'iniciarCotizacion', params:{id:item.id}}">
+        <router-link :to="{name: 'actualizarVentar', params:{id:item.id}}">
       <v-btn
        v-bind="attrs"
           v-on="on"

@@ -60,6 +60,11 @@ export default new Router ({
 		component: require('./views/ventas/VentasComponent.vue').default
 	},
 	{
+		path:'/actualizar-venta/:id',
+		name:'actualizarVentar',
+		component: require('./views/ventas/EditarVentaComponent.vue').default
+	},
+	{
 		path:'/clientes',
 		name:'clientes',
 		component: require('./views/clientes/ClientesComponent.vue').default

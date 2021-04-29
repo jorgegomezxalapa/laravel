@@ -237,7 +237,7 @@ const axios = require('axios');
           methods:{
             enviardato(importe){
               
-              this.costocompra = this.costocompra + importe
+              this.costocompra = parseFloat(this.costocompra + importe).toFixed(2)
               // console.log(this.costocompra)
             },
             async getCotizacion(){
