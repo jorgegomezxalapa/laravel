@@ -302,6 +302,24 @@ class CotizacionController extends Controller
       public function getCotizacion (Request $request) {
         try {
           $id = intval($request->id);
+
+          $partidas = Partida::where('idCotizacion', '=', $id)->where('esMejora', '=', 0)->where('importe2', '!=', 'NO COTIZA')->get();
+          $subtotal = 0;
+          $iva = 0;
+          $ieps = 0;
+          $total = 0;
+          foreach ($partidas as $partida) {
+           $subtotal = $subtotal + $partida->importe2;
+           $iva = $iva + ( ($partida->importe2) * ( floatval( ($partida->ivapartida)/100)) );
+           $ieps = $ieps + ( ($partida->importe2) * ( floatval( ($partida->iepspartida)/100)) );
+          }
+          $subtotal = number_format($subtotal, 2, '.', '');
+          $iva = number_format($iva, 2, '.', '');
+          $ieps = number_format($ieps, 2, '.', '');
+          $total = $subtotal + $iva + $ieps;
+          $total = number_format($total, 2, '.', '');
+          
+
           $cotizacion = Cotizacion::where('id', '=', $id )
           ->with('solicitud')
           ->with('utilidad')
@@ -312,6 +330,11 @@ class CotizacionController extends Controller
           ->with('partidas')
           ->first();
 
+          $cotizacion->ivaTotal = $iva;
+          $cotizacion->iepsTotal = $ieps;
+          $cotizacion->subtotal = $subtotal;
+          $cotizacion->total = $total;
+          $cotizacion->save();
         return response()->json(['response' => $cotizacion],200);
 
         } catch(\PDOException $e){

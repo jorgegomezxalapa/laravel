@@ -124,8 +124,11 @@
         class="elevation-1"
                    :items-per-page="5"
                  >
-
-                 
+                  <template v-slot:item.esMejora="{ item }">
+                    <span v-if="item.esMejora  == 0"><p>PARTIDA NORMAL</p></span>
+                  <span v-else><p>PARTIDA MEJORADA</p></span>
+                  </template>
+                  
           
                </v-data-table>
                   </v-col>
@@ -188,7 +191,7 @@ const axios = require('axios');
                 value: 'partida',
               },
              
-             
+              { text: 'TIPO DE PARTIDA', align: 'center', value: 'esMejora' },
               
               { text: 'DESCRIPCIÓN', align: 'center', value: 'descripcion' },
              
@@ -209,19 +212,34 @@ const axios = require('axios');
 
              
             ],
-            costocompra:null,
-            gananciapesos:null,
-            gananciaporcentaje:null,
-         
+            costocompra:0,
+            gananciapesos:0,
+            gananciaporcentaje:0,
+             Arraynormal : [],
+                 Arraymejora : [],
 
 
           
          }),
          watch : {
+          costocompra: function (newQuestion, oldQuestion) {
+            this.gananciapesos = parseFloat(this.total)  - parseFloat(this.costocompra)
+            this.gananciapesos = this.gananciapesos.toFixed(2)
+            this.gananciaporcentaje = parseFloat(this.gananciapesos)/parseFloat(this.total)
+            this.gananciaporcentaje = this.gananciaporcentaje.toFixed(2)
+            this.gananciaporcentaje = (this.gananciaporcentaje * 100).toFixed(2)
+            this.gananciaporcentaje = this.gananciaporcentaje.toString() + "%"
+
+    }
           
 
          },
           methods:{
+            enviardato(importe){
+              
+              this.costocompra = this.costocompra + importe
+              // console.log(this.costocompra)
+            },
             async getCotizacion(){
              
               try {
@@ -237,19 +255,79 @@ const axios = require('axios');
                  this.iva = this.cotizacion.ivaTotal
                  this.ieps = this.cotizacion.iepsTotal
                  this.total = this.cotizacion.total
-                 this.partidas = this.cotizacion.partidas
+                 // this.partidas = this.cotizacion.partidas
 
-                 let list=[];
-                 this.costocompra = 0
-                  $.each(this.partidas, function(key, value) {
-                   
-                    if ( value.esMejora  == 0 ) {
-                      list.push(value);
+                 const response2 = await axios({
+                      method: 'post',
+                      url: 'getPartidasCotizacion',
+                      data:{
+                        id:parseInt(this.$route.params.id),
+                      }
+                    })
+                 this.partidas = response2.data.response
+                
+                 let suma = 0
+                 let normales = []
+                 let mejoradas = []
+
+                 $.each(this.partidas, function(key, value) {
+                  if (value.esMejora == 0) {
+                    //es normal
+                    normales.push(value)
+                  }else{
+                    //es mejora
+                    mejoradas.push(value)
+                  }
+                  });
+
+                 this.Arraynormal = normales
+                 this.Arraymejora = mejoradas
+
+                 var totaldecompra = 0;
+                 
+                  $.each(normales, function(key, value) {
+                    var partidanormal = 0
+                      var importenormal = 0
+                      var importemejora = 0
+                      var importefinal = 0
+                     
+                    
+                    if (value.importe2 != 'NO COTIZA') {
+                      
+                      var partidanormal = value.partida
+                      var importenormal = parseFloat(value.importe1) + ( parseFloat(value.importe1) * (parseFloat(value.ivapartida)/100) )
+                      importefinal = importenormal
+                      // console.log("importe normal", importenormal)
+                      
+
+                      $.each(mejoradas, function(key, value) {
+                        if (parseInt(value.partida) == partidanormal) {
+                          if (parseFloat(value.importe1) != 'NO COTIZA') {
+                            var importemejora = 0
+                            var importemejora = parseFloat(value.importe1) + ( parseFloat(value.importe1) * (parseFloat(value.ivapartida)/100) )
+                            importefinal = importemejora
+                          }
+                         
+                        }
+                        
+                        }.bind(this));
+                      console.log(importefinal)
+                     this.enviardato(importefinal)
+                     
+                    
+
+
                     }
-                       
-                     });
-                  this.partidas = list
-                 console.log("partidas", this.partidas)
+                    
+                    
+
+                     
+
+                     }.bind(this));
+               
+                 
+
+                 
                 
 
                 } catch (error) {

@@ -138,4 +138,7 @@ Route::post('editarDocumento', 'GestionController@editarDocumento')->name('edita
 Route::post('getDocumentosF', 'GestionController@getDocumentosF')->name('getDocumentosF');
 
 
+//VENTAS
+
+Route::post('turnarVenta', 'VentasController@turnarVenta')->name('turnarVenta');
 

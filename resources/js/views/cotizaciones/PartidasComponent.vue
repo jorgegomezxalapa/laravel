@@ -1218,6 +1218,7 @@ const axios = require('axios');
 
                         //ok
                          swal("ÉXITO", "LA PARTIDA SE HA EDITADO CON ÉXITO", "success");
+                         this.getPartidas()
                          this.esEdicion = false
                         this.idProducto = null
                         this.idPartida = null
@@ -1293,6 +1294,7 @@ const axios = require('axios');
 
                         //ok
                          swal("ÉXITO", "LA PARTIDA SE HA MEJORADO CON ÉXITO", "success");
+                         this.getPartidas()
                          this.esEdicion = false
                          this.esMejorada = false
                         this.idProducto = null
