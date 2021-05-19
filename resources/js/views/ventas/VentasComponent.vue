@@ -1,213 +1,183 @@
 <template>
     <v-container fluid>
         
+        <h5 class="font-weight-black mt-3 mb-3 ml-1">MÓDULO DE VENTAS</h5>
+         <br>
+        <h6><strong>TOTAL DE VENTAS</strong><v-chip
+           small
         
-      <v-card
+          class="primary ml-3"
+      
+        >
+         {{getLongitud(this.ventas)}}
+        </v-chip></h6>
+        <br>
+        
+        
+        
+      
+       <v-row>
+         <v-col cols="12" md="3">
+           <v-chip
+           default
+        small
+          class="primary mr-1 mt-1 mb-1"
+      
+        >
+          <v-avatar
+          left
+          class="primary dark"
+        >
+          <strong>{{getLongitud(this.disponiblecompra)}}</strong>
+        </v-avatar>
+          DISPONIBLE PARA COMPRA
+        </v-chip>
+        <v-chip
+        default
+        small
+          class="primary mr-1 mt-1 mb-1"
+      
+        >
+          <v-avatar
+          left
+          class="primary dark"
+        >
+          <strong>{{getLongitud(this.comprada)}}</strong>
+        </v-avatar>
+          COMPRA REALIZADA
+        </v-chip>
+         </v-col>
+         <v-col cols="12" md="3">
+           <v-chip
+           default
+        small
+          class="primary mr-1 mt-1 mb-1"
+      
+        >
+          <v-avatar
+          left
+          class="primary dark"
+        >
+          <strong>{{getLongitud(this.disponibleentrega)}}</strong>
+        </v-avatar>
+          DISPONIBLE PARA ENTREGA
+        </v-chip>
+        <v-chip
+        default
+        small
+          class="primary mr-1 mt-1 mb-1"
+      
+        >
+          <v-avatar
+          left
+          class="primary dark"
+        >
+          <strong>{{getLongitud(this.entregada)}}</strong>
+        </v-avatar>
+          ENTREGA REALIZADA
+        </v-chip>
+         </v-col>
+         <v-col cols="12" md="3">
+           <v-chip
+           default
+        small
+          class="primary mr-1 mt-1 mb-1"
+      
+        >
+          <v-avatar
+          left
+          class="primary dark"
+        >
+          <strong>{{getLongitud(this.disponiblefactura)}}</strong>
+        </v-avatar>
+          DISPONIBLE PARA FACTURA
+        </v-chip>
+        <v-chip
+        default
+        small
+          class="primary mr-1 mt-1 mb-1"
+      
+        >
+          <v-avatar
+          left
+          class="primary dark"
+        >
+          <strong>{{getLongitud(this.facturada)}}</strong>
+        </v-avatar>
+          FACTURA REALIZADA
+        </v-chip>
+         </v-col>
+         <v-col cols="12" md="3">
+          <v-chip
+        default
+        small
+          class="primary mr-1 mt-1 mb-1"
+      
+        >
+          <v-avatar
+          left
+          class="primary dark"
+        >
+          <strong>{{getLongitud(this.cobradasinfacturar)}}</strong>
+        </v-avatar>
+          COBRADA SIN FACTURAR
+        </v-chip>
+             <v-chip
+             default
+        small
+          class="primary mr-1 mt-1 mb-1"
+      
+        >
+          <v-avatar
+          left
+          class="primary dark"
+        >
+          <strong>{{getLongitud(this.cobrada)}}</strong>
+        </v-avatar>
+          COBRADA
+        </v-chip>
+
+         </v-col>
+       </v-row>
+        <v-card
         class="mx-auto rounded-lg py-5 px-2 mt-5 mb-5"
         width="100%"
-        align="center"
+      
         justify="space-around"
-      >
-    <v-card-title class="font-weight-black">MÓDULO DE VENTAS<v-chip
-      class="ma-2"
-      color="secondary"
-      dark
-      
-    >
-      {{this.ventas.length
-      }} EN TOTAL
-    </v-chip>
-    <div class="text-center">
+      > 
     <v-row>
-     
-    <v-col cols="12">
-      <v-chip
-      class="ma-2"
-      color="primary"
-      text-color="white"
-      
-      small
+      <v-col cols="12" md="6">
+          <h6 class="font-weight-black mt-3 mb-3 ml-1">LISTA DE RESULTADOS</h6>
+      </v-col>
+      <v-col cols="12" md="6">
+          <v-row>
+            <v-col cols="12" md="3">
+                <h6 class="font-weight-black mt-3 mb-3 ml-1">FILTRAR POR</h6>
+            </v-col>
+            <v-col cols="12" md="9">
+                <v-select
+                small
+                  :items="filtros"
+                  v-model="filtro"
+                   item-text="nombre"
+                  item-value="id"
+                  label="SELECCIONA UNA OPCIÓN"
+                  solo
+                ></v-select>
+            </v-col>
 
-    >
-      <v-avatar
-        left
-        class="primary darken-1"
-      >
-        {{this.sinAsignar.length}}
-      </v-avatar>
-      VENTAS SIN ESTATUS ASIGNADO 
-                            
-                        
+          </v-row>
+         
+      </v-col>
 
-                           
+    </v-row>
 
-      
-    </v-chip>
-    </v-col>
-    <v-col cols="6"  md="3" class="d-flex justify-center">
-    <v-chip
-      class="ma-2"
-      color="primary"
-      text-color="white"
-      style="min-width: 100%!important;  text-align: center!important;"
-      small
-
-    >
-      <v-avatar
-        left
-        class="primary darken-1"
-      >
-         {{this.disponiblecompra.length}}
-      </v-avatar>
-      DISPONIBLE PARA COMPRA
-    </v-chip>
-    </v-col>
-    <v-col cols="6"  md="3" class="d-flex justify-center">
-    <v-chip
-      class="ma-2"
-      color="primary"
-      text-color="white"
-      style="min-width: 100%!important;  text-align: center!important;"
-      small
-
-    >
-      <v-avatar
-        left
-        class="primary darken-1"
-      >
-        {{this.comprada.length}}
-      </v-avatar>
-      COMPRADAS
-    </v-chip>
-    </v-col>
-    <v-col cols="6"  md="3" class="d-flex justify-center">
-    <v-chip
-      class="ma-2"
-      color="primary"
-      text-color="white"
-      style="min-width: 100%!important;  text-align: center!important;"
-      small
-
-    >
-      <v-avatar
-        left
-        class="primary darken-1"
-      >
-        {{this.disponibleentrega.length}}
-      </v-avatar>
-      DISPONIBLE PARA ENTREGA
-    </v-chip>
-    </v-col>
-    <v-col cols="6"  md="3" class="d-flex justify-center">
-    <v-chip
-      class="ma-2"
-      color="primary"
-      text-color="white"
-      style="min-width: 100%!important;  text-align: center!important;"
-      small
-
-    >
-      <v-avatar
-        left
-        class="primary darken-1"
-      >
-        {{this.entregada.length}}
-      </v-avatar>
-      ENTREGADAS
-    </v-chip>
-    </v-col>
-    <v-col cols="6"  md="3" class="d-flex justify-center">
-    <v-chip
-      class="ma-2"
-      color="primary"
-      text-color="white"
-      style="min-width: 100%!important;  text-align: center!important;"
-      small
-
-    >
-      <v-avatar
-        left
-        class="primary darken-1"
-      >
-        {{this.disponiblefactura.length}}
-      </v-avatar>
-      DISPONIBLE PARA FACTURA
-    </v-chip>
-    </v-col>
-    <v-col cols="6"  md="3" class="d-flex justify-center">
-    <v-chip
-      class="ma-2"
-      color="primary"
-      text-color="white"
-      style="min-width: 100%!important;  text-align: center!important;"
-      small
-
-    >
-      <v-avatar
-        left
-        class="primary darken-1"
-      >
-        {{this.facturada.length}}
-      </v-avatar>
-      FACTURADAS
-    </v-chip>
-    </v-col>
-    <v-col cols="6"  md="3" class="d-flex justify-center">
-    <v-chip
-      class="ma-2"
-      color="primary"
-      text-color="white"
-      style="min-width: 100%!important;  text-align: center!important;"
-      small
-
-    >
-      <v-avatar
-        left
-        class="primary darken-1"
-      >
-        {{this.cobrada.length}}
-      </v-avatar>
-      COBRADA
-    </v-chip>
-    </v-col>
-    <v-col cols="6"  md="3" class="d-flex justify-center">
-    <v-chip
-      class="ma-2"
-      color="primary"
-      text-color="white"
-      style="min-width: 100%!important;  text-align: center!important;"
-      small
-
-    >
-      <v-avatar
-        left
-        class="primary darken-1"
-      >
-        {{this.cobradasinfacturar.length}}
-      </v-avatar>
-      COBRADAS SIN FACTURAR
-    </v-chip>
-    </v-col>
-  </v-row>
-  <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Buscar"
-        single-line
-        hide-details
-      ></v-text-field>
-  </div>
-  </v-card-title>
-
-<v-divider></v-divider>
-<v-card-text>
-<h4 class="mb-5 mt-5">{{mensaje}}</h4>
-  <v-data-table
-      :headers="headers"
-      :items="ventas"
-      :search="search"
-    >
-    <template v-slot:no-data>
+         <v-data-table
+          :headers="headers"
+          :items="ventas"
+        
+        >
+       <template v-slot:no-data>
      
         <strong>NO HAY INFORMACÍÓN DISPONIBLE</strong>
       
@@ -222,25 +192,17 @@
       
       <template v-slot:item.cotizacion.solicitud.folio="{ item }">
        
-      <span>
-         <v-chip
-        
-        color="primary"
-      >
-      
-        {{ item.cotizacion.solicitud.folio }}
-      
-        
-      </v-chip>
-      </span>
+
       <span>
         <router-link :to="{name: 'iniciarCotizacion', params:{id:item.cotizacion.id}}">
       <v-chip
-        
-        color="primary"
+      class="mt-1"
+        small
+       color="primary"
+      outlined
       >
       
-        ACCEDER A LA COTIZACIÓN
+        ACCEDER A LA COTIZACIÓN <strong class="ml-3">{{ item.cotizacion.solicitud.folio }}</strong>
       
         
       </v-chip>
@@ -267,17 +229,10 @@
           <span>ACTUALIZAR ESTATUS</span>
       </v-tooltip>
     </template>
-    </v-data-table>
-  
-  
-</v-card-text>
-  
-    <v-divider></v-divider>
-    <v-card-actions>
-
-
-    </v-card-actions>
-  </v-card>
+        
+        </v-data-table>
+    </v-card>
+     
     </v-container>
 </template>
 
@@ -289,10 +244,19 @@
 
    },
     data () {
-      return {
-        mensaje:"MOSTRANDO TODOS LOS RESULTADOS",
-        value:0,
-        search: '',
+      return {  
+        filtro:0,
+        item:0,
+     
+         filtros: [  {nombre : "TODOS LOS RESULTADOS" , id : 0 },
+                     {nombre : "DISPONIBLE PARA COMPRA" , id : 1 },
+                     {nombre : "COMPRA REALIZADA" , id : 2 },
+                     {nombre : "DISPONIBLE PARA ENTREGA" , id : 3 },
+                     {nombre : "ENTREGA REALIZADA" , id : 4 },
+                     {nombre : "DISPONIBLE PARA FACTURA" , id : 5  },
+                     {nombre : "FACTURA REALIZADA" , id : 6 },
+                     {nombre : "COBRADA SIN FACTURAR" , id : 7  },
+                     {nombre : "COBRADA" , id : 8 }],
        headers: [
         {
             text: 'Fecha de Solicitud',
@@ -327,9 +291,12 @@
       }
     },
      methods: {
-      mostrarTipo(){
-
+      getLongitud(arreglo){
+       console.log(arreglo.length)
+        return arreglo.length;
+        a
       },
+     
        formatDate(value) {
         var localLocale = moment(value);
 moment.locale('es');

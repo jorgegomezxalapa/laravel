@@ -2,7 +2,7 @@
     <v-container fluid>
        <v-row>
 
-         <h5 class="font-weight-black ml-4 mt-5"><strong>ACCIONES DISPONIBLES PARA ESTA COTIZACIÓN</strong></h5>
+         <h5 class="font-weight-black ml-4 mt-5"><strong>ACCIONES DISPONIBLES PARA ESTA VENTA</strong></h5>
         <v-col cols="12">
           <hr>
         </v-col>
@@ -40,21 +40,7 @@
     <small v-else class="float-left green--text"><strong>ACTIVADO</strong></small>
                  
                 </v-col>
-                <v-col cols="12"  class="pl-1 pr-1 mt-1 mb-1">
-                  
-                   <v-btn
-      
-        color="primary"
-        dark
-        block
-      >
-        CARGAR DOCUMENTO(S)
-        <v-icon right dark>
-          mdi-cloud-upload
-        </v-icon>
-      </v-btn>
-                 
-                </v-col>
+                
                
             </v-row>
           </v-container>
@@ -87,21 +73,7 @@
     <small v-else class="float-left green--text"><strong>ACTIVADO</strong></small>
                  
                 </v-col>
-                <v-col cols="12"  class="pl-1 pr-1 mt-1 mb-1">
-                  
-                   <v-btn
-      
-        color="primary"
-        dark
-        block
-      >
-        CARGAR DOCUMENTO(S)
-        <v-icon right dark>
-          mdi-cloud-upload
-        </v-icon>
-      </v-btn>
-                 
-                </v-col>
+                
             </v-row>
           </v-container>
         </v-card>
@@ -133,21 +105,7 @@
     <small v-else class="float-left green--text"><strong>ACTIVADO</strong></small>
                  
                 </v-col>
-                <v-col cols="12"  class="pl-1 pr-1 mt-1 mb-1">
-                  
-                   <v-btn
-      
-        color="primary"
-        dark
-        block
-      >
-        CARGAR DOCUMENTO(S)
-        <v-icon right dark>
-          mdi-cloud-upload
-        </v-icon>
-      </v-btn>
-                 
-                </v-col>
+                
             </v-row>
           </v-container>
         </v-card>
@@ -179,21 +137,7 @@
     <small v-else class="float-left green--text"><strong>ACTIVADO</strong></small>
                  
                 </v-col>
-                <v-col cols="12"  class="pl-1 pr-1 mt-1 mb-1">
-                  
-                   <v-btn
-      
-        color="primary"
-        dark
-        block
-      >
-        CARGAR DOCUMENTO(S)
-        <v-icon right dark>
-          mdi-cloud-upload
-        </v-icon>
-      </v-btn>
-                 
-                </v-col>
+                
             </v-row>
           </v-container>
         </v-card>
@@ -225,21 +169,7 @@
     <small v-else class="float-left green--text"><strong>ACTIVADO</strong></small>
                  
                 </v-col>
-                <v-col cols="12"  class="pl-1 pr-1 mt-1 mb-1">
-                  
-                   <v-btn
-      
-        color="primary"
-        dark
-        block
-      >
-        CARGAR DOCUMENTO(S)
-        <v-icon right dark>
-          mdi-cloud-upload
-        </v-icon>
-      </v-btn>
-                 
-                </v-col>
+                
             </v-row>
           </v-container>
         </v-card>
@@ -271,21 +201,7 @@
     <small v-else class="float-left green--text"><strong>ACTIVADO</strong></small>
                  
                 </v-col>
-                <v-col cols="12"  class="pl-1 pr-1 mt-1 mb-1">
-                  
-                   <v-btn
-      
-        color="primary"
-        dark
-        block
-      >
-        CARGAR DOCUMENTO(S)
-        <v-icon right dark>
-          mdi-cloud-upload
-        </v-icon>
-      </v-btn>
-                 
-                </v-col>
+                
             </v-row>
           </v-container>
         </v-card>
@@ -317,21 +233,7 @@
     <small v-else class="float-left green--text"><strong>ACTIVADO</strong></small>
                  
                 </v-col>
-                <v-col cols="12"  class="pl-1 pr-1 mt-1 mb-1">
-                  
-                   <v-btn
-      
-        color="primary"
-        dark
-        block
-      >
-        CARGAR DOCUMENTO(S)
-        <v-icon right dark>
-          mdi-cloud-upload
-        </v-icon>
-      </v-btn>
-                 
-                </v-col>
+                
             </v-row>
           </v-container>
         </v-card>
@@ -363,21 +265,7 @@
     <small v-else class="float-left green--text"><strong>ACTIVADO</strong></small>
                  
                 </v-col>
-                <v-col cols="12"  class="pl-1 pr-1 mt-1 mb-1">
-                  
-                   <v-btn
-      
-        color="primary"
-        dark
-        block
-      >
-        CARGAR DOCUMENTO(S)
-        <v-icon right dark>
-          mdi-cloud-upload
-        </v-icon>
-      </v-btn>
-                 
-                </v-col>
+                
             </v-row>
           </v-container>
         </v-card>
