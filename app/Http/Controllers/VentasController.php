@@ -74,6 +74,115 @@ class VentasController extends Controller
         
     }
 
+    public function getVenta(Request $request)
+    {
+       $id = $request->id;
+        $venta = Venta::where('id', '=', $id)->first();
+
+        return response()->json(['response' => $venta],200);
+        
+    }
+
+    public function updateVenta(Request $request)
+    {
+        $id = $request->id;
+        $columna = $request->columna;
+        $valor = $request->valor;
+        $carpeta = "";
+        $nombreConcatenado = null;
+        $venta = Venta::where('id', '=', $id)->first();
+         if(  isset ( $request->archivo ) ){
+        switch ($columna) {
+                case 1:
+                   
+                    $carpeta = "disponiblecompra";
+                    break;
+                case 2:
+                       
+                        $carpeta = "comprada";
+                    break;
+                case 3:
+                        
+                        $carpeta = "disponibleentrega";
+                    break;
+                case 4:
+                   
+                    $carpeta = "entregada";
+                    break;
+                case 5:
+                  
+                    $carpeta = "disponiblefactura";
+                    break;
+                case 6:
+                  
+                    $carpeta = "facturada";
+                    break;
+                case 7:
+                   
+                    $carpeta = "cobrada";
+                    break;
+                case 8:
+                   
+                    $carpeta = "cobradasf";
+                    break;
+        }
+                
+                foreach($request->archivo as $archivo){
+                $nombre = $archivo->getClientOriginalName();
+                if($nombreConcatenado != null){
+                    $nombreConcatenado = $nombreConcatenado.','.$nombre;
+                }else{
+                    $nombreConcatenado = $nombre;
+                }
+                $path = $archivo->storeAs(
+                'ventas/'.$id.'/'.$carpeta,  $nombre
+                );
+                }
+                
+
+        }
+        
+        switch ($columna) {
+            case 1:
+                $venta->disponiblecompra = $valor;
+                $venta->disponiblecompraEvidencia = $nombreConcatenado;
+                break;
+            case 2:
+                $venta->comprada = $valor;
+                $venta->compradaEvidencia = $nombreConcatenado;
+                break;
+            case 3:
+                $venta->disponibleentrega = $valor;
+                $venta->disponibleentregaEvidencia = $nombreConcatenado;
+                break;
+            case 4:
+                $venta->entregada = $valor;
+                $venta->entregadaEvidencia = $nombreConcatenado;
+                break;
+            case 5:
+                $venta->disponiblefactura = $valor;
+                $venta->disponiblefacturaEvidencia = $nombreConcatenado;
+                break;
+            case 6:
+                $venta->facturada = $valor;
+                $venta->facturadaEvidencia = $nombreConcatenado;
+                break;
+            case 7:
+                $venta->cobrada = $valor;
+                $venta->cobradaEvidencia = $nombreConcatenado;
+                break;
+            case 8:
+                $venta->cobradasf = $valor;
+                $venta->cobradasfEvidencia = $nombreConcatenado;
+                break;
+        }
+        
+        $venta->save();
+
+        return response()->json(['response' => $venta],200);
+        
+    }
+
     public function store(Request $request)
     {
         //

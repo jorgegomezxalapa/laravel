@@ -17,6 +17,22 @@
         
       
        <v-row>
+        <v-col cols="12">
+           <v-chip
+           default
+        small
+          class="primary mr-1 mt-1 mb-1"
+      
+        >
+          <v-avatar
+          left
+          class="primary dark"
+        >
+          <strong>{{getLongitud(this.sinAsignar)}}</strong>
+        </v-avatar>
+          VENTAS SIN ESTATUS ASIGNADOS
+        </v-chip>
+      </v-col>
          <v-col cols="12" md="3">
            <v-chip
            default
@@ -248,15 +264,16 @@
         filtro:0,
         item:0,
      
-         filtros: [  {nombre : "TODOS LOS RESULTADOS" , id : 0 },
-                     {nombre : "DISPONIBLE PARA COMPRA" , id : 1 },
-                     {nombre : "COMPRA REALIZADA" , id : 2 },
-                     {nombre : "DISPONIBLE PARA ENTREGA" , id : 3 },
-                     {nombre : "ENTREGA REALIZADA" , id : 4 },
-                     {nombre : "DISPONIBLE PARA FACTURA" , id : 5  },
-                     {nombre : "FACTURA REALIZADA" , id : 6 },
-                     {nombre : "COBRADA SIN FACTURAR" , id : 7  },
-                     {nombre : "COBRADA" , id : 8 }],
+         filtros: [  {nombre : "TODAS LAS VENTAS" , id : 0 },
+                     {nombre : "SIN ESTATUS ASIGNADO" , id : 1 },
+                     {nombre : "DISPONIBLE PARA COMPRA" , id : 2 },
+                     {nombre : "COMPRA REALIZADA" , id : 3 },
+                     {nombre : "DISPONIBLE PARA ENTREGA" , id : 4 },
+                     {nombre : "ENTREGA REALIZADA" , id : 5 },
+                     {nombre : "DISPONIBLE PARA FACTURA" , id : 6  },
+                     {nombre : "FACTURA REALIZADA" , id : 7 },
+                     {nombre : "COBRADA SIN FACTURAR" , id : 8  },
+                     {nombre : "COBRADA" , id : 9 }],
        headers: [
         {
             text: 'Fecha de Solicitud',
@@ -314,44 +331,45 @@ localLocale.locale(false);
                 this.ventas = response.data.response
                 $.each(this.ventas, function(key, value) {
  
-                          if (value.disponiblecompra == null && value.comprada == null && value.disponibleentrega == null && value.entregada == null && value.disponiblefactura == null && value.facturada == null && value.cobrada == null && value.cobradasf == null ) {
+                          if (value.disponiblecompra != null && value.comprada != null && value.disponibleentrega != null && value.entregada != null && value.disponiblefactura != null && value.facturada != null && value.cobrada != null && value.cobradasf != null && 
+  value.disponiblecompra == 0 && value.comprada == 0 && value.disponibleentrega == 0 && value.entregada == 0 && value.disponiblefactura == 0 && value.facturada == 0 && value.cobrada == 0 && value.cobradasf == 0 ) {
                           
                             this.sinAsignar.push(value)
                           }
 
-                          if (value.disponiblecompra != null  ) {
+                          if (value.disponiblecompra != null && value.disponiblecompra != 0  ) {
 
                             this.disponiblecompra.push(value)
                           }
 
-                          if (value.comprada != null ) {
+                          if (value.comprada != null && value.comprada != 0 ) {
 
                             this.comprada.push(value)
                           }
-                          if (value.disponibleentrega != null ) {
+                          if (value.disponibleentrega != null && value.disponibleentrega != 0 ) {
 
                             this.disponibleentrega.push(value)
                           }
-                          if (value.entregada != null ) {
+                          if (value.entregada != null && value.entregada != 0 ) {
 
                             this.entregada.push(value)
                           }
-                          if (value.disponiblefactura != null) {
+                          if (value.disponiblefactura != null && value.disponiblefactura != 0) {
 
                             this.disponiblefactura.push(value)
                           }
 
-                          if (value.facturada != null ) {
+                          if (value.facturada != null && value.facturada != 0 ) {
 
                             this.facturada.push(value)
                           }
 
-                          if (value.cobrada != null) {
+                          if (value.cobrada != null && value.cobrada != 0) {
 
                             this.cobrada.push(value)
                           }
 
-                          if (value.cobradasf != null ) {
+                          if (value.cobradasf != null && value.cobradasf != 0 ) {
 
                             this.cobradasinfacturar.push(value)
                           }

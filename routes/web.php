@@ -142,3 +142,5 @@ Route::post('getDocumentosF', 'GestionController@getDocumentosF')->name('getDocu
 
 Route::post('turnarVenta', 'VentasController@turnarVenta')->name('turnarVenta');
 Route::get('getVentas', 'VentasController@getVentas')->name('getVentas');
+Route::post('getVenta', 'VentasController@getVenta')->name('getVenta');
+Route::post('updateVenta', 'VentasController@updateVenta')->name('updateVenta');
