@@ -39,7 +39,7 @@
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
-              @change="openModal('disponiblecompra', 1)"
+              @change="openModal(disponiblecompra, 1)"
               v-model="disponiblecompra"
               inset
               color="success"
@@ -98,7 +98,7 @@
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
-              @change="openModal('comprada', 2)"
+              @change="openModal(comprada, 2)"
               v-model="comprada"
               inset
               color="success"
@@ -157,7 +157,7 @@
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
-              @change="openModal('disponibleentrega', 3)"
+              @change="openModal(disponibleentrega, 3)"
               v-model="disponibleentrega"
               inset
               color="success"
@@ -216,7 +216,7 @@
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
-              @change="openModal('entregada', 4)"
+              @change="openModal(entregada, 4)"
               v-model="entregada"
               inset
               color="success"
@@ -275,7 +275,7 @@
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
-              @change="openModal('disponiblefactura', 5)"
+              @change="openModal(disponiblefactura, 5)"
               v-model="disponiblefactura"
               inset
               color="success"
@@ -334,7 +334,7 @@
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
-              @change="openModal('facturada', 6)"
+              @change="openModal(facturada, 6)"
               v-model="facturada"
               inset
               color="success"
@@ -393,7 +393,7 @@
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
-              @change="openModal('cobrada', 7)"
+              @change="openModal(cobrada, 7)"
               v-model="cobrada"
               inset
               color="success"
@@ -452,7 +452,7 @@
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
-              @change="openModal('cobradasf', 8)"
+              @change="openModal(cobradasf, 8)"
               v-model="cobradasf"
               inset
               color="success"
