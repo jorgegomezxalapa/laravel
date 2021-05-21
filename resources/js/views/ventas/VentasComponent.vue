@@ -307,11 +307,53 @@
 
       }
     },
+    watch : {
+    filtro: function (newVal, oldVal) {
+      this.ventas = []
+      switch (parseInt(newVal)) {
+        case 0:
+          this.getVentas()
+         break;
+        case 1:
+         this.ventas = this.sinAsignar
+          break;
+       
+        case 2:
+        this.ventas = this.disponiblecompra
+          break;
+          case 3:
+          this.ventas = this.comprada
+         break;
+         case 4:
+          this.ventas = this.disponibleentrega
+         break;
+         case 5:
+          this.ventas = this.entregada
+         break;
+         case 6:
+          this.ventas = this.disponiblefactura
+         break;
+         case 7:
+          this.ventas = this.facturada
+         break;
+         case 8:
+          this.ventas = this.cobrada
+         break;
+         case 9:
+          this.ventas = this.cobradasf
+         break;
+        default:
+          return false;
+          break;
+      }
+    }          
+
+         },
      methods: {
       getLongitud(arreglo){
-       console.log(arreglo.length)
+      
         return arreglo.length;
-        a
+        
       },
      
        formatDate(value) {
@@ -320,6 +362,19 @@ moment.locale('es');
 localLocale.locale(false);
       return localLocale.format('LL').toUpperCase();
   },
+  limpiarArreglos(){
+    this.ventas = []
+    this.sinAsignar = []
+    this.disponiblecompra = []
+    this.comprada = []
+    this.disponibleentrega = []
+    this.entregada = []
+    this.disponiblefactura = []
+    this.facturada = []
+    this.cobrada = []
+    this.cobradasf = []
+    return true;
+  },
        
         async getVentas(){
           try {
@@ -327,6 +382,7 @@ localLocale.locale(false);
                   method: 'get',
                   url: 'getVentas',
                 })
+                this.limpiarArreglos()
 
                 this.ventas = response.data.response
                 $.each(this.ventas, function(key, value) {
