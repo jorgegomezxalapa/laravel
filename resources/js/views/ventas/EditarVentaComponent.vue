@@ -23,19 +23,7 @@
           <v-row justify="center" align="center">
             <v-col cols="12" md="7">
               <p class="font-weight-black">DISPONIBLE PARA COMPRA</p>
-              <v-chip
-              v-if="disponiblecompra == 1"
-                class="ma-2"
-                color="primary"
-                outlined
-                pill
-                small
-              >
-                Añadir documentos
-                <v-icon right>
-                  mdi-folder-plus
-                </v-icon>
-              </v-chip>
+             
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
@@ -66,6 +54,11 @@
                 </v-icon>
               </v-chip>
             </v-col>
+            <v-col cols="12" v-else>
+              <div class="red darken-2 text-center"  v-if="disponiblecompra == 1">
+                <span class="white--text">SIN DOCUMENTOS</span>
+              </div>
+            </v-col>
           </v-row>
         </v-container>
       </v-card>
@@ -82,19 +75,7 @@
           <v-row justify="center" align="center">
             <v-col cols="12" md="7">
               <p class="font-weight-black">COMPRA REALIZADA</p>
-              <v-chip
-              v-if="comprada == 1"
-                class="ma-2"
-                color="primary"
-                outlined
-                pill
-                small
-              >
-                Añadir documentos
-                <v-icon right>
-                  mdi-folder-plus
-                </v-icon>
-              </v-chip>
+             
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
@@ -125,6 +106,11 @@
                 </v-icon>
               </v-chip>
             </v-col>
+             <v-col cols="12" v-else>
+              <div class="red darken-2 text-center"  v-if="comprada == 1">
+                <span class="white--text">SIN DOCUMENTOS</span>
+              </div>
+            </v-col>
           </v-row>
         </v-container>
       </v-card>
@@ -141,19 +127,7 @@
           <v-row justify="center" align="center">
             <v-col cols="12" md="7">
               <p class="font-weight-black">DISPONIBLE PARA ENTREGA</p>
-              <v-chip
-              v-if="disponibleentrega == 1"
-                class="ma-2"
-                color="primary"
-                outlined
-                pill
-                small
-              >
-                Añadir documentos
-                <v-icon right>
-                  mdi-folder-plus
-                </v-icon>
-              </v-chip>
+              
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
@@ -184,6 +158,11 @@
                 </v-icon>
               </v-chip>
             </v-col>
+             <v-col cols="12" v-else>
+              <div class="red darken-2 text-center"  v-if="disponibleentrega == 1">
+                <span class="white--text">SIN DOCUMENTOS</span>
+              </div>
+            </v-col>
           </v-row>
         </v-container>
       </v-card>
@@ -200,19 +179,7 @@
           <v-row justify="center" align="center">
             <v-col cols="12" md="7">
               <p class="font-weight-black">ENTREGA REALIZADA</p>
-              <v-chip
-              v-if="entregada == 1"
-                class="ma-2"
-                color="primary"
-                outlined
-                pill
-                small
-              >
-                Añadir documentos
-                <v-icon right>
-                  mdi-folder-plus
-                </v-icon>
-              </v-chip>
+             
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
@@ -243,6 +210,11 @@
                 </v-icon>
               </v-chip>
             </v-col>
+             <v-col cols="12" v-else>
+              <div class="red darken-2 text-center"  v-if="entregada == 1">
+                <span class="white--text">SIN DOCUMENTOS</span>
+              </div>
+            </v-col>
           </v-row>
         </v-container>
       </v-card>
@@ -259,19 +231,7 @@
           <v-row justify="center" align="center">
             <v-col cols="12" md="7">
               <p class="font-weight-black">DISPONIBLE PARA FACTURA</p>
-              <v-chip
-              v-if="disponiblefactura == 1"
-                class="ma-2"
-                color="primary"
-                outlined
-                pill
-                small
-              >
-                Añadir documentos
-                <v-icon right>
-                  mdi-folder-plus
-                </v-icon>
-              </v-chip>
+              
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
@@ -302,6 +262,11 @@
                 </v-icon>
               </v-chip>
             </v-col>
+             <v-col cols="12" v-else>
+              <div class="red darken-2 text-center"  v-if="disponiblefactura == 1">
+                <span class="white--text">SIN DOCUMENTOS</span>
+              </div>
+            </v-col>
           </v-row>
         </v-container>
       </v-card>
@@ -318,19 +283,7 @@
           <v-row justify="center" align="center">
             <v-col cols="12" md="7">
               <p class="font-weight-black">FACTURA REALIZADA</p>
-              <v-chip
-              v-if="facturada == 1"
-                class="ma-2"
-                color="primary"
-                outlined
-                pill
-                small
-              >
-                Añadir documentos
-                <v-icon right>
-                  mdi-folder-plus
-                </v-icon>
-              </v-chip>
+             
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
@@ -361,6 +314,11 @@
                 </v-icon>
               </v-chip>
             </v-col>
+             <v-col cols="12" v-else>
+              <div class="red darken-2 text-center"  v-if="facturada == 1">
+                <span class="white--text">SIN DOCUMENTOS</span>
+              </div>
+            </v-col>
           </v-row>
         </v-container>
       </v-card>
@@ -377,19 +335,7 @@
           <v-row justify="center" align="center">
             <v-col cols="12" md="7">
               <p class="font-weight-black">COBRADA</p>
-              <v-chip
-              v-if="cobrada == 1"
-                class="ma-2"
-                color="primary"
-                outlined
-                pill
-                small
-              >
-                Añadir documentos
-                <v-icon right>
-                  mdi-folder-plus
-                </v-icon>
-              </v-chip>
+              
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
@@ -420,6 +366,11 @@
                 </v-icon>
               </v-chip>
             </v-col>
+             <v-col cols="12" v-else>
+              <div class="red darken-2 text-center"  v-if="cobrada == 1">
+                <span class="white--text">SIN DOCUMENTOS</span>
+              </div>
+            </v-col>
           </v-row>
         </v-container>
       </v-card>
@@ -436,19 +387,7 @@
           <v-row justify="center" align="center">
             <v-col cols="12" md="7">
               <p class="font-weight-black">COBRADA SIN FACTURAR</p>
-              <v-chip
-              v-if="cobradasf == 1"
-                class="ma-2"
-                color="primary"
-                outlined
-                pill
-                small
-              >
-                Añadir documentos
-                <v-icon right>
-                  mdi-folder-plus
-                </v-icon>
-              </v-chip>
+              
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
@@ -479,6 +418,11 @@
                 </v-icon>
               </v-chip>
             </v-col>
+             <v-col cols="12" v-else>
+              <div class="red darken-2 text-center"  v-if="cobradasf == 1">
+                <span class="white--text">SIN DOCUMENTOS</span>
+              </div>
+            </v-col>
           </v-row>
         </v-container>
       </v-card>
@@ -497,7 +441,7 @@
         </v-card-title>
 
         <v-card-text>
-          <p><strong>Selecciona tus archivos de soporte documental para adjuntar a la modificación de estatus</strong></p>
+          <p><strong>Selecciona tus archivos de DOCUMENTOS documental para adjuntar a la modificación de estatus</strong></p>
           <v-file-input
           v-model="files"
             multiple
@@ -505,7 +449,7 @@
             label="SELECCIONA TUS ARCHIVOS"
           ></v-file-input>
           <v-btn block v-if = "parseInt(files.length) == 0" @click="updateValue()">
-            MODIFICAR ESTATUS SIN SOPORTE
+            MODIFICAR ESTATUS SIN DOCUMENTOS
             <v-icon dark>
               mdi-image-broken
             </v-icon>
@@ -567,6 +511,8 @@ const axios = require('axios');
           enviarvalor:null,
           opcion:null,
           aidi:0,
+        
+
          
 
 
@@ -576,6 +522,7 @@ const axios = require('axios');
 
          },
           methods:{
+           
             abrirDocto(carpeta,item){
               var url = 'storage/ventas/'+this.aidi+'/'+carpeta+'/'+item
               window.open(url,'popup','width=600,height=600')
@@ -614,7 +561,7 @@ const axios = require('axios');
               }else{
                 this.enviarvalor = valor
                 this.opcion = option
-                swal("¿DESEA CAMBIAR EL ESTATUS ACTUAL? EL SOPORTE DOCUMENTAL TAMBIÉN SERÁ MODIFICADO ", {
+                swal("¿DESEA CAMBIAR EL ESTATUS ACTUAL? EL DOCUMENTOS DOCUMENTAL TAMBIÉN SERÁ MODIFICADO ", {
                   buttons: {
                     cancel: "CANCELAR",
                     catch: {
