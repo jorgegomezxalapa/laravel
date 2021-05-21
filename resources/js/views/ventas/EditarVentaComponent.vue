@@ -23,10 +23,23 @@
           <v-row justify="center" align="center">
             <v-col cols="12" md="7">
               <p class="font-weight-black">DISPONIBLE PARA COMPRA</p>
+              <v-chip
+              v-if="disponiblecompra == 1"
+                class="ma-2"
+                color="primary"
+                outlined
+                pill
+                small
+              >
+                Añadir documentos
+                <v-icon right>
+                  mdi-folder-plus
+                </v-icon>
+              </v-chip>
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
-              @change="openModal(disponiblecompra, 1)"
+              @change="openModal('disponiblecompra', 1)"
               v-model="disponiblecompra"
               inset
               color="success"
@@ -34,6 +47,24 @@
               ></v-switch>
               <small v-if="!disponiblecompra" class="float-left red--text"><strong>DESACTIVADO</strong></small>
               <small v-else class="float-left green--text"><strong>ACTIVADO</strong></small>
+            </v-col>
+            <v-col cols="12" v-if="venta.disponiblecompraEvidencia != null">
+              <v-chip
+              v-if="disponiblecompra == 1"
+              v-for="(item, i) in venta.disponiblecompraEvidencia.split(',')"
+              :key="i"
+                class="ma-2"
+                color="primary"
+                outlined
+                pill
+                small
+                @click="abrirDocto('disponiblecompra',item)"
+              >
+                {{item}}
+                <v-icon right>
+                  mdi-folder-plus
+                </v-icon>
+              </v-chip>
             </v-col>
           </v-row>
         </v-container>
@@ -51,10 +82,23 @@
           <v-row justify="center" align="center">
             <v-col cols="12" md="7">
               <p class="font-weight-black">COMPRA REALIZADA</p>
+              <v-chip
+              v-if="comprada == 1"
+                class="ma-2"
+                color="primary"
+                outlined
+                pill
+                small
+              >
+                Añadir documentos
+                <v-icon right>
+                  mdi-folder-plus
+                </v-icon>
+              </v-chip>
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
-              @change="openModal(comprada, 2)"
+              @change="openModal('comprada', 2)"
               v-model="comprada"
               inset
               color="success"
@@ -62,6 +106,24 @@
               ></v-switch>
               <small v-if="!comprada" class="float-left red--text"><strong>DESACTIVADO</strong></small>
               <small v-else class="float-left green--text"><strong>ACTIVADO</strong></small>
+            </v-col>
+            <v-col cols="12" v-if="venta.compradaEvidencia != null">
+              <v-chip
+              v-if="comprada == 1"
+              v-for="(item, i) in venta.compradaEvidencia.split(',')"
+              :key="i"
+                class="ma-2"
+                color="primary"
+                outlined
+                pill
+                small
+                @click="abrirDocto('comprada',item)"
+              >
+                {{item}}
+                <v-icon right>
+                  mdi-folder-plus
+                </v-icon>
+              </v-chip>
             </v-col>
           </v-row>
         </v-container>
@@ -79,10 +141,23 @@
           <v-row justify="center" align="center">
             <v-col cols="12" md="7">
               <p class="font-weight-black">DISPONIBLE PARA ENTREGA</p>
+              <v-chip
+              v-if="disponibleentrega == 1"
+                class="ma-2"
+                color="primary"
+                outlined
+                pill
+                small
+              >
+                Añadir documentos
+                <v-icon right>
+                  mdi-folder-plus
+                </v-icon>
+              </v-chip>
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
-              @change="openModal(disponibleentrega, 3)"
+              @change="openModal('disponibleentrega', 3)"
               v-model="disponibleentrega"
               inset
               color="success"
@@ -90,6 +165,24 @@
               ></v-switch>
               <small v-if="!disponibleentrega" class="float-left red--text"><strong>DESACTIVADO</strong></small>
               <small v-else class="float-left green--text"><strong>ACTIVADO</strong></small>
+            </v-col>
+            <v-col cols="12" v-if="venta.disponibleentregaEvidencia != null">
+              <v-chip
+              v-if="disponibleentrega == 1"
+              v-for="(item, i) in venta.disponibleentregaEvidencia.split(',')"
+              :key="i"
+                class="ma-2"
+                color="primary"
+                outlined
+                pill
+                small
+                @click="abrirDocto('disponibleentrega',item)"
+              >
+                {{item}}
+                <v-icon right>
+                  mdi-folder-plus
+                </v-icon>
+              </v-chip>
             </v-col>
           </v-row>
         </v-container>
@@ -107,10 +200,23 @@
           <v-row justify="center" align="center">
             <v-col cols="12" md="7">
               <p class="font-weight-black">ENTREGA REALIZADA</p>
+              <v-chip
+              v-if="entregada == 1"
+                class="ma-2"
+                color="primary"
+                outlined
+                pill
+                small
+              >
+                Añadir documentos
+                <v-icon right>
+                  mdi-folder-plus
+                </v-icon>
+              </v-chip>
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
-              @change="openModal(entregada, 4)"
+              @change="openModal('entregada', 4)"
               v-model="entregada"
               inset
               color="success"
@@ -118,6 +224,24 @@
               ></v-switch>
               <small v-if="!entregada" class="float-left red--text"><strong>DESACTIVADO</strong></small>
               <small v-else class="float-left green--text"><strong>ACTIVADO</strong></small>
+            </v-col>
+            <v-col cols="12" v-if="venta.entregadaEvidencia != null">
+              <v-chip
+              v-if="entregada == 1"
+              v-for="(item, i) in venta.entregadaEvidencia.split(',')"
+              :key="i"
+                class="ma-2"
+                color="primary"
+                outlined
+                pill
+                small
+                @click="abrirDocto('entregada',item)"
+              >
+                {{item}}
+                <v-icon right>
+                  mdi-folder-plus
+                </v-icon>
+              </v-chip>
             </v-col>
           </v-row>
         </v-container>
@@ -135,10 +259,23 @@
           <v-row justify="center" align="center">
             <v-col cols="12" md="7">
               <p class="font-weight-black">DISPONIBLE PARA FACTURA</p>
+              <v-chip
+              v-if="disponiblefactura == 1"
+                class="ma-2"
+                color="primary"
+                outlined
+                pill
+                small
+              >
+                Añadir documentos
+                <v-icon right>
+                  mdi-folder-plus
+                </v-icon>
+              </v-chip>
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
-              @change="openModal(disponiblefactura, 5)"
+              @change="openModal('disponiblefactura', 5)"
               v-model="disponiblefactura"
               inset
               color="success"
@@ -146,6 +283,24 @@
               ></v-switch>
               <small v-if="!disponiblefactura" class="float-left red--text"><strong>DESACTIVADO</strong></small>
               <small v-else class="float-left green--text"><strong>ACTIVADO</strong></small>
+            </v-col>
+            <v-col cols="12" v-if="venta.disponiblefacturaEvidencia != null">
+              <v-chip
+              v-if="disponiblefactura == 1"
+              v-for="(item, i) in venta.disponiblefacturaEvidencia.split(',')"
+              :key="i"
+                class="ma-2"
+                color="primary"
+                outlined
+                pill
+                small
+                @click="abrirDocto('disponiblefactura',item)"
+              >
+                {{item}}
+                <v-icon right>
+                  mdi-folder-plus
+                </v-icon>
+              </v-chip>
             </v-col>
           </v-row>
         </v-container>
@@ -163,10 +318,23 @@
           <v-row justify="center" align="center">
             <v-col cols="12" md="7">
               <p class="font-weight-black">FACTURA REALIZADA</p>
+              <v-chip
+              v-if="facturada == 1"
+                class="ma-2"
+                color="primary"
+                outlined
+                pill
+                small
+              >
+                Añadir documentos
+                <v-icon right>
+                  mdi-folder-plus
+                </v-icon>
+              </v-chip>
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
-              @change="openModal(facturada, 6)"
+              @change="openModal('facturada', 6)"
               v-model="facturada"
               inset
               color="success"
@@ -174,6 +342,24 @@
               ></v-switch>
               <small v-if="!facturada" class="float-left red--text"><strong>DESACTIVADO</strong></small>
               <small v-else class="float-left green--text"><strong>ACTIVADO</strong></small>
+            </v-col>
+            <v-col cols="12" v-if="venta.facturadaEvidencia != null">
+              <v-chip
+              v-if="facturada == 1"
+              v-for="(item, i) in venta.facturadaEvidencia.split(',')"
+              :key="i"
+                class="ma-2"
+                color="primary"
+                outlined
+                pill
+                small
+                @click="abrirDocto('facturada',item)"
+              >
+                {{item}}
+                <v-icon right>
+                  mdi-folder-plus
+                </v-icon>
+              </v-chip>
             </v-col>
           </v-row>
         </v-container>
@@ -191,10 +377,23 @@
           <v-row justify="center" align="center">
             <v-col cols="12" md="7">
               <p class="font-weight-black">COBRADA</p>
+              <v-chip
+              v-if="cobrada == 1"
+                class="ma-2"
+                color="primary"
+                outlined
+                pill
+                small
+              >
+                Añadir documentos
+                <v-icon right>
+                  mdi-folder-plus
+                </v-icon>
+              </v-chip>
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
-              @change="openModal(cobrada, 7)"
+              @change="openModal('cobrada', 7)"
               v-model="cobrada"
               inset
               color="success"
@@ -202,6 +401,24 @@
               ></v-switch>
               <small v-if="!cobrada" class="float-left red--text"><strong>DESACTIVADO</strong></small>
               <small v-else class="float-left green--text"><strong>ACTIVADO</strong></small>
+            </v-col>
+            <v-col cols="12" v-if="venta.cobradaEvidencia != null">
+              <v-chip
+              v-if="cobrada == 1"
+              v-for="(item, i) in venta.cobradaEvidencia.split(',')"
+              :key="i"
+                class="ma-2"
+                color="primary"
+                outlined
+                pill
+                small
+                @click="abrirDocto('cobrada',item)"
+              >
+                {{item}}
+                <v-icon right>
+                  mdi-folder-plus
+                </v-icon>
+              </v-chip>
             </v-col>
           </v-row>
         </v-container>
@@ -219,10 +436,23 @@
           <v-row justify="center" align="center">
             <v-col cols="12" md="7">
               <p class="font-weight-black">COBRADA SIN FACTURAR</p>
+              <v-chip
+              v-if="cobradasf == 1"
+                class="ma-2"
+                color="primary"
+                outlined
+                pill
+                small
+              >
+                Añadir documentos
+                <v-icon right>
+                  mdi-folder-plus
+                </v-icon>
+              </v-chip>
             </v-col>
             <v-col cols="12" md="5" class="float-left">
               <v-switch
-              @change="openModal(cobradasf, 8)"
+              @change="openModal('cobradasf', 8)"
               v-model="cobradasf"
               inset
               color="success"
@@ -230,6 +460,24 @@
               ></v-switch>
               <small  v-if="!cobradasf" class="float-left red--text"><strong>DESACTIVADO</strong></small>
               <small v-else class="float-left green--text"><strong>ACTIVADO</strong></small>
+            </v-col>
+            <v-col cols="12" v-if="venta.cobradasfEvidencia != null">
+              <v-chip
+              v-if="cobradasf == 1"
+              v-for="(item, i) in venta.cobradasfEvidencia.split(',')"
+              :key="i"
+                class="ma-2"
+                color="primary"
+                outlined
+                pill
+                small
+                @click="abrirDocto('cobradasf',item)"
+              >
+                {{item}}
+                <v-icon right>
+                  mdi-folder-plus
+                </v-icon>
+              </v-chip>
             </v-col>
           </v-row>
         </v-container>
@@ -298,6 +546,7 @@ const axios = require('axios');
           
         },
         mounted() {
+          this.aidi = this.$route.params.id
           this.getVenta()
         
         },
@@ -317,6 +566,7 @@ const axios = require('axios');
           cobradasf:false,
           enviarvalor:null,
           opcion:null,
+          aidi:0,
          
 
 
@@ -326,7 +576,10 @@ const axios = require('axios');
 
          },
           methods:{
-
+            abrirDocto(carpeta,item){
+              var url = 'storage/ventas/'+this.aidi+'/'+carpeta+'/'+item
+              window.open(url,'popup','width=600,height=600')
+            },
             asignarValores(){
               this.disponiblecompra = this.venta.disponiblecompra
               this.comprada = this.venta.comprada
