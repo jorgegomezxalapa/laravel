@@ -1,458 +1,97 @@
 <template>
     <v-container fluid>
        <v-row>
-
-         <h5 class="font-weight-black ml-4 mt-5"><strong>ACCIONES DISPONIBLES PARA ESTA COTIZACIÓN</strong></h5>
-        <v-col cols="12">
-          <hr>
-        </v-col>
-        <v-col cols="12">
-          <h5 class="text-center"><strong>ACTUALIAZCIÓN DE ESTATUS</strong></h5>
-        </v-col>
+        <center>
+          <h5 class="font-weight-black ml-4 mt-5"><strong>ACCIONES DISPONIBLES PARA ESTA COTIZACIÓN</strong></h5>
+        </center>
+         
        </v-row>
-      <v-row hidden="true">
-        <v-col
-           cols="12"
-         
-         >
-         <v-btn
-         block
-          
-          color="grey lighten-4"
-          class="ma-2"
-         
-        >
-        <v-icon
-        class="mr-5"
-        left
-        dark
-      >
-        mdi-marker-check
-      </v-icon>
-          MARCAR COMO FINALIZADA
-           <v-switch
-           @click="finalizarCotizacion()"
-      v-model="finalizar"
-     color="success"
-     class="ml-5"
-    ></v-switch>
-        </v-btn>
-        
-
-         </v-col>
-        <v-col
-           cols="12"
-           sm="12"
-           md="4"
-         >
-         <v-btn
-         block
-          
-          color="grey lighten-4"
-          class="ma-2"
-         
-        >
-        <v-icon
-        class="mr-5"
-        left
-        dark
-      >
-       mdi-account-cash-outline
-      </v-icon>
-          Disponible Para Compra
-           <v-switch
-           @click="disponiblecompramethod()"
-      v-model="disponiblecompra"
-     color="success"
-     class="ml-5"
-    ></v-switch>
-        </v-btn>
-        <v-chip
-        small
-        @click="verDocumento(item)"
-         v-for="(item, i) in evidencia1"
-          :key="i"
-      class="ma-2"
-      color="primary"
-    >
-      {{item}}
-    </v-chip>
-
-         </v-col>
-         <v-col
-           cols="12"
-           sm="12"
-           md="4"
-         >
-         <v-btn
-         block
-          
-          color="grey lighten-4"
-          class="ma-2"
-         
-        >
-         <v-icon
-         class="mr-5"
-        left
-        dark
-      >
-        mdi-ballot-outline
-      </v-icon>
-          Disponible Para Factura
-          <v-switch
-          @click="disponiblefacturamethod()"
-      v-model="disponiblefactura"
-     color="success"
-     class="ml-5"
-    ></v-switch>
-        </v-btn>
-        <v-chip
-        small
-        @click="verDocumento(item)"
-         v-for="(item, i) in evidencia2"
-          :key="i"
-      class="ma-2"
-      color="primary"
-    >
-      {{item}}
-    </v-chip>
-         </v-col>
-         <v-col
-           cols="12"
-           sm="12"
-           md="4"
-         >
-         <v-btn
-         block
-          
-          color="grey lighten-4"
-          class="ma-2"
-         
-        >
-         <v-icon
-         class="mr-5"
-        left
-        dark
-      >
-        mdi-cash-usd-outline
-      </v-icon>
-          Comprada
-          <v-switch
-          @click="compradamethod()"
-      v-model="comprada"
-     color="success"
-     class="ml-5"
-    ></v-switch>
-        </v-btn>
-        <v-chip
-        small
-        @click="verDocumento(item)"
-         v-for="(item, i) in evidencia3"
-          :key="i"
-      class="ma-2"
-      color="primary"
-    >
-      {{item}}
-    </v-chip>
-         </v-col>
-         <v-col
-           cols="12"
-           sm="12"
-           md="4"
-         >
-         <v-btn
-         block
-          
-          color="grey lighten-4"
-          class="ma-2"
-         
-        >
-         <v-icon
-         class="mr-5"
-        left
-        dark
-      >
-        mdi-car
-      </v-icon>
-          Disponible para Entrega
-          <v-switch
-          @click="disponibleentregamethod()"
-      v-model="disponibleentrega"
-     color="success"
-     class="ml-5"
-    ></v-switch>
-        </v-btn>
-        <v-chip
-        small
-        @click="verDocumento(item)"
-         v-for="(item, i) in evidencia4"
-          :key="i"
-      class="ma-2"
-      color="primary"
-    >
-      {{item}}
-    </v-chip>
-         </v-col>
-
-         <v-col
-           cols="12"
-           sm="12"
-           md="4"
-         >
-         <v-btn
-         block
-          
-          color="grey lighten-4"
-          class="ma-2"
-         
-        >
-         <v-icon
-         class="mr-5"
-        left
-        dark
-      >
-        mdi-cube-send
-      </v-icon>
-          Entregada
-         <v-switch
-         @click="entregadamethod()"
-      v-model="entregada"
-     color="success"
-     class="ml-5"
-    ></v-switch>
-        </v-btn>
-        <v-chip
-        small
-        @click="verDocumento(item)"
-         v-for="(item, i) in evidencia5"
-          :key="i"
-      class="ma-2"
-      color="primary"
-    >
-      {{item}}
-    </v-chip>
-         </v-col>
-         <v-col
-           cols="12"
-           sm="12"
-           md="4"
-         >
-         <v-btn
-         block
-          
-          color="grey lighten-4"
-          class="ma-2"
-         
-        >
-         <v-icon
-         class="mr-5"
-        left
-        dark
-      >
-        mdi-account-check
-      </v-icon>
-          Cobrada
-          <v-switch
-          @click="cobradamethod()"
-      v-model="cobrada"
-     color="success"
-     class="ml-5"
-    ></v-switch>
-        </v-btn>
-        <v-chip
-        small
-        @click="verDocumento(item)"
-         v-for="(item, i) in evidencia6"
-          :key="i"
-      class="ma-2"
-      color="primary"
-    >
-      {{item}}
-    </v-chip>
-         </v-col>   
-                  
-                </v-row>
+      
                 <v-row>
                  
         
-        <v-col hidden="true" cols="12" md="6" style="cursor: pointer" @click="modalCarga()">
-          <center>
-             <hr>
-          <h5 class="text-center"><strong>CARGA DE DOCUMENTOS</strong></h5>
-          <img :src="'img/carga.png'" width="50%">
-          </center>
-          
-        </v-col>
-         <v-col cols="12" md="6" @click="modalDescarga()">
+       
+         <v-col cols="12" md="6">
                     <center>
-                       <hr>
-          <h5 class="text-center"><strong>DESCARGA DE DOCUMENTOS</strong></h5>
-          <img :src="'img/documento2.png'" width="50%" style="cursor: pointer">
+                      <v-btn  @click="modalDescarga()" color="primary" block>
+                        DESCARGAR FORMATO DE COTIZACIÓN
+                      </v-btn>
                     </center>
           
         </v-col>
-        <v-col cols="12" md="6" @click="turnarVenta()">
-                    <center>
-                       <hr>
-          <h5 class="text-center"><strong>FINALIZAR Y ENVIAR A VENTAS</strong></h5>
-           <div v-if="cotizacion.venta != null" class="purple darken-2 text-center mb-3">
-   <span  class="white--text">ESTA COTIZACIÓN YA SE ENCUENTRA TURNADA A VENTAS</span>
-  </div>
-          
-          <img :src="'img/venta.png'" width="50%" style="cursor: pointer">
-                    </center>
-          
-        </v-col>
-                </v-row>
 
-                <v-dialog
-                  v-model="dialog"
-        transition="dialog-bottom-transition"
-        max-width="600"
-      >
-       
-      
-          <v-card>
-            <v-toolbar
-              color="primary"
-              dark
-            >CARGA TU SOPORTE DOCUMENTAL AQUÍ</v-toolbar>
-            <v-card-text>
-                <v-row>
-                <!--  <h5 class="font-weight-black ml-4 mt-5"><strong>SELECCIONA UNA OPCIÓN</strong></h5> -->
-               <!--  <v-col cols="12">
-                  <hr>
-                </v-col> -->
-                <v-col cols="12">
-                  <v-select
-      v-model="categoria"
-      :items="categorias"
-      item-text="nombre"
-      item-value="id"
-      label="CATEGORÍA"
-      data-vv-name="select"
-      >
-      </v-select>
-      <hr>
-      <v-file-input
-    v-model="files"
-    placeholder="DOCUMENTOS ADJUNTOS A LAS NOTAS"
-    label="INGRESA TUS ARCHIVOS"
-    multiple
-    prepend-icon="mdi-paperclip"
-  >
-    <template v-slot:selection="{ text }">
-      <v-chip
-      small
-        small
-        label
-        color="primary"
-      >
-        {{ text }}
-      </v-chip>
-    </template>
-  </v-file-input>
-  <hr>
-   <v-btn
-       
-        block
-        color="primary"
-        @click="guardarDocumentos()"
-        >
-        GUARDAR SOPORTE DOCUMENTAL
-        </v-btn>
-                </v-col>
-               </v-row>
-            </v-card-text>
-            <v-card-actions class="justify-end">
-              <v-btn
-                text
-                 @click="cerrarModalCarga()"
-              >CERRAR</v-btn>
-            </v-card-actions>
-          </v-card>
-       
-      </v-dialog>
-
-      <v-dialog
-                  v-model="dialog2"
-        transition="dialog-bottom-transition"
-        max-width="600"
-      >
-       
-      
-          <v-card>
-            <v-toolbar
-              color="primary"
-              dark
-            >DESCARGA TU SOPORTE DOCUMENTAL AQUÍ</v-toolbar>
-            <v-card-text>
-                <v-row>
-               
-                <v-col cols="12">
-                  <v-select
-      v-model="razon"
-      :items="razones"
-      item-text="nombre"
-      item-value="id"
-      label="SELECCIONA UNA RAZÓN SOCIAL"
-      data-vv-name="select"
-      @click="getRazones()"
-      >
-      </v-select>
-      <hr>
-      <v-select
-      v-model="formato"
-      :items="formatos"
-      item-text="nombre"
-      item-value="id"
-      label="SELECCIONA UN TIPO DE FORMATO"
-      data-vv-name="select"
-      @click="getFormatos()"
-      >
-      </v-select>
-      <hr>
-      <v-select
-      v-model="documento"
-      :items="documentos"
-      item-text="nombre"
-      item-value="documento"
-      label="SELECCIONA UNA PLANTILLA DEL DOCUMENTO"
-      data-vv-name="select"
-      @click="getDocumentos()"
-      @change="descargarDocumento()"
-      >
-      </v-select>
-  <hr>
-  
-        <v-btn
-        v-if="url != null"
-       
-        block
-        color="primary"
-        :href="url"
-        target="_blank"
-        >
-        DESCARGAR DOCUMENTO WORD
-        </v-btn>
-                </v-col>
-               </v-row>
-            </v-card-text>
-            <v-card-actions class="justify-end">
-              <v-btn
-                text
-                 @click="cerrarModalCarga2()"
-              >CERRAR</v-btn>
-            </v-card-actions>
-          </v-card>
-       
-      </v-dialog>
-               
          
         
-                 
+                </v-row>
+                <v-row>
+                  <v-col
+    cols="12"
+    md="6"
+    >
+      <v-card
+      class="mx-auto"
+      outlined
+      >
+        <v-container fill-height>
+          <v-row justify="center" align="center">
+            <v-col cols="12" md="7">
+              <p class="font-weight-black">ACTUALIZAR EL ESTATUS A COTIZADA</p>
+            </v-col>
+            <v-col cols="12" md="5" class="float-left">
+              <v-switch
+              @change="finalizarCotizacion()"
+              v-model="finalizar"
+              inset
+              color="success"
+              class="float-left"
+              v-bind:disabled="esFinalizada"
+              ></v-switch>
+            <p class="mt-5" v-if="esFinalizada"><strong>COTIZACIÓN FINALIZADA</strong></p>
+            </v-col>
+            
+           
+          </v-row>
 
-              
+        </v-container>
+      </v-card>
+    </v-col>
+                </v-row>
+                <v-row>
+                  <v-col
+    cols="12"
+    md="6"
+    >
+      <v-card
+      class="mx-auto"
+      outlined
+      >
+        <v-container fill-height>
+          <v-row justify="center" align="center">
+            <v-col cols="12" md="7">
+              <p class="font-weight-black">TURNAR COTIZACIÓN Y HABILITAR EN VENTAS</p>
+            </v-col>
+            <v-col cols="12" md="5" class="float-left">
+              <v-switch
+              @change="turnarCotizacion()"
+              v-model="turnar"
+              inset
+              color="success"
+              class="float-left"
+              v-bind:disabled="esVenta"
+              ></v-switch>
+              <p class="mt-5" v-if="esVenta"><strong>TURNADA A VENTAS</strong></p>
+            
+            </v-col>
+            
+           
+          </v-row>
+          
+        </v-container>
+      </v-card>
+    </v-col>
+                </v-row>
+
+                
     </v-container>
 </template>
 
@@ -497,50 +136,21 @@ const axios = require('axios');
         
         },
         data: () => ({
-          categoria:null,
-          categorias:[
-          { id: 1, nombre: "DISPONIBLE PARA COMPRA"},
-          { id: 2, nombre: "DISPONIBLE PARA FACTURA"},
-          { id: 3, nombre: "COMPRADA"},
-          { id: 4, nombre: "DISPONIBLE PARA ENTREGA"},
-          { id: 5, nombre: "ENTREGADA"},
-          { id: 6, nombre: "COBRADA"}
-          ],
-          files:[],
-          dialog:false,
-          dialog2:false,
+          
         cotizacion:[],
         finalizar:false,
-        disponiblecompra:false,
-        disponiblefactura:false,
-        comprada:false,
-        disponibleentrega:false,
-        entregada:false,
-        cobrada:false,
-        evidencia1:null,
-        evidencia2:null,
-        evidencia3:null,
-        evidencia4:null,
-        evidencia5:null,
-        evidencia6:null,
-        razones:[],
-        razon:null,
-        formatos:[],
-        formato:null,
-        documentos:[],
-        documento:null,
-        url:null,
-         
+        turnar:false,
+        esFinalizada:false,
+        esVenta:false,
 
-
-          
+     
          }),
          watch : {
           
 
          },
           methods:{
-            async turnarVenta(){
+            async turnarCotizacion(){
 
                 const response = await axios({
                   method: 'post',
@@ -549,11 +159,8 @@ const axios = require('axios');
                     idCotizacion:parseInt(this.$route.params.id),
                   }
                 })
-                if (parseInt(response.data.response) == 1) {
-                   swal("LA COTIZACIÓN FUÉ TURNADA A VENTAS", "", "success");
-                }else{
-                   swal("LA COTIZACIÓN YA SE ENCUENTRA EN VENTAS", "", "warning");
-                }
+                swal("LA COTIZACIÓN FUÉ TURNADA A VENTAS", "", "success");
+                this.esVenta = true
 
             },
             async getRazones(){
@@ -577,151 +184,10 @@ const axios = require('axios');
 
             }
             },
-            async getFormatos(){
-
-              this.documentos = []
-              this.url = null
-              try {
-                const response = await axios({
-                  method: 'get',
-                  url: 'getFormato',
-                })
-
-                this.formatos = response.data.response
-                
-
-
-            } catch (error) {
-
-               swal("OCURRIÓ UN ERROR DE SERVIDOR", "Por favor recarga la página", "error");
-                console.log(error);
-
-            }
-
-            },
-            async getDocumentos(){
-              try {
-                const response = await axios({
-                  method: 'post',
-                  url: 'getDocumentosF',
-                  data:{
-                    idCotizacion:parseInt(this.$route.params.id),
-                    id_razonsocial:parseInt(this.razon),
-                    id_formato:parseInt(this.formato),
-                  }
-                })
-
-                this.documentos = response.data.response
-                
-
-
-            } catch (error) {
-
-               swal("OCURRIÓ UN ERROR DE SERVIDOR", "Por favor recarga la página", "error");
-                console.log(error);
-
-            }
-
-            },
-            async descargarDocumento(){
-              try {
-                  let carpeta = "descargarDocumento"
-                  let Valcotizacion = parseInt(this.$route.params.id)
-                  let Valrs = parseInt(this.razon)
-                  let Valtipo = parseInt(this.formato)
-                  let Valdocumento = this.documento
-                  this.url = carpeta+"/"+Valcotizacion+"/"+Valrs+"/"+Valtipo+"/"+Valdocumento
-
-
-            } catch (error) {
-
-               
-
-            }
-
-            },
-            verDocumento(imagen){
-              let idCotizacion = this.$route.params.id
-             
-              // var url = process.env.MIX_ARCHIVOS_URL;
-              var url = 'http://localhost/laravel/storage/app/cotizaciones/'+idCotizacion+'/soporteDocumental/'
-              window.open(url+imagen,'popup','width=600,height=600')
-              // falta poner la ruta real
-
-            },
-            async cerrarModalCarga(){
-              this.dialog = false
-              this.categoria = null
-              this.files.splice(0)
-            },
-            async cerrarModalCarga2(){
-              this.razones = []
-              this.razon = null
-              this.formatos = []
-              this.formato = null
-              this.documentos = []
-              this.documento = null
-              this.url = null
-              this.dialog2 = false
-             
-            },
-            async guardarDocumentos(){
-              try {
-                     let formData = new FormData()
-                      formData.append( 'id' , parseInt(this.$route.params.id))
-                      formData.append( 'categoria' , parseInt(this.categoria))
-                      if(this.files.length != 0){
-                        for(let i = 0; i < this.files.length; i++){
-                            let file = this.files[i]
-                            formData.append('archivo['+i+']',file)
-                        }
-                      }
-
-                    const response = await axios({
-                      method: 'post',
-                      url: 'guardarDocumentos',
-                      data:formData
-                    })
-                this.dialog = false
-              this.categoria = null
-              this.files.splice(0)
-
-              this.cotizacion = response.data.response
-
-                 if (this.cotizacion != null) {
-                  this.disponiblecompra = this.cotizacion.disponiblecompra
-                 this.disponiblefactura = this.cotizacion.disponiblefactura
-                 this.comprada = this.cotizacion.comprada
-                 this.disponibleentrega = this.cotizacion.disponibleentrega
-                 this.entregada = this.cotizacion.entregada
-                 this.cobrada = this.cotizacion.cobrada
-                 }
-                
-                this.evidencia1 =  (this.cotizacion.disponiblecompraEvidencia != null)? this.cotizacion.disponiblecompraEvidencia.split(",") : null; 
-                this.evidencia2 =  (this.cotizacion.disponiblefacturaEvidencia != null)? this.cotizacion.disponiblefacturaEvidencia.split(",") : null;
-                this.evidencia3 =  (this.cotizacion.compradaEvidencia != null)? this.cotizacion.compradaEvidencia.split(",") : null;
-                this.evidencia4 =  (this.cotizacion.disponibleentregaEvidencia != null)? this.cotizacion.disponibleentregaEvidencia.split(",") : null;
-                this.evidencia5 =  (this.cotizacion.entregadaEvidencia != null)? this.cotizacion.entregadaEvidencia.split(",") : null;
-                this.evidencia6 =  (this.cotizacion.cobradaEvidencia != null)? this.cotizacion.cobradaEvidencia.split(",") : null;
-
-                 swal("ÉXITO", "SE HA ACTUALIZADO EL SOPORTE DOCUMENTAL", "success");
-                
-
-                } catch (error) {
-
-                   swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
-                    console.log(error);
-
-                }
-            },
-            async modalCarga(){
-              this.dialog = true
-
-            },
-            async modalDescarga(){
-              this.dialog2 = true
-
-            },
+          
+            
+           
+            
             async getCotizacion(){
               try {
                     const response = await axios({
@@ -732,22 +198,27 @@ const axios = require('axios');
                       }
                     })
                  this.cotizacion = response.data.response
-
-                 if (this.cotizacion != null) {
-                  this.disponiblecompra = this.cotizacion.disponiblecompra
-                 this.disponiblefactura = this.cotizacion.disponiblefactura
-                 this.comprada = this.cotizacion.comprada
-                 this.disponibleentrega = this.cotizacion.disponibleentrega
-                 this.entregada = this.cotizacion.entregada
-                 this.cobrada = this.cotizacion.cobrada
-                 this.finalizar = this.cotizacion.finalizada
-                 this.evidencia1 =  (this.cotizacion.disponiblecompraEvidencia != null)? this.cotizacion.disponiblecompraEvidencia.split(",") : null; 
-                this.evidencia2 =  (this.cotizacion.disponiblefacturaEvidencia != null)? this.cotizacion.disponiblefacturaEvidencia.split(",") : null;
-                this.evidencia3 =  (this.cotizacion.compradaEvidencia != null)? this.cotizacion.compradaEvidencia.split(",") : null;
-                this.evidencia4 =  (this.cotizacion.disponibleentregaEvidencia != null)? this.cotizacion.disponibleentregaEvidencia.split(",") : null;
-                this.evidencia5 =  (this.cotizacion.entregadaEvidencia != null)? this.cotizacion.entregadaEvidencia.split(",") : null;
-                this.evidencia6 =  (this.cotizacion.cobradaEvidencia != null)? this.cotizacion.cobradaEvidencia.split(",") : null;
+                 if (parseInt(this.cotizacion.estatus) == 2) {
+                  this.esFinalizada = true
+                  this.finalizar = true
+                 }else{
+                  this.finalizar = false
                  }
+              
+                
+                 if (this.cotizacion.venta) {
+                  if (this.cotizacion.venta.idCotizacion) {
+                    this.esVenta = true
+                  this.turnar = true
+                  }
+                  
+                 }else{
+                  this.turnar = false
+
+                 }
+               
+
+                
                
                 
 
@@ -770,6 +241,7 @@ const axios = require('axios');
                       }
                     })
              swal("ÉXITO", "EL ESTATUS DE LA COTIZACIÓN SE HA ACTUALIZADO", "success");
+             this.esFinalizada = true
 
                 } catch (error) {
                    swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
@@ -777,120 +249,12 @@ const axios = require('axios');
                 }
             },
 
-            async disponiblecompramethod(){
-              try {
-                    const response = await axios({
-                      method: 'post',
-                      url: 'disponiblecompra',
-                      data:{
-                        id:this.$route.params.id,
-                        accion:this.disponiblecompra
-                      }
-                    })
-             swal("ÉXITO", "EL ESTATUS DE LA COTIZACIÓN SE HA ACTUALIZADO", "success");
-
-                } catch (error) {
-                   swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
-                    console.log(error);
-
-                }
-            },
+           
 
             
-             async disponiblefacturamethod(){
-              try {
-                    const response = await axios({
-                      method: 'post',
-                      url: 'disponiblefactura',
-                      data:{
-                        id:this.$route.params.id,
-                        accion:this.disponiblefactura
-                      }
-                    })
-              swal("ÉXITO", "EL ESTATUS DE LA COTIZACIÓN SE HA ACTUALIZADO", "success");
+             
 
-                } catch (error) {
-                   swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
-                    console.log(error);
-
-                }
-            },
-
-             async compradamethod(){
-              try {
-                    const response = await axios({
-                      method: 'post',
-                      url: 'comprada',
-                      data:{
-                        id:this.$route.params.id,
-                        accion:this.comprada
-                      }
-                    })
-               swal("ÉXITO", "EL ESTATUS DE LA COTIZACIÓN SE HA ACTUALIZADO", "success");
-
-                } catch (error) {
-                   swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
-                    console.log(error);
-
-                }
-            },
-
-             async disponibleentregamethod(){
-              try {
-                    const response = await axios({
-                      method: 'post',
-                      url: 'disponibleentrega',
-                      data:{
-                        id:this.$route.params.id,
-                        accion:this.disponibleentrega
-                      }
-                    })
-                swal("ÉXITO", "EL ESTATUS DE LA COTIZACIÓN SE HA ACTUALIZADO", "success");
-
-                } catch (error) {
-                   swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
-                    console.log(error);
-
-                }
-            },
-
-             async entregadamethod(){
-              try {
-                    const response = await axios({
-                      method: 'post',
-                      url: 'entregada',
-                      data:{
-                        id:this.$route.params.id,
-                        accion:this.entregada
-                      }
-                    })
-               swal("ÉXITO", "EL ESTATUS DE LA COTIZACIÓN SE HA ACTUALIZADO", "success");
-
-                } catch (error) {
-                   swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
-                    console.log(error);
-
-                }
-            },
-
-             async cobradamethod(){
-              try {
-                    const response = await axios({
-                      method: 'post',
-                      url: 'cobrada',
-                      data:{
-                        id:this.$route.params.id,
-                        accion:this.cobrada
-                      }
-                    })
-                swal("ÉXITO", "EL ESTATUS DE LA COTIZACIÓN SE HA ACTUALIZADO", "success");
-
-                } catch (error) {
-                   swal("Ocurrió un error de servidor", "Por favor recarga la página", "error");
-                    console.log(error);
-
-                }
-            },
+         
             
 
 

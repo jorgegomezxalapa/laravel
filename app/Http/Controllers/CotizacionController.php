@@ -81,16 +81,11 @@ class CotizacionController extends Controller
     public function finalizarCotizacion (Request $request) {
       try {
         $date = date('Y-m-d h:i:s');
-
+        //Estatus 2 es finalizada
         $cotizacion = Cotizacion::where('id', '=', $request->id)->first();
         $cotizacion->finalizada = $request->accion;
-        if ($request->accion == true) {
-          $cotizacion->fechafinalizado = $date;
-          $cotizacion->estatus = 2;
-        }else{
-          $cotizacion->fechafinalizado = null;
-          $cotizacion->estatus = 1;
-        }
+        $cotizacion->fechafinalizado = $date;
+        $cotizacion->estatus = 2;
         $cotizacion->save();
 
         return response()->json(['response' => $cotizacion],200);
