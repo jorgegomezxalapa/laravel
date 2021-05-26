@@ -8,7 +8,7 @@ f<template>
 
 
       >
-    <strong>{{this.usuarios.length}} REGISTROS</strong>
+     <p>MÓDULO PARA EL CONTROL Y REGISTRO DE LOS TIPOS DE FORMATOS/DOCUMENTOS QUE SE UTILIZAN EN ESTE SISTEMA</p>
 
 <v-divider></v-divider>
   <v-card-text>

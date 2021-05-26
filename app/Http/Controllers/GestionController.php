@@ -76,7 +76,7 @@ class GestionController extends Controller
 
     public function getDocumentosF (Request $request) {
         try {
-            $sql = Documento::with('razonsocial')->with('formato')->where('id_razonsocial','=', $request->id_razonsocial)->where('id_formato','=', $request->id_formato)->get();
+            $sql = Documento::where('id_razonsocial','=', $request->id_razonsocial)->where('id_formato','=', $request->id_formato)->get();
             return response()->json(['response' => $sql],200);
             
         } catch (Exception $e) {

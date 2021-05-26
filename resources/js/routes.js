@@ -111,11 +111,6 @@ export default new Router ({
 		component: require('./views/tiposdeventa/RegistroTiposdeventaComponent.vue').default
 	},
 
-	{
-		path:'/formatos',
-		name:'formatos',
-		component: require('./views/formatos/FormatosComponent.vue').default
-	},
 	
 	{
 		path:'/empleados',
@@ -139,8 +134,8 @@ export default new Router ({
 	},
 
 	{
-		path:'/gestion',
-		name:'gestion',
+		path:'/formatos',
+		name:'formatos',
 		component: require('./views/gestion/MenuComponent.vue').default
 	},
 	{

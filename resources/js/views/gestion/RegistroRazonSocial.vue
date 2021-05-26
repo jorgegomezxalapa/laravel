@@ -222,7 +222,7 @@ message: 'El formato de email debe ser válido',
              })
             //correcto
             swal("ÉXITO", this.razonSocial+" SE HA REGISTRADO DE MANERA EXITOSA", "success");
-            this.$router.push({ name: 'gestion' });
+            this.$router.push({ name: 'formatos' });
 
          } catch (error) {
           swal("ERROR", "HA OCURRIDO UN ERROR DE SERVIDOR", "error");

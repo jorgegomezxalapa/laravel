@@ -7,20 +7,45 @@
         justify="space-around"
       >
      
-    <v-card-title class="font-weight-black">INFORMACIÓN DEL FORMATO DE DOCUMENTO WORD</v-card-title>
+    <v-card-title class="font-weight-black">MAPEO DE LA INFORMACIÓN DEL SISTEMA A FORMATO WORD</v-card-title>
 
 <v-divider></v-divider>
 <v-row>
+
        <v-col
         cols="12"
       >
-     <p class="font-weight-black">FORMULARIO DEL FORMATO DE DOCUMENTO, LOS CAMPOS MARCADOS CON UN ASTERISCTO (*) SON REQUERIDOS PARA CONTINUAR.</p>
+    
     </v-col>
     </v-row>
   <v-card-text>
     <v-container>
    
       <v-row>
+        <v-col
+          cols="12"
+          md="12"
+        >
+      
+      <v-file-input
+    v-model="files"
+    placeholder="SELECCIONA TU ARCHIVO"
+    label="INGRESA TU ARCHIVO EN FORMATO WORD"
+    multiple
+    prepend-icon="mdi-paperclip"
+  >
+    <template v-slot:selection="{ text }">
+      <v-chip
+        small
+        label
+        color="primary"
+      >
+        {{ text }}
+      </v-chip>
+    </template>
+  </v-file-input>
+ 
+        </v-col>
         <v-col
           cols="12"
           md="12"
@@ -58,7 +83,7 @@
       item-text="nombre"
       item-value="id"
       @click="getRazon()"
-      label="SELECCIONE UN SEGMENTO"
+      label="ASIGNA UNA RAZÓN SOCIAL"
       data-vv-name="select"
       >
       </v-select>
@@ -75,36 +100,13 @@
       item-text="nombre"
       item-value="id"
       @click="getFormato()"
-      label="SELECCIONE UN SEGMENTO"
+      label="ASIGNA UNA CATEGORÍA DEL FORMATO"
       data-vv-name="select"
       >
       </v-select>
  
         </v-col>
-        <v-col
-          cols="12"
-          md="12"
-        >
-      
-      <v-file-input
-    v-model="files"
-    placeholder="DOCUMENTO WORD"
-    label="INGRESA TUS ARCHIVO"
-    multiple
-    prepend-icon="mdi-paperclip"
-  >
-    <template v-slot:selection="{ text }">
-      <v-chip
-        small
-        label
-        color="primary"
-      >
-        {{ text }}
-      </v-chip>
-    </template>
-  </v-file-input>
- 
-        </v-col>
+        
 
       
       
@@ -334,7 +336,7 @@ message: 'El formato de email debe ser válido',
              })
             //correcto
             swal("ÉXITO", this.nombre+" SE HA REGISTRADO DE MANERA EXITOSA", "success");
-            this.$router.push({ name: 'gestion' });
+            this.$router.push({ name: 'formatos' });
 
          } catch (error) {
           swal("ERROR", "HA OCURRIDO UN ERROR DE SERVIDOR", "error");

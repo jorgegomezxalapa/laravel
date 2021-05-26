@@ -386,9 +386,9 @@ localLocale.locale(false);
 
                 this.ventas = response.data.response
                 $.each(this.ventas, function(key, value) {
+                  
  
-                          if (value.disponiblecompra != null && value.comprada != null && value.disponibleentrega != null && value.entregada != null && value.disponiblefactura != null && value.facturada != null && value.cobrada != null && value.cobradasf != null && 
-  value.disponiblecompra == 0 && value.comprada == 0 && value.disponibleentrega == 0 && value.entregada == 0 && value.disponiblefactura == 0 && value.facturada == 0 && value.cobrada == 0 && value.cobradasf == 0 ) {
+                          if (parseInt(value.disponiblecompra) != 1 && parseInt(value.comprada) != 1 && parseInt(value.disponibleentrega) != 1 && parseInt(value.entregada) != 1 && parseInt(value.disponiblefactura) != 1 && parseInt(value.facturada) != 1 && parseInt(value.cobrada) != 1 && parseInt(value.cobradasf) != 1 ) {
                           
                             this.sinAsignar.push(value)
                           }

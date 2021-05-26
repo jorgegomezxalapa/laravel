@@ -8,12 +8,13 @@
 
 
       >
-    <strong>{{this.usuarios.length}} REGISTROS</strong>
+    <!--  -->
+    <p>*MÓDULO PARA EL CONTROL Y REGISTRO DE LAS RAZONES SOCIALES QUE SE UTILIZAN EN ESTE SISTEMA*</p>
 
 <v-divider></v-divider>
   <v-card-text>
     <v-row>
-        <v-col cols="12" md="4">
+        <v-col cols="12" md="6">
             <v-btn
               color="primary"
               dark
@@ -28,7 +29,7 @@
       </v-icon>
             </v-btn>
         </v-col>
-        <v-col cols="12" md="8">
+        <v-col cols="12" md="6">
             <v-text-field
         v-model="search"
         append-icon="mdi-magnify"

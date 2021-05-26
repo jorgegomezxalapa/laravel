@@ -2,9 +2,9 @@
     <v-container fluid>
 
       <v-tabs grow color="#d6b203" background-color="grey lighten-3" >
-            <v-tab @click="razonsocial()">RAZÓN SOCIAL</v-tab>
-            <v-tab @click="catalogos()">CATÁLOGOS</v-tab>
-            <v-tab @click="formatos()">FORMATOS WORD</v-tab>
+            <v-tab @click="razonsocial()">LISTA DE RAZONES SOCIALES</v-tab>
+            <v-tab @click="catalogos()">LISTA DE FORMATOS</v-tab>
+            <v-tab @click="formatos()">DOCUMENTOS WORD MAPEADOS</v-tab>
 
             <v-tab-item>
               <gestion-razonsocial v-if="mostrarRS"></gestion-razonsocial>

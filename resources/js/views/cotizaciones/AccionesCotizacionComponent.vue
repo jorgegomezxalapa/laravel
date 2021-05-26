@@ -90,6 +90,59 @@
       </v-card>
     </v-col>
                 </v-row>
+                <v-dialog
+                v-model="dialog"
+        transition="dialog-bottom-transition"
+        max-width="600"
+      >
+        
+        <template v-slot:default="dialog">
+          <v-card>
+            <v-toolbar
+              color="primary"
+              dark
+            >PARÁMETROS DE DESCARGA DE COTIZACIÓN</v-toolbar>
+            <v-card-text>
+              <p><strong>SELECCIONA UNA RAZÓN SOCIAL</strong></p>
+              <v-select
+              @focus="getRazones()"
+                :items="razones"
+                v-model="razon"
+                item-text="nombre"
+                item-value="id"
+                outlined
+              ></v-select>
+              <p><strong>SELECCIONA UNA CATEGORÍA DE DOCUMENTO</strong></p>
+                <v-select
+                @focus="getFormatos()"
+                :items="formatos"
+                v-model="formato"
+                item-text="nombre"
+                item-value="id"
+                outlined
+              ></v-select>
+              <p><strong>SELECCIONA UN DOCUMENTO MAPEADO</strong></p>
+              <v-select
+                @focus="getDocumentos()"
+                :items="documentos"
+                v-model="documento"
+                item-text="nombre"
+                item-value="id"
+                outlined
+              ></v-select>
+              <v-btn  @click="modalDescarga()" color="primary" block>
+                        GENERAR DESCARGA
+                      </v-btn>
+            </v-card-text>
+            <v-card-actions class="justify-end">
+              <v-btn
+                text
+                @click="cerrarModal()"
+              >CERRAR</v-btn>
+            </v-card-actions>
+          </v-card>
+        </template>
+      </v-dialog>
 
                 
     </v-container>
@@ -142,6 +195,13 @@ const axios = require('axios');
         turnar:false,
         esFinalizada:false,
         esVenta:false,
+        dialog:false,
+        razones:[],
+        razon:null,
+        formatos:[],
+        formato:null,
+        documentos:[],
+        documento:null,
 
      
          }),
@@ -150,6 +210,15 @@ const axios = require('axios');
 
          },
           methods:{
+            async modalDescarga(){
+              this.dialog = true
+            },
+            async cerrarModal(){
+              this.dialog = false
+              this.razon = null
+              this.formato = null
+              this.documento = null
+            },
             async turnarCotizacion(){
 
                 const response = await axios({
@@ -164,9 +233,13 @@ const axios = require('axios');
 
             },
             async getRazones(){
-              this.formatos = []
-              this.documentos = []
-              this.url = null
+            
+                this.razon = null
+                this.razones = []
+                this.formato = null
+                this.formatos = []
+                this.documento = null
+                this.documentos = []
                try {
                 const response = await axios({
                   method: 'get',
@@ -177,6 +250,59 @@ const axios = require('axios');
                 
 
 
+            } catch (error) {
+
+               swal("OCURRIÓ UN ERROR DE SERVIDOR", "Por favor recarga la página", "error");
+                console.log(error);
+
+            }
+            },
+
+            async getFormatos(){
+            
+              
+              
+                this.formato = null
+                this.formatos = []
+                this.documento = null
+                this.documentos = []
+
+               try {
+                const response = await axios({
+                  method: 'get',
+                  url: 'getFormato',
+                })
+
+                this.formatos = response.data.response
+                
+
+
+            } catch (error) {
+
+               swal("OCURRIÓ UN ERROR DE SERVIDOR", "Por favor recarga la página", "error");
+                console.log(error);
+
+            }
+            },
+
+            async getDocumentos(){
+
+
+                this.documento = null
+                this.documentos = []
+            
+               try {
+                const response = await axios({
+                  method: 'post',
+                  url: 'getDocumentosF',
+                  data:{
+                    id_razonsocial : parseInt(this.razon) ,
+                    id_formato : parseInt(this.formato) ,
+                  }
+                })
+
+                this.documentos = response.data.response
+                
             } catch (error) {
 
                swal("OCURRIÓ UN ERROR DE SERVIDOR", "Por favor recarga la página", "error");

@@ -8,7 +8,7 @@
 
 
       >
-    <strong>{{this.usuarios.length}} REGISTRADOS</strong>
+     <p>MÓDULO PARA EL CONTROL Y REGISTRO DE LOS TIPOS DE DOCUMENTOS WORD QUE CONTIENEN EL MAPEO DE LAS VARIABLES DEL SISTEMA</p>
 
 <v-divider></v-divider>
   <v-card-text>
