@@ -13,6 +13,24 @@ use App\Cliente;
 class CotizacionController extends Controller
 {
     //
+  public function complementarDetalle (Request $request) {
+
+    $idCotizacion = $request->idCotizacion;
+    $asunto = $request->asunto;
+    $vigencia = $request->vigencia;
+    $tiempodeentrega = $request->tiempodeentrega;
+    $condicionesdeventa = $request->condicionesdeventa;
+
+
+    $cotizacion = Cotizacion::where('id', '=', $idCotizacion)->first();
+    $cotizacion->asunto = $asunto;
+    $cotizacion->vigencia = $vigencia;
+    $cotizacion->tiempodeentrega = $tiempodeentrega;
+    $cotizacion->condicionesdeventa = $condicionesdeventa;
+    $cotizacion->save();
+
+     return response()->json(['response' => $cotizacion],200);
+  }
   public function guardarDocumentos (Request $request) {
       try {
 

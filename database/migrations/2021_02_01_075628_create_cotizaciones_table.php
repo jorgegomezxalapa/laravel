@@ -42,7 +42,11 @@ class CreateCotizacionesTable extends Migration
                   $table->string('entregadaEvidencia',250)->nullable();
                   $table->string('cobradaEvidencia',250)->nullable();
                   $table->integer('finalizada')->nullable();
-                $table->string('fechafinalizado',250)->nullable();
+                    $table->string('fechafinalizado',250)->nullable();
+                    $table->text('asunto',65535)->nullable();
+                    $table->string('vigencia',250)->nullable();
+                    $table->string('tiempodeentrega',250)->nullable();
+                    $table->string('condicionesdeventa',250)->nullable();
               $table->timestamps();
 
         });

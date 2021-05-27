@@ -33,7 +33,11 @@ class Cotizacion extends Model
             'entregadaEvidencia',
             'cobradaEvidencia',
             'finalizada',
-          'fechafinalizado'
+            'fechafinalizado',
+            'asunto',
+            'vigencia',
+            'tiempodeentrega',
+            'condicionesdeventa',
 
 
       ];

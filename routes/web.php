@@ -87,6 +87,8 @@ Route::post('iniciarCotizacion', 'CotizacionController@iniciarCotizacion')->name
 Route::post('setIvaCotizacion', 'CotizacionController@setIvaCotizacion')->name('setIvaCotizacion');
 Route::post('setIepsCotizacion', 'CotizacionController@setIepsCotizacion')->name('setIepsCotizacion');
 
+Route::post('complementarDetalle', 'CotizacionController@complementarDetalle')->name('complementarDetalle');
+
 
 Route::post('finalizarCotizacion', 'CotizacionController@finalizarCotizacion')->name('finalizarCotizacion');
 Route::post('disponiblecompra', 'CotizacionController@disponiblecompra')->name('disponiblecompra');

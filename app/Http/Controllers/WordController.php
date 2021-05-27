@@ -67,8 +67,10 @@ class WordController extends Controller
 		$fechaLetras = Carbon::now()->isoFormat('dddd D \d\e MMMM \d\e\l Y');
 
 		$clienteRepresentante = $cliente->representante;
+		$clienteCargoRepresentante = $cliente->cargoRepresentante;
 		$clienteRazonSocial = $cliente->razonSocial;
 		$clienteConAtencion = $cliente->conatencion;
+		$clienteCargoConAtencion = $cliente->cargoConAtencion;
 		$clienteRfc = $cliente->rfc;
 		$clienteEmail = $cliente->email;
 		$clienteTelefono = $cliente->telefono;
@@ -117,6 +119,11 @@ class WordController extends Controller
 		$cotizacionIeps = $cotizacion->iepsTotal;
 		$cotizacionTotal = $cotizacion->total;
 
+		$cotizacionAsunto = $cotizacion->asunto;
+		$cotizacionVigencia = $cotizacion->vigencia;
+		$cotizacionTiempodeentrega = $cotizacion->tiempodeentrega;
+		$cotizacionCondicionesdeventa = $cotizacion->condicionesdeventa;
+
 		$tablita = [];
 
 		foreach($partidas as $partida){
@@ -155,6 +162,8 @@ class WordController extends Controller
 		$templateProcessor->setValue('clienteRfc', $clienteRfc);
 		$templateProcessor->setValue('clienteEmail', $clienteEmail);
 		$templateProcessor->setValue('clienteTelefono', $clienteTelefono);
+		$templateProcessor->setValue('clienteCargoRepresentante', $clienteTelefono);
+		$templateProcessor->setValue('clienteCargoConAtencion', $clienteTelefono);
 
 		$templateProcessor->setValue('solicitanteNombre', $solicitanteNombre);
 		$templateProcessor->setValue('solicitanteEmail', $solicitanteEmail);
@@ -186,6 +195,11 @@ class WordController extends Controller
 		$templateProcessor->setValue('cotizacionIva', $cotizacionIva );
 		$templateProcessor->setValue('cotizacionIeps', $cotizacionIeps );
 		$templateProcessor->setValue('cotizacionTotal', $cotizacionTotal );
+
+		$templateProcessor->setValue('cotizacionAsunto', $cotizacionAsunto );
+		$templateProcessor->setValue('cotizacionVigencia', $cotizacionVigencia );
+		$templateProcessor->setValue('cotizacionTiempodeentrega', $cotizacionTiempodeentrega );
+		$templateProcessor->setValue('cotizacionCondicionesdeventa', $cotizacionCondicionesdeventa );
 
 
 

@@ -1,6 +1,51 @@
 <template>
     <v-container fluid>
        <v-row>
+         <v-col cols="12" md="6">
+           <v-row>
+        <center>
+          <h5 class="font-weight-black ml-4 mt-5"><strong>COMPLEMENTO DE INFORMACIÓN</strong></h5>
+        </center>
+         
+       </v-row>
+       <v-row>
+        <v-col cols="12">
+          <v-textarea
+          v-model="asunto"
+          label="ASUNTO DEL DOCUMENTO"
+        ></v-textarea>
+        </v-col>
+        <v-col cols="12">
+           <v-text-field
+            v-model="vigencia"
+            label="VIGENCIA DE ESTA COTIZACIÓN"
+            
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12">
+           <v-text-field
+            v-model="tiempodeentrega"
+            label="TIEMPO ESTIMADO DE ENTREGA"
+            
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12">
+           <v-text-field
+            v-model="condicionesdeventa"
+            label="CONDICIONES DE VENTA"
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12">
+          <v-btn  @click="complementarDetalle()" color="primary" block>
+                        ACTUALIZAR COMPLEMENTO
+                      </v-btn>
+        </v-col>
+       
+         
+       </v-row>
+         </v-col>
+         <v-col cols="12" md="6">
+           <v-row>
         <center>
           <h5 class="font-weight-black ml-4 mt-5"><strong>ACCIONES DISPONIBLES PARA ESTA COTIZACIÓN</strong></h5>
         </center>
@@ -11,7 +56,7 @@
                  
         
        
-         <v-col cols="12" md="6">
+         <v-col cols="12" md="12">
                     <center>
                       <v-btn  @click="modalDescarga()" color="primary" block>
                         DESCARGAR FORMATO DE COTIZACIÓN
@@ -26,7 +71,7 @@
                 <v-row>
                   <v-col
     cols="12"
-    md="6"
+    md="12"
     >
       <v-card
       class="mx-auto"
@@ -59,7 +104,7 @@
                 <v-row>
                   <v-col
     cols="12"
-    md="6"
+    md="12"
     >
       <v-card
       class="mx-auto"
@@ -90,6 +135,8 @@
       </v-card>
     </v-col>
                 </v-row>
+         </v-col>
+       </v-row>
                 <v-dialog
                 v-model="dialog"
         transition="dialog-bottom-transition"
@@ -205,6 +252,10 @@ const axios = require('axios');
         documento:null,
         url:"",
         mostrarD:false,
+        asunto:null,
+        vigencia:null,
+        tiempodeentrega:null,
+        condicionesdeventa:null,
 
      
          }),
@@ -213,6 +264,21 @@ const axios = require('axios');
 
          },
           methods:{
+            async complementarDetalle () {
+              const response = await axios({
+                  method: 'post',
+                  url: 'complementarDetalle',
+                  data:{
+                    idCotizacion:parseInt(this.$route.params.id),
+                    asunto:this.asunto,
+                    vigencia:this.vigencia,
+                    tiempodeentrega:this.tiempodeentrega,
+                    condicionesdeventa:this.condicionesdeventa,
+                  }
+                })
+              this.getCotizacion()
+                swal("LA COTIZACIÓN FUÉ ACTUALIZADA EN LOS DATOS COMPLEMENTARIOS", "", "success");
+            },
             async getDescarga(){
               this.url = ""
               if (this.documento != null) {
@@ -339,6 +405,10 @@ const axios = require('axios');
                       }
                     })
                  this.cotizacion = response.data.response
+                 this.asunto = this.cotizacion.asunto
+                 this.vigencia = this.cotizacion.vigencia
+                 this.tiempodeentrega = this.cotizacion.tiempodeentrega
+                 this.condicionesdeventa = this.cotizacion.condicionesdeventa
                  if (parseInt(this.cotizacion.estatus) == 2) {
                   this.esFinalizada = true
                   this.finalizar = true
