@@ -117,7 +117,7 @@ Route::get('getSalidas', 'AlmacenController@getSalidas')->name('getSalidas');
 Route::get('getInventarioSolicitado', 'AlmacenController@getInventarioSolicitado')->name('getInventarioSolicitado');
 
 //DOCUMENTOS WORD
-// Route::get('word', 'WordController@word')->name('word');
+Route::get('getDescarga/{idDocumento}/{idCotizacion}', 'WordController@getDescarga')->name('getDescarga');
 Route::get('descargarDocumento/{cotizacion}/{rs}/{tipo}/{documento}', 'WordController@descargarDocumento')->name('descargarDocumento');
 
 //DOCUMENTOS EXCEL

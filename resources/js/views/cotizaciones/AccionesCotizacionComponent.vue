@@ -124,13 +124,14 @@
               <p><strong>SELECCIONA UN DOCUMENTO MAPEADO</strong></p>
               <v-select
                 @focus="getDocumentos()"
+                @change="getDescarga()"
                 :items="documentos"
                 v-model="documento"
                 item-text="nombre"
                 item-value="id"
                 outlined
               ></v-select>
-              <v-btn  @click="modalDescarga()" color="primary" block>
+              <v-btn v-bind:href="url" target="_blank" color="primary" block v-if="mostrarD">
                         GENERAR DESCARGA
                       </v-btn>
             </v-card-text>
@@ -202,6 +203,8 @@ const axios = require('axios');
         formato:null,
         documentos:[],
         documento:null,
+        url:"",
+        mostrarD:false,
 
      
          }),
@@ -210,7 +213,19 @@ const axios = require('axios');
 
          },
           methods:{
+            async getDescarga(){
+              this.url = ""
+              if (this.documento != null) {
+                this.mostrarD = true
+                this.url = 'getDescarga/'+parseInt(this.documento)+'/'+parseInt(this.$route.params.id);
+              }
+
+            },
             async modalDescarga(){
+              
+              this.razon = null
+              this.formato = null
+              this.documento = null
               this.dialog = true
             },
             async cerrarModal(){

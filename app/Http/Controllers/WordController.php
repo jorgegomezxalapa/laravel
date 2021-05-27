@@ -8,26 +8,211 @@ use PhpOffice\PhpWord\SimpleType\Jc;
 use PhpOffice\PhpWord\Element\Table;
 use PhpOffice\PhpWord\TemplateProcessor;
 use App\Cotizacion;
-use Carbon;
+use App\Partida;
+use App\Documento;
+use App\Solicitud;
+use App\Venta;
+use App\User;
+use App\Solicitante;
+use App\Cliente;
+use App\Utilidad;
+use Carbon\Carbon;
 use Storage;
 
 
 
 class WordController extends Controller
-{
+{	
+	public function getDescarga($idDocumento,$idCotizacion){
+
+		
+
+		$idDocumento = intval($idDocumento);
+		$idCotizacion = intval($idCotizacion);
+
+		
+		$documento = Documento::where('id', '=', $idDocumento)->first();
+
+		$carpeta1 = $documento->id_razonsocial;
+		$carpeta2 = $documento->id_formato;
+		$archivo = $documento->documento;
+		$ruta = 'storage/documentos/'.$carpeta1.'/'.$carpeta2.'/'.$archivo;
+		
+
+		$cotizacion = Cotizacion::where('id', '=', $idCotizacion)->first();
+
+		$solicitud = Solicitud::where('id', '=', $cotizacion->idSolicitud)->first();
+
+		$agente = User::where('id', '=', $solicitud->agente)->first();
+
+		$cliente = Cliente::where('id', '=', $solicitud->cliente)->first();
+
+		$solicitante = Solicitante::where('id', '=', $solicitud->solicitante)->first();
+
+		$responsable = User::where('id', '=', $solicitud->responsable)->first();
+
+		$utilidad = Utilidad::where('id','=',$cotizacion->utilidadGlobal)->first();
+
+		
+
+		$partidas = Partida::where('idCotizacion', '=', $idCotizacion)
+		->where('esMejora', '=', 0)
+		->orderBy('idProducto', 'ASC')->get();
+
+		$venta = Venta::where('idCotizacion', '=', $idCotizacion)->first();
+
+		
+		//VARIABLES
+		$fechaNumeros = date("d/m/Y", strtotime(Carbon::now()->toDateString()));
+		$fechaLetras = Carbon::now()->isoFormat('dddd D \d\e MMMM \d\e\l Y');
+
+		$clienteRepresentante = $cliente->representante;
+		$clienteRazonSocial = $cliente->razonSocial;
+		$clienteConAtencion = $cliente->conatencion;
+		$clienteRfc = $cliente->rfc;
+		$clienteEmail = $cliente->email;
+		$clienteTelefono = $cliente->telefono;
+
+		$solicitanteNombre = $solicitante->nombre;
+		$solicitanteEmail = $solicitante->email;
+		$solicitanteTelefono = $solicitante->telefono;
+
+		$agenteNombre = $agente->nombre;
+		$agenteUsuario = $agente->userName;
+		$agenteRol = $agente->rol;
+		$agenteEmail = $agente->email;
+		$agenteTelefono = $agente->telefono;
+		$agenteSexo = $agente->sexo;
+
+		$responsableNombre = $responsable->nombre;
+		$responsableUsuario = $responsable->userName;
+		$responsableRol = $responsable->rol;
+		$responsableEmail = $responsable->email;
+		$responsableTelefono = $responsable->telefono;
+		$responsableSexo = $responsable->sexo;
+
+		$solicitudFecha = $solicitud->fecha;
+		$solicitudFolio = $solicitud->folio;
+		$solicitudComentarios = $solicitud->comentario;
+		$solicitudTipoUrgencia = ($solicitud->urgente == 1) ? 'URGENTE': 'MARCADA SIN URGENCIA';
+
+		if ($cotizacion->estatus == 1) {
+			$cotizacionEstatus = "EN PROCESO";
+		}elseif($cotizacion->estatus == 2) {
+			$cotizacionEstatus = "FINALIZADA/COTIZADA";
+		}else {
+			$cotizacionEstatus = "PENDIENTE DE INICIAR";
+		}
+
+		$cotizacionUtilidadPorcentaje = $utilidad->porcentaje."%";
+		$cotizacionUtilidadDescripcion = $utilidad->descripcion;
+		$cotizacionIVAConfigurado = $cotizacion->ivaGlobal;
+		$cotizacionIEPSConfigurado = $cotizacion->iepsGlobal;
+		$cotizacionFechaFinalizado = $cotizacion->fechafinalizado;
+
+		
+
+		$cotizacionSubtotal = $cotizacion->subtotal;
+		$cotizacionIva = $cotizacion->ivaTotal;
+		$cotizacionIeps = $cotizacion->iepsTotal;
+		$cotizacionTotal = $cotizacion->total;
+
+		$tablita = [];
+
+		foreach($partidas as $partida){
+			$valor =  [	'cotPartida' => $partida->partida,
+						'cotDescripcion' => $partida->descripcion,
+						'cotUnidadMedida' => $partida->unidadmedida,
+						'cotCantidad' => $partida->cantidad,
+						'cotPrecioProveedor' => $partida->precioproveedor,
+						'cotPoliticaGarantia' => ($partida->politicas == 1) ? 'INCLUYE POLÍTICAS DE GARANTÍA' : 'NO INCLUYE POLÍTICAS DE GARANTÍA' ,
+						'cotMarca' => $partida->marca,	
+						'cotModelo' => $partida->modelo,
+						'cotNumeroSerie' => $partida->numserie,
+						'cotIvaPartida' => $partida->ivapartida."%",
+						'cotIepsPartida' => $partida->iepspartida,
+						'cotUtilidadPorcentajePartida' => $partida->utilidadpartida."%",
+						'cotNotasPartida' => $partida->notasproducto,
+						'cotImporte1' => $partida->importe1,
+						'cotUtilidadPesosPartida' => $partida->utilidadgenerada,
+						'cotPrecioUnitarioPartida' => $partida->preciounitario,
+						'cotImporteTotal' => $partida->importe2,
+						'cotDisponibilidadPartida'  => $partida->disponible,
+						'cotDisponibilidadPartida'  => $partida->disponible,
+						'cotSolicitadasPartida'  => $partida->solicitadas];
+			array_push($tablita, $valor);
+		}
+
+	
+		$templateProcessor=new \PhpOffice\PhpWord\TemplateProcessor(public_path($ruta));
+
+
+		$templateProcessor->setValue('fechaNumeros', $fechaNumeros);
+		$templateProcessor->setValue('fechaLetras', $fechaLetras);
+		$templateProcessor->setValue('clienteRepresentante', $clienteRepresentante);
+		$templateProcessor->setValue('clienteRazonSocial', $clienteRazonSocial);
+		$templateProcessor->setValue('clienteConAtencion', $clienteConAtencion);
+		$templateProcessor->setValue('clienteRfc', $clienteRfc);
+		$templateProcessor->setValue('clienteEmail', $clienteEmail);
+		$templateProcessor->setValue('clienteTelefono', $clienteTelefono);
+
+		$templateProcessor->setValue('solicitanteNombre', $solicitanteNombre);
+		$templateProcessor->setValue('solicitanteEmail', $solicitanteEmail);
+		$templateProcessor->setValue('solicitanteTelefono', $solicitanteTelefono);
+
+		$templateProcessor->setValue('agenteNombre', $agenteNombre );
+		$templateProcessor->setValue('agenteUsuario', $agenteUsuario );
+		$templateProcessor->setValue('agenteRol', $agenteRol );
+		$templateProcessor->setValue('agenteEmail', $agenteEmail );
+		$templateProcessor->setValue('agenteTelefono', $agenteTelefono );
+		$templateProcessor->setValue('agenteSexo', $agenteSexo );
+		$templateProcessor->setValue('responsableNombre', $responsableNombre );
+		$templateProcessor->setValue('responsableUsuario', $responsableUsuario );
+		$templateProcessor->setValue('responsableRol', $responsableRol );
+		$templateProcessor->setValue('responsableEmail', $responsableEmail );
+		$templateProcessor->setValue('responsableTelefono', $responsableTelefono );
+		$templateProcessor->setValue('responsableSexo', $responsableSexo );
+		$templateProcessor->setValue('solicitudFecha', $solicitudFecha );
+		$templateProcessor->setValue('solicitudFolio', $solicitudFolio );
+		$templateProcessor->setValue('solicitudComentarios', $solicitudComentarios );
+		$templateProcessor->setValue('solicitudTipoUrgencia', $solicitudTipoUrgencia );
+		$templateProcessor->setValue('cotizacionEstatus', $cotizacionEstatus );
+		$templateProcessor->setValue('cotizacionUtilidadPorcentaje', $cotizacionUtilidadPorcentaje );
+		$templateProcessor->setValue('cotizacionUtilidadDescripcion', $cotizacionUtilidadDescripcion );
+		$templateProcessor->setValue('cotizacionIVAConfigurado', $cotizacionIVAConfigurado );
+		$templateProcessor->setValue('cotizacionIEPSConfigurado', $cotizacionIEPSConfigurado );
+		$templateProcessor->setValue('cotizacionFechaFinalizado', $cotizacionFechaFinalizado );
+		$templateProcessor->setValue('cotizacionSubtotal', $cotizacionSubtotal );
+		$templateProcessor->setValue('cotizacionIva', $cotizacionIva );
+		$templateProcessor->setValue('cotizacionIeps', $cotizacionIeps );
+		$templateProcessor->setValue('cotizacionTotal', $cotizacionTotal );
+
+
+
+		$templateProcessor->cloneRowAndSetValues('cotCantidad', $tablita);
+	
+	
+
+		
+		header('Content-Disposition: attachment; filename="Documento.docx"');
+
+		//Enviar el output del objeto al explorador para descarga del usuario.
+
+		$templateProcessor->saveAs("php://output");
+		
+		// return Storage::download($ruta);
+	}
 
 	public function descargarDocumento ($cotizacion,$rs,$tipo,$documento) {
 
 	return Storage::download('documentos/1/1/cotizacion.docx');
 
-date_default_timezone_set('America/Mexico_City');
+	date_default_timezone_set('America/Mexico_City');
 
-$fecha = date('Y-m-d');
+	$fecha = date('Y-m-d');
 
-
-
-$dt = Carbon\Carbon::now();
-$fecha = strtoupper ( $dt->format('l jS \\of F Y') ) ;  
+	$dt = Carbon\Carbon::now();
+	$fecha = strtoupper ( $dt->format('l jS \\of F Y') ) ;  
 
 
 

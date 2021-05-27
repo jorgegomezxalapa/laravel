@@ -17,6 +17,8 @@ class ClienteController extends Controller
         $user = new Cliente();
         $user->razonSocial = $request->razonSocial;
         $user->representante = $request->representante;
+        $user->cargoRepresentante = $request->cargoRepresentante;
+        $user->cargoConAtencion = $request->cargoConAtencion;
         $user->conatencion = $request->conatencion;
         $user->rfc = $request->rfc;
         $user->email = $request->email;
@@ -62,6 +64,8 @@ return response()->json(['response' => $cliente],200);
 
          $cliente->razonSocial = $request->razonSocial;
          $cliente->representante = $request->representante;
+         $cliente->cargoRepresentante = $request->cargoRepresentante;
+        $cliente->cargoConAtencion = $request->cargoConAtencion;
          $cliente->conatencion = $request->conatencion;
          $cliente->rfc = $request->rfc;
          $cliente->email = $request->email;

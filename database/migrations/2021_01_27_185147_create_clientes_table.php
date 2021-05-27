@@ -17,7 +17,9 @@ class CreateClientesTable extends Migration
             $table->bigIncrements('id');
               $table->string('razonSocial',250)->nullable();
                 $table->string('representante',250)->nullable();
+                $table->string('cargoRepresentante',250)->nullable();
                 $table->string('conatencion',250)->nullable();
+                $table->string('cargoConAtencion',250)->nullable();
                   $table->string('rfc',250)->nullable();
                     $table->string('email',250)->nullable();
                       $table->string('telefono',250)->nullable();

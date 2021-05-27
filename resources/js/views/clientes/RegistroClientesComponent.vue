@@ -64,6 +64,20 @@
           cols="12"
           md="12"
         >
+        
+         <v-text-field
+      v-model="cargoRepresentante"
+
+      label="CARGO DEL REPRESENTANTE"
+     
+    ></v-text-field>
+ 
+        </v-col>
+
+        <v-col
+          cols="12"
+          md="12"
+        >
 
          <v-text-field
       v-model="conatencion"
@@ -72,6 +86,20 @@
       :error-messages="errors"
     ></v-text-field>
 
+        </v-col>
+
+        <v-col
+          cols="12"
+          md="12"
+        >
+        
+         <v-text-field
+      v-model="cargoConAtencion"
+
+      label="CARGO DE LA PERSONA CON ATENCIÓN"
+     
+    ></v-text-field>
+ 
         </v-col>
 
         <v-col
@@ -193,6 +221,8 @@ message: 'El formato de email debe ser válido',
           conatencion:null,
           razonSocial:null,
           representante:null,
+          cargoRepresentante:null,
+          cargoConAtencion:null,
           rfc:null,
           email:null,
           telefono:null,
@@ -230,8 +260,10 @@ message: 'El formato de email debe ser válido',
                data: {
                  id: this.$route.params.id,
                  conatencion:this.conatencion,
+                 cargoConAtencion:this.cargoConAtencion,
                  razonSocial: this.razonSocial,
                  representante: this.representante,
+                 cargoRepresentante: this.cargoRepresentante,
                  rfc: this.rfc,
                  email: this.email,
                  telefono: this.telefono,
@@ -260,8 +292,10 @@ message: 'El formato de email debe ser válido',
              this.cliente= response.data.response
              console.log("solicitd", this.cliente.fecha)
              this.conatencion = this.cliente.conatencion
+             this.cargoConAtencion = this.cliente.cargoConAtencion
            this.razonSocial = this.cliente.razonSocial
            this.representante = this.cliente.representante
+           this.cargoRepresentante = this.cliente.cargoRepresentante
            this.rfc = this.cliente.rfc
            this.email = this.cliente.email
            this.telefono = this.cliente.telefono
@@ -289,6 +323,8 @@ message: 'El formato de email debe ser válido',
                  rfc: this.rfc,
                  email: this.email,
                  telefono: this.telefono,
+                cargoConAtencion:this.cargoConAtencion,
+                cargoRepresentante: this.cargoRepresentante,
                }
              })
             //correcto
