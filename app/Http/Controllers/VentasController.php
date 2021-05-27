@@ -46,6 +46,7 @@ class VentasController extends Controller
             $cotizacion = Cotizacion::where('id','=',$idCotizacion)->first();
             $registro = new Venta();
             $registro->idCotizacion = $idCotizacion;
+            $registro->idCliente = $cotizacion->idCliente;
             $registro->subtotal = $cotizacion->subtotal; 
             $registro->iva = $cotizacion->ivaTotal;
             $registro->ieps = $cotizacion->iepsTotal;

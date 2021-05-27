@@ -12,6 +12,7 @@ class Cotizacion extends Model
 
             'id',
             'idSolicitud',
+            'idCliente',
             'estatus',
             'utilidadGlobal',
             'ivaGlobal',

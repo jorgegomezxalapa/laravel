@@ -30,6 +30,7 @@ class SolicitudController extends Controller
 
           $cotizacion = new Cotizacion();
           $cotizacion->idSolicitud = $solicitud->id;
+          $cotizacion->idCliente = $solicitud->cliente;
           $cotizacion->ivaGlobal = 16;
           $cotizacion->iepsGlobal = 0;
         

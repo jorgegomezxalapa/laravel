@@ -46,9 +46,11 @@ Route::post('getDetalle', 'UserController@getDetalle')->name('getDetalle');
 
 //clientes
 Route::get('getClientes', 'ClienteController@getClientes')->name('getClientes');
+Route::get('getClientesDasboard', 'ClienteController@getClientesDasboard')->name('getClientesDasboard');
 Route::post('createCliente', 'ClienteController@createCliente')->name('createCliente');
 Route::post('editarCliente', 'ClienteController@editarCliente')->name('editarCliente');
 Route::post('getCliente', 'ClienteController@getCliente')->name('getCliente');
+Route::post('filtrarBusquedaClientes', 'ClienteController@filtrarBusquedaClientes')->name('filtrarBusquedaClientes');
 
 //solicitudes
 Route::post('createSolicitud', 'SolicitudController@create')->name('createSolicitud');

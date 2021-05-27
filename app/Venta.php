@@ -12,6 +12,7 @@ class Venta extends Model
 
             'id',
             	'idCotizacion',
+            	'idCliente',
 	            'subtotal',
 	            'iva',
 	            'ieps',

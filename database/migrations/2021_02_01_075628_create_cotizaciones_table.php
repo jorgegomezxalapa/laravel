@@ -17,6 +17,7 @@ class CreateCotizacionesTable extends Migration
             $table->bigIncrements('id');
 
             $table->integer('idSolicitud')->nullable();
+            $table->integer('idCliente')->nullable();
 
             $table->string('estatus',250)->nullable();
 

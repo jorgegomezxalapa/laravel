@@ -10,6 +10,7 @@ use App\Partida;
 use App\Utilidad;
 use App\Almacen;
 use App\Cliente;
+use App\Venta;
 class CotizacionController extends Controller
 {
     //
@@ -914,7 +915,7 @@ class CotizacionController extends Controller
         $cotizaciones = Cotizacion::orderBy('id', 'DESC')->count();
         $solicitudes = Solicitud::orderBy('id', 'DESC')->count();
         $clientes = Cliente::orderBy('id', 'DESC')->count();
-        $ventas = Cotizacion::orderBy('id', 'DESC')->where('finalizada', '=', 1)->count();
+        $ventas = Venta::orderBy('id', 'DESC')->count();
         return response()->json(['response' => "ok", "cotizaciones" => $cotizaciones, "solicitudes" => $solicitudes, "clientes" => $clientes, "ventas" => $ventas],200);
 
         return response()->json(['response' => $cotizaciones],200);
