@@ -36,9 +36,10 @@
        
         class="ml-3 mr-3 mt-3"
         color="primary"
-       
+       @click="filtrar()"
         >
         FILTRAR
+
         </v-btn>
        
      </v-col>
@@ -57,10 +58,43 @@
       <v-data-table
       class="mt-3"
       :headers="headers"
-      :items="solicitantes"
+      :items="datos"
       :search="search"
       :items-per-page="5"
-    ></v-data-table>
+    >
+      <template v-slot:item.solicitudes="{ item }">
+      <v-chip
+        color="primary"
+      >
+        {{ item.solicitudes.length }}
+      </v-chip>
+    </template>
+    <template v-slot:item.cotizaciones="{ item }">
+      <v-chip
+        color="secondary"
+      >
+        {{ getPendientes(item.cotizaciones) }}
+      </v-chip>
+      <v-chip
+        color="primary"
+      >
+        {{ getProceso(item.cotizaciones) }}
+      </v-chip>
+      <v-chip
+        color="success"
+      >
+        {{ getFinalizadas(item.cotizaciones) }}
+      </v-chip>
+    </template>
+    <template v-slot:item.ventas="{ item }">
+      <v-chip
+        color="success"
+      >
+        {{ item.ventas.length }}
+      </v-chip>
+    </template>
+
+    </v-data-table>
 
       </v-col>
     </v-row>
@@ -74,18 +108,14 @@
       mostrar:false,
       mes:0,
       anio:0,
-      solicitantes:[],
-      headers: [
-          {
-            text: 'NOMBRE',
-            align: 'start',
-            value: '1',
-          },
-          { text: 'RAZÓN SOCIAL', value: '2' },
-          { text: 'SOLICITUDES', value: '3' },
-          { text: 'COTIZACIONES', value: '4' },
-         
-          { text: 'VENTAS', value: '6' },
+      datos:[],
+       headers: [
+       { text: 'NOMBRE', value: 'nombre', align: 'center', },
+      { text: 'RAZÓN SOCIAL', value: 'razonsocial', align: 'center', },
+      { text: 'SOLICITUDES', value: 'solicitudes', align: 'center', },
+      { text: 'COTIZACIONES', value: 'cotizaciones', align: 'center', },
+      { text: 'VENTAS', value: 'ventas', align: 'center', },
+        
         ],
     meses:[
           { id: 0, nombre: "TOTAL"},
@@ -104,7 +134,6 @@
           ],
           anios:[
           { id: 0, nombre: "TOTAL"},
-          { id: 2020, nombre: "2020"},
           { id: 2021, nombre: "2021"},
           { id: 2022, nombre: "2022"},
           { id: 2023, nombre: "2023"},
@@ -118,10 +147,71 @@
 
     },
     methods: {
+      async filtrar(){
+        if (this.mes == 0 && this.anio == 0) {
+          this.getSolicitantes();
+        }else{
+         
+           const response = await axios({
+                  method: 'post',
+                  url: 'filtrarBusquedaSolicitantes',
+                  data:{
+                    mes:this.mes,
+                    anio:this.anio
+                  }
+                })
+               this.datos = response.data.response
+        }
+        this.mes = null
+        this.anio = null
+        this.mostrar = false
+
+      },
+       getPendientes(item){
+        var contador = 0
+        $.each(item, function(key, value) {
+       
+         if (parseInt(value.estatus) == 0) {
+          contador = contador + 1
+         }
+       });
+        return contador;
+      },
+       getProceso(item){
+       var contador = 0
+        $.each(item, function(key, value) {
+       
+         if (parseInt(value.estatus) == 1) {
+          contador = contador + 1
+         }
+       });
+        return contador;
+      },
+       getFinalizadas(item){
+       var contador = 0
+        $.each(item, function(key, value) {
+       
+         if (parseInt(value.estatus) == 2) {
+          contador = contador + 1
+         }
+       });
+        return contador;
+      },
       ocultar(){
         this.mostrar = !this.mostrar
 
       },
+
+      async getSolicitantes(){
+
+      const response = await axios({
+                  method: 'get',
+                  url: 'getSolicitantesDasboard',
+                })
+               this.datos = response.data.response
+               
+
+    },
      
      
 
@@ -131,6 +221,7 @@
 
   },
   mounted: function () {
+    this.getSolicitantes()
  
 }
   }

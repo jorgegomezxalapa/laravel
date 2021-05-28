@@ -17,6 +17,7 @@ class CreateVentasTable extends Migration
             $table->bigIncrements('id');
             $table->integer('idCotizacion')->nullable();
              $table->integer('idCliente')->nullable();
+             $table->integer('idSolicitante')->nullable();
             $table->string('subtotal',250)->nullable();
             $table->string('iva',250)->nullable();
             $table->string('ieps',250)->nullable();

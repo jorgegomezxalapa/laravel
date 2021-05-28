@@ -18,7 +18,7 @@ class CreateCotizacionesTable extends Migration
 
             $table->integer('idSolicitud')->nullable();
             $table->integer('idCliente')->nullable();
-
+            $table->integer('idSolicitante')->nullable();
             $table->string('estatus',250)->nullable();
 
                 $table->string('utilidadGlobal',250)->nullable();

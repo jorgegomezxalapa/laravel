@@ -64,6 +64,11 @@ Route::get('getSolicitantes', 'SolicitantesController@getSolicitantes')->name('g
 Route::post('getSolicitante', 'SolicitantesController@getSolicitante')->name('getSolicitante');
 Route::post('editarSolicitante', 'SolicitantesController@editarSolicitante')->name('editarSolicitante');
 
+Route::get('getSolicitantesDasboard', 'SolicitantesController@getSolicitantesDasboard')->name('getSolicitantesDasboard');
+
+Route::post('filtrarBusquedaSolicitantes', 'SolicitantesController@filtrarBusquedaSolicitantes')->name('filtrarBusquedaSolicitantes');
+
+
 //catalogos
 Route::get('catalogosSolicitud', 'CatalogosController@catalogosSolicitud')->name('catalogosSolicitud');
 

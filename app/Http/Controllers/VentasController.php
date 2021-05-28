@@ -47,6 +47,7 @@ class VentasController extends Controller
             $registro = new Venta();
             $registro->idCotizacion = $idCotizacion;
             $registro->idCliente = $cotizacion->idCliente;
+            $registro->idSolicitante = $cotizacion->idSolicitante;
             $registro->subtotal = $cotizacion->subtotal; 
             $registro->iva = $cotizacion->ivaTotal;
             $registro->ieps = $cotizacion->iepsTotal;
