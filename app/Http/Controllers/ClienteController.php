@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Cliente;
 use App\Solicitud;
 use App\Venta;
 use App\User;
 use App\Cotizacion;
+use App\Historial;
 
 class ClienteController extends Controller
 {
@@ -68,6 +70,16 @@ class ClienteController extends Controller
         $user->email = $request->email;
         $user->telefono = $request->telefono;
         $user->save();
+
+        $sesionHoy = Auth::user();
+
+          $historial = new Historial();
+          $historial->idUsuario = $sesionHoy->id;
+          $historial->accion = "registro";
+          $historial->modulo = "cliente";
+          $historial->descripcion = $sesionHoy->name." registró al cliente con razón social  ".$user->razonSocial;
+
+          $historial->save();
         DB::commit();
       }
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use App\Historial;
 use Validator;
 
 class UserController extends Controller
@@ -49,6 +50,16 @@ class UserController extends Controller
 		    	$user->sexo = $request->sexo;
 		    	$user->password = bcrypt($request->password);
 		    	$user->save();
+
+		    	$sesionHoy = Auth::user();
+
+          $historial = new Historial();
+          $historial->idUsuario = $sesionHoy->id;
+          $historial->accion = "registro";
+          $historial->modulo = "usuario";
+          $historial->descripcion = $sesionHoy->name." registró al usuario con nombre ".$user->name;
+
+          $historial->save();
 		    	DB::commit();
     		}
 
@@ -108,6 +119,15 @@ class UserController extends Controller
 		    	$usuario->password =  bcrypt($request->password);
 		    }
 		   $usuario->save();
+		   $sesionHoy = Auth::user();
+
+          $historial = new Historial();
+          $historial->idUsuario = $sesionHoy->id;
+          $historial->accion = "edición";
+          $historial->modulo = "usuario";
+          $historial->descripcion = $sesionHoy->name." editó al usuario con nombre ".$usuario->name;
+
+          $historial->save();
 		    DB::commit();
 
 

@@ -11,6 +11,9 @@ use App\Utilidad;
 use App\Almacen;
 use App\Cliente;
 use App\Venta;
+use App\Historial;
+use Illuminate\Support\Facades\Auth;
+
 class CotizacionController extends Controller
 {
     //
@@ -24,7 +27,7 @@ class CotizacionController extends Controller
     $razonSocial = $request->razonSocial;
 
 
-    $cotizacion = Cotizacion::where('id', '=', $idCotizacion)->first();
+    $cotizacion = Cotizacion::where('id', '=', $idCotizacion)->with('solicitud')->first();
     $cotizacion->asunto = $asunto;
     $cotizacion->razonSocial = $razonSocial;
     $cotizacion->vigencia = $vigencia;
@@ -32,11 +35,21 @@ class CotizacionController extends Controller
     $cotizacion->condicionesdeventa = $condicionesdeventa;
     $cotizacion->save();
 
+     $sesionHoy = Auth::user();
+
+          $historial = new Historial();
+          $historial->idUsuario = $sesionHoy->id;
+          $historial->accion = "actualización";
+          $historial->modulo = "cotización";
+          $historial->descripcion = $sesionHoy->name." actualizó el estatus de la cotización ".$cotizacion->solicitud->folio;
+
+          $historial->save();
+
+
+
     $solicitud = Solicitud::where('id', '=', $cotizacion->idSolicitud)->first();
     $solicitud->razonSocial = $razonSocial;
     $solicitud->save();
-
-
    
 
      return response()->json(['response' => $cotizacion],200);
@@ -115,6 +128,16 @@ class CotizacionController extends Controller
         $cotizacion->fechafinalizado = $date;
         $cotizacion->estatus = 2;
         $cotizacion->save();
+
+        $sesionHoy = Auth::user();
+
+          $historial = new Historial();
+          $historial->idUsuario = $sesionHoy->id;
+          $historial->accion = "actualización";
+          $historial->modulo = "cotización";
+          $historial->descripcion = $sesionHoy->name." actualizó el estatus de la cotización ".$cotizacion->solicitud->folio." a cotizada";
+
+          $historial->save();
 
         return response()->json(['response' => $cotizacion],200);
 
@@ -370,9 +393,19 @@ class CotizacionController extends Controller
       public function iniciarCotizacion (Request $request) {
         try {
 
-          $cotizacion = Cotizacion::where('id', '=', $request->id)->first();
+          $cotizacion = Cotizacion::where('id', '=', $request->id)->with('solicitud')->first();
           $cotizacion->estatus = 1;
           $cotizacion->save();
+
+          $sesionHoy = Auth::user();
+
+          $historial = new Historial();
+          $historial->idUsuario = $sesionHoy->id;
+          $historial->accion = "actualización";
+          $historial->modulo = "cotización";
+          $historial->descripcion = $sesionHoy->name." actualizó el estatus de la cotización ".$cotizacion->solicitud->folio;
+
+          $historial->save();
 
 
           return response()->json(['response' => $cotizacion],200);

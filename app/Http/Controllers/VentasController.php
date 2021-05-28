@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Venta;
+use App\Historial;
 use App\Cotizacion;
+use Illuminate\Support\Facades\Auth;
 class VentasController extends Controller
 {
     /**
@@ -43,7 +45,7 @@ class VentasController extends Controller
 
         
         if ($venta == 0) {
-            $cotizacion = Cotizacion::where('id','=',$idCotizacion)->first();
+            $cotizacion = Cotizacion::where('id','=',$idCotizacion)->with('solicitud')->first();
             $registro = new Venta();
             $registro->razonSocial = $cotizacion->razonSocial;
             $registro->idCotizacion = $idCotizacion;
@@ -54,6 +56,16 @@ class VentasController extends Controller
             $registro->ieps = $cotizacion->iepsTotal;
             $registro->total = $cotizacion->total;
             $registro->save();
+
+            $sesionHoy = Auth::user();
+
+          $historial = new Historial();
+          $historial->idUsuario = $sesionHoy->id;
+          $historial->accion = "registro";
+          $historial->modulo = "ventas";
+          $historial->descripcion = $sesionHoy->name." dió de alta la venta con folio de cotización ".$cotizacion->solicitud->folio;
+
+          $historial->save();
             return response()->json(['response' => 1],200);
         }else{
             //ya fue turnada
@@ -181,6 +193,16 @@ class VentasController extends Controller
         }
         
         $venta->save();
+
+        $sesionHoy = Auth::user();
+
+          $historial = new Historial();
+          $historial->idUsuario = $sesionHoy->id;
+          $historial->accion = "actualización";
+          $historial->modulo = "ventas";
+          $historial->descripcion = $sesionHoy->name." actualizó una venta ";
+
+          $historial->save();
 
         return response()->json(['response' => $venta],200);
         

@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Solicitante;
 use App\Cliente;
 use App\Solicitud;
 use App\Venta;
 use App\Cotizacion;
 use App\RazonSocial;
+use App\Historial;
 
 
 class SolicitantesController extends Controller
@@ -164,6 +166,16 @@ class SolicitantesController extends Controller
           $solicitante->email = $request->email;
           $solicitante->telefono = $request->telefono;
           $solicitante->save();
+
+          $sesionHoy = Auth::user();
+
+          $historial = new Historial();
+          $historial->idUsuario = $sesionHoy->id;
+          $historial->accion = "registro";
+          $historial->modulo = "solicitante";
+          $historial->descripcion = $sesionHoy->name." registró al solicitante con nombre ".$solicitante->nombre;
+
+          $historial->save();
           DB::commit();
         }
 

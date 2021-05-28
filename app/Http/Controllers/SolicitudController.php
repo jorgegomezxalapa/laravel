@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Solicitud;
 use App\Cotizacion;
+use App\Historial;
 
 class SolicitudController extends Controller
 {
@@ -25,6 +27,16 @@ class SolicitudController extends Controller
           $solicitud->comentario = $request->comentarios;
           $solicitud->urgente = $request->urgente;
           $solicitud->save();
+
+          $sesionHoy = Auth::user();
+
+          $historial = new Historial();
+          $historial->idUsuario = $sesionHoy->id;
+          $historial->accion = "registro";
+          $historial->modulo = "solicitud";
+          $historial->descripcion = $sesionHoy->name." registró una nueva solicitud con folio ".$solicitud->folio;
+
+          $historial->save();
 
 
 

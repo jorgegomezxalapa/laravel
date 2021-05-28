@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Utilidad;
 use App\Cotizacion;
+use App\Historial;
 
 
 class UtilidadController extends Controller
@@ -20,6 +22,16 @@ class UtilidadController extends Controller
           $utilidad->descripcion = $request->descripcion;
           $utilidad->porcentaje = floatval($request->porcentaje);
           $utilidad->save();
+
+          $sesionHoy = Auth::user();
+
+          $historial = new Historial();
+          $historial->idUsuario = $sesionHoy->id;
+          $historial->accion = "registro";
+          $historial->modulo = "tipo de venta";
+          $historial->descripcion = $sesionHoy->name." registró el tipo de venta con utilidad del ".$utilidad->porcentaje."%";
+
+          $historial->save();
           DB::commit();
         }
 
