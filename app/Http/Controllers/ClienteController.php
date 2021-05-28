@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Cliente;
 use App\Solicitud;
 use App\Venta;
+use App\User;
 use App\Cotizacion;
 
 class ClienteController extends Controller
@@ -85,6 +86,58 @@ class ClienteController extends Controller
           return response()->json(['response' => $e],500);
       }
 return response()->json(['response' => $clientes],200);
+
+    }
+
+    public function filtroEmpleadosDashboard(Request $request){
+     
+        $mes = $request->mes;
+        $anio = $request->anio;
+        $empleados = User::orderBy('id', 'DESC')->get();
+        $tablita = [];
+        foreach($empleados as $empleado){
+
+          $solicitudes = Solicitud::where('responsable', '=', $empleado->id)->get();
+
+        
+         foreach($solicitudes as $solicitud){
+          $cotizacion = Cotizacion::where('idSolicitud', '=', $solicitud->id)->first();
+
+          
+         }
+
+           $valor =  [  'nombre' => $empleado->name,  'solicitudes' => $solicitudes, 'cotizaciones' => $cotizaciones];
+           array_push($tablita, $valor);
+
+        }
+        
+
+      return response()->json(['response' => $tablita],200);
+
+    }
+
+    public function getEmpleadosDasboard(){
+     
+
+        $empleados = User::orderBy('id', 'DESC')->get();
+        $tablita = [];
+        foreach($empleados as $empleado){
+
+          $solicitudes = Solicitud::where('responsable', '=', $empleado->id)->get();
+
+        $cotizaciones = [];
+         foreach($solicitudes as $solicitud){
+          $cotizacion = Cotizacion::where('idSolicitud', '=', $solicitud->id)->with('partidas')->first();
+          array_push($cotizaciones, $cotizacion);
+         }
+
+           $valor =  [  'nombre' => $empleado->name,  'solicitudes' => $solicitudes, 'cotizaciones' => $cotizaciones];
+           array_push($tablita, $valor);
+
+        }
+        
+
+      return response()->json(['response' => $tablita],200);
 
     }
 

@@ -9,6 +9,7 @@ use App\Cliente;
 use App\Solicitud;
 use App\Venta;
 use App\Cotizacion;
+use App\RazonSocial;
 
 
 class SolicitantesController extends Controller
@@ -53,6 +54,67 @@ class SolicitantesController extends Controller
 
 
     }
+
+    return response()->json(['response' => $tablita],200);
+  }
+
+  public function filtrarBusquedaRazones(Request $request){
+   
+          $anio = $request->anio;
+          $mes = $request->mes;
+         $razones = RazonSocial::orderBy('id', 'DESC')->get();
+         $tablita = [];
+
+         foreach($razones as $razon){
+
+          $solicitudes = Solicitud::where('razonSocial', '=', $razon->id) ->whereYear('created_at', $anio)
+            ->whereMonth('created_at', $mes)->get();
+
+          $cotizaciones = Cotizacion::where('razonSocial', '=', $razon->id)->whereYear('created_at', $anio)
+            ->whereMonth('created_at', $mes)->get();
+          $ventas = Venta::where('razonSocial', '=', $razon->id) ->whereYear('created_at', $anio)
+            ->whereMonth('created_at', $mes)->get();
+
+          $valor =  [  'nombre' => $razon->nombre,'solicitudes' => $solicitudes,  'cotizaciones' => $cotizaciones, 'ventas' => $ventas ];
+
+            array_push($tablita, $valor);
+
+         }
+         
+
+        
+        
+
+            
+          
+
+    return response()->json(['response' => $tablita],200);
+  }
+
+  public function getRazonesDasboard(){
+   
+
+         $razones = RazonSocial::orderBy('id', 'DESC')->get();
+         $tablita = [];
+
+         foreach($razones as $razon){
+
+          $solicitudes = Solicitud::where('razonSocial', '=', $razon->id)->get();
+          $cotizaciones = Cotizacion::where('razonSocial', '=', $razon->id)->get();
+          $ventas = Venta::where('razonSocial', '=', $razon->id)->get();
+
+          $valor =  [  'nombre' => $razon->nombre,'solicitudes' => $solicitudes,  'cotizaciones' => $cotizaciones, 'ventas' => $ventas ];
+
+            array_push($tablita, $valor);
+
+         }
+         
+
+        
+        
+
+            
+          
 
     return response()->json(['response' => $tablita],200);
   }

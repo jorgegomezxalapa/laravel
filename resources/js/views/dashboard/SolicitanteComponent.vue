@@ -105,6 +105,7 @@
   const axios = require('axios');
   export default {
     data: () => ({
+       search:"",
       mostrar:false,
       mes:0,
       anio:0,

@@ -23,6 +23,8 @@ Route::post('authenticate', 'HomeController@authenticate')->name('authenticate')
 
 //dashboard
 
+Route::get('getRazonesDasboard', 'SolicitantesController@getRazonesDasboard')->name('getRazonesDasboard');
+
 Route::post('upload', 'ArchivosController@index')->name('upload');
 
 Route::get('getAll', 'CotizacionController@getAll')->name('getAll');
@@ -51,6 +53,12 @@ Route::post('createCliente', 'ClienteController@createCliente')->name('createCli
 Route::post('editarCliente', 'ClienteController@editarCliente')->name('editarCliente');
 Route::post('getCliente', 'ClienteController@getCliente')->name('getCliente');
 Route::post('filtrarBusquedaClientes', 'ClienteController@filtrarBusquedaClientes')->name('filtrarBusquedaClientes');
+
+Route::post('filtrarBusquedaRazones', 'SolicitantesController@filtrarBusquedaRazones')->name('filtrarBusquedaRazones');
+
+Route::get('getEmpleadosDasboard', 'ClienteController@getEmpleadosDasboard')->name('getEmpleadosDasboard');
+
+Route::post('filtroEmpleadosDashboard', 'ClienteController@filtroEmpleadosDashboard')->name('filtroEmpleadosDashboard');
 
 //solicitudes
 Route::post('createSolicitud', 'SolicitudController@create')->name('createSolicitud');

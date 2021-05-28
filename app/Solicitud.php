@@ -11,6 +11,7 @@ class Solicitud extends Model
       protected $fillable =[
           'id',
           'fecha',
+          'razonSocial',
           'folio',
           'agente',
           'cliente',

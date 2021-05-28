@@ -15,7 +15,9 @@ class CreateVentasTable extends Migration
     {
         Schema::create('ventas', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('razonSocial')->nullable();
             $table->integer('idCotizacion')->nullable();
+
              $table->integer('idCliente')->nullable();
              $table->integer('idSolicitante')->nullable();
             $table->string('subtotal',250)->nullable();

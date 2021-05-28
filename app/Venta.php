@@ -11,6 +11,7 @@ class Venta extends Model
       protected $fillable =[
 
             'id',
+            'razonSocial',
             	'idCotizacion',
             	'idCliente',
             	'idSolicitante',

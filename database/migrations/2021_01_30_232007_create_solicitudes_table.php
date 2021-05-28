@@ -17,6 +17,7 @@ class CreateSolicitudesTable extends Migration
           $table->bigIncrements('id');
             $table->string('fecha',64)->nullable();
               $table->string('folio',64)->nullable();
+              $table->integer('razonSocial')->nullable();
                 $table->string('agente',64)->nullable();
                   $table->string('cliente',64)->nullable();
                     $table->string('solicitante',64)->nullable();

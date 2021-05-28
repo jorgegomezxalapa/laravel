@@ -35,7 +35,7 @@
        
         class="ml-3 mr-3 mt-3"
         color="primary"
-       
+         @click="filtrar()"
         >
         FILTRAR
         </v-btn>
@@ -56,10 +56,40 @@
       <v-data-table
       class="mt-3"
       :headers="headers"
-      :items="cliente"
+      :items="datos"
       :search="search"
       :items-per-page="5"
-    ></v-data-table>
+    >
+        <template v-slot:item.solicitudes="{ item }">
+      <v-chip
+        color="primary"
+      >
+        {{ item.solicitudes.length }}
+      </v-chip>
+    </template>
+      <template v-slot:item.proceso="{ item }">
+      <v-chip
+        color="primary"
+      >
+        {{ getProceso(item.cotizaciones) }}
+      </v-chip>
+    </template> 
+    <template v-slot:item.terminadas="{ item }">
+      <v-chip
+        color="primary"
+      >
+        {{ getTerminadas(item.cotizaciones) }}
+      </v-chip>
+    </template> 
+     <template v-slot:item.partidas="{ item }">
+      <v-chip
+        color="primary"
+      >
+        {{ getPartidas(item.cotizaciones) }}
+      </v-chip>
+    </template> 
+      
+    </v-data-table>
 
       </v-col>
     </v-row>
@@ -70,16 +100,17 @@
   const axios = require('axios');
   export default {
     data: () => ({
+       search:"",
       mostrar:false,
       mes:0,
       anio:0,
-      cliente:[],
+      datos:[],
       headers: [
-          { text: 'NOMBRE', value: '2' },
-          { text: 'No. DELEGADAS', value: '3' },
-          { text: 'No. PROCESO', value: '4' },
-          { text: 'No. PARTIDAS', value: '4' },
-          { text: 'No. TERMINADAS', value: '6' },
+          { text: 'NOMBRE', value: 'nombre' },
+          { text: 'No. DELEGADAS', value: 'solicitudes' },
+          { text: 'No. PROCESO', value: 'proceso' },
+          { text: 'No. PARTIDAS', value: 'partidas' },
+          { text: 'No. TERMINADAS', value: 'terminadas' },
         ],
     meses:[
           { id: 0, nombre: "TOTAL"},
@@ -98,7 +129,7 @@
           ],
           anios:[
           { id: 0, nombre: "TOTAL"},
-          { id: 2020, nombre: "2020"},
+         
           { id: 2021, nombre: "2021"},
           { id: 2022, nombre: "2022"},
           { id: 2023, nombre: "2023"},
@@ -112,6 +143,74 @@
 
     },
     methods: {
+      async filtrar(){
+        if (this.mes == 0 && this.anio == 0) {
+          this.getClientes();
+        }else{
+         
+           const response = await axios({
+                  method: 'post',
+                  url: 'filtroEmpleadosDashboard',
+                  data:{
+                    mes:this.mes,
+                    anio:this.anio
+                  }
+                })
+               this.datos = response.data.response
+        }
+        this.mes = null
+        this.anio = null
+        this.mostrar = false
+
+      },
+      getPartidas(item){
+        
+       var contador = 0
+        $.each(item, function(key, value) {
+          
+          $.each(value.partidas, function(key, value) {
+       
+          contador = contador + 1
+          });
+       
+       });
+
+        return contador;
+      },
+      getTerminadas(item){
+        
+       var contador = 0
+        $.each(item, function(key, value) {
+       
+         if (parseInt(value.estatus) == 2) {
+          contador = contador + 1
+         }
+       });
+
+        return contador;
+      },
+      getProceso(item){
+        
+       var contador = 0
+        $.each(item, function(key, value) {
+       
+         if (parseInt(value.estatus) != 0) {
+          contador = contador + 1
+         }
+       });
+
+        return contador;
+      },
+      async getEmpleados(){
+
+      const response = await axios({
+                  method: 'get',
+                  url: 'getEmpleadosDasboard',
+                })
+               this.datos = response.data.response
+               
+
+    },
       ocultar(){
         this.mostrar = !this.mostrar
 
@@ -124,7 +223,7 @@
 
   },
   mounted: function () {
- 
+ this.getEmpleados()
 }
   }
 </script>

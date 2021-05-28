@@ -10,6 +10,18 @@
        </v-row>
        <v-row>
         <v-col cols="12">
+          <v-select
+              @focus="getRazones()"
+                :items="razones"
+                label="ASIGNAR RAZÓN SOCIAL"
+                v-model="razonCot"
+                item-text="nombre"
+                item-value="id"
+                outlined
+              ></v-select>
+        </v-col>
+         
+        <v-col cols="12">
           <v-textarea
           v-model="asunto"
           label="ASUNTO DEL DOCUMENTO"
@@ -246,6 +258,7 @@ const axios = require('axios');
         dialog:false,
         razones:[],
         razon:null,
+        razonCot:null,
         formatos:[],
         formato:null,
         documentos:[],
@@ -269,6 +282,7 @@ const axios = require('axios');
                   method: 'post',
                   url: 'complementarDetalle',
                   data:{
+                    razonSocial:parseInt(this.razonCot),
                     idCotizacion:parseInt(this.$route.params.id),
                     asunto:this.asunto,
                     vigencia:this.vigencia,
@@ -405,6 +419,11 @@ const axios = require('axios');
                       }
                     })
                  this.cotizacion = response.data.response
+                 if (this.cotizacion.razonSocial != null) {
+                  this.getRazones()
+                   this.razonCot = this.cotizacion.razonSocial
+                 }
+                
                  this.asunto = this.cotizacion.asunto
                  this.vigencia = this.cotizacion.vigencia
                  this.tiempodeentrega = this.cotizacion.tiempodeentrega

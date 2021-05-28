@@ -11,6 +11,7 @@ class Cotizacion extends Model
       protected $fillable =[
 
             'id',
+            'razonSocial',
             'idSolicitud',
             'idCliente',
             'idSolicitante',

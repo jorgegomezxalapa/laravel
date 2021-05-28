@@ -45,6 +45,7 @@ class VentasController extends Controller
         if ($venta == 0) {
             $cotizacion = Cotizacion::where('id','=',$idCotizacion)->first();
             $registro = new Venta();
+            $registro->razonSocial = $cotizacion->razonSocial;
             $registro->idCotizacion = $idCotizacion;
             $registro->idCliente = $cotizacion->idCliente;
             $registro->idSolicitante = $cotizacion->idSolicitante;

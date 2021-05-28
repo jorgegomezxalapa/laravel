@@ -21,14 +21,23 @@ class CotizacionController extends Controller
     $vigencia = $request->vigencia;
     $tiempodeentrega = $request->tiempodeentrega;
     $condicionesdeventa = $request->condicionesdeventa;
+    $razonSocial = $request->razonSocial;
 
 
     $cotizacion = Cotizacion::where('id', '=', $idCotizacion)->first();
     $cotizacion->asunto = $asunto;
+    $cotizacion->razonSocial = $razonSocial;
     $cotizacion->vigencia = $vigencia;
     $cotizacion->tiempodeentrega = $tiempodeentrega;
     $cotizacion->condicionesdeventa = $condicionesdeventa;
     $cotizacion->save();
+
+    $solicitud = Solicitud::where('id', '=', $cotizacion->idSolicitud)->first();
+    $solicitud->razonSocial = $razonSocial;
+    $solicitud->save();
+
+
+   
 
      return response()->json(['response' => $cotizacion],200);
   }

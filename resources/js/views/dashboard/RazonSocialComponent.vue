@@ -35,7 +35,7 @@
        
         class="ml-3 mr-3 mt-3"
         color="primary"
-       
+       @click="filtrar()"
         >
         FILTRAR
         </v-btn>
@@ -56,10 +56,44 @@
       <v-data-table
       class="mt-3"
       :headers="headers"
-      :items="cliente"
+      :items="datos"
       :search="search"
       :items-per-page="5"
-    ></v-data-table>
+    >
+       <template v-slot:item.solicitudes="{ item }">
+      <v-chip
+        color="primary"
+      >
+        {{ item.solicitudes.length }}
+      </v-chip>
+    </template>
+    <template v-slot:item.cotizaciones="{ item }">
+      <v-chip
+        color="secondary"
+      >
+        {{ getPendientes(item.cotizaciones) }}
+      </v-chip>
+      <v-chip
+        color="primary"
+      >
+        {{ getProceso(item.cotizaciones) }}
+      </v-chip>
+      <v-chip
+        color="success"
+      >
+        {{ getFinalizadas(item.cotizaciones) }}
+      </v-chip>
+    </template>
+    <template v-slot:item.ventas="{ item }">
+      <v-chip
+        color="success"
+      >
+        {{ item.ventas.length }}
+      </v-chip>
+    </template>
+
+    </v-data-table>
+    </v-data-table>
 
       </v-col>
     </v-row>
@@ -70,15 +104,16 @@
   const axios = require('axios');
   export default {
     data: () => ({
+      search:"",
       mostrar:false,
       mes:0,
       anio:0,
-      cliente:[],
+      datos:[],
       headers: [
-          { text: 'RAZÓN SOCIAL', value: '2' },
-          { text: 'SOLICITUDES', value: '3' },
-          { text: 'COTIZACIONES', value: '4' },
-          { text: 'VENTAS', value: '4' },
+          { text: 'RAZÓN SOCIAL', value: 'nombre' },
+          { text: 'SOLICITUDES', value: 'solicitudes' },
+          { text: 'COTIZACIONES', value: 'cotizaciones' },
+          { text: 'VENTAS', value: 'ventas' },
         ],
     meses:[
           { id: 0, nombre: "TOTAL"},
@@ -97,7 +132,7 @@
           ],
           anios:[
           { id: 0, nombre: "TOTAL"},
-          { id: 2020, nombre: "2020"},
+         
           { id: 2021, nombre: "2021"},
           { id: 2022, nombre: "2022"},
           { id: 2023, nombre: "2023"},
@@ -111,6 +146,63 @@
 
     },
     methods: {
+      async filtrar(){
+        if (this.mes == 0 && this.anio == 0) {
+          this.getClientes();
+        }else{
+         
+           const response = await axios({
+                  method: 'post',
+                  url: 'filtrarBusquedaRazones',
+                  data:{
+                    mes:this.mes,
+                    anio:this.anio
+                  }
+                })
+               this.datos = response.data.response
+        }
+        this.mes = null
+        this.anio = null
+        this.mostrar = false
+
+      },
+      getPendientes(item){
+        var contador = 0
+        $.each(item, function(key, value) {
+       
+         if (parseInt(value.estatus) == 0) {
+          contador = contador + 1
+         }
+       });
+        return contador;
+      },
+       getProceso(item){
+       var contador = 0
+        $.each(item, function(key, value) {
+       
+         if (parseInt(value.estatus) == 1) {
+          contador = contador + 1
+         }
+       });
+        return contador;
+      },
+       getFinalizadas(item){
+       var contador = 0
+        $.each(item, function(key, value) {
+       
+         if (parseInt(value.estatus) == 2) {
+          contador = contador + 1
+         }
+       });
+        return contador;
+      },
+      async getRazones(){
+      const response = await axios({
+                  method: 'get',
+                  url: 'getRazonesDasboard',
+                })
+               this.datos = response.data.response
+    },
       ocultar(){
         this.mostrar = !this.mostrar
 
@@ -123,7 +215,7 @@
 
   },
   mounted: function () {
- 
+  this.getRazones()
 }
   }
 </script>
