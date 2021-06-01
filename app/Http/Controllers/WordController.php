@@ -23,9 +23,7 @@ use Storage;
 
 class WordController extends Controller
 {	
-	public function getDescarga($idDocumento,$idCotizacion){
-
-		
+	public function getDescarga($categoria, $porcentaje, $idDocumento,$idCotizacion){
 
 		$idDocumento = intval($idDocumento);
 		$idCotizacion = intval($idCotizacion);

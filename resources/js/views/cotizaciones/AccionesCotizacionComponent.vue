@@ -4,7 +4,16 @@
          <v-col cols="12" md="6">
            <v-row>
         <center>
-          <h5 class="font-weight-black ml-4 mt-5"><strong>COMPLEMENTO DE INFORMACIÓN</strong></h5>
+          <h5 class="font-weight-black ml-4 mt-5"><strong>COMPLEMENTO DE INFORMACIÓN</strong> <v-btn  @click="complementarDetalle()" color="primary" small>
+                        ACTUALIZAR<v-icon
+        right
+        dark
+      >
+        
+ mdi-content-save
+      </v-icon>
+                      </v-btn></h5>
+          
         </center>
          
        </v-row>
@@ -47,12 +56,12 @@
             label="CONDICIONES DE VENTA"
           ></v-text-field>
         </v-col>
-        <v-col cols="12">
+       <!--  <v-col cols="12">
           <v-btn  @click="complementarDetalle()" color="primary" block>
                         ACTUALIZAR COMPLEMENTO
                       </v-btn>
         </v-col>
-       
+        -->
          
        </v-row>
          </v-col>
@@ -67,11 +76,31 @@
                 <v-row>
                  
         
-       
-         <v-col cols="12" md="12">
+          <v-col v-if="cotizacion.razonSocial == null" cols="12" md="12">
+                    <center>
+                      <v-alert
+      text
+      prominent
+      type="error"
+      icon="mdi-cloud-alert"
+    >
+      ASIGNA UNA RAZÓN SOCIAL PARA HABILITAR EL RESTO DE LAS FUNCIONES OCULTAS
+    </v-alert>
+                    </center>
+          
+        </v-col>
+         <v-col v-if="this.cotizacion.razonSocial != null" cols="12" md="12">
                     <center>
                       <v-btn  @click="modalDescarga()" color="primary" block>
                         DESCARGAR FORMATO DE COTIZACIÓN
+                      </v-btn>
+                    </center>
+          
+        </v-col>
+                 <v-col v-if="this.cotizacion.razonSocial != null" cols="12" md="12">
+                    <center>
+                      <v-btn  @click="modalDescarga()" color="primary lighten-1" block>
+                        DESCARGAR FORMATO RÉPLICA DE COTIZACIÓN
                       </v-btn>
                     </center>
           
@@ -162,7 +191,7 @@
               dark
             >PARÁMETROS DE DESCARGA DE COTIZACIÓN</v-toolbar>
             <v-card-text>
-              <p><strong>SELECCIONA UNA RAZÓN SOCIAL</strong></p>
+              <!-- <p><strong>SELECCIONA UNA RAZÓN SOCIAL</strong></p>
               <v-select
               @focus="getRazones()"
                 :items="razones"
@@ -170,7 +199,7 @@
                 item-text="nombre"
                 item-value="id"
                 outlined
-              ></v-select>
+              ></v-select> -->
               <p><strong>SELECCIONA UNA CATEGORÍA DE DOCUMENTO</strong></p>
                 <v-select
                 @focus="getFormatos()"
@@ -297,7 +326,7 @@ const axios = require('axios');
               this.url = ""
               if (this.documento != null) {
                 this.mostrarD = true
-                this.url = 'getDescarga/'+parseInt(this.documento)+'/'+parseInt(this.$route.params.id);
+                this.url = 'getDescarga/cotizacion/1/'+parseInt(this.documento)+'/'+parseInt(this.$route.params.id);
               }
 
             },
@@ -391,7 +420,7 @@ const axios = require('axios');
                   method: 'post',
                   url: 'getDocumentosF',
                   data:{
-                    id_razonsocial : parseInt(this.razon) ,
+                    id_razonsocial : parseInt(this.razonCot) ,
                     id_formato : parseInt(this.formato) ,
                   }
                 })
