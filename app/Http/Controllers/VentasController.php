@@ -7,6 +7,7 @@ use App\Venta;
 use App\Historial;
 use App\Cotizacion;
 use Illuminate\Support\Facades\Auth;
+use Storage;
 class VentasController extends Controller
 {
     /**
@@ -149,8 +150,10 @@ class VentasController extends Controller
                 }else{
                     $nombreConcatenado = $nombre;
                 }
-                $path = $archivo->storeAs(
-                'ventas/'.$id.'/'.$carpeta,  $nombre
+               
+                $carpeta = 'ventas/'.$id.'/'.$carpeta;
+                $path = Storage::putFileAs(
+                    $carpeta, $archivo, $nombre
                 );
                 }
                 

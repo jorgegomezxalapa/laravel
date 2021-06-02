@@ -12,6 +12,7 @@ use App\Entrada;
 // use App\Cotizacion;
 use App\Partida;
 // use App\Utilidad;
+use Storage;
 
 class AlmacenController extends Controller
 {
@@ -39,8 +40,9 @@ class AlmacenController extends Controller
                 }else{
                     $nombreConcatenado = $nombre;
                 }
-                $path = $archivo->storeAs(
-                'fotosProductos',  $nombre
+                $carpeta = 'inventario/';
+                $path = Storage::putFileAs(
+                    $carpeta, $archivo, $nombre
                 );
                 }
                 $registro->archivosdenotas = $nombreConcatenado;
@@ -64,8 +66,9 @@ class AlmacenController extends Controller
                 }else{
                     $nombreConcatenado = $nombre;
                 }
-                $path = $archivo->storeAs(
-                'evidenciaEntradas',  $nombre
+               $carpeta = 'evidenciasEntradas/';
+                $path = Storage::putFileAs(
+                    $carpeta, $archivo, $nombre
                 );
                 }
                 $entrada->evidencias = $nombreConcatenado;
@@ -109,8 +112,9 @@ class AlmacenController extends Controller
                 }else{
                     $nombreConcatenado = $nombre;
                 }
-                $path = $archivo->storeAs(
-                'evidenciaEntradas',  $nombre
+                $carpeta = 'evidenciasEntradas/';
+                $path = Storage::putFileAs(
+                    $carpeta, $archivo, $nombre
                 );
                 }
                 $entrada->evidencias = $nombreConcatenado;
@@ -192,8 +196,9 @@ class AlmacenController extends Controller
                 }else{
                     $nombreConcatenado = $nombre;
                 }
-                $path = $archivo->storeAs(
-                'evidenciaSalidas',  $nombre
+                $carpeta = 'evidenciasSalidas/';
+                $path = Storage::putFileAs(
+                    $carpeta, $archivo, $nombre
                 );
                 }
                $salida->evidencias = $nombreConcatenado;

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\RazonSocial;
 use App\Formato;
 use App\Documento;
+use Storage;
 
 
 class GestionController extends Controller
@@ -107,8 +108,10 @@ class GestionController extends Controller
                 }else{
                     $nombreConcatenado = $nombre;
                 }
-                $path = $archivo->storeAs(
-                'documentos/'.$request->id_razonsocial.'/'.$request->id_formato,  $nombre
+               
+                $carpeta = 'documentos/'.$request->id_razonsocial.'/'.$request->id_formato;
+                $path = Storage::putFileAs(
+                    $carpeta, $archivo, $nombre
                 );
                 }
                 $sql->documento = $nombreConcatenado;

@@ -13,6 +13,7 @@ use App\Cliente;
 use App\Venta;
 use App\Historial;
 use Illuminate\Support\Facades\Auth;
+use Storage;
 
 class CotizacionController extends Controller
 {
@@ -581,8 +582,10 @@ class CotizacionController extends Controller
                 }else{
                     $nombreConcatenado = $nombre;
                 }
-                $path = $archivo->storeAs(
-                'cotizaciones/'.$request->idCotizacion.'/'.$request->partida,  $nombre
+               
+                $carpeta = 'cotizaciones/'.$request->idCotizacion.'/'.$request->partida;
+                $path = Storage::putFileAs(
+                    $carpeta, $archivo, $nombre
                 );
                 }
                 $almacen->archivosdenotas = $nombreConcatenado;
